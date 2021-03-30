@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head><title></title></head>
+	<body>
+	<!-- form 을 하지 않으면 저장버튼에서 무엇을 저장해야하는지 각각 지정해줘야함(form은 안에있는 데이터 모두 전송) -->
+		<form>
+			<fieldset>
+			<legend>회원정보</legend>
+			<!-- 아이디, 비밀번호, 이름, 이메일 저장번호 -->
+			아이디 : <input type="text" value="asdf" name="userid" size="5" maxlength="10" title="사용자 아이디"><br>
+			비밀번호 : <input type="password" name="userpw" size="20" required><br>
+			이름 : <input type="text" name="username" size="6" placeholder="이름은 3자리 이상입니다"><br>
+			이메일 : <input type="text" value="a@gmail.com" name="useremail" disabled><br>
+			성별 : 
+			<input type="radio" value="M" name="usergender" id="gendermale" checked>
+			<label for="gendermale">남자</label>
+			<input type="radio" value="F" name="usergender" id="genderfemale">
+			<label for="genderfemale">여자</label>
+			<br>
+			거주지역 :
+			<input type="radio" value="Daejeon" name="userlocation" id="locadaejeon"disabled>
+			<label for="locadaejeon">대전</label>
+			<input type="radio" value="etc" name="userlocation" id="locaetc">
+			<label for="locaetc">대전 외</label>
+			<br>
+			취미 :
+			<input type="checkbox" name="hoby" id="hobbook">
+			<label for="hobbook">독서</label>
+			<input type="checkbox" name="hoby" id="hobexercise">
+			<label for="hobexercise">운동</label>
+			<input type="checkbox" name="hoby" id="hobjourney">
+			<label for="hobjourney">여행</label>
+			<input type="checkbox" name="hoby" id="hobmovie">
+			<label for="hobmovie">영화보기</label>
+			<input type="checkbox" name="hoby" id="hobmusic" checked >
+			<label for="hobmusic">음악듣기</label>
+			<input type="checkbox" name="hoby" id="hobeat">
+			<label for="hobeat">맛집탐방</label>
+			<br>
+			자격증 :
+			<input type="checkbox" name="license">교원자격증
+			<input type="checkbox" name="license">용접기능사
+			<input type="checkbox" name="license">정보처리기사
+			<br>
+			프로필사진 : <input type="file" value="파일선택" accept="image/*"><br>
+			</fieldset>
+			
+			<input type="reset" value="reset">
+			<input type="button" value="저장"name="savebutton">
+			<input type="submit" value="전송">
+			<input type="hidden" value="히든"><br>
+			<hr>
+			
+			날짜 : <input type="date"><br>
+			날짜 & 시간 : <input type="datetime"><br>
+			월 : <input type="month"><br>
+			시간 : <input type="time"><br>
+			주 : <input type="week"><br>
+			색상 : <input type="color"><br>
+			이메일: <input type="email"><br>
+			전화번호: <input type="tel"><br>
+			범위 : <input type="range"><br>
+			[숫자]신발사이즈 : <input type="number" min="230" max="300" step="10"><br>
+			URL : <input type="url"><br>
+			
+			<hr>
+			<!-- 
+			alert('안녕하세요') ==> 텍스트로 파라미터 받음
+			alert("안녕하세요") ==> 텍스트로 파라미터 받음
+			alert(2020); ==> 숫자로 파라미터 받음 
+			-->
+			
+			<input type="button" value="inputbutton">
+			<button type="button" onclick="alert('안녕text')";>button</button>
+			<button type="submit" onclick="alert(124)";>submit</button>
+			<button type="reset">reset</button>
+			비고<br> <textarea rows="6" cols="6"></textarea><br>
+			
+			자동차 브랜드 :
+			<select naem="car">
+				<option value="A">현대자동차</option>
+				<option value="S" selected>쉐보레</option>
+				<option value="N">기아자동차</option>
+			</select>
+			
+		</form>
+	</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="kr">
+<!-- 
+1. 추가옵션 버튼 클릭시 옵션내용 나오도록 하는 메서드 만들기??...
+	- 사이즈 조정(가로,세로)하면 기존 제원은 밑으로 이동하고 추가옵션 선택할 수 있게
+2. 가격과 연동 시킬 수 있는지?
+	- 수량에 따른, 추가옵션에 따른
+	- 가능하지만..
+ -->
+	<head>
+		<meta charset="UTF-8">
+		<title>computer</title>
+		<link rel="stylesheet"  type="text/css"  href="../css/mycss.css" >
+	</head>
+	<body id="computerbody">
+		<div class="prodcomputerpackage">
+			<div id="prodcomputer1" class="prodcomputer prod">
+				<img alt="컴퓨터상품1" src="../images/prod_computer_1.jpg">
+				<h3 id="prodnamecl1" class="prodname">13형 Apple M1 칩(8코어 CPU 및 8코어 GPU) </h3>
+				<h4 id="prodpriceco1" class="prodprice">1,960,000₩</h4>
+				<input type="button" value="추가옵션" alter="추가옵션 선택" onclick="opdisplay1()">
+				<input type="button" value="카트에 담기" alter="카트에 담기"><br>
+				수량 : <input type="number" title="상품수량" id="prodqty" alter="상품수량입력" style="width: 40px" min="1";  size="2px" maxlength="2px"><br>
+				<form>
+					<div id="p1opdisplay" style="display: none;">
+						<strong>메모리</strong> : <input type="radio" value="memory_8gb" id="memory_8gb" title="메모리_8기가" name="memory" checked="checked" onclick="p1opmemory0()">
+						<label for="memory_8gb" >8GB</label>
+						<input type="radio" value="memory_16gb" id="memory_16gb" title="메모리_16기가" name="memory"  onclick="p1opmemory1()">
+						<label for="memory_16gb" >16GB</label><br>
+						 
+						<strong>저장장치</strong> : <input type="radio" value="storage_512gb_ssd" id="storage_512gb_ssd" title="저장장치_512기가_SSD" name="storage" checked="checked" onclick="p1opstorage0()">
+						<label for="storage_512gb_ssd" >512GB SSD</label>
+						<input type="radio" value="storage_1tb_ssd" id="storage_1tb_ssd" title="저장장치_1테라_SSD" name="storage"  onclick="p1opstorage1()">
+						<label for="storage_1tb_ssd" >1TB SSD</label>
+						<input type="radio" value="storage_2tb_ssd" id="storage_2tb_ssd" title="저장장치_2테라_SSD" name="storage"  onclick="p1opstorage2()">
+						<label for="storage_2tb_ssd" >2TB SSD</label><br>
+					</div> 
+				</form>
+				<p>
+					Apple M1 칩(8코어 CPU, 8코어 GPU, 16코어 Neural Engine)<br>
+					8GB 통합 메모리<br>
+					512GB SSD 저장 장치<br>
+					True Tone이 탑재된 13형 Retina 디스플레이<br>
+					Magic Keyboard<br>
+					Touch Bar 및 Touch ID<br>
+					Force Touch 트랙패드<br>
+					Thunderbolt/USB 4 포트 2개<br>
+				</p>
+			</div>
+			<div id="prodcomputer2" class="prodcomputer prod">
+				<img alt="컴퓨터상품2" src="../images/prod_computer_2.jpg">
+				<h3 id="prodnamecl2" class="prodname">13형 레노버 씽크패드 X13-18KR</h3>
+				<h4 id="prodpriceco2" class="prodprice">1,499,000₩</h4>
+				<input type="button" value="카트에 담기" alter="카트에 담기"><br>
+				수량 : <input type="number" title="상품수량" id="prodqty" alter="상품수량입력" style="width: 40px" min="1";  size="2px" maxlength="2px"><br>
+				<p>
+					CPU : AMD 라이젠7-3세대<br>
+					RAM : DDR4 16GB<br>
+					저장장치 : SSD 256GB (NVMe)<br>
+					화면 사이즈 : 33.78cm(13.3인치)<br>
+					해상도 : 1920x1080<br>
+					두께 : 16.9mm<br>
+					무게 : 1.29kg<br>
+					포트 : HDMI 2.0 / USB 3.1 Type-C / USB 3.0 / MicroSD카드<br>
+				</p>
+			</div>
+			<div id="prodcomputer3" class="prodcomputer prod">
+				<img alt="컴퓨터상품3" src="../images/prod_computer_3.jpg">
+				<h3 id="prodnamecl3" class="prodname">14형 LG전자 그램 14ZD995-LX20K</h3>
+				<h4 id="prodpriceco3" class="prodprice">873,090₩</h4>
+				<input type="button" value="카트에 담기" alter="카트에 담기"><br>
+				수량 : <input type="number" title="상품수량" id="prodqty" alter="상품수량입력" style="width: 40px" min="1";  size="2px" maxlength="2px"><br>
+				<p>
+					CPU : Intel Pentium Gold 6450U<br>
+					RAM : 8GB<br>
+					저장장치 : SSD 128GB<br>
+					화면 사이즈 : 35.5cm(13.6인치)<br>
+					해상도 : 1920x1080<br>
+					두께 : 16.5mm<br>
+					무게 : 995g<br>
+					포트 : 헤드폰출력 / USB3.1(x2) / HDMI / USB 3.1 / C / DC-in<br>
+				</p>
+			</div>
+			<div id="prodcomputer4" class="prodcomputer prod">
+				<img alt="컴퓨터상품4" src="../images/prod_computer_4.jpg">
+				<h3 id="prodnamecl4" class="prodname">삼성전자 플러스2 NT550XDA-XC59G</h3>
+				<h4 id="prodpriceco4" class="prodprice">1,215,800₩</h4>
+				<input type="button" value="카트에 담기" alter="카트에 담기"><br>
+				수량 : <input type="number" title="상품수량" id="prodqty" alter="상품수량입력" style="width: 40px" min="1";  size="2px" maxlength="2px"><br>
+
+				<p>
+					CPU : Intel Core i5-1135G7 Processor<br>
+					RAM : 8GB<br>
+					저장장치 : SSD 128GB<br>
+					화면 사이즈 : 39.6cm(15.6인치)<br>
+					해상도 : 1920x1080<br>
+					그래픽 : Geforce MX450 Graphics with GDDR5 2GB Graphic Memory<br>
+					두께 : 18.8mm<br>
+					무게 : 1.84kg<br>
+					포트 : HDMI / USB-C / USB 3.0 / USB 2.0 / 헤드폰출력 / DC-in / MicroSD Multi-media Card Reader<br>
+				</p>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	var prodcom1 = 1960000;
+	var prodcom1opmem = 0;
+	var prodcom1opsto = 0;
+	// document.getElementById("prodprice1").innerHTML = prodcom1.toLocaleString() +"₩";
+	function p1opmemory0(){
+		prodcom1opmem=0;
+		document.getElementById("prodprice1").innerHTML = (prodcom1 + prodcom1opmem + prodcom1opsto).toLocaleString() +"₩";
+	}
+	function p1opstorage0(){
+		prodcom1opsto=0;
+		document.getElementById("prodprice1").innerHTML = (prodcom1 + prodcom1opmem + prodcom1opsto).toLocaleString() +"₩";
+	}
+	function p1opmemory1(){
+		prodcom1opmem = 200000;
+		document.getElementById("prodprice1").innerHTML = (prodcom1 + prodcom1opmem + prodcom1opsto).toLocaleString() +"₩";
+	}
+	function p1opstorage1(){
+		prodcom1opsto = 120000;
+		document.getElementById("prodprice1").innerHTML = (prodcom1 + prodcom1opmem + prodcom1opsto).toLocaleString() +"₩";
+		}
+	function p1opstorage2(){
+		prodcom1opsto = 250000;
+		document.getElementById("prodprice1").innerHTML = (prodcom1 + prodcom1opmem + prodcom1opsto).toLocaleString() +"₩";
+		}
+	function opdisplay1(){
+		var c = document.getElementById("p1opdisplay");
+			if(c.style.display=="none"){
+				c.style.display = "block"
+			} else {
+				c.style.display = "none"
+			}
+		}
+			
+		/* if(document.getElementsByClassName("opdisplay").style.display=="none"){
+		document.getElementsByClassName("opdisplay").style.display = "block";
+		} else document.getElementsByClassName("opdisplay").style.display = "none"; */
+	</script>
+</html>

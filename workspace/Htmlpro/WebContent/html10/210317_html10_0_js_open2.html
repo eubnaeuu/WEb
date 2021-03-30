@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<form>
+			<input type="text" id="target" name="userName">
+			<input type="text" id="target2" name="userName">
+			<button type="button" onclick="proc()">제출</button>
+			<div>
+				무궁화 꽃이 피었습니다.
+			</div>
+			<button type="button" onclick="get()">내용 가져오기</button>
+			<button type="button" onclick="set('오냐')">내용 바꾸기</button>
+			<hr>
+			<p id="p1" style="border: 1px solid red;">안녕하세ㅐㅛ 반가사븐디ㅏ 저는 ㅇㅇㅇ입나디</p>
+			<button type="button" onclick="changeStyle()"></button>
+			
+		</form>
+		
+		<hr>
+		
+		<img id="image1"alt="커피" src="../images/dolphin2.jpg" width="300px">
+		<button type="button" onclick="changeimg()">사진변경</button>
+		<hr>
+			<img id="img1" alt="토글" src="../images/toggleon.jpg" onclick="toggle()">
+		<script type="text/javascript">
+		function toggle(){
+			if(document.getElementById("img1").src.indexOf("toggleon") != -1){
+				document.getElementById("img1").src = "../images/toggleoff.jpg";
+			}
+			else{
+				document.getElementById("img1").src = "../images/toggleon.jpg";
+			}
+		}
+		function changeStyle(){
+			
+			document.getElementById("p1").style.border ="10px dotted green";
+			document.getElementById("p1").style.color ="red";
+			document.getElementById("p1").style.fontStyle ="italic";// -없애고 뒤에 문자 대문자로 바꾸는거 주의 할것
+		}
+			function changeimg(){
+				document.getElementById("image1").src = "../images/bluebird.jpg";
+			}
+			function proc(){
+				var obj = document.getElementById("target");
+				alert(obj); // [object HTMLInputElement] : object객체이고 input타입입니다.
+				alert(obj.value);
+			}
+			function get(){
+				var obj = document.getElementsByTagName("div")[0];
+				alert(obj.innerHTML);
+				alert(obj.innerHTML.trim());
+				console.log(obj.innerHTML);
+			}
+			function set(param){
+				document.getElementsByTagName("div")[0].innerHTML = param;
+			}
+		</script>
+		
+	</body>
+</html>

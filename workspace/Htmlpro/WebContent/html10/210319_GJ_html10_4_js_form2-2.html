@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>select과제</title>
+		<style type="text/css">
+			div {
+				text-align: center;
+				align-items: center;
+			}
+			
+			#leftdiv, #rightdiv {
+				width: 100px;
+ 				height: 400px; 
+			}
+			
+			#leftdiv{
+				position:absolute;
+				left: 300px;
+			}
+			
+			#rightdiv{
+				position:absolute;
+				left: 600px;
+			}
+			
+			h1 {
+				position: relative;
+				left:400px;
+			}
+			
+			#middlediv{
+				position:absolute;
+				left: 400px;
+			}
+			
+			#bottomdiv{
+				position:absolute;
+				left: 430px;
+				top:500px;
+			}
+			
+			#middlediv button {
+				margin-top: 50px;
+			}
+		</style>
+	</head>
+	<body> 			
+		<h1>select객체 예제</h1>
+		<div id="leftdiv">
+			<select id="leftselect" multiple="multiple" size="20" style="width: 120px"></select>
+		</div>
+		<div id="middlediv" style="width: 200px;">
+			<button type="button" onclick="moveselect(leftbox,rightbox)">&gt;</button><br>
+			<button type="button" onclick="moveall(leftbox,rightbox)">&gt;&gt;</button><br>
+			<button type="button" onclick="moveselect(rightbox,leftbox)">&lt;</button><br>
+			<button type="button" onclick="moveall(rightbox,leftbox)">&lt;&lt;</button>
+		</div>
+		<div id="rightdiv">
+			<select id="rightselect" multiple="multiple" size="20" style="width: 120px"></select>
+		</div>
+		<div id="bottomdiv">
+			<input id="inputarea" type="text" size="10" >
+			<button type="button" onclick="addnum()">추가하기</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+	
+
+
+		var leftbox = document.getElementById("leftselect");
+		var rightbox = document.getElementById("rightselect");
+		var inputbox = document.getElementById("inputarea");
+
+		function addnum() {
+			if (inputbox.value == "") { // 공백추가 방지
+				return false;
+			}
+
+			for (var i = 0; i < leftbox.children.length; i++) { // 숫자 중복 검사(input과 기존숫자 비교)
+				if (leftbox.children[i].value == inputbox.value) {
+					inputbox.value = "";
+					return false;
+				}
+			}
+
+			var opObj = document.createElement("option"); // option요소생성 후 추가
+			opObj.innerHTML = inputbox.value;
+			opObj.value = inputbox.value;
+			leftbox.appendChild(opObj);
+			inputbox.value = "";
+
+		}
+
+		function moveselect(from, to) {
+			for (var i = 0; i < from.selectedOptions.length; i++) { // to생성
+				var oldseObj = from.selectedOptions[i];
+				var newseObj = document.createElement("option");
+				newseObj.value = oldseObj.value;
+				newseObj.innerHTML = oldseObj.innerHTML;
+				to.appendChild(newseObj);
+
+			}
+			for (var i = from.selectedOptions.length - 1; i > -1; i--) { //from제거
+				from.removeChild(from.selectedOptions[i]);
+			}
+		}
+
+		function moveall(from, to) {
+			for (var i = 0; i < from.children.length; i++) {		//to생성
+				var oldseObj = from.children[i];
+				var newseObj = document.createElement("option");
+				newseObj.value = oldseObj.value;
+				newseObj.innerHTML = oldseObj.innerHTML;
+				to.appendChild(newseObj);
+			}
+			for (var i = 0; i < from.children.length; i++) {
+				for (var i = from.children.length - 1; i > -1; i--) { // form제거
+					from.removeChild(from.children[i]);
+				}
+			}
+		}
+	</script>
+</html>

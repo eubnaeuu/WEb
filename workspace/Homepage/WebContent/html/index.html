@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>index</title>
+				<link rel="stylesheet"  type="text/css"  href="../css/mycss.css" >
+	</head>
+	
+	<body id="indexbody">
+		<div>
+			<iframe name="movieframe" id="movieframe"></iframe>
+		</div>
+				<div class="prodmusicpackage">
+					<div id="prodmusic1" class="prodmusic prod">
+						<img alt="음악상품1" src="../images/prod_music_1.jpg">
+						<h3 id="prodname">강승원 일집</h3>
+						<h4 class="prodprice">17,000₩</h4>
+						<form>
+							수량 : <input type="number" title="상품수량" id="prodqty" style="width:40px" min="1" size="2" maxlength="2"> <br>
+							<input type="button" value="카트에 담기">
+						</form>
+						 <p class="album">
+							<strong>아티스트</strong> : 강승원<br>
+							<strong>앨범종류</strong> : 정규앨범<br>
+							<strong>장&nbsp&nbsp&nbsp&nbsp&nbsp르</strong> : 블루스/포크/가요<br>
+							<strong>발  매 일</strong> : 2017.03.02<br>
+							<strong>발 매 사</strong> : 카카오엔터테인먼트<br>
+							<strong>기 획 사</strong> : 에이앤지모즈<br>
+						</p>
+							<input type="button" value="앨범 크레딧" onclick="alert('공사중')">
+						<a href="./temp/prod_music_text.html" target="_blank;" class="musicalbumint">
+							<input type="button" value="앨범 소개" title="앨범 소개">
+						</a>
+						<br><br>
+						<!-- 순차적으로 실행하며 호환되는 파일 재생 -->
+						<audio controls muted>
+							<source src="../audios/sampleaudio.mp3">
+							<p>호환가능한 음악 파일이 존재하지 않습니다.</p>
+						</audio>
+				</div>
+			</div>
+			<div>
+			<iframe name="movieframe" id="movieframe"></iframe>
+			</div>
+			<div class="prodmoviepackage prodpackage">
+				<div id="prodmovie1" class="prodmovie prod">
+					<!-- http://vlindfiles.com/product/detail.html?product_no=457&cate_no=47&display_group=1 -->
+						<!-- <video src="../video/sample_video.mp4" controls autoplay muted></video> -->
+						<a href="https://www.youtube.com/embed/giPOPwLGf3Q?autoplay=1&amp;mute=1"; target="movieframe"; id="test1" onclick="movietrailer()">
+							<img alt="영화상품1" src="../images/prod_movie_1.jpg">
+						</a>
+						<h3 id="prodname">미드90(mid90s)</h3>
+						<h4 class="prodprice" id="prodprice">32,000₩</h4>
+						<form>
+							수량 : <input type="number" title="상품수량" id="prodqty" title="상품수량입력" style="width:40px" min="1";  size="2" maxlength="2"> <br>
+							<input type="button" value="영화 소개" title="영화 소개" onclick="intdisplay1()">
+							<input type="button" value="카트에 담기" title="카트에 담기">
+							
+						</form>
+						<!-- 
+							<input type="button" value="예고편 보기" alt="예고편 보기" onclick="#test1">
+							onclick 이용해서 할 수 없는듯?(아래 링크 볼것) 
+							https://m.blog.naver.com/PostView.nhn?blogId=pjh445&logNo=221156141497&proxyReferer=https:%2F%2Fwww.google.com%2F
+						 -->
+						<p id="test">
+							<strong>감독</strong> : 조나 힐<br> 
+							<strong>배우</strong> : 서니 설직, 루카스 헤지스, 캐서린 워터스 턴, 니-켈 스미스, 올란 프레나트<br>
+							<strong>장르</strong> : 드라마<br>
+							<strong>제작년도</strong> : 2018년<br>
+							<strong>상영시간</strong> : 85분<br>
+						</p>
+						<p id="movieint1" style="display: none;">
+							<strong>소개</strong> : 누군가의 인생을 바꿀 우리 모두의 끝내주는 VHS TAPE 1990년대, LA. 스티비의 여름은 처음으로 뜨겁고 자유롭다. 그에게는 넘어져도 좋은 스케이트보드, 그리고 함께 일어서는 나쁜 친구들이 있다
+						</p>
+				</div>
+			</div>
+			<div class="prodclothpackage">
+			<div id="prodcloth1" class="prodcloth prod">
+				<img alt="의류상품1" src="../images/prod_cloth_1.png">
+				<h3 id="prodname">HOODED ANORAK / ECRU</h3>
+				<h4 id="prodsize">S&nbsp&nbsp&nbsp&nbspM&nbsp&nbsp&nbsp&nbsp<span>L</span></h4>
+				<h4 class="prodprice">218,000₩</h4>
+				<form>
+					사이즈 : 
+					<select>
+						<option selected="selected" title="상품사이즈">필수선택</option>
+						<option>S</option>
+						<option>M</option>
+					</select><br>
+					수량 : <input type="number" title="상품수량" id="prodqty" title="상품수량입력"  size="2" maxlength="2" style="width: 40px" min="1"><br>
+					<input type="button" value="카트에 담기" title="카트에 담기">
+				</form>
+				<p>
+					HOODED ANORAK은 넉넉한 실루엣이 매력적인, 뒤집어 쓰는 형식의 후디드 점퍼입니다. 흔히 아노락이라 일컫는 제품이며, 앞 여밈은 지퍼로 되어있습니다. 지퍼 끝 상단에는 스트랩을 더하여 한번 더 고정할 수 있도록 고려했습니다. 양측면에는 가볍게 손을 넣거나 간단한 물건을 소지할 수 있는 플랩 포켓을 배치했습니다. 밑단에는 끈이 있어 기호에 맞게 조이거나 풀어서 스타일링 할 수 있습니다.
+				</p>
+			</div>
+		</div>
+		<div class="prodcomputerpackage">
+			<div id="prodcomputer1" class="prodcomputer prod">
+				<img alt="컴퓨터상품1" src="../images/prod_computer_1.jpg">
+				<h3 id="prodname">13형 Apple M1 칩(8코어 CPU 및 8코어 GPU) </h3>
+				<h4 id="prodpriceco1" class="prodprice">1,960,000₩</h4>
+				수량 : <input type="number" title="상품수량" id="prodqty" title="상품수량입력" style="width: 40px" min="1";  size="2" maxlength="2"><br>
+				<input type="button" value="추가옵션" title="추가옵션 선택" onclick="opdisplay1()">
+				<input type="button" value="카트에 담기" title="카트에 담기"><br>
+				<form>
+					<div id="p1opdisplay" style="display: none;">
+						<strong>메모리</strong> : <input type="radio" value="memory_8gb" id="memory_8gb" title="메모리_8기가" name="memory" checked="checked" onclick="p1opmemory0()">
+						<label for="memory_8gb" >8GB</label>
+						<input type="radio" value="memory_16gb" id="memory_16gb" title="메모리_16기가" name="memory"  onclick="p1opmemory1()">
+						<label for="memory_16gb" >16GB</label><br>
+						 
+						<strong>저장장치</strong> : <input type="radio" value="storage_512gb_ssd" id="storage_512gb_ssd" title="저장장치_512기가_SSD" name="storage" checked="checked" onclick="p1opstorage0()">
+						<label for="storage_512gb_ssd" >512GB SSD</label>
+						<input type="radio" value="storage_1tb_ssd" id="storage_1tb_ssd" title="저장장치_1테라_SSD" name="storage"  onclick="p1opstorage1()">
+						<label for="storage_1tb_ssd" >1TB SSD</label>
+						<input type="radio" value="storage_2tb_ssd" id="storage_2tb_ssd" title="저장장치_2테라_SSD" name="storage"  onclick="p1opstorage2()">
+						<label for="storage_2tb_ssd" >2TB SSD</label><br>
+						<strong>수량</strong> : <input type="number" title="상품수량" id="prodqty" title="상품수량입력" style="width: 40px" min="1";  size="2" maxlength="2"><br>
+					</div> 
+				</form>
+				<p>
+					Apple M1 칩(8코어 CPU, 8코어 GPU, 16코어 Neural Engine)<br>
+					8GB 통합 메모리<br>
+					512GB SSD 저장 장치<br>
+					True Tone이 탑재된 13형 Retina 디스플레이<br>
+					Magic Keyboard<br>
+					Touch Bar 및 Touch ID<br>
+					Force Touch 트랙패드<br>
+					Thunderbolt/USB 4 포트 2개<br>
+				</p>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	var prodcom1 = 1960000;
+	var prodcom1opmem = 0;
+	var prodcom1opsto = 0;
+	function p1opmemory0(){
+		prodcom1opmem=0;
+		document.getElementById("prodpriceco1").innerHTML = (prodcom1 + prodcom1opmem + prodcom1opsto).toLocaleString() +"₩";
+	}
+	function p1opstorage0(){
+		prodcom1opsto=0;
+		document.getElementById("prodpriceco1").innerHTML = (prodcom1 + prodcom1opmem + prodcom1opsto).toLocaleString() +"₩";
+	}
+	function p1opmemory1(){
+		prodcom1opmem = 200000;
+		document.getElementById("prodpriceco1").innerHTML = (prodcom1 + prodcom1opmem + prodcom1opsto).toLocaleString() +"₩";
+	}
+	function p1opstorage1(){
+		prodcom1opsto = 120000;
+		document.getElementById("prodpriceco1").innerHTML = (prodcom1 + prodcom1opmem + prodcom1opsto).toLocaleString() +"₩";
+		}
+	function p1opstorage2(){
+		prodcom1opsto = 250000;
+		document.getElementById("prodpriceco1").innerHTML = (prodcom1 + prodcom1opmem + prodcom1opsto).toLocaleString() +"₩";
+		}
+	function opdisplay1(){
+		var c = document.getElementById("p1opdisplay");
+			if(c.style.display=="none"){
+				c.style.display = "block"
+			} else {
+				c.style.display = "none"
+			}
+		}
+	
+	
+	var org1 = document.getElementById("movieint1");
+	var org2 = document.getElementById("movieint2");
+	var org3 = document.getElementById("movieint3");
+	var org4 = document.getElementById("movieint4");
+		function intdisplay1(){
+			if(org1.style.display == "none"){
+				org1.style.display = "block";
+			} else {
+				org1.style.display = "none";
+			}
+		}
+		
+		function movietrailer(){
+			 document.getElementById("movieframe").style.position = "relative";
+		}
+
+	</script>
+</html>

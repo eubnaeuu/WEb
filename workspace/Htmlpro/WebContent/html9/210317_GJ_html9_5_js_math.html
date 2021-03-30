@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>Number Guess</h3>
+	<p>1부터 100사이의 숫자를 입력하시오</p>
+	<input type="text" id="no">
+	<button type="button" onclick="guessNumber()">숫자추측</button>
+	<button type="button" onclick="func()">Math객체문제(로또)</button>
+	<button type="button" onclick="func1()">Math객체문제(난수맞추기)</button>
+	<button type="button" onclick="func2()">Math객체문제(가위바위보)</button>
+	<hr>
+	<h3>내용출력</h3>
+	<span id=ans></span>
+</body>
+
+<script type="text/javascript">
+	var randomNo = Math.floor(Math.random()*100 + 1); // 0 ~ 0.9999 -> 1~100
+
+	function guessNumber() {
+		var val = document.getElementById("no").value;
+
+		if (val == randomNo) {
+			alert("정답입니다");
+		} else if (val > randomNo) {
+			alert(val + "보다 작은 수 입니다");
+		} else if (val < randomNo) {
+			alert(val + "보다 큰 수 입니다");
+		} else {
+			alert("비교 불가 !!! 입력값 : " + val);
+		}
+	}
+		
+	
+
+	
+	/* 가위 바위 보 게임을 할 수 있는 프로그램을 작성하시오 ( 단, 컴퓨터는 랜덤을 이용하고, 사용자는 prompt로 입력받아서 처리) */
+	
+	// 가위  < 바위
+	// 가위 > 보
+	// 바위 < 보
+	
+	function func2(){
+		var arr = ["가위","바위","보"];
+		var comval = Math.floor(Math.random()*3);
+		var humanval = arr.indexOf(prompt("가위바위보 입력>"),0);
+
+// 		alert(comval);
+// 		alert(humanval);		
+// 		alert("comval : "+arr[comval]);
+// 		alert("humanval : "+arr[humanval]);
+document.getElementById("ans").innerHTML = "com : "+arr[comval]+"<br>human : "+arr[humanval];
+
+		if(comval > humanval){
+			if(comval == 2 && humanval == 0){
+				alert("승자 : human");
+			} else 
+				alert("승자 : com");
+			
+		} else if(comval < humanval){
+			if(comval == 0 && humanval ==2){
+				alert("승자 : com");
+			} else alert("승자 : human");
+		
+	} else alert("무승부");
+	}
+		
+	/* 1~10 사이의 난수를 발생 후 사용자가 이 값을 맞추는 프로그램을 작성하시오  */
+	function func1() {
+		var rannum = Math.floor(Math.random() * 10) + 1;
+		var input;
+		while (rannum != input) {
+			input = prompt("입력>");
+			if (rannum < input) {
+				alert("Down")
+			} else if (rannum > input)
+				alert("Up")
+		}
+		alert("저어어엉다바밥");
+	}
+
+	/*  로또 번호를 생성하는 프로그램을 작성(1번 ~ 45번중 6개의 번호를 추첨) */
+	function func() {
+		var arr = [];
+		var rannum;
+		var cnt = 0;
+		var bo = false;
+
+		while (cnt != 6) {
+			bo = false;
+			
+// 중복여부를 indexof이용해서 -1반환값을 이요해도 됨
+
+
+/*
+[방법1]
+while (cnt != 6){
+	rannum = Math.floor(Math.random() * 45) + 1;
+	if(arr.indexOf(rannum)==-1){
+		arr.push(rannum);
+		cnt++;
+	}
+}
+
+ */			
+			rannum = Math.floor(Math.random() * 45) + 1;
+			for (var j = 0; j < cnt; j++) {
+				if (arr[j] == rannum) {
+					bo = true;
+					break;
+
+				}
+			}
+
+			if (bo == false) {
+				arr.push(rannum);
+				cnt++;
+			}
+			
+		}
+		document.getElementById("ans").innerHTML = arr;
+		
+			//배열정렬
+			arr.sort(function(a,b){
+				console.log("[a] : "+arr.indexOf(a));
+				console.log("[b] : "+arr.indexOf(b));
+				console.log("a-b : "+(a-b));
+				return a - b;
+			});
+			
+		
+		document.getElementById("ans").innerHTML += "<br>"+arr;
+	}
+</script>
+</html>

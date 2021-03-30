@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style>
+			#com, #human {
+				width: 50%;
+				height: 100px;
+				line-height: 100px;
+				text-align: center;
+				font-size: 30px;
+			}
+			#human {
+				float: left;
+				background-color: yellow;
+			}
+			#com {
+				float: right;
+				background-color: green;
+			}
+			#leftdiv, #rightdiv {
+			width: 50%;
+			margin: 0px;
+			}
+			#leftdiv,#leftdiv img {
+				float: left;
+			}
+			#rightdiv, #rightdiv img {
+				float: right;
+			}
+			#ans {
+			text-align: center;
+			font-size: 30px;
+			color: orange;
+			}
+			#buttondiv, #selectdiv {
+			text-align: center;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="buttondiv">
+			<button type="button" onclick="gababo()">게임시작</button>
+		</div>
+		<div id="selectdiv">
+			<select id="humanselect" name="humanselect">
+				<option value="0">가위</option>
+				<option value="1">바위</option>
+				<option value="2">보</option>
+			</select>
+		</div>
+		<div>
+			<div id="human">Human</div>
+			<div id="com">Com</div>
+			<div id="leftdiv"></div>
+			<div id="rightdiv"></div>
+			<div id="ans"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function gababo(){
+			
+			var arr = ["가위","바위","보"];
+			var player =["Human","Com"];
+			
+			var humanval = humanselect.value;
+			var comval = Math.floor(Math.random()*3);
+			var ansmessage = ["승자 : ","무승부"];
+			
+			<!-- 이미지 업로드 -->
+			var leftfiles =["ga_left.jpg","ba_left.jpg","bo_left.jpg"];
+			var rightfiles =["ga_right.jpg","ba_right.jpg","bo_right.jpg"];
+			
+			var left = document.getElementById("leftdiv");
+			var right = document.getElementById("rightdiv");
+			
+			if(left.children[0]!=null){
+			    left.children[0].remove();
+			    right.children[0].remove();
+			}
+			
+			var leftImgObj = document.createElement('img');
+			leftImgObj.alt ="가바보사진";
+			leftImgObj.src ="../images/"+leftfiles[humanval];
+			left.appendChild(leftImgObj);
+			
+			var rightImgObj = document.createElement('img');
+			
+			rightImgObj.alt ="가바보사진";
+			rightImgObj.src ="../images/"+rightfiles[comval];
+			
+			right.appendChild(rightImgObj);
+			
+			
+			<!-- 승패계산 -->
+			//document.getElementById("ans").innerHTML = "com : "+arr[comval]+"<br>human : "+arr[humanval];
+
+			if(comval > humanval){
+				if(comval == 2 && humanval == 0){
+					document.getElementById("ans").innerHTML = ansmessage[0] + player[0];
+				} else 
+					document.getElementById("ans").innerHTML = ansmessage[0] + player[1];
+				
+			} else if(comval < humanval){
+				if(comval == 0 && humanval ==2){
+					document.getElementById("ans").innerHTML = ansmessage[0] + player[1];
+				} else 
+					document.getElementById("ans").innerHTML = ansmessage[0] + player[0];
+		} else 
+			document.getElementById("ans").innerHTML = ansmessage[1];
+		}
+
+	</script>
+</html>

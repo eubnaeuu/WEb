@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<h1>오디오 예제</h1>
+		<audio src="../audio/sample_audio.mp3" controls autoplay muted></audio>
+		
+		<!-- 순차적으로 실행하며 호환되는 파일 재생 -->
+		<audio controls autoplay muted>
+			<source src="../audio/sample_audio.mp3" type="audio/mp3">
+			<source src="../audio/sample_audio.wav" type="audio/wav">
+			<source src="../audio/sample_audio.flac" type="audio/flac">
+			<p>호환가능한 음악 파일이 존재하지 않습니다.</p>
+			</audio>
+	</body>
+</html>

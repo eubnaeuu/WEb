@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<script>
+			function calc1(a,b){
+				return a-b;
+			}
+			// 이 창이 로드가 된다면 function을 실행하겠다
+				// var tmp = sub(4,5);
+				// 위에 변수 정의 하지 않고 바로 밑에처럼 쓸 수 있다.
+		      function calc2(a,b){
+		         return a+b;         
+		      }
+			function calc3(a,b){
+				return a*b;
+			}
+			
+			 window.onload=function(){
+		         document.getElementById("b").innerHTML = calc1(4,5);
+		         document.getElementById("a").innerHTML = calc2(4,5);
+		         document.getElementById("c").innerHTML = calc3(4,5);
+		      }
+		</script>
+		<span id="a">span_a</span>
+		<span id="b">span_b</span>
+		<span id="c">span c</span>
+		
+		<hr><p id="resultconfirm"></p>
+		
+		<script type="text/javascript">
+			var result = confirm("컨펌 메시지"); // 확인, 취소 버튼이 있는 창
+			document.getElementById("resultconfirm").innerHTML = result;
+		</script>
+		
+	</body>
+</html>
+

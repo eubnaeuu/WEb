@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
+	</head>
+	<body>
+		<p><strong>가</strong>나다라</p>
+		<p><strong>마</strong>바사아</p>
+		<p>자차카타</p>
+		<p>파하</p>		
+		<hr>
+		<button type="button" onclick="getHTML()">html()</button>
+		<button type="button" onclick="getTEXT()">text()</button>
+		<button type="button" onclick="testRepeat()">반복문테스트</button>
+		<div id="result">
+		</div>
+	</body>
+	
+	<script>
+	function testRepeat(){
+// 		case1) 일반 for문 사용
+// 		var objs = $("p");
+// 		for(var i=0; i<objs.length; i++){
+// // 			alert(objs); // [object Objecst]
+// 			alert(i+"번째"+$(this).html());
+// 		}
+			
+		//case2) jquery each문 사용
+// 		$("p").each(function(index, item){ // 파라미터를 1개만 쓰게되면 index만 불러온다(변수이름에 의해서 정해지는 것이 아닌 파라미터 개수에 의해서 정해짐)
+// 			console.log(index);// index
+// 			console.log(item); // ==> objs[i]  / <p>
+// 			console.log(this); // ==> objs[i]  / <p>
+// // 			alert(item); // [object HTMLParagraphElement]
+// 		alert(index+"번째/"+$(this).html());
+// 		});
+		
+		// case3) jquery each문 사용 - object 이용
+	 	var arr = ["현대", "기아", "쉐보레"]; // <== 서버로 부터 결과를 받은 lilst인 경우 요런식으로 사용하기도 함
+		$.each(arr, function(index, item){ // 파라미터는 선택사항
+// 			arr[index] ==> obj
+			console.log(index);// index
+			console.log(item); //  ==> objs[i]  / <p>
+			console.log(this); // ==> String[arr[i]], object형   > 이거 어떻게 이용함? 이용x?
+// 			alert(index/"번째"+$(this).html());
+		});
+		
+	}
+		function getHTML(){ // p태그 요소중 1개의 행만 가져옴(태그포함)
+			var result = $("p").html(); // get메서드 기능
+			$("#result").html(result); // set메서드 기능
+			// js방법 => document.getElementById("result").unnerHTML = result;
+		}
+		function getTEXT(){// p태그의 text모두 가져옴(태그 미포함)
+			var result = $("p").text(); // get메서드 기능
+			$("#result").html(result); // set메서드 기능
+		}
+	</script>
+</html>

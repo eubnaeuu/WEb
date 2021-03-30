@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>JS 연산자</title>
+	</head>
+	<body>
+		<!-- 문자와 문자를 연결 -->
+		<script type="text/javascript">
+			var str1 = "Welcome to";
+			var str2 = "JavaScript";
+			var str3 = str1 + '' + str2; // ==> "Welcome to JavaScript"
+			document.write(str3);
+			document.write("<br>");
+		<!-- 문자와 문자를 연결 -->
+			var no1 = 30;
+			var no2 = 40;
+			var no3 = no1 + no2 + 7;
+			document.write(no3);
+			document.write("<br>");
+			var str5 = "홍길동";
+			document.write("30+40+홍길동 : ");
+			document.write(no1+no2+str5);
+			document.write("<br>");
+			document.write("홍길동+30+40 : ");
+			document.write(str5+no1+no2);
+			document.write("<br>");
+			document.write("홍길동+(30+40) : ");
+			document.write(str5+(no1+no2));
+			document.write("<hr>");
+			
+			var x, y, input;
+			
+			input = prompt("정수를 입력하시오", "default 입력값 설정할 수 있음"); // 스트링으로 넘어옴.
+			document.write(input);
+			document.write("<br>");
+			x = parseInt(input);
+			input = prompt("정수를 입력하시오", "default 입력값 설정할 수 있음");
+			y = parseInt(input);
+			document.write(x+y);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+	<h1>덧셈 계산기</h1>
+	<br>
+	첫번째 정수 : <input type="text" id="num1">
+	두번쨰 정수 : <input type="text" id="num2">
+	<button type="button;" onclick="calc();">계산버튼</button>
+	<br>
+	첫번째 값:<span id="print_num1"></span><br>
+	두번째 값:<span id="print_num2"></span><br>
+	결       과:<span id="print_ans"></span>
+	</body>
+	<script type="text/javascript">
+	function calc(){
+		var num1 = document.getElementById("num1").value;
+		var num2 = document.getElementById("num2").value;
+		var ans = 0;
+		ans = parseInt(num1) + parseInt(num2);
+		document.getElementById("print_num1").innerHTML = num1;
+		document.getElementById("print_num2").innerHTML = num2;
+		document.getElementById("print_ans").innerHTML = ans;
+	}
+	</script>
+	
+	<hr>
+	
+	<button type="button" onclick="greeting('홍길동', '부장')">눌러보세요!</button>
+	<script type="text/javascript">
+		function greeting(name, position) {
+			alert("안녕하세요. 반갑습니다");
+			alert(name+position+"님 안녕하세요. 반갑습니다");
+		}
+		// NaN : not a number
+		// undefined : 널값 비스무리. 초기화 안했음.
+		
+		
+	</script>
+</html>

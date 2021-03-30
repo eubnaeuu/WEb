@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="../../js/jquery-3.6.0.js">
+		</script>
+		<style type="text/css">
+			#ex3 span {
+				height:300px;
+				width:300px;
+				background-color: gray;
+			}
+			#ex3 div{
+				height:300px;
+				width:300px;
+				background-color: gray;
+			}
+			#ex3 button {
+				border: 0;
+				outline: 30px blue; <!--button 클릭시 버튼 클릭시 테두리 왜생기근지?(outline 설정하면 안생김)-->
+			}
+		</style>
+		<script>
+		
+		// new Date(); // => 현재날짜
+		// (new Date()).gitFullYear() : 년도 추출
+// 		$(document).ready(function(){
+// 		)};
+		$(document).ready(function(){
+			$("button", "#ex3").click(function(e){
+				e.stopPropagation();
+				$(this).css("border","30px solid red"); // 왜 처음 블랙먼저인지?
+			});
+			$("button", "#ex2").click(function(e){
+				e.stopPropagation();
+				$(this).css("border","30px solid red"); // 왜 처음 블랙먼저인지?
+			});
+			$("span", "#ex3").click(function(){
+				$(this).css("border", "3px dotted yellow")
+			});
+			$("div", "#ex3").click(function(){ // #ex3 인 요소 내부에 있는 div
+				$(this).css("border", "3px double green");
+				
+				// 방법1 : p 태그를 만들어서 추가하기
+// 				var ele = $("<p>하이</p>");
+// 				$(this).append(ele);
+				// 방법2 : 텍스트 노드 만들어서 추가하기
+				var node = document.createTextNode("헬로우");
+				$(this).append(node);
+			});
+			$("a", "#ex3").click(function(e){
+				
+				// 프롬프트로 태어난 년도 입력받아 20세 이상인 경우만 페이지 이동
+				var year = prompt("태어난 년도(숫자만)를 입력>");
+				if((new Date().getFullYear()) - year > 18){
+					$(this).attr("href","secret.html")
+				} else{
+					e.preventDefault();
+					alert("입장불가");
+				}
+			});
+		});
+		</script>
+	</head>
+	<body>
+		<div id="ex2">
+			<h1>예제2</h1>
+			<h1>큰 제목 안에 작은 영역이 있다</h1>
+			<button type="button">클릭하세요</button>
+		</div>
+			
+		<hr>
+		<div id="ex3">
+			<h1>예제3</h1>
+			<div>
+				<span>
+					<button type="button" onclick="">클릭하세요</button>
+				</span>
+				<a href="h.html">20살이산만</a>
+			</div>
+		</div>
+	</body>
+</html>

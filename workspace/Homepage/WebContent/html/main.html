@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>main</title>
+		<link rel="stylesheet"  type="text/css"  href="../css/mycss.css" >
+	</head>
+	<body>
+		<header>
+		<h2>카카오 플러스 채널 오픈</h2>
+			<img id="mainphoto" alt="홈사진" src="../images/home1.png">
+			<h1>
+				<a href="main.html" id="mainlink">Web Shop</a>
+			</h1>
+			
+		</header>
+		<nav>
+			<div id="navdiv">
+				<ul>
+					<li><a href="index.html" target="iframemain">Home</a></li>
+					<li><a href="index.html" target="iframemain">About Us</a></li>
+					<li><a href="index.html" target="iframemain">News</a></li>
+					<li><a href="index.html" target="iframemain">My Account</a></li>
+					<li><a href="index.html" target="iframemain">Contacts</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<aside id="left">
+			<div id="asidediv1";>
+			 <h3 hidden="">카테고리(웹접근성용 안보이게할것)</h3>
+			 <ul>
+			 	<li><a href="./music.html" target="iframemain">음&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp악</a></li>
+			 	<li><a href="./movie.html" target="iframemain">영&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp화</a></li>
+			 	<li><a href="./clothing.html" target="iframemain">의&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp류</a></li>
+			 	<li><a href="./computer.html" target="iframemain">컴 퓨 터</a></li>
+			 </ul>
+			</div>
+		</aside>
+		<section>
+			<div id="secdiv1">
+				<h3 hidden="">sec헤더입니다</h3>
+				<article id="secarticle1">
+					<h1 hidden="">article 헤더입니다.</h1>
+					<iframe src="index.html" name="iframemain" id="iframemain" title="본문영역" ></iframe>
+				</article>
+			</div>
+		</section>
+		<aside id="right">
+			<div id="cart">
+				<a href="./shopcart.html" target="_blank" onclick="window.open(this.href, '', 'width=1000, height=500'); return false;">장바구니 보기</a>
+			</div>
+			<div id="login">
+				<form action="#">
+					<fieldset>
+						<legend><strong>Log In</strong></legend>
+							<div class="loginrow">
+								<label for="loginid">아 이 디</label>
+								&nbsp&nbsp<input type="text" id="loginid" name="loginid" size="15" maxlength="15" title="아이디입력창"><br>
+							</div>
+							<div class="loginrow">
+							<label for="loginpw">패스워드</label>
+							&nbsp&nbsp<input type="text" id="loginpw" name="loginpw" size="15" maxlength="15" title="패스워드입력창"><br>
+							</div>
+							<div class="loginrow">
+							<input type="button" value="로그인" name="loginbutton" title="로그인버튼">
+							<input type="reset" value="초기화" name="resetbutton" title="초기화버튼"><br>
+							</div>
+							<div class="loginrow">
+							<a href="./register.html" target="_blank" onclick="window.open(this.href, '', 'width=500, height=500'); return false;">회원가입</a>
+							<a href="https://www.google.com/search?q=%EA%B3%B5%EC%82%AC%EC%A4%91&sxsrf=ALeKk01nF5QtdmMfZhRRvUF__D-yncyleg%3A1616112758650&ei=duxTYIeYJ9H8wAO4lbqoCA&oq=%EA%B3%B5%EC%82%AC%EC%A4%91&gs_lcp=Cgdnd3Mtd2l6EAMyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAOgUIABCwAzoJCAAQsAMQBxAeOgQIIxAnOggIABCxAxCDAToFCAAQsQM6CggAELEDEIMBEEM6BAgAEEM6BwgjEOoCECc6BwgAEIcCEBRQ8u4BWNaMAmDnjQJoBHAAeACAAecCiAG-CZIBBzIuNi4wLjGYAQCgAQGqAQdnd3Mtd2l6sAEKyAEKwAEB&sclient=gws-wiz&ved=0ahUKEwiHq5WXibvvAhVRPnAKHbiKDoUQ4dUDCA0&uact=5" target="_blank">아이디/비밀번호 찾기</a>
+							</div>
+						
+					</fieldset>
+				</form>
+			</div>
+		</aside>
+		<footer>
+			<div>
+				<p>
+					ceo. 최영준 business no. [603-10-75823] mail order license. 제 2021-대전-001<br>
+					tel. 070-7766-5756 address. 34236 대전광역시 중구 중앙로 76 영민빌동 4층 403호<br>
+					cpo. 김둘둘(twotwo@thecompass.co.kr)hosting provider. cafe24
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

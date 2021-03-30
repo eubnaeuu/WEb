@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>정규폼1</title>
+		<style type="text/css">
+			form {
+				background-color: silver;
+				width: 400px;
+			}
+			button {
+				background-color:blue;
+				color: white;
+				border-radius: 20px;
+			}
+		
+		</style>
+	</head>
+<body>
+	<h3 hidden="">회원가입</h3>
+	<form>
+		<fieldset>
+			<legend>회원정보입력</legend>
+			아이디(8~20글자) : <input type="text" id="userId" title="아이디" value=""><br>
+			비밀번호 : <input type="text" id="userPw" title="비밀번호"  value=""><br>
+			이름 : <input type="text" id="userName" title="이름"  value=""><br>
+			생년월일 : <input type="date" id="userBir" title="생년월일"  value=""><br>
+			휴대폰 : <input type="text" id="userHp" title="휴대폰"  value=""><br>
+			이메일 : <input type="email" id="userEmail" title="이메일"  value=""><br>
+			<button type="button" onclick="validate()">검사</button>
+			<button type="button" onclick="sendUserInfo()">가입</button>
+			<button type="reset">취소</button>
+		</fieldset>
+	</form>
+
+</body>
+<script type="text/javascript">
+	// 필수입력 메서드
+	   function isEmpty(ele, str){
+			if(str.trim().length== 0 || str == null){ 
+				alert(ele.title+"는(은) 필수 입력입니다");
+				return false;
+			} else return true;
+		}	
+	   
+	   // 공백체크 메서드
+		function hasblank(ele, str){
+			// return str.match(" "); -> ★ 의미는 ?
+			// 		regExpid=/^[0-9a-zA-Z가-힣]\s+$/;  // -> 맨처음 공백처리 결과는?★ 
+			if(str.indexOf(" ")!=-1 ){ 
+				alert(ele.title+"에 공백이 있습니다");
+				return false;
+			} else return true;
+		}	
+		
+		// 길이검사 메서드
+		function checklength(ele, str, min, max){
+			if(min == null && max == null){ //최대, 최소 안했을 경우
+				return false;
+			} else if( min == null){
+				if(str.length>max){
+					alert(ele.title+"의 길이는 최대"+max+"자리 입니다");
+					return false;
+				} else return true;
+			} else if(max == null){
+				if(str.length <  min){ 
+					alert(ele.title+"의 길이는 최소"+min+"자리 입니다");
+					return false;
+				} else return true;
+			} else if(str.length < min || str.length > max){
+				alert(ele.title+"의 길이는 "+min+"~"+max+" 자리 입니다");
+				return false;
+			} else return true; 
+		}
+	
+		// 정규폼 메서드
+		function checkRegExp(ele, str, regExp,errmsg)	{
+			if(!str.match(regExp)){
+				if(errmsg!=null){
+					alert(errmsg);	
+				} else {
+					alert(ele.title +"의 형식이 잘못되었습니다");
+				}
+				return false;
+			}
+			return true;
+		}				
+	
+	// 최종단계 확인메서드
+		function sendUserInfo(){
+			if(validate()){
+				confirm("전송하시겄습니까?");	
+			} else {
+				alert("잘못 입력하셨습니다. 다시 입력해주세요");
+			}
+		}
+	
+	
+	// 회원가입 입력란 순차적 검사 메서드
+		function validate(){
+			
+			var inputarr = document.getElementsByTagName("input");
+			var ele, val;
+			var min, max;
+			var errmsg;
+			
+			// 검사순서 : 빈값체크, 공백체크, 길이체크, 형식체크
+			
+<!-- 아이디 : 빈칸없이 8~20글자(영문소문자로 시작)(영문소문자, 숫자 사용 가능)  -->		
+			var regExp = /^[a-z][a-z0-9]{7,19}$/; // 타입 : object형
+			ele = inputarr[0];
+			val = inputarr[0].value; 
+			min = 8;
+			max = 20;
+			
+// 		var regExpid [] = {/^[a-z]$/, /^[a-z0-9]{8,20}$/};  // 쉼표구분안될듯?
+			
+			if(!isEmpty(ele, val)){ // 필수입력
+				ele.focus();
+			return;
+			}; 
+			
+			if(!hasblank(ele, val)){// 공백여부
+				ele.focus();
+				return;
+			} 
+			
+			if(!checklength(ele, val, min, max)){
+				ele.focus();
+				return;
+			}
+			
+			regExp = /^[a-z]\w+$/;
+			errmsg ="아이디는 영어소문자로 시작합니다";
+			if(!checkRegExp(ele, val,regExp,errmsg)){ // 영어소문자 시작
+				ele.focus();
+				return;
+			}
+			
+			
+			regExp = /^[a-z0-9]+$/;
+			errmsg ="아이디는 영어소문자, 숫자만 가능합니다";
+			if(!checkRegExp(ele, val,regExp,errmsg)){ // 영어소문자, 숫자만 가능
+				ele.focus();
+				return;
+			}; 
+		
+			<!-- 비밀번호 : 빈칸없이 8~20 글자이며  영문소문자, 대문자, 숫자, 특수문자 반드시 1글자씩 포함  -->
+			ele = inputarr[1];
+			val = inputarr[1].value; 
+			min = 8;
+			max = 20;
+			
+			regExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/; // ★노이해
+			regExp = /[a-z]+/ && /[A-Z]+/ && /[0-9]+/ && /[~`!@\#$%^&*\(\)_\-\=+\\|\[\{\]\};:,<.>\/?]+/; // 수정해야할 것(툭스문자) \'\" 안먹힘
+			
+			if(!isEmpty(ele, val)){ // 필수입력
+				ele.focus();
+				return;
+			};
+			
+			if(!hasblank(ele, val)){// 공백여부
+				ele.focus();
+				return;
+			} 
+			
+			if(!checklength(ele, val, min, max)){ //길이검사
+				ele.focus();
+				return;
+			}
+			
+			if(!checkRegExp(ele, val,regExp,null)){
+				ele.focus();
+				return;
+			}
+	
+			<!-- 이름 : 빈칸 없이 한글 2~5글자 -->
+			ele = inputarr[2];
+			val = inputarr[2].value; 
+			min = 2;
+			max = 5;
+			regExp = /^[가-힣]{2,5}$/;
+			
+			if(!isEmpty(ele, val)){ // 필수입력
+				ele.focus();
+				return;
+			}; 
+			
+			if(!hasblank(ele, val)){// 공백여부
+				ele.focus();
+				return;
+			} 
+			
+			if(!checklength(ele, val, min, max)){ // 길이검사
+				ele.focus();
+				return;
+			}
+		// 형식검사
+			if(!checkRegExp(ele, val,regExp, null)){ //★  null 안적게 되면 펑션은 errmsg 파라미터를 어떤값으로 받는지?
+				ele.focus();
+				return;
+			}
+	
+	
+<!-- 생년월일 : 숫자만 입력(- 입력 고려할 것)  -->		
+			ele = inputarr[3];
+			val = inputarr[3].value;
+			max = 10;
+			regExp = /^\d{4}-\d{2}-\d{2}$/; 
+			
+			if(!isEmpty(ele, val)){ // 필수입력
+				ele.focus();
+				return;
+			}; 
+			
+			if(!hasblank(ele, val)){// 공백여부
+				ele.focus();
+				return;
+			} 
+			
+			if(!checklength(ele, val, null, max)){ // 길이검사
+				ele.focus();
+				return;
+			}
+		
+			if(!checkRegExp(ele, val, regExp,null)){  // 형식검사
+				ele.focus();
+				return;
+			}
+<!-- 휴대폰 : 핸드폰 번호 형식  -->
+			// - 한개만 넣었을 때도 되게끔 할 것.
+			
+			ele = inputarr[4];
+			val = inputarr[4].value;
+			regExp = /^([0-9]{3}[0-9]{3,4}[0-9]{4}|[0-9]{3}-[0-9]{3,4}-[0-9]{4})$/;
+// 		regExp = /^(\d{3}-\d{3,4}-\d{4}|\d{3}-\d{3,4}-\d{4})$/;  //=> 왜 안되는 것인지?
+			
+			if(!isEmpty(ele, val)){ // 필수입력
+				ele.focus();
+				return;
+			}; 
+			
+			if(!hasblank(ele, val)){// 공백여부
+				ele.focus();
+				return;
+			} 
+			
+			if(!checkRegExp(ele, val,regExp,null)){ // 길이 및 형식 검사 
+				ele.focus();
+				return;
+			}
+	 
+			
+			
+			<!-- 이메일 : 이메일 형식 -->
+			ele = inputarr[5];
+			val = inputarr[5].value;
+			regExp = /^\w([-_.]?\w)*@\w([-_.]?\w)*.[a-zA-Z]{2,3}$/;
+			
+			if(!isEmpty(ele, val)){ // 필수입력
+				ele.focus();
+				return;
+			}; 
+			
+			if(!hasblank(ele, val)){// 공백여부
+				ele.focus();
+				return;
+			} 
+			
+			if(!checkRegExp(ele, val,regExp,null)){ //형식 검사 
+				ele.focus();
+				return;
+			}
+			alert("통과ㅏㅏ");
+			return true;
+			}
+	</script>
+</html>

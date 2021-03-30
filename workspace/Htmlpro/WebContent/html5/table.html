@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style>
+			*{
+				
+			}
+			table, th, td {
+				border: 1px solid;
+			}
+			table {
+				border-collapse: collapse;
+				width: 300px;	
+			}
+			caption {
+				caption-side: bottom;
+			}
+			th {
+				text-align: center;
+				background-color: gray;
+				color: blue;
+				border : 1px solid black;
+			}
+			td {
+				text-align: center;
+				background-color: olive;
+				color: white;
+				border : 1px solid black;
+			}
+			tr.yellow td { /*뭐야? .yellow 왜 그냥 적용안되는지? */
+			
+				background-color: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>테이블 스타일 연습</h1>
+		<table>
+			<caption>VIP 고객 리스트</caption>
+			<tr>
+				<th>이름</th>
+				<th>이메일</th>
+			</tr>
+			<tr>
+				<td>아이유</td>
+				<td>iuiuiui@fasd.com</td>
+			</tr>
+			<tr class="yellow">
+				<td>홍길동</td>
+				<td>fea@ase.com</td>
+			</tr>
+			<tr>
+				<td>이지은</td>
+				<td>rtz@ovd.com</td>
+			</tr>
+			<tr class="yellow">
+				<td>정영인</td>
+				<td>jyoyjo@ovd.com</td>
+			</tr>
+			<tr>
+				<td>전재수</td>
+				<td>jjsjsjs@ovd.com</td>
+			</tr>
+			<tr class="yellow">
+				<td>최영준</td>
+				<td>cdwcdw4@ovd.com</td>
+			</tr>
+			
+			
+		</table>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>JQUERY 기본2</title>
+		<script type="text/javascript" src="../../js/jquery-3.6.0.js">
+			// 여기에는 jquery 무슨 설정소스들이 들어가게됨. 여기에 무슨 말을 쓰든 다무시.
+		</script>
+		<script type="text/javascript">
+		// document.getEle..
+// 아래와 같이 줄여서 쓸 수 있음.
+		</script>
+	</head>
+	<body>
+		<p>JQUERY로 요소 생성하기</p>
+		<button type="button" onclick="test()">버튼</button>
+		<img alt="커피" src="../../images/gwajea.jpg" height="100" onclick="">
+	</body>
+	<script type="text/javascript">
+	function test(){
+		//요소를 html에 추가방법1
+		var ele = $("<p>JQUERY로 요소 생성하기</p>"); // ==> p요소가 생성됨 (ele는 jquery변수임.)
+		ele.appendTo("body"); // 선택된 요소를 ~에 추가하기
+		
+		// 요소 생성방법1
+		var img = $('<img alt="커피2" src="../../images/dog1.jpg">');
+		img.appendTo("body");
+		
+		
+		$("img", {"src" : "../../images/gwajea.jpg"});
+		
+		// 요소 생성방법2
+		$("img", {
+			"alt" : "사자"
+			,"src" : "../../images/gwajea.jpg"
+			,"click" : function(){ 			// onclick이 jquery에서는 click으로 명칭
+				alert("function실행");
+			}
+			});
+// 		img.appendTo("body");
+	}
+	</script>
+</html>

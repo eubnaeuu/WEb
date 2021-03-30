@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style type="text/css">
+			* {
+			text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<select name="gugudan" id="gugudanselect">
+			<!-- 				
+				<option value="gugudan1">1단</option> 
+			    <option value="gugudan2">2단</option>
+			    <option value="gugudan3">3단</option>
+			    <option value="gugudan4">4단</option>
+			    <option value="gugudan5">5단</option>
+			    <option value="gugudan6">6단</option>
+			    <option value="gugudan7">7단</option>
+			    <option value="gugudan8">8단</option>
+			    <option value="gugudan9">9단</option>
+		    -->
+			</select>
+			<button type="button" onclick="dan99()">출력</button> 
+		</div>
+		<div>
+			<textarea id="ansarea" rows="13" cols="13"></textarea>
+		</div>
+	</body>
+	<script type="text/javascript">
+	// select의 option 추가방법
+// 		case 1) : p요소 추가 (createElement)
+		var ele = document.createElement("p");
+		ele.innerHTML = result;
+		document.getElementById("gugudanselect").appendChild(ele);
+		
+// 		// case 2) : 텍스트 노드를 생성하여 추가 (createTextNode) (<br>도 text로 인식하기에 1행씩 append해줘야함)(\n먹히지만 텍스트노드안에서의 개행이기에 밖에서 작용안함.(p요소안에서 엔터쳐도 개행안되듯이))
+// 		var node = document.createTextNode(result);
+// 		document.getElementById("gugudanselect").appendChild(node);
+
+// 		// case 3) : innerHTML
+// 		var tmpHtml = document.getElementById("gugudanselect").innerHTML;
+// 		tmpHtml = tmpHtml + result;
+// 		document.getElementById("reuslt").innerHTML = tmpHtml;
+	
+		
+		function dan99(){
+			
+// 			var input = gugudanselect.selectedIndex+1; // 인덱스값 number이기에 형변환 불필요.    e.selectedIndex : select에서 선택한 값의 인덱스 반
+			
+			for(var i=0; i<9; i++){
+				var parentEle = document.getElementById("gugudanselect");
+				var ele = document.createElement("option");
+				ele.value = i+1;
+				ele.innerHTML = (i+1)+"단";
+				parentEle.appendChild(ele);
+			}
+			
+			document.getElementById("ansarea").innerHTML ="\n"+input+"단\n\n";
+			for(var i=1; i<10; i++){
+				document.getElementById("ansarea").innerHTML += input + " * " + i + " = " + (input * i) + "\n"   
+			}
+		}
+		
+	</script>
+</html>
