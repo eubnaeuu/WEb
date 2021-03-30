@@ -77,10 +77,14 @@
 			$("img").each(function(index, iten){ // 향상된 for문(each) 이용
 				$("img").on({
 					mouseover : function(e){
-						$(this).attr("src" ,aftersrc[index]); 
+// 						$(this).attr("src" ,aftersrc[index]);
+						e.target.src = aftersrc[index];
+	
+						
 					}
 					, mouseout : function(e){
-						$(this).attr("src",beforesrc[index]);
+// 						$(this).attr("src",beforesrc[index]);
+						e.target.src = beforesrc[index];
 					}  
 				});
 			})
