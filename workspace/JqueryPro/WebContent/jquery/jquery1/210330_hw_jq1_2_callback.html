@@ -12,41 +12,42 @@
 		</style>
 		<script type="text/javascript">
 		
-		
 			$(document).ready(function(){
-				$("#img1").fadeTo(500,0.2,
-						function(e){
-					console.log(e.target);
-				});
-			});
-				
-// 				$("#jquerybooks").click(function(e){
-// 					e.preventDefault();
-// 					$("#img1").slideUp(1000,function(){    //callback 함수 이용
-// 						$("#img1").attr("src","../../images/dog1.jpg");	
-// 					});
-// 					$("#img1").slideDown(500);
+// 				$("#img1").fadeTo(500,0.2,
+// 						function(e){
+// 					console.log(e.target);
 // 				});
-// 				$("#jspbooks").click(function(e){
-// 					e.preventDefault();
-// 					$("#img1").fadeOut(1000,function(){
-// 						$("#img1").attr("src","../../images/dolphin1.jpg");	
-// 					});
-// 					$("#img1").fadeIn(500);
+// 			});
+				$("#jquerybooks").click(function(e){
+					e.preventDefault();
+					$("#img1").slideUp(300,function(){    //callback 함수 이용
+						$("#img1").attr("src","../../images/dog1.jpg");
+						alert($("#img1").complete);
+						$("#img1").fadeIn(1300);
+					});
+// 						$(document).load(function(){
+// 							$("#img1").slideDown(1300);	
+// 						});
+// 					});	
+				});
+				$("#jspbooks").click(function(e){
+					e.preventDefault();
+					$("#img1").fadeOut(300,function(){
+						$("#img1").attr("src","../../images/dolphin1.jpg");	
+						$("#img1").fadeIn(1300);
+					});
 
 // 					$("#img1").fadeOut(1000).attr("src","../../images/dolphin1.jpg").fadeIn(500); // 체이닝은 동시에 진행하는 함수
 					
-// 				});
-// 				$("#umlbooks").click(function(e){
-// 					e.preventDefault();
-// 					$("#img1").hide(1000,function(event1){
-// 						$("#img1").attr("src","../../images/rainbow.png");
-// 						console.log(event1.currentTarget);
-// 						this.src = "1";
-// 					});
-// 					$("#img1").show(500);
+				});
+				$("#umlbooks").click(function(e){
+					e.preventDefault();
+					$("#img1").hide(300,function(event1){
+						$("#img1").attr("src","../../images/rainbow.png");
+						$("#img1").show(1300);
+					});
 					
-// 				});
+				});
 			
 						
 // 				$("#Hide").on(
@@ -54,7 +55,7 @@
 // 							$("#img1").hide();
 // 						});
 						
-// 			});
+			});
 		</script>
 	</head>
 	<body>

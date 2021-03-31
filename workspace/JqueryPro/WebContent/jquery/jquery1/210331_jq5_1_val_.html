@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
+		<style type="text/css">
+			
+		</style>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				
+				var id = $("[name='gender']:checked").attr("id");
+				console.log()
+				alert($("label[for='genderMale']").attr("id"));
+				
+				
+				$("#btnget").click(function(){
+// 						$("#username"); // <input type="text" id="username" value="최영준">
+						var str =""
+						+"이름 : " + $("#username").val()+"\n" //
+						+"성별 : " + $("[name='gender']:checked").val()+"\n" // 성별 한글로 어떻게 가져와야 하는지?
+						+"소개 : " + $("#description").val()+"\n"
+						+"직업 : " + $("#job option:selected").text();
+						alert(str);
+				});
+				
+				$("#btnset").click(function(){
+					$("#username").val("수정후이름");
+					$("[name=gender] : checked").val();
+					$("#description").val("수정후소개");
+					$("#job option : selected").text("수정후직업");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<form>
+			이름
+			<input type="text" id="username"><br>
+			성별
+			<input type="radio" id="genderMale" name="gender" value="M" checked="checked">
+			<label for="genderMale" id="tmp">남자</label>
+			<input type="radio" id="genderFemale" name="gender" value="F">
+			<label for="genderFemale">여자</label><br>
+			소개
+			<textarea rows="10" cols="20" id="description"></textarea><br>
+			직업
+			<select id="job">
+				<option value="A01">프로그래머</option>
+				<option value="A02">프로게이머</option>
+				<option value="A03">프로골퍼</option>
+			</select><br>
+		</form>
+		<button type="button" id="btnget">조사하기</button>
+		<button type="button" id="btnset">이름변경</button>
+	</body>
+</html>
