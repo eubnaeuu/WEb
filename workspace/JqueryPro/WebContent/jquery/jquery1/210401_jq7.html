@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
+		<style type="text/css">
+		table {
+		bol
+		}
+		</style>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				// 처음 ,마지막
+// 				$("li:first, li:last").css("background-color","yellow");
+				$("li").first().css("background-color","yellow");
+				$("li").last().css("background-color","yellow");
+				// 5
+// 				$("li:eq(5)").css("background-color","red");
+				$("li").slice(5,6).css("background-color","red");
+				// 4 이전
+// 				$("li:lt(4)").css("font-weight","bold");
+				$("li").slice(0,4).css("font-weight","bold");
+				// 3이후
+// 				$("li:gt(3)").css("font-size","0.5em");
+				$("li").slice(4).css("font-size","0.5em");
+				
+// 				$("tr").odd().css("background-color","silver");
+				
+			});
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li>one</li>
+			<li>two</li>
+			<li>three</li>
+			<li>four</li>
+			<li>five</li>
+			<li>six</li>
+			<li>seven</li>
+			<li>eight</li>
+			<li>nine</li>
+		</ul>
+		<table>
+			<tr>
+				<td>one</td>
+				<td>62만원</td>
+			</tr>
+			<tr>
+				<td>two</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>three</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>four</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>five</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>six</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>seven</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>eight</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>nine</td>
+				<td></td>
+			</tr>
+		</table>
+	</body>
+</html>

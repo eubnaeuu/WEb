@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
+		<style type="text/css">
+		</style>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#ex1 p").click(function(){
+					if($(this).parent().is("#ex1")){ //this의 부모가 div입니까?
+							alert("부모가 div입니다")
+					}
+				});
+				$("#ex2 p").click(function(){
+						if($(this).parent().is("div")){
+							$(this).parent().append($(this).clone().css("color","red"));
+						} else alert("작업대상X");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="ex1">
+			<p>클릭하세요1</p>
+			<div>
+				<p>클릭하세요2</p>
+			</div>
+		</div>
+		<div id="ex2">
+			<p>무궁화 꽃이 피었습닏</p>
+		</div>
+		<p>은주는 예쁘다</p>
+		<div>
+			<p>ㅏ뿐이 즈려받고 가시옶서</p>
+		</div>
+	</body>
+</html>
