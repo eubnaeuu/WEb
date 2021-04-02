@@ -25,8 +25,20 @@
 // 				$("li:gt(3)").css("font-size","0.5em");
 				$("li").slice(4).css("font-size","0.5em");
 				
-// 				$("tr").odd().css("background-color","silver");
+				$("tr").first().css({
+					"background-color": "#000000"
+					, "color" : "#FFFFFF" 	
+				})			
+				$("tr").odd().css("background-color","silver");
 				
+				//첫번째 li에 노란색 넣기
+				$("#ex3 li").first().css("background-color","yellow");
+				// 각 리스트의 첫번째 li에 빨간색 테두리 넣기
+				$("#ex3 ol li:first-child").css("border", "3px solid red");
+				// 마지막 li에 초록색 배경 넣기
+				$("#ex3 li").last().css("background-color","green");
+				// 각 리스트의 마지막 li에 파란색 점선 테두리
+				$("#ex3 ol li:last-child").css("border", "3px dotted blue");
 			});
 		</script>
 	</head>
@@ -43,6 +55,10 @@
 			<li>nine</li>
 		</ul>
 		<table>
+			<tr>
+				<td>번호</td>
+				<td>가격</td>
+			</tr>
 			<tr>
 				<td>one</td>
 				<td>62만원</td>
@@ -80,5 +96,20 @@
 				<td></td>
 			</tr>
 		</table>
+		<div id="ex3">
+			여자들에게 인기있는남자들
+			<ol>
+				<li>능력있는 남자</li>
+				<li>돈 많은 남자</li>
+				<li>잘 생긴 남자</li>
+				<li>프로그래머</li>
+			</ol>
+			
+			남자들에게 인기있는 여자들
+			<ol>
+				<li>예븐 여자</li>
+				<li>귀여운 여자</li>
+			</ol>
+		</div>
 	</body>
 </html>

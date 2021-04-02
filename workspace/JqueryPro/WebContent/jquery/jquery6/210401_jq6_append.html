@@ -36,7 +36,7 @@
 				}).appendTo("body");
 				
 				$("p.ex1_1").click(function(){
-					var fileName = 
+					
 					$("<img>",{
 // 						css:{
 // 							"width" : "200px"
@@ -47,20 +47,24 @@
 						,"alt" : $(this).text()
 					}).appendTo(this);
 				});
+				
 				$("p.ex1_2").click(function(){
-					var fileName = 
+					alert(imgRoot + $(this).attr("title")+"jpg");
 					$("<img>",{
 						"title" : $(this).attr("title")
-						,"src" : imgRoot + $(this).attr("title")+"jpg"
+						,"src" : imgRoot + $(this).attr("title")+".jpg"
 						,"alt" : $(this).text()
-					}).appendTo(this + "p");
+					}).appendTo("#test");
 				});
 			});
+			
 		</script>
 	</head>
 	<body>
 	<!-- 아래와 같이 input type hidden 을 써서 요 p요소에 img를 추가하는 것이 더 바람직(title에는 파일 확장명이 아닌 사진의 제목이 나와야 하기에) -->
 		<p class="ex1_2" title="Hydrangea">수국</p>
-		<p><input type="hidden" value="Hydrangea.jpg"></p>
+		<div>
+			<input id="test" type="hidden" value="Hydrangea.jpg">
+		</div>
 	</body>
 </html>
