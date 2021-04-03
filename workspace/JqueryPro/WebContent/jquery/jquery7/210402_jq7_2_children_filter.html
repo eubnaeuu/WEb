@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="kr">
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
-		<style>
-			table {
-				text-align: center;
-			}
-			#ex2 div{
-				width: 500px;
-				height: 30px;
-				border: 1px solid green;
-			}
-			text {
-/*  				font: 3px bold; */
-/*  				color:   */
-/* 					visibility: visible; */
-/* 					display: inline; */
-/* 					opacity: 1; */
-			}
-		</style>
-		<script type="text/javascript">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
+<style>
+table {
+	text-align: center;
+}
+
+#ex2 div {
+	width: 700px;
+	height: 50px;
+	border: 1px solid green;
+}
+
+text {
+	/*  				font: 3px bold; */
+	/*  				color:   */
+	/* 					visibility: visible; */
+	/* 					display: inline; */
+	/* 					opacity: 1; */
+	
+}
+</style>
+<script type="text/javascript">
 		
 			// $("td:nth-child(1)") : 이름 속성값 반환
 			// $("td:nth-child(2)") : 주소 속성값 반환
@@ -39,8 +42,8 @@
 				// ==> 첫번째 tr의 td에 색상을 적용해 주기
 				$("#ex1 tr:first-child td").css("background-color", "yellow");
 <!-- ex2 -->				
-				// 'jQuery'글자 포함된 span 테두리 파랑
-				$("#ex2 span:contains(jQuery)").css("border","1px solid blue");
+				// 'jQuery'글자 포함된 span 테두리 파랑 // ''있어도 없어도 가능
+				$("#ex2 span:contains('jQuery')").css("border","1px solid blue");
 				// 'jQuert'글자 포함 안 된 span 테두리 빨강
 				$("#ex2 span:not(:contains(jQuery))").css("border","1px solid red");
 				// span을 갖는 div 테두리 녹색
@@ -53,23 +56,20 @@
 					,"color":"red"
 				});
 				// 자식이 있는 div 글자 굵게 , 크기 1.5배
-				$("#ex2 div:has(*)").css({
-// 					"font":"1.5em bold"
-// 					,"background-color":"black"
+// 				$("#ex2 div:has(*)").css({ // '자식요소' 없는 div (text 노상관)
+				$("#ex2 div:parent").css({	// '자식요소' or 'text' 없는 div
+					"font":"1.5em bold"
+					,"background-color":"silver"
 				});
 <!-- ex3 -->				
 				// hidden 요소 (display 요소만 적용)
 				$("#btnhidden").click(function(){
-				$("#ex3 p:hidden").css("visibility","visible");
-				$("#ex3 p:hidden").css("opacity","1")
-				$("#ex3 p:hidden").css("display","inline"); // 적용
+					$("#ex3 p:hidden").css("display","inline");
 				});
 				// visible 요소 (visibility, opacity 요소만 적용)
 				$("#btnvisible").click(function(){
-					$("#ex3 p:visible").css("visibility","visible");// 적용
-					$("#ex3 p:visible").css("opacity","1")// 적용
-					$("#ex3 p:visible").css("display","inline"); 
-			});
+					$("#ex3 p:visible").css("opacity","0.7")
+				});
 				
 				
 				
@@ -82,6 +82,7 @@
 					+"태그명 : "+$(this).prop("tagName")
 					+"유  형 : "+this.type
 					+" 값  : "+this.value;
+					alert(str);
 				});
 			});
 			
@@ -137,9 +138,10 @@
 });
 		
 		</script>
-	</head>
-	<body>
+</head>
+<body>
 	<div id="ex1">
+		<h3>ex1</h3>
 		<table>
 			<tr>
 				<td>이름</td>
@@ -175,81 +177,86 @@
 				<td>010-7777-4454</td>
 				<td>대구</td>
 				<td>010-7777-4454</td>
-			</tr>			
+			</tr>
 		</table>
 	</div>
-<hr>
+	<hr>
 	<div id="ex2" style="height: 500px">
-		<div></div><br>
+		<h3>ex2</h3>
+		<div></div>
+		<br>
 		<div>
-			<div>헬로우~~<span>오늘도 즐겁게~ 열심히 !</span>
-			</div><br>
-			<p>Hello jQuery!<span>Thanks, jQuery!</span>
-			</p><br>
-			<div>jQuery!</div><br>
-			<span>쉬운 jQeury~~!</span>
-			<div></div><br>
+			<div>
+				헬로우~~<span>오늘도 즐겁게~ 열심히 !</span>
+			</div>
+			<br>
+			<p>
+				Hello jQuery!<span>Thanks, 'jQuery'!</span>
+			</p>
+			<br>
+			<div>jQuery!(자식요소 없고 Text 존재)</div>
+			<br> <span>쉬운 jQeury~~!</span>
+			<div></div>
+			<br>
 		</div>
 	</div>
 	<hr>
 	<div id="ex3">
-		<p>보이는 문단</p><br>
-		<p style="visibility:hidden;">숨겨진 문단(visibility:hidden)</p><br>
-		<p style="display:none;">자리를 차지 하지 못한 문단(display:none)</p><br>
-		<p style="opacity:0;">투명한 문단(opacity:0)</p>
+		<h3>ex3</h3>
+		<p>보이는 문단</p>
+		<br>
+		<p style="visibility: hidden;">숨겨진 문단(visibility:hidden)</p>
+		<br>
+		<p style="display: none;">자리를 차지 하지 못한 문단(display:none)</p>
+		<br>
+		<p style="opacity: 0;">투명한 문단(opacity:0)</p>
 		<hr>
 		<button id="btnhidden">hidden요소</button>
 		<button id="btnvisible">visible요소</button>
 	</div>
 	<hr>
 	<div id="ex4">
+		<h3>ex4</h3>
 		<form>
-			ID :
-			<input id="userId" type="text">
-			<span style="display:none">ID가 중복됩니다</span><br>
-			이름 : 
-			<input id="userName" type="text"><br>
-			<span style="display:none">이름가 중복됩니다</span><br>
-			성별 : 
-			<input type="radio" name="gender" id="Male" value="M" title="남자">
-			<label for="Male">남자</label>
-			<input type="radio" name="gender" id="Female" value="F" title="여자">
-			<label for="Female">여자</label><br>
-			
+			ID : <input id="userId" type="text"> <span
+				style="display: none">ID가 중복됩니다</span><br> 이름 : <input
+				id="userName" type="text"><br> <span
+				style="display: none">이름가 중복됩니다</span><br> 성별 : <input
+				type="radio" name="gender" id="Male" value="M" title="남자"> <label
+				for="Male">남자</label> <input type="radio" name="gender" id="Female"
+				value="F" title="여자"> <label for="Female">여자</label><br>
+
 			<button id="btnhidden">hidden요소</button>
 			<button id="btnvisible">visible요소</button>
-			
+
 			<input type="hidden" id="userAge" name="userAge">
 		</form>
 	</div>
 	<hr>
 	<div id="ex5">
+		<h3>ex5</h3>
 		<form>
-			<input type="text"><br>
-			<input type="password"><br>
+			<input type="text"><br> <input type="password"><br>
 			<select name="disSelect" disabled="disabled"></select><br>
-			<textarea rows="10" cols="20" name="enTextarea">text</textarea><br>
-			<input type="button" value="확인" disabled="disabled"><br>
+			<textarea rows="10" cols="20" name="enTextarea">text</textarea>
+			<br> <input type="button" value="확인" disabled="disabled"><br>
 		</form>
 		</form>
 	</div>
 	<hr>
 	<div id="ex6">
-		취 미 : 
-		<input type="checkbox" id="euhang">
-		<label for="euhang">여행</label>
-		<input type="checkbox" id="jangki">
-		<label for="jangki">장기</label> 
-		<input type="checkbox" id="badook">
-		<label for="badook">바둑</label> 
-		<input type="checkbox" id="doksu">
-		<label for="doksu">독서</label> 
-		<input type="checkbox" id="nakksi">
-		<label for="nakksi">낚시</label> <br>
-		<button id="btn" type="button">전송</button> 
+		<h3>ex6</h3>
+		취 미 : <input type="checkbox" id="euhang"> <label for="euhang">여행</label>
+		<input type="checkbox" id="jangki"> <label for="jangki">장기</label>
+		<input type="checkbox" id="badook"> <label for="badook">바둑</label>
+		<input type="checkbox" id="doksu"> <label for="doksu">독서</label>
+		<input type="checkbox" id="nakksi"> <label for="nakksi">낚시</label>
+		<br>
+		<button id="btn" type="button">전송</button>
 	</div>
 	<hr>
 	<div id="ex7">
+		<h3>ex7</h3>
 		<form>
 			<select name="spring" id="spring" multiple size="6">
 				<option>개나리</option>
@@ -258,12 +265,12 @@
 				<option selected>벚꽃</option>
 				<option>목련</option>
 				<option>철쭉</option>
-			</select><br>
-			<input type="button" value="전송" id="btn1"><br><br>
+			</select><br> <input type="button" value="전송" id="btn1"><br>
+			<br>
 			<div>
-				선택 결과 : <span></span> 
+				선택 결과 : <span></span>
 			</div>
-		</form>			
+		</form>
 	</div>
-	</body>
+</body>
 </html>
