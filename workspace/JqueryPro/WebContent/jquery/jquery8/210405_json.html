@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
+		<style type="text/css">
+		</style>
+		<script>
+				var myObj2 = {
+							name : "홍홍홍" 
+							,birth : "2032-02-01"
+							,age : 3
+							,address : {   // 대전광역시 중구 대흥동
+								city:"대전광역시"
+								, gu: "중구"
+								, dong:"대흥동"
+							}
+							,hobby : ["코딩","개발","한컴타자연습"]
+				};
+				
+			$(document).ready(function(){
+// 				var myJSON1 = '{name : "홍홍홍"' 
+// 							+ ',birth : "2032-02-01"'
+// 							+ ',age : 3'
+// 							+ ',address : "대덕인재개발원"'
+// 							+ ',hobby : "코딩"}';
+// 				var myObj1 = JSON.parse(myJSON1);
+	
+				$("button").click(function(){
+	
+					var myJSON2 = JSON.stringify(myObj2);
+					$("#ans2").html() = myJSON2;
+// 					alert(myJSON2);
+				//"{"name":"홍홍홍","birth":"2032-02-01","age":3,"address":{"city":"대전광역시","gu":"중구","dong":"대흥동"},"hobby":["코딩","개발","한컴타자연습"]}"
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+		<button type="button">JSON 변환 테스트</button>
+		<p>1차변환(obj => str) :<span id="ans1"></span></p>
+		<p>1차변환(str => obj) :<span id="ans2"></span></p>
+		<p>이름 : <span id="name"></span> </p>
+		<p>주소 : <span id="addr"></span> </p>
+		<p>취미 : <span id="hobby"></span> </p>
+		<p>생년월일 : <span id="birth"></span></p>
+	</body>
+</html>
