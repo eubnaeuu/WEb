@@ -9,12 +9,38 @@
 	</head>
 	<body>
 		<h3>XMLHttpRequest 사용하기</h3>
-		<button type="button">Get 방식 호출</button>
+		<button type="button" id="btnGetA">Get 비동기 방식 호출</button>
+		<button type="button" id="btnGetS">Get 동기 방식 호출</button>
+		<button type="button" id="btnJQ">JQ AJAX 호출</button>
 		<hr>
 		<div id="divResult" style="border: 1px solid; height: 300px;"></div>
+		<hr>
+		<form action="" method="get" id="fm"> <!-- 요 form값이 obj에 담기게 된다 -->
+			아이디 : <input type="get">
+			비밀번호: <input type="password">
+		</form>
 	</body>
 		<script>
-			$("button").click(function(){
+			$("#btnJQ").click(function(){
+// 				var obj = {userId:"test01", userPw:"1234"};
+				$.ajax({ // jquery로 ajax 호출하는 메서드
+					url: "210325_hw_jq_1.html" // 호출할 주소(url)
+					, type: "get" // 데이터 전송 방식(metohd) - "get" 또는 "post"
+					, data: obj // 전송할 데이터
+					, data: obj // 전송할 데이터
+					, dataType: "html" // 결과로 받은 데이터의 형식(서버로부터 받은 데이터 유형) - html, json, text, xml
+					, success: function(){ // 성공 시 처리할 작업
+						alert("성공");
+						
+					}
+				, error: function(){ // 오류 시 처리할 작업
+					alert("실패");
+				}
+				}); 
+			});		
+		
+		
+			$("#btnGetA").click(function(){
 				// XMLHttpRequest 객체로 호출하기
 				
 				// 1) XMLHttpRequest 객체 생성
@@ -29,18 +55,42 @@
 				
 				// 4) 결과처리하기
 				xhttp.onreadystatechange = function(){
-					if(this.readystate == 4 // 요청이 처리 완료됨(데이터 받음) 상태
-					&& this.status == 200){ // 서버에서 요청이 정상처리인 상태
-					// 정상 처리 되었을 때 화면 처리 할 내용
+					if(this.readyState == 4 && this.status == 200){ // 서버에서 요청이 정상처리인 상태
+				 	// 요청이 처리 완료됨(데이터 받음)상태  && 정상 처리 되었을 때 화면 처리 할 내용
+				 	console.log(this.responseText);
+					$("#divResult").html(this.reponseText);
+					}
+				}
+			});
+			
+			
+			$("#btnGetS").click(function(){
+				// XMLHttpRequest 객체로 호출하기
+				
+				// 1) XMLHttpRequest 객체 생성
+				var xhttp = new XMLHttpRequest();
+			
+				// 2) 서버(, 페이지 등) 연결 - open(method, url, async)
+				var url = "210325_hw_jq_1.html";
+				xhttp.open("GET", url, false); // 동기식 호출로 변경(false)
+				
+				// 4) 결과처리하기 (3다음에 있으면 진행이 안되기에 순서를 뒤바꿈. 주석처리한 내용은 순서 뒤바꾸지 않은 상태 ) 
+				xhttp.onreadystatechange = function(){ // 그래서 이벤트가 호출되지 않은 상태
+					if(this.readyState == 4 && this.status == 200){ 
+				 	console.log(this.responseText);
+					$("#divResult").html($(this.reponseText));
 					}
 				}
 				
+				// 3) 서버(, 페이지 등) 전송
+				xhttp.send(); // 이미 0~4 까지 전송이 끝난 상태 이미 4상태
+				
+			});
 				 
 // 				tomcat 사용시
 // 				주소가 바뀜
 // 				http://localhost:9000/JqueryPro/jquery/jquery9/210405_jq9_1_ajax_request.html
 				
 				
-			});
 		</script>
 </html>
