@@ -7,8 +7,8 @@
 		<style type="text/css">
 		</style>
 		<script>
-
-			var myObj1 = {	 // Object
+			// Object
+			var myObj1 = {
 							"name" : "홍홍홍" 
 							,"birth" : "2032-02-01"
 							,"age" : 3
@@ -19,7 +19,7 @@
 							}
 							,"hobby" : ["코딩","개발","한컴타자연습"]
 				};
-				
+			// String				
 			var myJSON2 = '{'			  
 						+'"name" : "홍홍홍"' 
 						+',"birth" : "2032-02-01"'
@@ -29,7 +29,6 @@
 						+'}'
 						+',"hobby" : ["코딩","개발","한컴타자연습"]'
 						+'}';
-				
 					
 			$(document).ready(function(){
 			
@@ -42,10 +41,10 @@
 					// $("#ans2").html()= myJSON2; : 에러 발생
 					
 					// String => Object
-// 					var myObj2 = JSON.parse(myJSON2);
-// 					$("#ans2").text(myObj2);
+					var myObj2 = JSON.parse(myJSON2);
+					$("#ans2").text(myObj2);
+// 					$("#ans2").text(JSON.parse(myJSON1));
 
-					$("#ans2").text(JSON.parse(myJSON1));
 					$("#name").text(myObj1.name);
 					$("#addr").text(myObj1.address.city+" "+myObj1.address.dong);
  					
