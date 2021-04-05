@@ -11,7 +11,12 @@
 		<h3>XMLHttpRequest 사용하기</h3>
 		<button type="button" id="btnGetA">Get 비동기 방식 호출</button>
 		<button type="button" id="btnGetS">Get 동기 방식 호출</button>
+		
 		<button type="button" id="btnJQ">JQ AJAX 호출</button>
+		
+		<button type="button" id="btnPostA">POST 비동기 방식 호출</button>
+		<button type="button" id="btnPostS">POST 동기 방식 호출</button>
+		
 		<hr>
 		<div id="divResult" style="border: 1px solid; height: 300px;"></div>
 		<hr>
@@ -21,12 +26,12 @@
 		</form>
 	</body>
 		<script>
-		$(document).ready(function(){
+		
 			$("#btnJQ").click(function(){
 // 				var obj = {userId:"test01", userPw:"1234"};
 				var obj = $("#fm").serialize();
 				$.ajax({ // jquery로 ajax 호출하는 메서드
-					url: "210325_hw_jq_1.html" // 호출할 주소(url)
+					url: "html1.html" // 호출할 주소(url)
 					, type: "get" // 데이터 전송 방식(metohd) - "get" 또는 "post"
 // 					, data: {userId:"test01", userPw:"1234"}; // 이것보다는 위에서 변수를 지정해서 넣는 것이 좋음.
 					, data: obj // 전송할 데이터
@@ -50,7 +55,7 @@
 				var xhttp = new XMLHttpRequest();
 			
 				// 2) 서버(, 페이지 등) 연결 - open(method, url, async)
-				var url = "210325_hw_jq_1.html";
+				var url = "html1.html";
 				xhttp.open("GET", url, true);
 				
 				// 3) 서버(, 페이지 등) 전송
@@ -62,7 +67,7 @@
 				 	// 요청이 처리 완료됨(데이터 받음)상태  && 정상 처리 되었을 때 화면 처리 할 내용
 				 	console.log(this.responseText);
 				 	alert(this.responseText);
-					$("#divResult").html(this.reponseText);
+					$("#divResult").html(this.responseText);
 					} else {
 						alert("ho");
 					}
@@ -77,14 +82,14 @@
 				var xhttp = new XMLHttpRequest();
 			
 				// 2) 서버(, 페이지 등) 연결 - open(method, url, async)
-				var url = "210325_hw_jq_1.html";
+				var url = "html1.html";
 				xhttp.open("GET", url, false); // 동기식 호출로 변경(false)
 				
 				// 4) 결과처리하기 (3다음에 있으면 진행이 안되기에 순서를 뒤바꿈. 주석처리한 내용은 순서 뒤바꾸지 않은 상태 ) 
 				xhttp.onreadystatechange = function(){ // 그래서 이벤트가 호출되지 않은 상태
 					if(this.readyState == 4 && this.status == 200){ 
 				 	console.log(this.responseText);
-					$("#divResult").html($(this.reponseText));
+					$("#divResult").html(this.responseText);
 					}
 				}
 				
@@ -92,7 +97,7 @@
 				xhttp.send(); // 이미 0~4 까지 전송이 끝난 상태 이미 4상태
 				
 			});
-		});
+		
 				 
 // 				tomcat 사용시
 // 				주소가 바뀜
