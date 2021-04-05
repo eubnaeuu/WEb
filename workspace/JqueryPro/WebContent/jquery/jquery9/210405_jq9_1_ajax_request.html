@@ -19,11 +19,28 @@
 				
 				// 1) XMLHttpRequest 객체 생성
 				var xhttp = new XMLHttpRequest();
+			
 				// 2) 서버(, 페이지 등) 연결 - open(method, url, async)
-				var url = "file:///D:/program/A_TeachingMaterial/5.JQuery/workspace/JqueryPro/WebContent/jquery/jquery1/210325_hw_jq_1.html";
+				var url = "210325_hw_jq_1.html";
 				xhttp.open("GET", url, true);
+				
 				// 3) 서버(, 페이지 등) 전송
 				xhttp.send();
+				
+				// 4) 결과처리하기
+				xhttp.onreadystatechange = function(){
+					if(this.readystate == 4 // 요청이 처리 완료됨(데이터 받음) 상태
+					&& this.status == 200){ // 서버에서 요청이 정상처리인 상태
+					// 정상 처리 되었을 때 화면 처리 할 내용
+					}
+				}
+				
+				 
+// 				tomcat 사용시
+// 				주소가 바뀜
+// 				http://localhost:9000/JqueryPro/jquery/jquery9/210405_jq9_1_ajax_request.html
+				
+				
 			});
 		</script>
 </html>
