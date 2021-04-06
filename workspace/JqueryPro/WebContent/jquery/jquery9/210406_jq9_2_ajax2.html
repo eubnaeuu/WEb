@@ -4,7 +4,6 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
-		
 		<style type="text/css">
 			
 		</style>
@@ -18,6 +17,12 @@
 		<button type="button" onclick="fnGet()">get버튼</button>
 		<hr>
 		<button type="button" onclick="fnAjax()">Ajax버튼</button>
+		<hr>
+		<button type="button" onclick="fnJsonText()">텍스트</button>
+		<button type="button" onclick="fnJsonHtml()">HTML</button>
+		<button type="button" onclick="fnJsonObj()">JSON obj</button>
+		<button type="button" onclick="fnJsonArr()">JSON 배열</button>
+		<button type="button" onclick="fnJsonLikst()">JSON 목록</button>
 	</form>
 	<div id="divResult"></div>
 	</body>
@@ -44,7 +49,81 @@
 				,error : function(){
 					alert("오류입니다");
 				}
+			});
+		}
+		
+		function fnJsonText(){
+			$.ajax({
+// 				url : "../sample/data_text.txt" // 상대경로
+				url : "/JqueryPro/jquery/sample/data_text" // 루트경로 : 맨앞 / 는 루트(webcontent)를 의미
+				,type : "get"
+// 				,data : 
+				,dataType : "text" // html이라고 써도 가능
+				,success : function(data){
+					$("#divResult").html(data);
+					alert(data);
+				}
+				,error : function(){
+					alert("오류입니다");					
+				}
+			});
+		}
+		function fnJsonObj(){
+			$.ajax({
+				url : "/JqueryPro/jquery/sample/data_json_obj.txt"
+				,dataType : "json"
+				,success : function(data){
+// 					console.log(data); // obj로 가져옴
+// 					console.log(data.name);
+					var str =""
+							+"이름 : "+data.name+"<br>"
+							+"나이 : "+data.age+"<br>"
+							+"성별 : "+data.gender+"<br>"
+							+"직업 : "+data.job;
+					
+					$("#divResult").html(str);
+				}
+				,error : function(){
+					alert("오류")
+				}
 			})
+				}
+		function fnJsonArr(){zzdf
+			$.ajax({
+				url : "/JqueryPro/jquery/sample/array.txt"
+				,dataType : "json"
+				,success : function(data){
+// 					console.log(data);
+					var str = "<ol>";
+					for(var i in data){
+						str += "<li>" + data[i] + "</li>" 	
+					}
+					str += "</ol>";
+					
+					$("#divResult").html(str);
+				}
+				,error : function(){
+					alert("오류");
+				}
+			});
+		}
+		function fnJsonList(){
+			$.ajax({
+				url : "/JqueryPro/jquery/sample/data_json_list.txt"
+				,dataType : "json"
+				,success : function(data){
+					for(var i in data){
+						var obj = data[i];
+						var str += ""
+								+ i + "번째 회원"
+								+ "" + obj.name
+								
+					}
+				}
+				,error : function(){
+					alert("에러");
+				}
+			});	
 		}
 		
 	</script>
