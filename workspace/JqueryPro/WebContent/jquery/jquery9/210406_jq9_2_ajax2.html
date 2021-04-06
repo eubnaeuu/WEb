@@ -23,7 +23,7 @@
 		<button type="button" onclick="fnAjax()">Ajax버튼</button>
 		<hr>
 		<button type="button" onclick="fnJsonText()">텍스트</button>
-		<button type="button" onclick="fnJsonHtml()">HTML</button>
+<!-- 		<button type="button" onclick="fnJsonHtml()">HTML</button> -->
 		<button type="button" onclick="fnJsonObj()">JSON obj</button>
 		<button type="button" onclick="fnJsonArr()">JSON 배열</button>
 		<button type="button" onclick="fnJsonList()">JSON 목록</button>
@@ -84,7 +84,6 @@
 							+"나이 : "+data.age+"<br>"
 							+"성별 : "+data.gender+"<br>"
 							+"직업 : "+data.job;
-					
 					$("#divResult").html(str);
 				}
 				,error : function(data){
@@ -97,34 +96,28 @@
 				url : "/JqueryPro/jquery/sample/data_array.txt"
 				,dataType : "json"
 				,success : function(data){
-// 					console.log(data);
+					console.log(data);
 
 					// for(in)
 					var str1 = "<ol>";
-					for(var i in data){   // index 반환
-					str1 += "<li>" + data[i] + "</li>" 	
+					for(var i in data){  
+					str1 += "<li>" + data[i] + "</li>"; 	
 					}
 					str1 += "</ol>";
 					
-					//for(of)
+		
+					// $.each(arr, function(idx, item){})  
 					var str2 = "<ol>";
-					for(var i of data){
-						str2 += "<li>" + data[i] + "</li>" 	
-					}
-					str2 += "</ol>";
-					
-					//foreach
-					var str3 = "<ol>";
-					data.foreach(function(index, item){
-						str3 += "<li>" + "["+index+"]" + item + "</li>" 	
+					$.each(data,function(idx, item){
+						str2 += "<li>" 
+								+ "idx : "+ idx + " "
+								+ "item : " + item + " "
+								+ "this : "+this + " "
+								+ "</li>";	
 					});
-					str3 += "</ol>";
-					//
-						
-					$("#divResult").html(str1+"<br>"
-										+str2+"\n"
-										+str3+"\n"
-										);
+					str2 += "</ol>";
+						console.log(str2);
+					$("#divResult").html(str1+"<hr>"+str2+"");
 					}
 				,error : function(data){
 					console.error(data);
@@ -155,7 +148,8 @@
 						var table = "<table border='2px solid'>";
 						table += "<tr>";
 						table += "<th>번호</th>";
-						for(var i in data[0]){ 
+						for(var i in data[0]){
+// 						for(var i of data[0]){ // error
 						table += "<th>" + i + "</th>";
 						}
 						table += "</tr>";
