@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="kr">
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
-		<style type="text/css">
-			
-		</style>
-	</head>
-	<body>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
+<style type="text/css">
+</style>
+</head>
+<body>
+	<table border="10px solid">
+		<tr>
+			<td>d</td>
+		</tr>
+	</table>
 	<form action="../jquery1/210325_hw_jq_1.html" method="get" id="fm">
-		이름 : <input type="text"><br>
-		나이 : <input type="text"><br>
-		<button type="submit">submit버튼</button> <!-- page를 바꿀 때 보통 submit사용(버튼 누르면 action 경로로 이동) -->
+		이름 : <input type="text"><br> 나이 : <input type="text"><br>
+		<button type="submit">submit버튼</button>
+		<!-- page를 바꿀 때 보통 submit사용(버튼 누르면 action 경로로 이동) -->
 		<button type="button">post버튼</button>
 		<button type="button" onclick="fnGet()">get버튼</button>
 		<hr>
@@ -22,11 +26,11 @@
 		<button type="button" onclick="fnJsonHtml()">HTML</button>
 		<button type="button" onclick="fnJsonObj()">JSON obj</button>
 		<button type="button" onclick="fnJsonArr()">JSON 배열</button>
-		<button type="button" onclick="fnJsonLikst()">JSON 목록</button>
+		<button type="button" onclick="fnJsonList()">JSON 목록</button>
 	</form>
 	<div id="divResult"></div>
-	</body>
-	<script type="text/javascript">
+</body>
+<script type="text/javascript">
 	
 		function fnGet(){
 			// submit 실행
@@ -46,8 +50,8 @@
 					alert(data);
 					$("#divResult").html(data);
 				}
-				,error : function(){
-					alert("오류입니다");
+				,error : function(data){
+					console.error(data);
 				}
 			});
 		}
@@ -63,8 +67,8 @@
 					$("#divResult").html(data);
 					alert(data);
 				}
-				,error : function(){
-					alert("오류입니다");					
+				,error : function(data){
+					console.error(data);				
 				}
 			});
 		}
@@ -83,14 +87,14 @@
 					
 					$("#divResult").html(str);
 				}
-				,error : function(){
-					alert("오류")
+				,error : function(data){
+					console.error(data);
 				}
 			})
 				}
-		function fnJsonArr(){zzdf
+		function fnJsonArr(){
 			$.ajax({
-				url : "/JqueryPro/jquery/sample/array.txt"
+				url : "/JqueryPro/jquery/sample/data_array.txt"
 				,dataType : "json"
 				,success : function(data){
 // 					console.log(data);
@@ -102,29 +106,56 @@
 					
 					$("#divResult").html(str);
 				}
-				,error : function(){
-					alert("오류");
+				,error : function(data){
+					console.error(data);
 				}
 			});
 		}
-		function fnJsonList(){
+
+		function fnJsonList() {
 			$.ajax({
-				url : "/JqueryPro/jquery/sample/data_json_list.txt"
-				,dataType : "json"
-				,success : function(data){
-					for(var i in data){
+				url : "/JqueryPro/jquery/sample/data_json_list.txt",
+				dataType : "json",
+				success : function(data) {
+					var str = "";
+					for ( var i in data) {
+						console.log(i);
 						var obj = data[i];
-						var str += ""
-								+ i + "번째 회원"
-								+ "" + obj.name
-								
+
+						str += i + "번째 회원<br>" 
+								+ "이름 : "+ obj.name + "<br>"
+								+ "나이 : " + obj.age + "<br>" 
+								+ "성별 : "+ obj.gender + "<br>" 
+								+ "직업 : " + obj.job
+								+ "<br><br><br>";
 					}
+								
+						// table , tr ,td
+
+						var table = "<table border='2px solid'>";
+						
+						
+						table += "<tr><th>" + 속성이름 + "</th></tr>";
+						
+						$(data).each(function() {
+							table += "<tr>"
+							var tmp = this;
+							for (var i in tmp) {
+								table += "<td>";
+								table += tmp[i];
+								table += "</td>";
+								}
+							table += "</tr>"
+						});
+						table += "</table>"
+					
+					// 					$("#divResult").html(str);
+					$("#divResult").html(table);
+				},
+				error : function(data) {
+					console.error(data);
 				}
-				,error : function(){
-					alert("에러");
-				}
-			});	
+			});
 		}
-		
 	</script>
 </html>
