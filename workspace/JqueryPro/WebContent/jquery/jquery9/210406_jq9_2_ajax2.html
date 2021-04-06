@@ -133,13 +133,18 @@
 						// table , tr ,td
 
 						var table = "<table border='2px solid'>";
-						
-						
-						table += "<tr><th>" + 속성이름 + "</th></tr>";
-						
+						table += "<tr>";
+						table += "<th>번호</th>";
+						for(var i in data[0]){
+						table += "<th>" + i + "</th>";
+						}
+						table += "</tr>";
+						var cnt = 0;
 						$(data).each(function() {
+							cnt++;
 							table += "<tr>"
 							var tmp = this;
+							table += "<td>"+cnt+"</td>";
 							for (var i in tmp) {
 								table += "<td>";
 								table += tmp[i];
