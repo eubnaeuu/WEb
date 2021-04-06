@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
+		
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+	<form action="../jquery1/210325_hw_jq_1.html" method="get" id="fm">
+		이름 : <input type="text"><br>
+		나이 : <input type="text"><br>
+		<button type="submit">submit버튼</button> <!-- page를 바꿀 때 보통 submit사용(버튼 누르면 action 경로로 이동) -->
+		<button type="button">post버튼</button>
+		<button type="button" onclick="fnGet()">get버튼</button>
+		<hr>
+		<button type="button" onclick="fnAjax()">Ajax버튼</button>
+	</form>
+	<div id="divResult"></div>
+	</body>
+	<script type="text/javascript">
+	
+		function fnGet(){
+			// submit 실행
+			var fm = document.getElementById("fm"); // <form>
+			fm.action = "html1.html?userId=test홍&paswword=12324"; // url 세팅
+			fm.method = "post"; 
+			fm.submit();
+		}
+		
+		function fnAjax(){
+			$.ajax({
+				url : "intro.html"
+				,type : "GET"
+// 				,data : 
+// 				,dataType : 
+				,success : function(data){
+					alert(data);
+					$("#divResult").html(data);
+				}
+				,error : function(){
+					alert("오류입니다");
+				}
+			})
+		}
+		
+	</script>
+</html>
