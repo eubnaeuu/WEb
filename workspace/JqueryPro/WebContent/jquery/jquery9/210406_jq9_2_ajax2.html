@@ -98,14 +98,34 @@
 				,dataType : "json"
 				,success : function(data){
 // 					console.log(data);
-					var str = "<ol>";
-					for(var i in data){
-						str += "<li>" + data[i] + "</li>" 	
+
+					// for(in)
+					var str1 = "<ol>";
+					for(var i in data){   // index 반환
+					str1 += "<li>" + data[i] + "</li>" 	
 					}
-					str += "</ol>";
+					str1 += "</ol>";
 					
-					$("#divResult").html(str);
-				}
+					//for(of)
+					var str2 = "<ol>";
+					for(var i of data){
+						str2 += "<li>" + data[i] + "</li>" 	
+					}
+					str2 += "</ol>";
+					
+					//foreach
+					var str3 = "<ol>";
+					data.foreach(function(index, item){
+						str3 += "<li>" + "["+index+"]" + item + "</li>" 	
+					});
+					str3 += "</ol>";
+					//
+						
+					$("#divResult").html(str1+"<br>"
+										+str2+"\n"
+										+str3+"\n"
+										);
+					}
 				,error : function(data){
 					console.error(data);
 				}
@@ -135,7 +155,7 @@
 						var table = "<table border='2px solid'>";
 						table += "<tr>";
 						table += "<th>번호</th>";
-						for(var i in data[0]){
+						for(var i in data[0]){ 
 						table += "<th>" + i + "</th>";
 						}
 						table += "</tr>";
