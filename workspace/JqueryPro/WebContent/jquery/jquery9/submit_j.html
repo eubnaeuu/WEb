@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+<p>안녕하세요. <span id="spUserName">홍길동</span>씨</p>
+<p>올해로  <span id="spUserAge"></span>살 이시군요.</p>
+		
+	</body>
+	<script type="text/javascript">
+		
+		var userName = "";
+		var userAge = "";
+		
+		var url = location.href; // http://localhost:9000/JqueryPro/jquery/jquery1/210325_hw_jq_1.html?userName=%ED%99%8D%EA%B8%B8%EB%8F%99&userAge=32 
+		var params = url.substr(url.indexOf("?")+1); // userName=아이유&userAge=25
+		var arr = params.split("&"); // ["userName=아이유"],["userAge=25"]
+		arr[0]; // "userName=아이유"
+		
+		userName = decodeURI(arr[0].split("=")[1]); //  "아이유"
+		userAge = arr[1].split("=")[1]; //  "29"
+		
+		document.getElementById("spUserName").innerHTML = userName;
+		document.getElementById("spUserAge").innerHTML = userAge;
+		
+	</script>
+</html>
