@@ -118,7 +118,7 @@
 			});
 			
 		}
-			function fnXml(){
+			function fnXml(param){
 				$.ajax({
 					url:"cd_catalog.xml"
 // 					,type : "get"
@@ -128,10 +128,14 @@
 // 					console.log(data);	 // #document 전체 데이터 가지고 옴
 // 					console.log(data.getgElementsByTagName("CATALOG")); //data가 #document이기에 getElement~ 사용가능
 // 					console.log(data.getElementsByTagName("CD"));
-//					makeArtistList(data);
-//					makeTitleList(data);
-					makeTableList(data);
-					
+					if(param=="ARTIST"){
+						makeArtistList(data);	
+					}else if(param=="TITLE"){
+						makeTitleList(data);
+					}else if(param == "TABLE"){
+						makeTableList(data);
+					}else if(param == "TABLE2")
+						makeTableList2(data);
 				}
 				,error : function(xhr){ // error 파라미터는 xhr을 많이 씀
 					console.log(xhr);
@@ -214,23 +218,83 @@
 				var str = "";
 				var tmp = data.getElementsByTagName("CATALOG"); //tmp[0].childNodes[1] => CD
 				var tmp2 = tmp[0].children[0];
-				str += "<table><tr>";
+				
+				/*
+				 * var cdarr = param.getElementsByTagName("CD");
+				 * 
+				 * for(var obj of arr){
+				 * console.log(obj);
+				 * console.log($(obj).children());
+				 * console.log($(obj).children().eq(0));
+				 * console.log($(obj).children().eq(0).html());
+				 * 
+				 */
+				
+				
+				
+				str += "<table border='2px solid'><tr>";
 				for(var i=0; i<tmp2.children.length; i++){
 					var th = tmp2.children[i].nodeName;
 					str += "<th>"+th+"</th>";
 //					console.log(tmp2.children[i].nodeName);
 				}
 				str += "</tr>";
+				
 				for(var i=0; i<tmp[0].children.length; i++){
-					
-					for(var j=0; j<tmp.children[i].children.length; j++){
+					str += "<tr>";
+//					console.log(tmp[0].children[0].children.length);
+					for(var j=0; j<tmp[0].children[i].children.length; j++){
 						str += "<td>";
-						var td = tmp.children[i].children[j].innerHTML;
+						var td = tmp[0].children[i].children[j].innerHTML;
 						str += td + "</td>";
 					}
+					str += "</tr>"
 				}
+				str += "</table>"
+				$("#divResult").html(str);
 				
 			}
+		// 		  <COUNTRY>UK</COUNTRY>
+			//    <PRICE>9.90</PRICE>
+			function makeTableList2(data){
+				var str = "";
+				
+				 var cdarr = data.getElementsByTagName("CD");
+				 
+				 console.log(cdarr);
+				 
+//				 
+//				  $.each(cdarr function(idx, item){
+//					  
+//				  })
+					  
+//				  console.log(obj);
+//				  console.log($(obj).children());
+//				  console.log($(obj).children().eq(2));
+//				  console.log($(obj).children().eq(1));
+				  
+				  }
+//				  
+//				str += "<table border='2px solid'><tr>";
+//				for(var i=0; i<tmp2.children.length; i++){
+//					var th = tmp2.children[i].nodeName;
+//					str += "<th>"+th+"</th>";
+//				}
+//				str += "</tr>";
+//				
+//				for(var i=0; i<tmp[0].children.length; i++){
+//					str += "<tr>";
+////					console.log(tmp[0].children[0].children.length);
+//					for(var j=0; j<tmp[0].children[i].children.length; j++){
+//						str += "<td>";
+//						var td = tmp[0].children[i].children[j].innerHTML;
+//						str += td + "</td>";
+//					}
+//					str += "</tr>"
+//				}
+//				str += "</table>"
+//				$("#divResult").html(str);
+				
 				
 				
 			
