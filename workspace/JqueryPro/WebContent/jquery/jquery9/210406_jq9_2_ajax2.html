@@ -27,6 +27,8 @@
 		<button type="button" onclick="fnJsonObj()">JSON obj</button>
 		<button type="button" onclick="fnJsonArr()">JSON 배열</button>
 		<button type="button" onclick="fnJsonList()">JSON 목록</button>
+		<br>
+		<button type="button" onclick="fnXml()">XML</button>
 	</form>
 	<div id="divResult"></div>
 </body>
@@ -142,39 +144,81 @@
 								+ "직업 : " + obj.job
 								+ "<br><br><br>";
 					}
-								
-						// table , tr ,td
-
-						var table = "<table border='2px solid'>";
-						table += "<tr>";
-						table += "<th>번호</th>";
-						for(var i in data[0]){
-// 						for(var i of data[0]){ // error
-						table += "<th>" + i + "</th>";
-						}
-						table += "</tr>";
-						var cnt = 0;
-						$(data).each(function() {
-							cnt++;
-							table += "<tr>"
-							var tmp = this;
-							table += "<td>"+cnt+"</td>";
-							for (var i in tmp) {
-								table += "<td>";
-								table += tmp[i];
-								table += "</td>";
-								}
-							table += "</tr>"
-						});
-						table += "</table>"
 					
-					// 					$("#divResult").html(str);
-					$("#divResult").html(table);
+						makeTableResult(data);
 				},
 				error : function(data) {
 					console.error(data);
 				}
 			});
+			
 		}
+			function fnXml(){
+				$.ajax({
+					url:"cd_catalog.xml"
+// 					,type : "get"
+// 					,data : {}
+				,dataType : "xml"
+				,success : function(data){
+					console.log(data);	 // #document 전체 데이터 가지고 옴
+					console.log(data.getgElementsByTagName("CATALOG")); //data가 #document이기에 getElement~ 사용가능
+					console.log(data.getElementsByTagName("CD"));
+					makeArtistList(data);
+					
+				}
+				,error : function(xhr){ // error 파라미터는 xhr을 많이 씀
+					console.log(xhr);
+					alert("오류발생");
+					
+				}
+				})
+				
+			}
+			function makeTableResult(data){
+				// table , tr ,td
+
+				var table = "<table border='2px solid'>";
+				table += "<tr>";
+				table += "<th>번호</th>";
+				for(var i in data[0]){
+//					for(var i of data[0]){ // error
+				table += "<th>" + i + "</th>";
+				}
+				table += "</tr>";
+				var cnt = 0;
+				$(data).each(function() {
+					cnt++;
+					table += "<tr>"
+					var tmp = this;
+					table += "<td>"+cnt+"</td>";
+					for (var i in tmp) {
+						table += "<td>";
+						table += tmp[i];
+						table += "</td>";
+						}
+					table += "</tr>"
+				});
+				table += "</table>"
+			
+			// 					$("#divResult").html(str);
+			$("#divResult").html(table);
+				}
+			}
+			function makeArtistList(data){
+				// data ==> document
+// 				console.log(data);	 // #document 전체 데이터 가지고 옴
+// 				console.log(data.getgElementsByTagName("CATALOG")); //data가 #document이기에 getElement~ 사용가능
+// 				console.log(data.getElementsByTagName("CD"));
+				var arr = data.getElementsByTagName("ARTIST");
+				$.each(arr,function(idx, item){
+					$("#divResult").html();		
+				}
+					
+				}
+				
+				
+			}
+			
+			
 	</script>
 </html>
