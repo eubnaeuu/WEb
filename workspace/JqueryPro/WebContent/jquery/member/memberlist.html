@@ -3,14 +3,47 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<style>
+			body{
+			background-color: #E8F2FE;
+				color: #8A9097;
+			}
+			
+			table {
+			background-color: white;
+			}
+			
+			table, table tr {
+			border: 1px solid #B9C1CB;
+			
+			}
+		</style>
+		<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$("#serach").click(function(){
+				
+			});
+		});
+		</script>
 	</head>
 	<body>
 		<h3>회원목록</h3>
 		<!-- 검색조건 영역 -->
 		<div>
-			ID : <input type="text">
-			이름 : <input type="text">
-			<button type="button">조회</button>
+			<form id="form1" hidden="">
+				ID : <input type="text" name="userId" id="userId"><br>
+				이름 : <input type="text" name="userName" id="userName"><br>
+				성별 :
+				<input type="checkbox" id="Male" value="M" name="userGender">
+				<label for="Male">남성</label>
+				<input type="checkbox" id="Female" value="F" name="userGender">
+				<label for="Female">여성</label><br>
+				전화번호 : <input type="text" name="userCallNum" id="userCallNum"><br>
+				생년월일 : <input type="date" name="userBirth" id="userBirth"><br>
+				주소 : <input type="text" name="userAddr" id="userAddr"><br>
+				<button type="button" id="search">조회</button>
+			</form>
 		</div>
 		<!-- 검색결과 영역 -->
 		<div>
@@ -20,14 +53,17 @@
 					<th>ID</th>
 					<th>이름</th>
 					<th>전화번호</th>
-					<th>전화번호</th>
 					<th>생년월일</th>
+					<th>주소</th>
+				</tr>
+				<tr>
+					<td></td>
 				</tr>
 			</table>
 		</div>
 		<!-- 영역 -->
 		<div>
-			<button type="button">신규등록</button>
+			<button type="button" id="register">신규등록</button>
 		</div>
 	</body>
 </html>

@@ -16,3 +16,35 @@ function getValue(strUrl, strKey){
 	arr[0]; // 
 	
 }
+
+function isEmpty(val){
+	//val이 빈 값이거나 null이거나 undefined이거나 " ", "    " 등 인 경우
+	if(val == null){
+		return true;	
+	}
+	if(val == undefined){
+		return true;	
+	}
+	if(val == ""){
+		return true;	
+	}
+	if(val == " "){
+		return true;	
+	}
+	if(val.lenth == val.match(" ")){
+		return true;
+	}
+	
+}
+function chkRegExp(){
+	
+}
+function format(val, type){
+	if(type == "hpno"){
+		val = val.replaceAll("-", "").replaceAll(" ", "");
+		// only숫자만을 이용해서 000-0000-0000 or 000-000-0000형식으로 보여주기
+		val = val.replace(/(\d{3})(\d{3,4})(\d{4})/, "$1-$2-$3"); // $1의 의미는 1번째 파라미터를 말하며 1번째 파라미터는  첫번째()임
+//		val.replace(/(\d{4})(\d{2})(\d{2})/, "$1년$2월$3일");
+		
+	}
+}
