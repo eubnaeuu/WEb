@@ -253,8 +253,8 @@
 				str += "</table>"
 				$("#divResult").html(str);
 				
-			}
-		// 		  <COUNTRY>UK</COUNTRY>
+			}		// 		  <COUNTRY>UK</COUNTRY>
+			
 			//    <PRICE>9.90</PRICE>
 			function makeTableList2(data){
 				var str = "";
@@ -262,39 +262,8 @@
 				 var cdarr = data.getElementsByTagName("CD");
 				 
 				 console.log(cdarr);
-				 
-//				 
-//				  $.each(cdarr function(idx, item){
-//					  
-//				  })
-					  
-//				  console.log(obj);
-//				  console.log($(obj).children());
-//				  console.log($(obj).children().eq(2));
-//				  console.log($(obj).children().eq(1));
-				  
-				  }
-//				  
-//				str += "<table border='2px solid'><tr>";
-//				for(var i=0; i<tmp2.children.length; i++){
-//					var th = tmp2.children[i].nodeName;
-//					str += "<th>"+th+"</th>";
-//				}
-//				str += "</tr>";
-//				
-//				for(var i=0; i<tmp[0].children.length; i++){
-//					str += "<tr>";
-////					console.log(tmp[0].children[0].children.length);
-//					for(var j=0; j<tmp[0].children[i].children.length; j++){
-//						str += "<td>";
-//						var td = tmp[0].children[i].children[j].innerHTML;
-//						str += td + "</td>";
-//					}
-//					str += "</tr>"
-//				}
-//				str += "</table>"
-//				$("#divResult").html(str);
-				
+
+			}
 				
 				
 			

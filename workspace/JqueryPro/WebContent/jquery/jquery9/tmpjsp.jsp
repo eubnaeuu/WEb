@@ -4,12 +4,15 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Insert title here</title>
+		<title>jsp 사용버ㅂ</title>
 	</head>
 <%
 String str = "홍길동";
 System.out.println("오잉~");
-// data가 request에 담겨옴
+
+//한글 깨짐 현상 해결 방법 (request부분 인코딩)
+request.setCharacterEncoding("UTF-8");
+//data가 request에 담겨옴
 String userName =request.getParameter("userName");
 String userAge = request.getParameter("userAge");
 
