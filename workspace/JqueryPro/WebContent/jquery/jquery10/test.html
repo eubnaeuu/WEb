@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
+
+		
+		
+		
+	</head>
+	<body>
+		<button type="button" id="btn">ㅋ클릭</button>
+		<div id="div1"></div>
+	</body>
+		<script type="text/javascript">
+// 		var str = "   ";
+// 		var arr = ["1",2,"3"]
+
+			$("#btn").click(function(val){
+				val = str;
+				
+				if(val == null){
+					alert(true);	
+				}
+				if(val == undefined){
+					alert(true);	
+				}
+				if(val == ""){
+					alert(true);	
+				}
+				if(val == " "){
+					alert(true);	
+				}
+				
+// 				console.log(val.length);
+// 				console.log(val.match(/ /g).length);
+
+				if(val.length == val.match(/ /g).length){
+					alert("true");
+				}
+// 				alert(false);
+			});
+		</script>
+</html>
