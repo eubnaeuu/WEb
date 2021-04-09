@@ -6,9 +6,9 @@
 		<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$("$btnSearch").click(function(){
+				$("#btnSearch").click(function(){
 					$.ajax({
-						url, ""
+						url : "/JqueryPro/MemberServlet"
 						,type : "post"
 						,data : ""
 						,dataType : "json"
@@ -23,7 +23,7 @@
 							console.error(xhr.responseText);
 							alert("오류");
 						}
-					})
+					});
 				});
 			});
 		</script>
