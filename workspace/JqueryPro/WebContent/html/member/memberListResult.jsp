@@ -21,6 +21,6 @@ for(int i=0; i<list.size(); i++){
 %>
 {"name" : "<%=memName %>", "id" : "<%=memId %>"}
 <%
-} // 자바의 대괄호
+} // 자바의 대괄호를 의미 
 %>
 ]
