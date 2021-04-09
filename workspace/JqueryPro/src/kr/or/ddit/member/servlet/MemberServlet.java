@@ -21,7 +21,7 @@ public class MemberServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		super.doGet(req, resp);
+		super.doPost(req, resp);
 	}
 	
 	@Override
@@ -29,16 +29,62 @@ public class MemberServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 //		super.doPost(req, resp); // 지워야함 : extends한 HttpServlet 의 doPost를 호출하는 것이기 때문에 현재 클래스의 doPost를 사용할 수 없음
 		
+//		String str[] = {"memId","memPw","memName","memBir","memZip","memAdd1"
+//		                ,"memAdd2","memHp","memMail","memRecv_Mail_Yn","memJob"
+//		                ,"memLike","memMemorial_Type","memMemorial_Date","memMileage"
+//		                ,"memComment"};
 		// 브라우저로 부터 받은 값을 사용하기 위해 request에서 parameter를 get.
+//		for(String tmpstr : str) {
+//			tmpstr = req.getParameter(tmpstr);
+//		};
+//		
 		String memId = req.getParameter("memId");
+		String memPass = req.getParameter("memPass");
 		String memName = req.getParameter("memName");
+		String memBir = req.getParameter("memBir");
+		String memZip = req.getParameter("memZip");
+		String memAdd1 = req.getParameter("memAdd1");
+		String memAdd2 = req.getParameter("memAdd2");
+		String memHp = req.getParameter("memHp");
+		String memMail = req.getParameter("memMail");
+		String memrecvEmailYn = req.getParameter("recvEmailYn");
+		String memJob = req.getParameter("memJob");
+		String memLike = req.getParameter("memLike");
+		String memMemorialType = req.getParameter("memMemorialType");
+		String memMemorialDate = req.getParameter("memMemorialDate");
+//		String memMileage = req.getParameter("memMileage");
+		String memComment = req.getParameter("memComment");
+//		
+//			System.out.println(memName);
+			
+			
 		// form serialize를 사용해서 파라미터를 전달한 경우, request에 요소의 name으로 parameter가 매핑됨.
 		// 예) <input type="text" name="userId"> ==> req.getParameter("userId")
 		
 		MemberVO memberVo = new MemberVO();
+//		for(String tmpstr : str) {     //☆ 좀더 간단하게 넣을 방법 이없을까했는데..
+//			String tmpstr2 = "set"+tmpstr;
+//			memberVo.setMemId(tmpstr);
+//		}
+////		
 		memberVo.setMemId(memId);
+		memberVo.setMemPass(memPass);
 		memberVo.setMemName(memName);
-		
+		memberVo.setMemBir(memBir);
+		memberVo.setMemZip(memZip);
+		memberVo.setMemAdd1(memAdd1);
+		memberVo.setMemAdd2(memAdd2);
+		memberVo.setMemHp(memHp);
+		memberVo.setMemMail(memMail);
+		memberVo.setRecvEmailYn(memrecvEmailYn);
+		memberVo.setMemJob(memJob);
+		memberVo.setMemLike(memLike);
+		memberVo.setMemMemorialDate(memMemorialType);
+		memberVo.setMemMemorialType(memMemorialDate);
+//		memberVo.setMemMileage(Integer.valueOf(memMileage));
+		memberVo.setMemComment(memComment);
+////		
+//		
 		//회원 목록 조회
 		MemberService service = new MemberService();
 		try {

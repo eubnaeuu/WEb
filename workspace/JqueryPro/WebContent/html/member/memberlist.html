@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		
+		<style>
+		
+			body{
+			background-color: #E8F2FE;
+				color: #8A9097;
+			}
+			
+			table {
+			background-color: white;
+			}
+			
+			table, table tr {
+			border: 1px solid #B9C1CB;
+			
+			}
+		</style>
+		<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
+		<script type="text/javascript">
+		
+		function makeansintable(obj){
+			var str ="<table>";
+			// th(attribute name)
+			str += ""
+				+"<tr>"
+				+"<th>ID<th>"
+				+"<th>PW<th>"
+				+"<th>NAME<th>"
+				+"<th>BIR<th>"
+				+"<th>ZIP<th>"
+				+"<th>ADD1<th>"
+				+"<th>ADD2<th>"
+				+"<th>HP<th>"
+				+"<th>MAIL<th>"
+				+"<th>RECV_MAIL_YN<th>"
+				+"<th>JOB<th>"
+				+"<th>LIKE<th>"
+				+"<th>MEMORIAL_TYPE<th>"
+				+"<th>MEMORIAL_DATE<th>"
+				+"<th>MILEAGE<th>"
+				+"<th>COMMENT<th>"
+				+"</tr>";
+				
+				
+			// td(value)
+			for(var i in obj){
+				str += ""
+					+ "<tr>"
+					+ "<td>"+obj[i].memId+"<td>"
+					+ "<td>"+obj[i].memPass+"<td>"
+					+ "<td>"+obj[i].memName+"<td>"
+					+ "<td>"+obj[i].memBir+"<td>"
+					+ "<td>"+obj[i].memZip+"<td>"
+					+ "<td>"+obj[i].memAdd1+"<td>"
+					+ "<td>"+obj[i].memAdd2+"<td>"
+					+ "<td>"+obj[i].memHp+"<td>"
+					+ "<td>"+obj[i].memMail+"<td>"
+					+ "<td>"+obj[i].memRecv_Mail_Yn+"<td>"
+					+ "<td>"+obj[i].memJob+"<td>"
+					+ "<td>"+obj[i].memLike+"<td>"
+					+ "<td>"+obj[i].memMemorial_Type+"<td>"
+					+ "<td>"+obj[i].memMemorial_Date+"<td>"
+					+ "<td>"+obj[i].memMileage+"<td>"
+					+ "<td>"+obj[i].memComment+"<td>"
+					+ "</tr>";
+			}
+			str += "</table>"
+			$("#divtmp").html(str);
+				
+		};
+		
+		$(document).ready(function(){
+			<!-- 회원정보조회 -->
+			$("#userSelect").click(function(){
+				$.ajax({
+					url : "/JqueryPro/MemberServlet"  // ☆ 왜 root경로 적용안되는 건지? 클래스 내부가 아니라서 그런건지? 아마도?
+					,type : "post"						
+					,data : ""
+					,dataType : "json"
+					,success : function(data){  // json-list형태 추출방법 이요
+						alert("연결성공!");
+						console.log(data);
+						makeansintable(data);
+
+					},error : function(xhr){
+						alert("연결실패!");
+						console.error(xhr.status);
+						console.error(xhr.statusText);
+						console.error(xhr.responseText);
+					}
+				});
+			});
+			$("#userRegister").click(function(){
+				$("#form1").removeAttr("hidden");
+			});
+			$("#btnregistersummit").click(function(){
+				$.ajax({
+					url : ""
+					,type : "post"
+					,data : ""
+					,dataType : "json"
+					,success : function(){
+						alert("ㅊㅋ");
+						
+					}
+					,error : function(){
+						alert("erororororor");
+					}
+					
+					
+				});
+			});
+			
+			
+			
+		});
+		</script>
+	</head>
+	<body>
+		<h3>회원목록</h3>
+		<!-- 검색조건 영역 -->
+		<div>
+			<form id="form1" hidden="">
+				ID : <input type="text" name="memId" id="memId"><br>
+				PW : <input type="password" name="memPass" id="memPass"><br>
+				이름 : <input type="text" name="memName" id="memName"><br>
+<!-- 				성별 : -->
+<!-- 				<input type="checkbox" id="Male" value="M" name="userGender"> -->
+<!-- 				<label for="Male">남성</label> -->
+<!-- 				<input type="checkbox" id="Female" value="F" name="userGender"> -->
+<!-- 				<label for="Female">여성</label><br> -->
+				전화번호 : <input type="text" name="memHp" id="memHp"><br>
+				생년월일 : <input type="date" name="memBir" id="memBir"><br>
+				주소1 : <input type="text" name="memAdd1" id="memAdd1"><br>
+				주소2 : <input type="text" name="memAdd2" id="memAdd2"><br>
+				zip : <input type="text" name="memZip" id="memZip"><br>
+				email : <input type="text" name="memMail" id="memMail"><br>;
+				email동의여부 : 
+				<input type="checkbox" id="recvEmail_Y" value="Y" name="recvEmailYn">
+				<label for="recvEmail_Y">동의</label>
+				<input type="checkbox" id="recvEmail_N" value="N" name="recvEmailYn">
+				<label for="recvEmail_N">거부</label>
+				기념일(내용) : <input type="text" name="memMemorialType" id="memMemorialType"><br>
+				기념일(날짜) : <input type="date" name="memMemorialDate" id="memMemorialDate"><br>
+				직업 :  <input type="text" name="memJob" id="memJob"><br>
+				취미 :  <input type="text" name="memLike" id="memLike"><br>
+				자기소개 : <input type="text" name="memComment" id="memComment"><br>
+				
+				<input type="submit" id="btnregistersummit" value="제출..............">
+			</form>
+		</div>
+		<!-- 검색결과 영역 -->
+		<div id="divtmp">
+		<!-- 
+			<table>
+				<tr>
+					<th>번호</th>
+					<th>ID</th>
+					<th>이름</th>
+					<th>전화번호</th>
+					<th>생년월일</th>
+					<th>주소</th>
+				</tr>
+			</table>
+	 	-->
+		</div>
+		
+		<!-- 영역 -->
+		
+		<div>
+			<button type="button" id="userRegister">등      록</button>
+			<button type="button" id="userSelect">조      회</button>
+		</div>
+	</body>
+</html>
