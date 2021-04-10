@@ -7,6 +7,7 @@
 <%
 // 서블릿에서 조회한 결과를 "list"라는 key를 request에 담아줬음
 List<MemberVO> list = (List<MemberVO>)request.getAttribute("list"); // 조회결과를 list로 담아줬음
+
 for(int i=0; i<list.size(); i++){
 	MemberVO vo = list.get(i);
 	String memId = vo.getMemId(); 
