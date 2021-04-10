@@ -33,11 +33,15 @@ public class MemberServlet extends HttpServlet {
 //		                ,"memAdd2","memHp","memMail","memRecv_Mail_Yn","memJob"
 //		                ,"memLike","memMemorial_Type","memMemorial_Date","memMileage"
 //		                ,"memComment"};
+		
 		// 브라우저로 부터 받은 값을 사용하기 위해 request에서 parameter를 get.
 //		for(String tmpstr : str) {
 //			tmpstr = req.getParameter(tmpstr);
 //		};
 //		
+		
+		// ☆ null값인데 굳이 하는 이유는?
+		
 		String memId = req.getParameter("memId");
 		String memPass = req.getParameter("memPass");
 		String memName = req.getParameter("memName");
