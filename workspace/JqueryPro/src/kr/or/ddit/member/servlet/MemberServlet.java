@@ -87,8 +87,8 @@ public class MemberServlet extends HttpServlet {
 		memberVo.setMemMemorialType(memMemorialDate);
 //		memberVo.setMemMileage(Integer.valueOf(memMileage));
 		memberVo.setMemComment(memComment);
-////		
-//		
+		
+		
 		//회원 목록 조회
 		MemberService service = new MemberService();
 		try {
@@ -98,7 +98,7 @@ public class MemberServlet extends HttpServlet {
 			req.setAttribute("list", list);
 			
 			// 결과를 받을 url 세팅
-//			RequestDispatcher  disp = req.getRequestDispatcher("/MemberPj/html/member/memberListResult.jsp"); // <== contextroot 포함하면 안됨!
+//			RequestDispatcher  disp = req.getRequestDispatcher("/JqueryPro/html/member/memberListResult.jsp"); // <== contextroot 포함하면 안됨!
 			RequestDispatcher  disp = req.getRequestDispatcher("/html/member/memberListResult.jsp");
 			disp.forward(req, resp);
 			
