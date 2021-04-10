@@ -75,7 +75,7 @@
 		};
 		
 		$(document).ready(function(){
-			<!-- 회원정보조회 -->
+			<!-- 메인버튼 : 1. 조회(회원정보) -->
 			$("#userSelect").click(function(){
 				$.ajax({
 					url : "/JqueryPro/MemberServlet"  // ☆ 왜 root경로 적용안되는 건지? 클래스 내부가 아니라서 그런건지? 아마도?
@@ -95,9 +95,16 @@
 					}
 				});
 			});
+			
+			
+			<!-- 메인버튼 : 2. 등록(회원정보) -->
 			$("#userRegister").click(function(){
 				$("#form1").removeAttr("hidden");
 			});
+			
+			
+			
+			
 			$("#btnregistersummit").click(function(){
 				$.ajax({
 					url : ""
@@ -154,7 +161,9 @@
 				<input type="submit" id="btnregistersummit" value="제출..............">
 			</form>
 		</div>
+		
 		<!-- 검색결과 영역 -->
+		
 		<div id="divtmp">
 		<!-- 
 			<table>
