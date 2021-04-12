@@ -39,12 +39,12 @@
              , MEM_DELETE            memDelete         
           FROM TB_MEMBER
          WHERE 1=1
-         <isNotEmpty property="memId">
-         AND MEM_ID = #memId#
-         </isNotEmpty>
-         <isNotEmpty property="memName" prepend="AND">
-         MEM_NAME = #memName#
-         </isNotEmpty>
+<!--          <isNotEmpty property="memId"> -->
+<!--          AND MEM_ID = #memId# -->
+<!--          </isNotEmpty> -->
+<!--          <isNotEmpty property="memName" prepend="AND"> -->
+<!--          MEM_NAME = #memName# -->
+<!--          </isNotEmpty> -->
 	</select>
 	<insert id="createMember" parameterClass="kr.or.ddit.member.vo.MemberVO">
 		INSERT INTO jdbc_board(

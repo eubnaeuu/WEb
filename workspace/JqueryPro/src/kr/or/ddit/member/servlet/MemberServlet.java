@@ -27,15 +27,8 @@ public class MemberServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		super.doPost(req, resp); // 지워야함 : extends한 HttpServlet 의 doPost를 호출하는 것이기 때문에 현재 클래스의 doPost를 사용할 수 없음
 		
-//		String str[] = {"memId","memPw","memName","memBir","memZip","memAdd1"
-//		                ,"memAdd2","memHp","memMail","memRecv_Mail_Yn","memJob"
-//		                ,"memLike","memMemorial_Type","memMemorial_Date","memMileage"
-//		                ,"memComment"};
 		
 		// 브라우저로 부터 받은 값을 사용하기 위해 request에서 parameter를 get.
-//		for(String tmpstr : str) {
-//			tmpstr = req.getParameter(tmpstr);
-//		};
 		
 		String flag = req.getParameter("flag");
 		flag = "L";
@@ -147,11 +140,9 @@ public class MemberServlet extends HttpServlet {
 		
 		MemberService service = new MemberService();
 		
-			List<MemberVO> list = service.retrieveMemberList(memberVo);
-				
-				
-				
-				return list;
+		List<MemberVO> list = service.retrieveMemberList(memberVo);
+		
+		return list;
 		}
 
 		
