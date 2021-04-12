@@ -45,11 +45,13 @@ public class MemberServlet extends HttpServlet {
 			// 따라서 "L".equals(req)로 바꾸면 error안남. L문자가 Req와 같은지를 의미하는 것이기에
 			
 			try {
+				//  ★ error
 				List<MemberVO> list = retriveMemberlist(req);
+				// 브라우저로 전달할 결과를 request에 attribute로 세팅
+				req.setAttribute("list", list);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
 			// 결과를 받을 url 세팅
 //			RequestDispatcher  disp = req.getRequestDispatcher("/JqueryPro/html/member/memberListResult.jsp"); // <== contextroot 포함하면 안됨!
 			RequestDispatcher  disp = req.getRequestDispatcher("/html/member/memberListResult.jsp");
@@ -145,11 +147,10 @@ public class MemberServlet extends HttpServlet {
 		
 		MemberService service = new MemberService();
 		
-			List<MemberVO> list;
-				list = service.retrieveMemberList(memberVo);
+			List<MemberVO> list = service.retrieveMemberList(memberVo);
 				
-				// 브라우저로 전달할 결과를 request에 attribute로 세팅
-				req.setAttribute("list", list);
+				
+				
 				return list;
 		}
 

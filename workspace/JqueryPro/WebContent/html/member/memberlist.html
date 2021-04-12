@@ -5,7 +5,6 @@
 		<title>Insert title here</title>
 		
 		<style>
-		
 			body{
 			background-color: #E8F2FE;
 				color: #8A9097;
@@ -24,10 +23,6 @@
 		<script type="text/javascript">
 		
 		function makeansintable(obj){
-			var str ="<table>";
-			// th(attribute name)
-			str += 
-			// td(value)
 			for(var i in obj){
 				str += ""
 					+ "<tr>"
@@ -49,7 +44,6 @@
 					+ "<td>"+obj[i].memComment+"<td>"
 					+ "</tr>";
 			}
-			str += "</table>"
 			$("#tbResult tbody").html(str);
 				
 		};
