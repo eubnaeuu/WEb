@@ -25,7 +25,7 @@ public class MemberDao extends BaseDao {
 		return (MemberVO)smc.queryForObject("member.retrieveMember", memId);
 	}
 
-	public void createMember(MemberVO memberVo) {
+	public Object createMember(MemberVO memberVo) throws SQLException {
 		return smc.insert("member.createMember", memberVo);
 		
 	}

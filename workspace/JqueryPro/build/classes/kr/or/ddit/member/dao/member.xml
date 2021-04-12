@@ -17,7 +17,14 @@
 	</select>
 	
 	
-	<insert id="createMember" parameterClass="kr.or.ddit.member.vo.MemberVO"></insert>
+	
+	
+	 
+	<insert id="insertBoard" parameterClass="boardVO">
+			 
+	</insert>
+	
+	
 	<update id="updateMember"></update>
 	
 	
@@ -48,8 +55,9 @@
          MEM_NAME = #memName#
          </isNotEmpty>
 	</select>
+	<insert id="createMember" parameterClass="kr.or.ddit.member.vo.MemberVO">
+		
 	
-	<select id="createMember">
 		INSERT INTO jdbc_board(
 			MEM_ID
 			, MEM_PASS
@@ -86,6 +94,6 @@
 		, #memMileage#
 		, #memComment#
 		)
-	</select>
+	</insert>
 	
 </sqlMap>

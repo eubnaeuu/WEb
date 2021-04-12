@@ -26,27 +26,7 @@
 		function makeansintable(obj){
 			var str ="<table>";
 			// th(attribute name)
-			str += ""
-				+"<tr>"
-				+"<th>ID<th>"
-				+"<th>PW<th>"
-				+"<th>NAME<th>"
-				+"<th>BIR<th>"
-				+"<th>ZIP<th>"
-				+"<th>ADD1<th>"
-				+"<th>ADD2<th>"
-				+"<th>HP<th>"
-				+"<th>MAIL<th>"
-				+"<th>RECV_MAIL_YN<th>"
-				+"<th>JOB<th>"
-				+"<th>LIKE<th>"
-				+"<th>MEMORIAL_TYPE<th>"
-				+"<th>MEMORIAL_DATE<th>"
-				+"<th>MILEAGE<th>"
-				+"<th>COMMENT<th>"
-				+"</tr>";
-				
-				
+			str += 
 			// td(value)
 			for(var i in obj){
 				str += ""
@@ -70,7 +50,7 @@
 					+ "</tr>";
 			}
 			str += "</table>"
-			$("#divtmp").html(str);
+			$("#tbResult tbody").html(str);
 				
 		};
 		
@@ -165,18 +145,34 @@
 		<!-- 검색결과 영역 -->
 		
 		<div id="divtmp">
-		<!-- 
-			<table>
-				<tr>
-					<th>번호</th>
-					<th>ID</th>
-					<th>이름</th>
-					<th>전화번호</th>
-					<th>생년월일</th>
-					<th>주소</th>
-				</tr>
+
+			<table id="tbResult">
+				<thead>
+					<tr>
+						<th>ID<th>
+						<th>PW<th>
+						<th>NAME<th>
+						<th>BIR<th>
+						<th>ZIP<th>
+						<th>ADD1<th>
+						<th>ADD2<th>
+						<th>HP<th>
+						<th>MAIL<th>
+						<th>RECV_MAIL_YN<th>
+						<th>JOB<th>
+						<th>LIKE<th>
+						<th>MEMORIAL_TYPE<th>
+						<th>MEMORIAL_DATE<th>
+						<th>MILEAGE<th>
+						<th>COMMENT<th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>검색 버튼을 클릭하세요</td>
+					<tr>
+				</tbody>
 			</table>
-	 	-->
 		</div>
 		
 		<!-- 영역 -->
@@ -184,6 +180,7 @@
 		<div>
 			<button type="button" id="userRegister">등      록</button>
 			<button type="button" id="userSelect">조      회</button>
+			<button type="button" id="userSearch">검      색</button>
 		</div>
 	</body>
 </html>
