@@ -40,6 +40,25 @@ public class MemberServlet extends HttpServlet {
 //		};
 //		
 		
+		String flag = req.getParameter("flag");
+		
+		if(flag.equals("C")) { // 등록
+			createMember(req);
+			
+		}else if(flag.equals("R")) {  // 단건 조회
+			
+		}else if(flag.equals("U")) { // 수정
+			
+		}else if(flag.equals("D")) { // 삭제
+			
+		}else if(flag.equals("L")) { // 목록조회
+			
+			//회원 목록 조회
+//			List<MemberVO> list = retriveMemberlist(req);
+		}
+		
+		
+		
 		// ☆ null값인데 굳이 하는 이유는?
 		
 		String memId = req.getParameter("memId");
@@ -89,9 +108,28 @@ public class MemberServlet extends HttpServlet {
 		memberVo.setMemComment(memComment);
 		
 		
-		//회원 목록 조회
+
+		
+		
+	}
+
+	private void createMember(HttpServletRequest req) {
+		
+		MemberVO memberVo = new MemberVO();
+		String memId = req.getParameter("memId");
+		String memName = req.getParameter("memName");
 		MemberService service = new MemberService();
+		service.createMember(memberVo);
+		
+		// 그 외 정보들 VO에 세팅...
+		
+	}
+
+	private void retriveMemberlist(HttpServletRequest req) throws ServletException, IOException {
+		MemberService service = new MemberService();
+		
 		try {
+			
 			List<MemberVO> list = service.retrieveMemberList(memberVo);
 			
 			// 브라우저로 전달할 결과를 request에 attribute로 세팅
@@ -106,8 +144,6 @@ public class MemberServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
 	
 }

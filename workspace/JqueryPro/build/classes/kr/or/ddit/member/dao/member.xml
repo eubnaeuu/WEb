@@ -5,6 +5,17 @@
 
 <sqlMap namespace="member">
 
+<select id="tmp" parameterClass="kr.or.ddit.board.vo.BoardVO">
+		SELECT *
+		FROM jdbc_board
+		WHERE BOARD_ID = #str#
+		<!-- boardtitle입력값이 있다면 .......... -->		
+						<!-- 파라미터명은 VO의 변수명 -->
+		<isNotEmpty property="boardTitle">
+		AND BOARD_TITLE = #boardTitle#
+		</isNotEmpty>
+	</select>
+	
 	<select id="retrieveMemberList" parameterClass="kr.or.ddit.member.vo.MemberVO" resultClass="kr.or.ddit.member.vo.MemberVO">
 		SELECT MEM_ID                memId             
              , MEM_PASS              memPass           
@@ -31,6 +42,45 @@
          <isNotEmpty property="memName" prepend="AND">
          MEM_NAME = #memName#
          </isNotEmpty>
+	</select>
+	
+	<select id="search">
+		INSERT INTO jdbc_board(
+			MEM_ID
+			, MEM_PASS
+			, MEM_NAME
+			, MEM_BIR
+			, MEM_ZIP
+			, MEM_ADD1
+			, MEM_ADD2
+			, MEM_HP
+			, MEM_MAIL
+			, RECV_EMAIL_YN
+			, MEM_JOB
+			, MEM_LIKE
+			, MEM_MEMORIAL_TYPE
+			, MEM_MEMORIAL_DATE
+			, MEM_MILEAGE
+			, MEM_COMMENT
+			, MEM_DELETE
+		) VALUES(
+		#memId# 
+		, #memPass# 
+		, #memName# 
+		, #memBir#
+		, #memZip#
+		, #memAdd1#
+		, #memAdd2# 
+		, #memHp#
+		, #memMail#
+		, #memrecvEmailYn# 
+		, #memJob#
+		, #memLike#
+		, #memMemorialType#
+		, #memMemorialDate#
+		, #memMileage#
+		, #memComment#
+		)
 	</select>
 	
 </sqlMap>
