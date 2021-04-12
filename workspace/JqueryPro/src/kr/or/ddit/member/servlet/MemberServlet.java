@@ -43,7 +43,11 @@ public class MemberServlet extends HttpServlet {
 		String flag = req.getParameter("flag");
 		
 		if(flag.equals("C")) { // 등록
-			createMember(req);
+			try {
+				createMember(req);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			
 		}else if(flag.equals("R")) {  // 단건 조회
 			
@@ -53,12 +57,39 @@ public class MemberServlet extends HttpServlet {
 			
 		}else if(flag.equals("L")) { // 목록조회
 			
+			retriveMemberlist(req);
+			
+			// 결과를 받을 url 세팅
+//			RequestDispatcher  disp = req.getRequestDispatcher("/JqueryPro/html/member/memberListResult.jsp"); // <== contextroot 포함하면 안됨!
+			RequestDispatcher  disp = req.getRequestDispatcher("/html/member/memberListResult.jsp");
+			
+			disp.forward(req, resp);
 			//회원 목록 조회
 //			List<MemberVO> list = retriveMemberlist(req);
 		}
 		
 		
 		
+		
+		
+
+		
+		
+	}
+
+	private void createMember(HttpServletRequest req) throws SQLException {
+		
+		MemberVO memberVo = new MemberVO();
+		String memId = req.getParameter("memId");
+		String memName = req.getParameter("memName");
+		MemberService service = new MemberService();
+		service.createMember(memberVo);
+		
+		// 그 외 정보들 VO에 세팅...
+		
+	}
+
+	private void retriveMemberlist(HttpServletRequest req) throws ServletException, IOException {
 		// ☆ null값인데 굳이 하는 이유는?
 		
 		String memId = req.getParameter("memId");
@@ -79,8 +110,8 @@ public class MemberServlet extends HttpServlet {
 		String memComment = req.getParameter("memComment");
 //		
 //			System.out.println(memName);
-			
-			
+		
+		
 		// form serialize를 사용해서 파라미터를 전달한 경우, request에 요소의 name으로 parameter가 매핑됨.
 		// 예) <input type="text" name="userId"> ==> req.getParameter("userId")
 		
@@ -107,43 +138,22 @@ public class MemberServlet extends HttpServlet {
 //		memberVo.setMemMileage(Integer.valueOf(memMileage));
 		memberVo.setMemComment(memComment);
 		
-		
-
-		
-		
-	}
-
-	private void createMember(HttpServletRequest req) {
-		
-		MemberVO memberVo = new MemberVO();
-		String memId = req.getParameter("memId");
-		String memName = req.getParameter("memName");
-		MemberService service = new MemberService();
-		service.createMember(memberVo);
-		
-		// 그 외 정보들 VO에 세팅...
-		
-	}
-
-	private void retriveMemberlist(HttpServletRequest req) throws ServletException, IOException {
 		MemberService service = new MemberService();
 		
-		try {
-			
-			List<MemberVO> list = service.retrieveMemberList(memberVo);
-			
-			// 브라우저로 전달할 결과를 request에 attribute로 세팅
-			req.setAttribute("list", list);
-			
-			// 결과를 받을 url 세팅
-//			RequestDispatcher  disp = req.getRequestDispatcher("/JqueryPro/html/member/memberListResult.jsp"); // <== contextroot 포함하면 안됨!
-			RequestDispatcher  disp = req.getRequestDispatcher("/html/member/memberListResult.jsp");
-			disp.forward(req, resp);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			List<MemberVO> list;
+			try {
+				list = service.retrieveMemberList(memberVo);
+				
+				// 브라우저로 전달할 결과를 request에 attribute로 세팅
+				req.setAttribute("list", list);
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-	}
+
+		
 	
 }

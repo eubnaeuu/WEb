@@ -16,6 +16,11 @@
 		</isNotEmpty>
 	</select>
 	
+	
+	<insert id="createMember" parameterClass="kr.or.ddit.member.vo.MemberVO"></insert>
+	<update id="updateMember"></update>
+	
+	
 	<select id="retrieveMemberList" parameterClass="kr.or.ddit.member.vo.MemberVO" resultClass="kr.or.ddit.member.vo.MemberVO">
 		SELECT MEM_ID                memId             
              , MEM_PASS              memPass           
@@ -44,7 +49,7 @@
          </isNotEmpty>
 	</select>
 	
-	<select id="search">
+	<select id="createMember">
 		INSERT INTO jdbc_board(
 			MEM_ID
 			, MEM_PASS
