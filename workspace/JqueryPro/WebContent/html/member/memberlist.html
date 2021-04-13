@@ -19,6 +19,7 @@
 			
 			}
 		</style>
+		<script src="../../js/common/myutils.js"></script> 
 		<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
 		<script type="text/javascript">
 		
@@ -35,10 +36,11 @@
 					+ "<td>"+obj[i].memZip+"<td>"
 					+ "<td>"+obj[i].memAdd1+"<td>"
 					+ "<td>"+obj[i].memAdd2+"<td>"
-					+ "<td>"+obj[i].memHp+"<td>"
+					+ "<td>"+formatHp(obj[i].memHp)+"<td>" // 
 					+ "<td>"+obj[i].memMail+"<td>"
 					+ "<td>"+obj[i].memRecv_Mail_Yn+"<td>"
 					+ "<td>"+obj[i].memJob+"<td>"
+					+ "<td>"+obj[i].memjobName+"<td>"
 					+ "<td>"+obj[i].memLike+"<td>"
 					+ "<td>"+obj[i].memMemorial_Type+"<td>"
 					+ "<td>"+obj[i].memMemorial_Date+"<td>"
@@ -53,10 +55,11 @@
 		$(document).ready(function(){
 			<!-- 메인버튼 : 1. 조회(회원정보) -->
 			$("#userSelect").click(function(){
+				var param = {flag : "L"};
 				$.ajax({
 					url : "/JqueryPro/MemberServlet"  // ☆ 왜 root경로 적용안되는 건지? 클래스 내부가 아니라서 그런건지? 아마도?
 					,type : "post"						
-					,data : ""
+					,data : param
 					,dataType : "json"
 					,success : function(data){  // json-list형태 추출방법 이요
 						alert("연결성공!");
@@ -75,13 +78,76 @@
 			
 			<!-- 메인버튼 : 2. 등록(회원정보) -->
 			$("#userRegister").click(function(){
-				$("#form1").removeAttr("hidden");
+				$("#registerForm").removeAttr("hidden");
+			};
+			
+			
+				
+				$.ajax({
+					url : "/JqueryPro/MemberServlet"
+					,type : "post"
+					,data : param
+					,dataType : "json"
+					,success : function(data){
+						alert("성공");
+						console.log(data);
+						makeTable(data);
+					}
+					,error : function(xhr){
+						console.log(xhr);
+						alert("오류발생");
+					}
+				});
+				
+				
 			});
 			
 			
 			
-			
 			$("#btnregistersummit").click(function(){
+
+				var pmemId = $("#memId").val();
+				var pmemId = $("#memId").val();
+				var pmemPass= $("#memPass").val();
+				var pmemName = $("#memName").val();
+				var pmemBir = $("#memBir").val();
+				var pmemZip = $("#memZip").val();
+				var pmemAdd1 = $("#memAdd1").val();
+				var pmemAdd2 = $("#memAdd2").val();
+				var pmemHp = $("#memHp").val();
+				var pmemMail = $("#memMail").val();
+				var precvEmailYn = $("#recvEmailYn").val();
+				var pmemJob = $("#memJob").val();
+				var pmemjobName = $("#memjobName").val();
+				var pmemLike = $("#memLike").val();
+				var pmemMemorialType = $("#memMemorialType").val();
+				var pmemMemorialDate = $("#memMemorialDate").val();
+				var pmemMileage = $("#memMileage").val();
+				var pmemComment = $("#memComment").val();
+				var pmemDelete = $("#memDelete").val();
+				
+				var param = {
+					  memId          	: pmemId
+					, memPass         	: pmemPass
+					, memName        	: pmemName
+					, memBir         	: pmemBir
+					, memZip         	: pmemZip
+					, memAdd1        	: pmemAdd1
+					, memAdd2        	: pmemAdd2
+					, memHp          	: pmemHp
+					, memMail        	: pmemMail
+					, recvEmailYn    	: precvEmailYn
+					, memJob         	: pmemJob
+					, memjobName     	: pmemjobName
+					, memLike        	: pmemLike
+					, memMemorialType	: pmemMemorialType
+					, memMemorialDate	: pmemMemorialDate
+					, memMileage     	: pmemMileage
+					, memComment     	: pmemComment
+					, memDelete      	: pmemDelete
+					, flag : "C"
+				};
+				
 				$.ajax({
 					url : ""
 					,type : "post"
@@ -108,7 +174,7 @@
 		<h3>회원목록</h3>
 		<!-- 검색조건 영역 -->
 		<div>
-			<form id="form1" hidden="">
+			<form id="registerForm" hidden="">
 				ID : <input type="text" name="memId" id="memId" value="a004"><br>
 				PW : <input type="password" name="memPass" id="memPass" value="1234"><br>
 				이름 : <input type="text" name="memName" id="memName" value="최영준"><br>
@@ -155,6 +221,7 @@
 						<th>MAIL<th>
 						<th>RECV_MAIL_YN<th>
 						<th>JOB<th>
+						<th>JOBNAME<th>
 						<th>LIKE<th>
 						<th>MEMORIAL_TYPE<th>
 						<th>MEMORIAL_DATE<th>

@@ -2,12 +2,9 @@
 <%@page import="java.util.List"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
 [
 <%
-
-//json형태로 만들어주는 곳인가?
-
+//json형태로 만들어주는 곳
 
 // 서블릿에서 조회한 결과를 "list"라는 key를 request에 담아줬음
 List<MemberVO> list = (List<MemberVO>)request.getAttribute("list"); // 조회결과를 list로 담아줬음
@@ -24,7 +21,8 @@ for(int i=0; i<list.size(); i++){
 	String memHp =vo.getMemHp(); 
 	String memMail= vo.getMemMail(); 
 	String recvEmailYn= vo.getRecvEmailYn(); 
-	String memJob= vo.getMemJob(); 
+	String memJob= vo.getMemJob();
+	String memjobName= vo.getMemjobName();
 	String memLike= vo.getMemLike() ;
 	String memMemorialType =vo.getMemMemorialType(); 
 	String memMemorialDate =vo.getMemMemorialDate(); 
@@ -49,6 +47,7 @@ for(int i=0; i<list.size(); i++){
 , "memMail" : "<%=memMail%>"
 , "recvEmailYn" : "<%=recvEmailYn%>"
 , "memJob" : "<%=memJob%>"
+, "memjobName" : "<%=memjobName%>"
 , "memLike" : "<%=memLike%>"
 , "memMemorialType" : "<%=memMemorialType%>"
 , "memMemorialDate" : "<%=memMemorialDate%>"
