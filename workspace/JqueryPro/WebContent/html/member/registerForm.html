@@ -4,98 +4,112 @@
 <title>회원가입 화면</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./register.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<style type="text/css">
+/* 	input { */
+/* 		border: 2px solid; */
+/* 	} */
+	</style>
 </head>
 <body>
-
 	<div class="container">
 		<h2>회원가입</h2>
 		<form class="form-horizontal" action="/action_page.php">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memId">아이디:</label>
-				<div class="col-sm-10">
+				<div class="col-sm-6">
 					<input type="text" class="form-control" id="memId"
 						placeholder="6~12자의 마무아라마" name="memId">
 				</div>
+				<button type="button" id="chkId">중복검사</button>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memPass">비밀번호:</label>
-				<div class="col-sm-10">
+				<div class="col-sm-7">
 					<input type="password" class="form-control" id="memPass"
 						placeholder="비밀번호를 입력해주세요" name="memPass">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memName">이름:</label>
-				<div class="col-sm-10">
+				<div class="col-sm-7">
 					<input type="text" class="form-control" id="memName"
 						placeholder="이름을 입력해주세요" name="memName">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memHp">전화번호:</label>
-				<div class="col-sm-10">
+				<div class="col-sm-7">
 					<input type="text" class="form-control" id="memHp"
 						placeholder="전화번호를 입력해주세요" name="memHp">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memBir">생년월일:</label>
-				<div class="col-sm-10">
+				<div class="col-sm-7">
 					<input type="date" class="form-control" id="memBir"
 						placeholder="생년월일을 입력해주세요" name="memBir">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memHp">전화번호:</label>
-				<div class="col-sm-10">
+				<div class="col-sm-7">
 					<input type="text" class="form-control" id="memHp"
 						placeholder="전화번호를 입력해주세요" name="memHp">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memAdd1">주소1:</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="memAdd1"
-						placeholder="주소를 입력해주세요" name="memAdd1">
+				<div class="col-sm-2">
+					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1">
 				</div>
+					 <!-- Trigger the modal with a button -->
+  				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">주소찾기</button>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1">
+				</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1">
+				</div>
+						
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memAdd2">상세주소:</label>
-				<div class="col-sm-10">
+				<div class="col-sm-7">
 					<input type="text" class="form-control" id="memAdd2"
 						placeholder="건물번호,뭐라무러ㅏ.." name="memAdd2">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memZip">우편번호:</label>
-				<div class="col-sm-10">
+				<div class="col-sm-7">
 					<input type="text" class="form-control" id="memZip"
 						placeholder="예) 34354" name="memZip">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memMemorialType">기념일(내용):</label>
-				<div class="col-sm-10">
+				<div class="col-sm-7">
 					<input type="text" class="form-control" id="memMemorialType"
 						placeholder="기념일(내용)를 입력해주세요" name="memMemorialType">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memMemorialDate">기념일(날짜):</label>
-				<div class="col-sm-10">
+				<div class="col-sm-7">
 					<input type="date" class="form-control" id="memMemorialDate"
 						placeholder="기념일(날짜)를 입력해주세요" name="memMemorialDate">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memMail">email:</label>
-				<div class="col-sm-10">
+				<div class="col-sm-7">
 					<input type="text" class="form-control" id="memMail"
 						placeholder="예) abcdefg@gmail.com" name="memMail">
 				</div>
@@ -111,7 +125,7 @@
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memJob">직업:</label>
-				<div class="col-sm-10">
+				<div class="col-sm-7">
 					<select class="form-control" id="memLike" name="memLike">
 						<option val="01">프로그래머</option>
 						<option val="02">퍼블리셔</option>
@@ -123,13 +137,11 @@
 						<option val="08">전업주부</option>
 						<option val="09">기타</option>
 					</select>
-					<input type="text" class="form-control" id="memJob"
-						placeholder="직업을 입력해주세요" name="memJob">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memLike">취미:</label>
-				<div class="col-sm-10">
+				<div class="col-sm-7">
 					<label for="memLikeSwim"><input type="checkbox" id="memLikeSwim" name="memLike" value="01">수영 </label>
 					<label for="memLikeJogging"><input type="checkbox" id="memLikeJogging" name="memLike" value="02">조깅 </label>
 					<label for="memLikeHiking"><input type="checkbox" id="memLikeHiking" name="memLike" value="03">등산 </label>
@@ -142,7 +154,7 @@
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memComment">자기소개:</label>
-				<div class="col-sm-10">
+				<div class="col-sm-7">
 					<input type="text" class="form-control" id="memComment"
 						placeholder="자기소개를 입력해주세요" name="memComment">
 				</div>
@@ -156,10 +168,40 @@
 			</div>
 		</form>
 	</div>
+	  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">주소 검색</h4>
+        </div>
+        <div class="modal-body">
+          	시 : <select  id="add_si" name="add_si">
+          		<option>선택하세요</option>
+          		</select>
+          	구 : <select  id="add_gu" name="add_gu">
+          		<option>선택하세요</option>
+          		</select>
+          	동 : <select id="add_dong" name="add_dong">
+          		<option>선택하세요</option>
+          		</select>
+          <button type="button">검색</button>
+          
+          
+          
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- Model End -->
 	
-	
-		직업 :  
-		취미 : 
 				
 
 </body>

@@ -45,3 +45,30 @@ function getValue(url, key){
 		}
 	}
 }
+
+
+/**
+ * 빈값체크
+ * @param val
+ * @returns
+ */
+function isEmpty(val){
+	//val이 빈 값이거나 null이거나 undefined이거나 " ", "    " 등 인 경우
+	if(val == null){
+		return true;	
+	}
+	if(val == undefined){
+		return true;	
+	}
+	if(val == ""){
+		return true;	
+	}
+	if(val == " "){
+		return true;	
+	}
+	if(val.lenth == val.match(" ")){
+		return true;
+	}
+	return false;
+	
+}

@@ -3,6 +3,8 @@ package kr.or.ddit.member.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.or.ddit.member.dao.MemberDao;
 import kr.or.ddit.member.vo.MemberVO;
 
@@ -16,7 +18,10 @@ public class MemberService {
 	}
 	
 	
-	
+	public MemberVO retrieveMember(String memberId) throws SQLException {
+		MemberVO memberVo = dao.retrieveMember(memberId);
+		return memberVo;
+	}
 	
 	public List<MemberVO> retrieveMemberList(MemberVO memberVo) throws SQLException {
 		List<MemberVO> list = dao.retrieveMemberList(memberVo);

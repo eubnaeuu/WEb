@@ -66,6 +66,14 @@ public class MemberServlet extends HttpServlet {
 		}else if(flag.equals("U")) { // 수정
 			
 		}else if(flag.equals("D")) { // 삭제
+		}else if(flag.equals("CHKID")) { // ID중복검사
+			// ☆  
+			try {
+				checkMemberId(req);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		
@@ -74,6 +82,13 @@ public class MemberServlet extends HttpServlet {
 		
 
 		
+		
+	}
+
+	private void checkMemberId(HttpServletRequest req) throws SQLException {
+		String memId = req.getParameter("memId");
+		MemberService service = new MemberService();
+		service.retrieveMember(memId);
 		
 	}
 
