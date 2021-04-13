@@ -31,6 +31,7 @@ public class MemberServlet extends HttpServlet {
 		// 브라우저로 부터 받은 값을 사용하기 위해 request에서 parameter를 get.
 		
 		String flag = req.getParameter("flag");
+		
 		// 
 		if(flag.equals("L")) { // 목록조회 
 			//flag.equals("L")은 flag가 NULL일경우 error남

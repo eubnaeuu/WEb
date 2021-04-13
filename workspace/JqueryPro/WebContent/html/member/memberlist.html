@@ -65,7 +65,6 @@
 						alert("연결성공!");
 						console.log(data);
 						makeansintable(data);
-
 					},error : function(xhr){
 						alert("연결실패!");
 						console.error(xhr.status);
@@ -79,34 +78,17 @@
 			<!-- 메인버튼 : 2. 등록(회원정보) -->
 			$("#userRegister").click(function(){
 				$("#registerForm").removeAttr("hidden");
-			};
-			
-			
-				
-				$.ajax({
-					url : "/JqueryPro/MemberServlet"
-					,type : "post"
-					,data : param
-					,dataType : "json"
-					,success : function(data){
-						alert("성공");
-						console.log(data);
-						makeTable(data);
-					}
-					,error : function(xhr){
-						console.log(xhr);
-						alert("오류발생");
-					}
-				});
-				
-				
 			});
+			
+			
+			
+				
+		
 			
 			
 			
 			$("#btnregistersummit").click(function(){
 
-				var pmemId = $("#memId").val();
 				var pmemId = $("#memId").val();
 				var pmemPass= $("#memPass").val();
 				var pmemName = $("#memName").val();
@@ -138,7 +120,6 @@
 					, memMail        	: pmemMail
 					, recvEmailYn    	: precvEmailYn
 					, memJob         	: pmemJob
-					, memjobName     	: pmemjobName
 					, memLike        	: pmemLike
 					, memMemorialType	: pmemMemorialType
 					, memMemorialDate	: pmemMemorialDate
@@ -149,25 +130,26 @@
 				};
 				
 				$.ajax({
-					url : ""
+					url : "/JqueryPro/MemberServlet"
 					,type : "post"
-					,data : ""
+					,data : param
 					,dataType : "json"
-					,success : function(){
-						alert("ㅊㅋ");
-						
+					,success : function(data){
+						alert("성공");
+						console.log(data);
+						makeTable(data);
 					}
-					,error : function(){
-						alert("erororororor");
+					,error : function(xhr){
+						console.log(xhr);
+						alert("오류발생");
 					}
-					
-					
 				});
+				
 			});
 			
 			
 			
-		});
+		}); // document
 		</script>
 	</head>
 	<body>

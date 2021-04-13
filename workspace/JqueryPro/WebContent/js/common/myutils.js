@@ -36,7 +36,11 @@ function getValue(url, key){
 			
 			var tmp = arr[i].split("=");
 			if(tmp[0] == key){
-				return tmp[1];
+				if(tmp.length>0){
+					return tmp[1];
+				} else {
+					return "없음요..";
+				}
 			}
 		}
 	}
