@@ -30,7 +30,7 @@ public class MemberService {
 		if(resultVo != null) {
 			return;
 		}
-		// 	2). ID, password 등 유요한 값인지 체크
+		// 	2). ID, password 등 유효한 값인지 체크
 		
 		// 2. DB에 insert 하기
 		dao.createMember(memberVo);

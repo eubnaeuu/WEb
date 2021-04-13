@@ -12,6 +12,7 @@ public class MemberVO {
 	private String memMail;
 	private String recvEmailYn;
 	private String memJob;
+	private String memjobName;
 	private String memLike;
 	private String memMemorialType;
 	private String memMemorialDate;
@@ -50,6 +51,9 @@ public class MemberVO {
 		return recvEmailYn;
 	}
 	public String getMemJob() {
+		return memJob;
+	}
+	public String getMemjobName() {
 		return memJob;
 	}
 	public String getMemLike() {
