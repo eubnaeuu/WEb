@@ -91,7 +91,6 @@ private static final long serialVersionUID = 1L;
 		service.createMember(memberVo);
 		
 		// 그 외 정보들 VO에 세팅...
-		
 	}
 
 	private List<MemberVO> retriveMemberlist(HttpServletRequest req) throws ServletException, IOException, SQLException {
