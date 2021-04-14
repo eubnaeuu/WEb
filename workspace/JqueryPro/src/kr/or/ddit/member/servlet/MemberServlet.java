@@ -63,10 +63,10 @@ public class MemberServlet extends HttpServlet {
 				System.out.println(memberVo.getMemId()); // tes0 들어옴
 				if (memberVo != null) {
 					resultCnt = 1;
-					req.setAttribute("resultCnt", resultCnt);
-					RequestDispatcher disp = req.getRequestDispatcher("/html/member/idCheckResult.jsp");
-					disp.forward(req, resp);
 				}
+					req.setAttribute("resultCnt", resultCnt);
+					RequestDispatcher disp = req.getRequestDispatcher("/html/common/checkResult.jsp");
+					disp.forward(req, resp);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

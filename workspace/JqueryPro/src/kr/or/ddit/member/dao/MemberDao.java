@@ -20,14 +20,12 @@ public class MemberDao extends BaseDao {
 		return smc.queryForList("member.retrieveMemberList", memberVo);
 	}
 	
-	
 	public MemberVO retrieveMember(String memId) throws SQLException {
 		return (MemberVO)smc.queryForObject("member.retrieveMember", memId);
 	}
 
 	public Object createMember(MemberVO memberVo) throws SQLException {
 		return smc.insert("member.createMember", memberVo);
-		
 	}
 	
 }
