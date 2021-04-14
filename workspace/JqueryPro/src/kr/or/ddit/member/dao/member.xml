@@ -43,7 +43,7 @@
 	</insert>
 	<update id="updateMember"></update>
 	
-	<select id="retrieveMember" parameterClass="String">
+	<select id="retrieveMember" parameterClass="String" resultClass="kr.or.ddit.member.vo.MemberVO">
 		SELECT MEM_ID                memId             
              , MEM_PASS              memPass           
              , MEM_NAME              memName           

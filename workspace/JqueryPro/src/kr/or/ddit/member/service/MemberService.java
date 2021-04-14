@@ -17,8 +17,8 @@ public class MemberService {
 			dao = new MemberDao();
 	}
 	
-	
 	public MemberVO retrieveMember(String memberId) throws SQLException {
+		// 검증 작업이 추가되어야 함. => .java 파일은 컴파일 되어서 서버에 올라가기에 내용수정이 제한됨. 최대한 꼼꼼하게 한다생각
 		MemberVO memberVo = dao.retrieveMember(memberId);
 		return memberVo;
 	}

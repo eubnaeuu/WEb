@@ -31,20 +31,17 @@ public class MemberServlet extends HttpServlet {
 		// 브라우저로 부터 받은 값을 사용하기 위해 request에서 parameter를 get.
 		
 		String flag = req.getParameter("flag");
-		
+		try {	
 		// 
 		if(flag.equals("L")) { // 목록조회 
 			//flag.equals("L")은 flag가 NULL일경우 error남
 			// 따라서 "L".equals(req)로 바꾸면 error안남. L문자가 Req와 같은지를 의미하는 것이기에
 			
-			try {
+		
 				//  ★ error
 				List<MemberVO> list = retriveMemberlist(req);
 				// 브라우저로 전달할 결과를 request에 attribute로 세팅
 				req.setAttribute("list", list);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 			// 결과를 받을 url 세팅
 //			RequestDispatcher  disp = req.getRequestDispatcher("/JqueryPro/html/member/memberListResult.jsp"); // <== contextroot 포함하면 안됨!
 			RequestDispatcher  disp = req.getRequestDispatcher("/html/member/memberListResult.jsp");
@@ -52,43 +49,33 @@ public class MemberServlet extends HttpServlet {
 			disp.forward(req, resp);
 			//회원 목록 조회
 //			List<MemberVO> list = retriveMemberlist(req);
-			
-			
-		}else if(flag.equals("C")) { // 등록
-			try {
-				createMember(req);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-		}else if(flag.equals("R")) {  // 단건 조회
-			
-		}else if(flag.equals("U")) { // 수정
-			
-		}else if(flag.equals("D")) { // 삭제
-		}else if(flag.equals("CHKID")) { // ID중복검사
-			// ☆  
-			try {
-				checkMemberId(req);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		
-		
-		
-		
-		
 
-		
-		
+			} else if (flag.equals("C")) { // 등록
+				createMember(req);
+			} else if (flag.equals("R")) { // 단건 조회
+			} else if (flag.equals("U")) { // 수정
+			} else if (flag.equals("D")) { // 삭제
+			} else if (flag.equals("CHKID")) { // ID중복검사
+				// ☆
+				MemberVO memberVo = checkMemberId(req);
+				int resultCnt = 0;
+				if (memberVo != null) {
+					resultCnt = 1;
+					req.setAttribute("resultCnt", resultCnt);
+					RequestDispatcher disp = req.getRequestDispatcher("/html/member/idCheckResult.jsp");
+					disp.forward(req, resp);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
-	private void checkMemberId(HttpServletRequest req) throws SQLException {
+	private MemberVO checkMemberId(HttpServletRequest req) throws SQLException {
 		String memId = req.getParameter("memId");
 		MemberService service = new MemberService();
-		service.retrieveMember(memId);
+		
+		return service.retrieveMember(memId);
 		
 	}
 
