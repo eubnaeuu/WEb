@@ -17,7 +17,6 @@ public class CodeDao extends BaseDao {
 		smc = super.getSqlMapClient();
 	}
 	
-	
 	// TB_CODE 
 	public List<CodeVO> retrieveCodeList(CodeVO codeVo) throws SQLException {
 		return smc.queryForList("code.retrieveCodeList",codeVo);
