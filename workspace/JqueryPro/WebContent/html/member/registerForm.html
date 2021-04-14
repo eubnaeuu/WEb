@@ -10,7 +10,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<!-- <script src="/JqueryPro/js/common/myutils.js"></script> -->
+<script src="/JqueryPro/js/common/myutils.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -256,8 +256,6 @@
 	
 	// DB에서 중복검사 수행
 	function checkId() {
-		
-		// 				var memId = memid;
 		var memId = $("#memId").val();
 		alert(memId);
 		// 빈값 확인
@@ -283,6 +281,7 @@
 			,dataType : "json"
 			,success : function(data) {
 				console.log(data);
+				console.log(data.get(resultCnt));
 // 				if (data[0].get == 0) {
 // 				} else {
 // 					alert("중복되었습니다");
@@ -298,34 +297,5 @@
 			}
 		});
 	}
-	
-	function isEmpty(val){
-		alert("empty 실행중..");
-		//val이 빈 값이거나 null이거나 undefined이거나 " ", "    " 등 인 경우
-		if(val == null){
-			alert("1");
-			return true;
-		}
-		if(val == undefined){
-			alert("2");
-			return true;	
-		}
-		if(val == ""){
-			alert("3");
-			return true;	
-		}
-		if(val == " "){
-			alert("4");
-			return true;	
-		}
-		if(val.length == val.match(" ")){
-			alert("5");
-			return true;
-		}
-		return false;
-		
-	}
-	
-	
 </script>
 </html>

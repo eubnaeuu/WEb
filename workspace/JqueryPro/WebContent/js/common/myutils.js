@@ -53,9 +53,8 @@ function getValue(url, key){
  * @returns
  */
 function isEmpty(val){
-	alert("0");
+	alert("empty검사 시작!");
 	//val이 빈 값이거나 null이거나 undefined이거나 " ", "    " 등 인 경우
-	val = cdw34;
 	if(val == null){
 		alert("1");
 		return true;
