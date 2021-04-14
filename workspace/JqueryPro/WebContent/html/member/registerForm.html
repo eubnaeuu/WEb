@@ -93,8 +93,15 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memMemorialType">기념일(내용):</label>
 				<div class="col-sm-7">
-					<input type="text" class="form-control" id="memMemorialType"
-						placeholder="기념일(내용)를 입력해주세요" name="memMemorialType">
+					<input type="text" class="form-control" id="memMemorialType">
+					<select class="form-control" id="memMemorialType" name="memMemorialType">						
+<!-- 						<option val="01">생일</option> -->
+<!-- 						<option val="02">결혼기념일</option> -->
+<!-- 						<option val="03">배우자생일</option> -->
+<!-- 						<option val="04">부모님생일</option> -->
+<!-- 						<option val="05">부모님결혼기념일</option> -->
+<!-- 						<option val="99">기타</option> -->
+					</select>
 				</div>
 			</div>
 			<div class="form-group">
@@ -123,7 +130,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memJob">직업:</label>
 				<div class="col-sm-7">
-					<select class="form-control" id="memLike" name="memLike">
+					<select class="form-control" id="memJob" name="memJob">
 <!-- 						<option val="01">프로그래머</option> -->
 <!-- 						<option val="02">퍼블리셔</option> -->
 <!-- 						<option val="03">프로게이머</option> -->
@@ -138,7 +145,7 @@
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memLike">취미:</label>
-				<div class="col-sm-7">
+				<div class="col-sm-7" id="memLikediv">
 <!-- 					<label for="memLikeSwim"><input type="checkbox" id="memLikeSwim" name="memLike" value="01">수영 </label> -->
 <!-- 					<label for="memLikeJogging"><input type="checkbox" id="memLikeJogging" name="memLike" value="02">조깅 </label> -->
 <!-- 					<label for="memLikeHiking"><input type="checkbox" id="memLikeHiking" name="memLike" value="03">등산 </label> -->
@@ -229,7 +236,6 @@
 			,error : function(xhr){
 				console.error(xhr);
 				alert("오류");
-				
 			}
 		});		
 	});
@@ -243,15 +249,16 @@
 // 		$("#memJob").append();
 		
 		for(i=0; i<data.length; i++){
-			strHtml += "<option val="
+			strHtml += "<option val='"
 						+ data[i].value
-						+">"
+						+"'>"
 						+ data[i].name
 						+"</option>";
 		}
 		console.log(strHtml);
 		$("#memJob").html(strHtml);
 	}
+	
 	function makeHobbySelect(data){
 		var strHtml = "";
 		
@@ -259,10 +266,8 @@
 			strHtml += "<label for='memLike"+data[i].description+"'><input type='checkbox' id='memLike"+data[i].description+"' name='memLike' value='"+data[i].value+"'>"+data[i].name+"</label>";
 		}
 		console.log(strHtml);
-// 		$("#memJob").html(strHtml);
+		$("#memLikediv").html(strHtml);
 	}
-// 	<label for="memLikeEtc"><input type="checkbox" id="memLikeEtc" name="memLike" value="08">기타 </label>
-	
 	
 	// DB에서 중복검사 수행
 	function checkId() {
