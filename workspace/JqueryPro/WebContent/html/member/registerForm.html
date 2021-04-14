@@ -93,7 +93,6 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memMemorialType">기념일(내용):</label>
 				<div class="col-sm-7">
-					<input type="text" class="form-control" id="memMemorialType">
 					<select class="form-control" id="memMemorialType" name="memMemorialType">						
 <!-- 						<option val="01">생일</option> -->
 <!-- 						<option val="02">결혼기념일</option> -->
@@ -230,7 +229,7 @@
 			,dataType : "json"
 			,success : function(data){
 				console.log(data);
-				makeHobbySelect(data);
+				makeLikeSelect(data);
 				alert("성공");
 			}
 			,error : function(xhr){
@@ -238,7 +237,22 @@
 				alert("오류");
 			}
 		});		
-	});
+		
+		$.ajax({
+			url : "/JqueryPro/CodeServlet"
+			,type : "post"
+			,data : {"groupCode" : "A03"} // 취미코드
+			,dataType : "json"
+			,success : function(data){
+				console.log(data);
+				makeMemorialTypeSelect(data);
+				alert("성공");
+			}
+			,error : function(xhr){
+				console.error(xhr);
+				alert("오류");
+			}
+		});		
 	
 	function makeJobSelect(data){
 		var strHtml = "";
@@ -255,19 +269,34 @@
 						+ data[i].name
 						+"</option>";
 		}
-		console.log(strHtml);
+// 		console.log(strHtml);
 		$("#memJob").html(strHtml);
 	}
 	
-	function makeHobbySelect(data){
+	function makeMemorialTypeSelect(data){
+		var strHtml = "";
+		for(i=0; i<data.length; i++){
+			strHtml += "<option val='"
+						+ data[i].value
+						+"'>"
+						+ data[i].name
+						+"</option>";
+		}
+		console.log(strHtml);
+		$("#memMemorialType").html(strHtml);
+	}
+	
+	function makeLikeSelect(data){
 		var strHtml = "";
 		
 		for(i=0; i<data.length; i++){
 			strHtml += "<label for='memLike"+data[i].description+"'><input type='checkbox' id='memLike"+data[i].description+"' name='memLike' value='"+data[i].value+"'>"+data[i].name+"</label>";
 		}
-		console.log(strHtml);
+// 		console.log(strHtml);
 		$("#memLikediv").html(strHtml);
 	}
+	
+	});
 	
 	// DB에서 중복검사 수행
 	function checkId() {
