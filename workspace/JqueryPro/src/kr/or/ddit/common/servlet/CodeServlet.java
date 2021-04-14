@@ -1,4 +1,4 @@
-package kr.or.ddit.member.servlet;
+package kr.or.ddit.common.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.vo.MemberVO;
 
-@WebServlet("/MemberServlet")
-public class MemberServlet extends HttpServlet {
+@WebServlet("/CodeServlet")
+public class CodeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -60,7 +60,7 @@ public class MemberServlet extends HttpServlet {
 				System.out.println("파라미터  : "+req.getParameter("memId"));
 				MemberVO memberVo = checkMemberId(req);
 				int resultCnt = 0;
-				System.out.println(memberVo.getMemId()); // tes0 들어옴
+				System.out.println(memberVo.getMemId());
 				if (memberVo != null) {
 					resultCnt = 1;
 					req.setAttribute("resultCnt", resultCnt);

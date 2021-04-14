@@ -10,56 +10,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<style type="text/css">
-/* 	input { */
-/* 		border: 2px solid; */
-/* 	} */
-	</style>
-	<script type="text/javascript">
-$(document).ready(function(){
+<!-- <script src="/JqueryPro/js/common/myutils.js"></script> -->
 
-// DB에서 중복검사 수행
-function chkId(){
-// 				var memId = memid;
-				var memId = $("#memId").val();
-				alert(memId);
-			// 빈값 확인
-				if(isEmpty(memId)){
-					alert("ID 값이 입력되지 않았습니댜");
-					$("#memId").focus();
-					return;
-				}
-				
-			// 유효성 검사 - 영어소문자와 숫자로 구성, 3글자 이상 10글지 이하
-				var regExp = /^[a-Z0-9]{3,10}$/;
-				if(!regExp.test(memId)){
-					alert("ID값이 유효하지 않습니다");
-					$("#memId").focus();
-					return; 
-					}	
-				
-			// DB에서 중복검사 수행
-			$.ajax({
-				url : "/JqueryPro/MemberServlet"
-				,type : "post"
-				,data : "{memId : memId, 'flag' : 'CHKID'}"
-				,dataType : "json"
-				,success : function(data){
-					console.log(data);
-					if(data.getElementsByTagName("resultCnt")==0){
-						chkid(data.getElementsByTagName("resultCnt"));
-					} else {
-						alert("중복되었습니다");
-					}
-				}
-				,error : function(xhr){
-					console.error(xhr);
-				}
-			});
-			}
-});
-	
-</script>
 </head>
 <body>
 	<div class="container">
@@ -71,7 +23,7 @@ function chkId(){
 					<input type="text" class="form-control" id="memId"
 						placeholder="6~12자의 마무아라마" name="memId">
 				</div>
-				<button type="button" id="chkId" class="btn btn-info btn-sm" onclick="chkId()">중복검사</button>
+				<button type="button" id="chkId" class="btn btn-info btn-sm" onclick="checkId()">중복검사</button>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memPass">비밀번호:</label>
@@ -241,5 +193,94 @@ function chkId(){
   </div>
   <!-- Model End -->
 </body>
-
+<script type="text/javascript">
+// 	$(document).ready(function(){
+// 		// 직업코드 조회해서 세팅하기
+// 		$.ajax({
+// 			url : ""
+// 			,type : "post"
+// 			,data : {"groupCode" : 'A02'} // 직업코드
+// 			,dataType : "json"
+// 			,success : function(data){
+// 				console.log(data);
+// 				alert("성공");
+// 			}
+// 			,error : function(xhr){
+// 				console.error(xhr);
+// 				alert("오류");
+				
+// 			}
+// 		});		
+// 	});
+	
+	// DB에서 중복검사 수행
+	function checkId() {
+		
+		// 				var memId = memid;
+		var memId = $("#memId").val();
+		alert(memId);
+		// 빈값 확인
+		if (isEmpty(memId)) {
+			console.log(memId);
+			alert("ID 값이 입력되지 않았습니댜");
+			$("#memId").focus();
+			return;
+		}
+// // 		유효성 검사 - 영어소문자와 숫자로 구성, 3글자 이상 10글지 이하
+// 		var regExp = /^[a-Z0-9{3,10}]$/;
+// 		console.log(regExp);
+// 		if (!regExp.test(memId)) {
+// 			alert("ID값이 유효하지 않습니다");
+// 			$("#memId").focus();
+// 			return;
+// 		}
+		// DB에서 중복검사 수행
+		$.ajax({
+			url : "/JqueryPro/MemberServlet"
+			,type : "post"
+			,data : {'memId' : memId, 'flag' : 'CHKID'}
+			,dataType : "json"
+			,success : function(data) {
+				console.log(data);
+				if (data.getElementsByTagName("resultCnt") == 0) {
+					chkid(data.getElementsByTagName("resultCnt"));
+				} else {
+					alert("중복되었습니다");
+				}
+			}
+			,error : function(xhr) {
+				console.error(xhr);
+			}
+		});
+	}
+	
+	function isEmpty(val){
+		alert("0");
+		//val이 빈 값이거나 null이거나 undefined이거나 " ", "    " 등 인 경우
+		if(val == null){
+			alert("1");
+			return true;
+		}
+		if(val == undefined){
+			alert("2");
+			return true;	
+		}
+		if(val == ""){
+			alert("3");
+			return true;	
+		}
+		if(val == " "){
+			alert("4");
+			return true;	
+		}
+		if(val.length == val.match(" ")){
+			alert("5");
+			return true;
+		}
+		return false;
+		
+	}
+	
+	
+</script>
 </html>
