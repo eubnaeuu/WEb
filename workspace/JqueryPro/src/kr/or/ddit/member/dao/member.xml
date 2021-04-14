@@ -75,7 +75,7 @@
              , B.CODE_NAME 			 memjobName            
              , MEM_LIKE              memLike           
              , MEM_MEMORIAL_TYPE     memMemorialType  
-			 , TO_CHAR(MEM_MEMORIAL_DATE, 'yyyy-mm-dd') memmemorialdate
+			 , TO_CHAR(MEM_MEMORIAL_DATE, 'yyyy-mm-dd') memmemorialDate
              , NVL(MEM_MILEAGE, 0)   memMileage        
              , MEM_COMMENT           memComment        
              , MEM_DELETE            memDelete         

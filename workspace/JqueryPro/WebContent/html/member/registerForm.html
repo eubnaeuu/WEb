@@ -64,13 +64,15 @@
 				<div class="col-sm-2">
 					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1">
 				</div>
-					 Trigger the modal with a button
   				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="tmp()">주소찾기</button>
 				<div class="col-sm-5">
 					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1">
 				</div>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1">
+				
+				<div class="col-sm-offset-2">
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1">
+					</div>
 				</div>
 						
 			</div>
@@ -110,13 +112,13 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<div class="checkbox">
-						email 동의여부 : 
-						<label for="recvEmail_Y"><input type="checkbox" name="recvEmailYn" id="recvEmail_Y" value="Y">동의</label>
-						<label for="recvEmail_N"><input type="checkbox" name="recvEmailYn" id="recvEmail_N" value="N">거부</label>
+			<label class="control-label col-sm-2" for="memMail">email 동의여부:</label>
+<!-- 				<div class="col-sm-offset-2 col-sm-10"> -->
+					<div class="radio">
+						<label for="recvEmail_Y"><input type="radio" class="radio" name="recvEmailYn" id="recvEmail_Y" value="Y" checked>동의</label>
+						<label for="recvEmail_N"><input type="radio" class="radio" name="recvEmailYn" id="recvEmail_N" value="N">거부</label>
 					</div>
-				</div>
+<!-- 				</div> -->
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memJob">직업:</label>
@@ -137,13 +139,13 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memLike">취미:</label>
 				<div class="col-sm-7">
-					<label for="memLikeSwim"><input type="checkbox" id="memLikeSwim" name="memLike" value="01">수영 </label>
-					<label for="memLikeJogging"><input type="checkbox" id="memLikeJogging" name="memLike" value="02">조깅 </label>
-					<label for="memLikeHiking"><input type="checkbox" id="memLikeHiking" name="memLike" value="03">등산 </label>
-					<label for="memLikeGame"><input type="checkbox" id="memLikeGame" name="memLike" value="04">게임 </label>
-					<label for="memLikePiano"><input type="checkbox" id="memLikePiano" name="memLike" value="05">피아노</label>
-					<label for="memLikeCook"><input type="checkbox" id="memLikeCook" name="memLike" value="06">요리 </label>
-					<label for="memLikeSoccer"><input type="checkbox" id="memLikeSoccer" name="memLike" value="07">축구 </label>
+<!-- 					<label for="memLikeSwim"><input type="checkbox" id="memLikeSwim" name="memLike" value="01">수영 </label> -->
+<!-- 					<label for="memLikeJogging"><input type="checkbox" id="memLikeJogging" name="memLike" value="02">조깅 </label> -->
+<!-- 					<label for="memLikeHiking"><input type="checkbox" id="memLikeHiking" name="memLike" value="03">등산 </label> -->
+<!-- 					<label for="memLikeGame"><input type="checkbox" id="memLikeGame" name="memLike" value="04">게임 </label> -->
+<!-- 					<label for="memLikePiano"><input type="checkbox" id="memLikePiano" name="memLike" value="05">피아노</label> -->
+<!-- 					<label for="memLikeCook"><input type="checkbox" id="memLikeCook" name="memLike" value="06">요리 </label> -->
+<!-- 					<label for="memLikeSoccer"><input type="checkbox" id="memLikeSoccer" name="memLike" value="07">축구 </label> -->
 					<label for="memLikeEtc"><input type="checkbox" id="memLikeEtc" name="memLike" value="08">기타 </label>
 				</div>                                                                             
 			</div>
@@ -196,23 +198,6 @@
 
 
 
-// function tmp(){
-// 	$.ajax({
-// 		url : "/JqueryPro/CodeServlet"
-// 		,type : "post"
-// 		,data : {"groupCode" : "A02"} // 직업코드
-// 		,dataType : "json"
-// 		,success : function(data){
-// 			console.log(data);
-// //				makeJobSelect(data);
-// 			alert("성공");
-// 		}
-// 		,error : function(xhr){
-// 			console.error(xhr);
-// 			alert("오류");
-// 		}
-// 	});
-// }
 	$(document).ready(function(){
 		// 직업코드 조회해서 세팅하기
 		$.ajax({
@@ -223,6 +208,22 @@
 			,success : function(data){
 				console.log(data);
 				makeJobSelect(data);
+				alert("성공");
+			}
+			,error : function(xhr){
+				console.error(xhr);
+				alert("오류");
+				
+			}
+		});	
+		$.ajax({
+			url : "/JqueryPro/CodeServlet"
+			,type : "post"
+			,data : {"groupCode" : "A01"} // 취미코드
+			,dataType : "json"
+			,success : function(data){
+				console.log(data);
+				makeHobbySelect(data);
 				alert("성공");
 			}
 			,error : function(xhr){
@@ -251,7 +252,16 @@
 		console.log(strHtml);
 		$("#memJob").html(strHtml);
 	}
-// 	<option val="09">기타</option>
+	function makeHobbySelect(data){
+		var strHtml = "";
+		
+		for(i=0; i<data.length; i++){
+			strHtml += "<label for='memLike"+data[i].description+"'><input type='checkbox' id='memLike"+data[i].description+"' name='memLike' value='"+data[i].value+"'>"+data[i].name+"</label>";
+		}
+		console.log(strHtml);
+// 		$("#memJob").html(strHtml);
+	}
+// 	<label for="memLikeEtc"><input type="checkbox" id="memLikeEtc" name="memLike" value="08">기타 </label>
 	
 	
 	// DB에서 중복검사 수행

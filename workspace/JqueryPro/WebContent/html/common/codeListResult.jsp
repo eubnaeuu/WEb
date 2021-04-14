@@ -15,6 +15,7 @@ for(int i=0; i < list.size() ; i++){
 	{
 	"value" : "<%=list.get(i).getCode()%>"
 	,"name" : "<%=list.get(i).getCodeName()%>"
+	,"description" : "<%=list.get(i).getDescription()%>"
 	}
 	<%
 	}

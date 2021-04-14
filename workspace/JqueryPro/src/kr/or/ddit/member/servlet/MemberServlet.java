@@ -60,7 +60,7 @@ private static final long serialVersionUID = 1L;
 				System.out.println("req get 파라미터  : "+req.getParameter("memId"));
 				MemberVO memberVo = checkMemberId(req);
 				int resultCnt = 0;
-				System.out.println("memberVO에서 추출 : "+memberVo.getMemId()); // tes0 들어옴
+//				System.out.println("memberVO에서 추출 : "+memberVo.getMemId()); // tes0 들어옴
 				if (memberVo != null) {
 					resultCnt = 1;
 				}
@@ -91,6 +91,7 @@ private static final long serialVersionUID = 1L;
 		service.createMember(memberVo);
 		
 		// 그 외 정보들 VO에 세팅...
+		
 	}
 
 	private List<MemberVO> retriveMemberlist(HttpServletRequest req) throws ServletException, IOException, SQLException {
