@@ -281,12 +281,13 @@
 			,dataType : "json"
 			,success : function(data) {
 				console.log(data);
-// 				console.log(data.resultCnt);
-// 				if (data.resultCnt == 0) {
-// 				} else {
-// 					alert("중복되었습니다");
-// 				}
-// 			}
+				console.log(data.resultCnt);
+// 				console.log(typeof data.resultCnt); // String
+				if (data.resultCnt == 0) {
+				} else {
+					alert("중복되었습니다");
+				}
+			}
 			,error : function(xhr) {
 				console.error(xhr);
 			}

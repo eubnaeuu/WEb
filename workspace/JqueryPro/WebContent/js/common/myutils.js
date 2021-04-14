@@ -53,29 +53,21 @@ function getValue(url, key){
  * @returns
  */
 function isEmpty(val){
-	alert("empty검사 시작!");
 	//val이 빈 값이거나 null이거나 undefined이거나 " ", "    " 등 인 경우
 	if(val == null){
-		alert("1");
 		return true;
-		
 	}
 	if(val == undefined){
-		alert("2");
 		return true;	
 	}
 	if(val == ""){
-		alert("3");
 		return true;	
 	}
 	if(val == " "){
-		alert("4");
 		return true;	
 	}
 	if(val.length == val.match(" ")){
-		alert("5");
 		return true;
 	}
 	return false;
-	
 }

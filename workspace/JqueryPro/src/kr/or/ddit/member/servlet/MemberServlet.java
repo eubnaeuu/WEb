@@ -57,14 +57,15 @@ private static final long serialVersionUID = 1L;
 			} else if (flag.equals("D")) { // 삭제
 			} else if (flag.equals("CHKID")) { // ID중복검사
 				// ☆
-				System.out.println("파라미터  : "+req.getParameter("memId"));
+				System.out.println("req get 파라미터  : "+req.getParameter("memId"));
 				MemberVO memberVo = checkMemberId(req);
 				int resultCnt = 0;
-				System.out.println(memberVo.getMemId()); // tes0 들어옴
+				System.out.println("memberVO에서 추출 : "+memberVo.getMemId()); // tes0 들어옴
 				if (memberVo != null) {
 					resultCnt = 1;
 				}
 					req.setAttribute("resultCnt", resultCnt);
+					System.out.println("resultCnt : "+req.getAttribute("resultCnt"));
 					RequestDispatcher disp = req.getRequestDispatcher("/html/common/checkResult.jsp");
 					disp.forward(req, resp);
 			}
