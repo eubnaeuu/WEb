@@ -11,7 +11,6 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <!-- <script src="/JqueryPro/js/common/myutils.js"></script> -->
-
 </head>
 <body>
 	<div class="container">
@@ -53,35 +52,35 @@
 						placeholder="생년월일을 입력해주세요" name="memBir">
 				</div>
 			</div>
-<!-- 			<div class="form-group"> -->
-<!-- 				<label class="control-label col-sm-2" for="memHp">전화번호:</label> -->
-<!-- 				<div class="col-sm-7"> -->
-<!-- 					<input type="text" class="form-control" id="memHp" -->
-<!-- 						placeholder="전화번호를 입력해주세요" name="memHp"> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="form-group"> -->
-<!-- 				<label class="control-label col-sm-2" for="memAdd1">주소1:</label> -->
-<!-- 				<div class="col-sm-2"> -->
-<!-- 					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1"> -->
-<!-- 				</div> -->
-<!-- 					 Trigger the modal with a button -->
-<!--   				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">주소찾기</button> -->
-<!-- 				<div class="col-sm-5"> -->
-<!-- 					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1"> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-sm-10"> -->
-<!-- 					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1"> -->
-<!-- 				</div> -->
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="memHp">전화번호:</label>
+				<div class="col-sm-7">
+					<input type="text" class="form-control" id="memHp"
+						placeholder="전화번호를 입력해주세요" name="memHp">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="memAdd1">주소1:</label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1">
+				</div>
+					 Trigger the modal with a button
+  				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="tmp()">주소찾기</button>
+				<div class="col-sm-5">
+					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1">
+				</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1">
+				</div>
 						
-<!-- 			</div> -->
-<!-- 			<div class="form-group"> -->
-<!-- 				<label class="control-label col-sm-2" for="memAdd2">상세주소:</label> -->
-<!-- 				<div class="col-sm-7"> -->
-<!-- 					<input type="text" class="form-control" id="memAdd2" -->
-<!-- 						placeholder="건물번호,뭐라무러ㅏ.." name="memAdd2"> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="memAdd2">상세주소:</label>
+				<div class="col-sm-7">
+					<input type="text" class="form-control" id="memAdd2"
+						placeholder="건물번호,뭐라무러ㅏ.." name="memAdd2">
+				</div>
+			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memZip">우편번호:</label>
 				<div class="col-sm-7">
@@ -123,15 +122,15 @@
 				<label class="control-label col-sm-2" for="memJob">직업:</label>
 				<div class="col-sm-7">
 					<select class="form-control" id="memLike" name="memLike">
-						<option val="01">프로그래머</option>
-						<option val="02">퍼블리셔</option>
-						<option val="03">프로게이머</option>
-						<option val="04">선생님</option>
-						<option val="05">학생</option>
-						<option val="06">공무원</option>
-						<option val="07">군인</option>
-						<option val="08">전업주부</option>
-						<option val="09">기타</option>
+<!-- 						<option val="01">프로그래머</option> -->
+<!-- 						<option val="02">퍼블리셔</option> -->
+<!-- 						<option val="03">프로게이머</option> -->
+<!-- 						<option val="04">선생님</option> -->
+<!-- 						<option val="05">학생</option> -->
+<!-- 						<option val="06">공무원</option> -->
+<!-- 						<option val="07">군인</option> -->
+<!-- 						<option val="08">전업주부</option> -->
+<!-- 						<option val="09">기타</option> -->
 					</select>
 				</div>
 			</div>
@@ -194,24 +193,66 @@
   <!-- Model End -->
 </body>
 <script type="text/javascript">
-// 	$(document).ready(function(){
-// 		// 직업코드 조회해서 세팅하기
-// 		$.ajax({
-// 			url : ""
-// 			,type : "post"
-// 			,data : {"groupCode" : 'A02'} // 직업코드
-// 			,dataType : "json"
-// 			,success : function(data){
-// 				console.log(data);
-// 				alert("성공");
-// 			}
-// 			,error : function(xhr){
-// 				console.error(xhr);
-// 				alert("오류");
-				
-// 			}
-// 		});		
+
+
+
+// function tmp(){
+// 	$.ajax({
+// 		url : "/JqueryPro/CodeServlet"
+// 		,type : "post"
+// 		,data : {"groupCode" : "A02"} // 직업코드
+// 		,dataType : "json"
+// 		,success : function(data){
+// 			console.log(data);
+// //				makeJobSelect(data);
+// 			alert("성공");
+// 		}
+// 		,error : function(xhr){
+// 			console.error(xhr);
+// 			alert("오류");
+// 		}
 // 	});
+// }
+	$(document).ready(function(){
+		// 직업코드 조회해서 세팅하기
+		$.ajax({
+			url : "/JqueryPro/CodeServlet"
+			,type : "post"
+			,data : {"groupCode" : "A02"} // 직업코드
+			,dataType : "json"
+			,success : function(data){
+				console.log(data);
+				makeJobSelect(data);
+				alert("성공");
+			}
+			,error : function(xhr){
+				console.error(xhr);
+				alert("오류");
+				
+			}
+		});		
+	});
+	
+	function makeJobSelect(data){
+		var strHtml = "";
+		//방법1
+// 		$("#memJob").html();
+		//방법2
+// 		$("#memJob").empty();
+// 		$("#memJob").append();
+		
+		for(i=0; i<data.length; i++){
+			strHtml += "<option val="
+						+ data[i].value
+						+">"
+						+ data[i].name
+						+"</option>";
+		}
+		console.log(strHtml);
+		$("#memJob").html(strHtml);
+	}
+// 	<option val="09">기타</option>
+	
 	
 	// DB에서 중복검사 수행
 	function checkId() {
@@ -242,10 +283,10 @@
 			,dataType : "json"
 			,success : function(data) {
 				console.log(data);
-				if (data[0].get == 0) {
-				} else {
-					alert("중복되었습니다");
-				}
+// 				if (data[0].get == 0) {
+// 				} else {
+// 					alert("중복되었습니다");
+// 				}
 // 				if (data.getElementsByTagName("resultCnt") == 0) {
 // 					chkid(data.getElementsByTagName("resultCnt"));
 // 				} else {
@@ -259,7 +300,7 @@
 	}
 	
 	function isEmpty(val){
-		alert("0");
+		alert("empty 실행중..");
 		//val이 빈 값이거나 null이거나 undefined이거나 " ", "    " 등 인 경우
 		if(val == null){
 			alert("1");

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.ddit.common.service.CodeService;
 import kr.or.ddit.common.vo.CodeVO;
-import kr.or.ddit.member.vo.MemberVO;
 
 @WebServlet("/CodeServlet")
 public class CodeServlet extends HttpServlet {
@@ -38,7 +37,7 @@ public class CodeServlet extends HttpServlet {
 		List<CodeVO> list = codeService.retrieveCodeList(codeVo);
 			
 		req.setAttribute("list", list);
-		RequestDispatcher  disp = req.getRequestDispatcher("/html/member/memberListResult.jsp");
+		RequestDispatcher  disp = req.getRequestDispatcher("/html/common/codeListResult.jsp");
 		disp.forward(req, resp);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

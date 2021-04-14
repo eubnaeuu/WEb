@@ -13,11 +13,6 @@ private CodeDao dao;
 			dao = new CodeDao();
 		}
 	}
-	
-	
-	
-	
-	
 	public List<CodeVO> retrieveCodeList(CodeVO codeVo) throws SQLException {
 		
 		return dao.retrieveCodeList(codeVo);

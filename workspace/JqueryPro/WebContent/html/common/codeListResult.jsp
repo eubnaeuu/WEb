@@ -3,18 +3,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
-List <CodeVO> list = request.getAttribute("list");
-
+List <CodeVO> list = (List<CodeVO>)request.getAttribute("list");
 %>
 [
 <%
 for(int i=0; i < list.size() ; i++){
-	%>{<%
-	list.get(i).getCode();
-	%>,<%
-	list.get(i).getCodeName();
-	%>,<%
-}
-	 %>
+	if(i > 0){
+		%>,<%
+	}
+	%>
+	{
+	"value" : "<%=list.get(i).getCode()%>"
+	,"name" : "<%=list.get(i).getCodeName()%>"
+	}
+	<%
+	}
+	%>
 ]
 
