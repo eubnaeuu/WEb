@@ -23,16 +23,17 @@ $(document).ready(function() {
 	// 취미코드 조회해서 세팅
 function initSelect(){
 	var strId= [];
-	var param;
-	param ={"flag" : "init"};
+//	var param;
+//	param ={"flag" : "init"};
 	$.ajax({
 		url : "/JqueryPro/CodeServlet"
 		,type : "post"
-		,data : param
+//		,data : param
 	,dataType : "json"
 	,success : function(data) {
-		makeSelect(data);
-//		alert("성공");
+		console.log(data);
+//		makeSelect(data);
+		alert("성공");
 	}
 	,error : function(xhr) {
 		console.error(xhr);
@@ -54,19 +55,19 @@ function makeSelect(data){
 		$.ajax({
 			url : "/JqueryPro/CodeServlet"
 			,type : "post"
-			,data : {
-				"groupCode" : data[i].get("groupCode")
+//			,data : {
+//				"groupCode" : data[i].get("groupCode")
+//			}
+			,dataType : "json"
+			,success : function(data) {
+				console.log(data);
+//				makemakeSelect(data);
+//				alert("성공");
 			}
-		,dataType : "json",
-		success : function(data) {
-//			console.log(data);
-			makemakeSelect(data);
-//			alert("성공");
-		}
-		,error : function(xhr) {
-			console.error(xhr);
-			alert("오류");
-		}
+			,error : function(xhr) {
+				console.error(xhr);
+				alert("오류");
+			}
 		});
 	};
 }
@@ -95,47 +96,9 @@ function makemakeSelect(data){
 		
 	}
 	 		console.log(strHtml);
-	if($("select").attr("title").equlas(strId)){
-		$("select").attr("title").html(strHtml);
-	}
-}
-
-function makeJobSelect(data) {
-	var strHtml = "";
-	for (i = 0; i < data.length; i++) {
-		strHtml += "<option value=" 
-				+ data[i].code 
-				+ ">" + data[i].codeName
-				+ "</option>";
-	}
-	// 		console.log(strHtml);
-	$("#memJob").html(strHtml);
-}
-
-function makeMemorialTypeSelect(data) {
-	var strHtml = "";
-	for (i = 0; i < data.length; i++) {
-		strHtml += "<option value=" 
-				+ data[i].code 
-				+ ">" 
-				+ data[i].codeName
-				+ "</option>";
-	}
-//	console.log(strHtml);
-	$("#memMemorialType").html(strHtml);
-}
-
-function makeLikeSelect(data) {
-	var strHtml = "";
-
-	for (i = 0; i < data.length; i++) {
-		strHtml += "<label for='memLike" + data[i].description
-				+ "'><input type='checkbox' id='memLike" + data[i].description
-				+ "' name='memLike' value='" + data[i].value + "'>"
-				+ data[i].name + "</label>";
-	}
-	// 		console.log(strHtml);
-	$("#memLikediv").html(strHtml);
+//	if($("select").attr("title").equlas(strId)){
+//		$("select").attr("title").html(strHtml);
+//	}
 }
 
 // DB에서 중복검사 수행
