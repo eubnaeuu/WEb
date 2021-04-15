@@ -181,14 +181,14 @@
           <h4 class="modal-title">주소 검색</h4>
         </div>
         <div class="modal-body">
-          	시 : <select  id="Sido" name="Sido">
-          		<option>선택하세요</option>
+          	시 : <select  id="Sido" name="Sido" onchange="setGugun()">
+          		<option value=0>선택하세요</option>
           		</select>
-          	구 : <select  id="Gugun" name="Gugun" onchange="setGugun()">
-          		<option>선택하세요</option>
+          	구 : <select  id="Gugun" name="Gugun" onchange="setDong()" disabled="disabled">
+          		<option value=0>선택하세요</option>	
           		</select>
-          	동 : <select id="Dong" name="Dong" onchange="setDong()">
-          		<option>선택하세요</option>
+          	동 : <select id="Dong" name="Dong" onchange="setZip()" disabled="disabled">
+          		<option value=0>선택하세요</option>
           		</select>
           <button type="button">검색</button>
         </div>

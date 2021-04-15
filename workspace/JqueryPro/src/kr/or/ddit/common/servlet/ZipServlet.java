@@ -30,25 +30,25 @@ public class ZipServlet extends HttpServlet {
 		
 		ZipService zipService = new ZipService();
 		String flag = req.getParameter("flag");
-		
+		List<ZipVO> list;
 		ZipVO zipVo = new ZipVO();
 		
 		if("GUGUN".equals(flag)) {
 			zipVo.setSido(req.getParameter("sido"));
-			List<ZipVO> list = zipService.retrieveGugunList(zipVo);
+			list = zipService.retrieveGugunList(zipVo);
 		} else if("DONG".equals(flag)) {
 			zipVo.setSido(req.getParameter("sido"));
 			zipVo.setGugun(req.getParameter("gugun"));
-			List<ZipVO> list = zipService.retrieveDongList(zipVo);
+			list = zipService.retrieveDongList(zipVo);
 		} else if("ZIP".equals(flag)) {
 			zipVo.setSido(req.getParameter("sido"));
 			zipVo.setGugun(req.getParameter("gugun"));
 			zipVo.setDong(req.getParameter("dong"));
-			List<ZipVO> list = zipService.retrieveZipList(zipVo);
+			list = zipService.retrieveZipList(zipVo);
 		} else {
-			List<ZipVO> list = zipService.retrieveSidoList();
+			list = zipService.retrieveSidoList();
 		}
-			
+		
 		req.setAttribute("list", list);
 		RequestDispatcher  disp = req.getRequestDispatcher("/html/common/zipListResult.jsp");
 		disp.forward(req, resp);

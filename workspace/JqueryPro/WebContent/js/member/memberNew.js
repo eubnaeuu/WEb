@@ -92,7 +92,7 @@ function makeJobSelect(data) {
 	// 		$("#memJob").append();
 
 	for (i = 0; i < data.length; i++) {
-		strHtml += "<option val='" 
+		strHtml += "<option value='" 
 				+ data[i].value 
 				+ "'>" + data[i].name
 				+ "</option>";
@@ -104,7 +104,7 @@ function makeJobSelect(data) {
 function makeMemorialTypeSelect(data) {
 	var strHtml = "";
 	for (i = 0; i < data.length; i++) {
-		strHtml += "<option val='" 
+		strHtml += "<option value='" 
 				+ data[i].value 
 				+ "'>" 
 				+ data[i].name
@@ -182,7 +182,7 @@ function initCitySelect(){
 	,dataType : "json",
 	success : function(data) {
 		console.log(data);
-		makeCitySelect(data);
+		makeSidoSelect(data);
 		alert("성공");
 	}
 	,error : function(xhr) {
@@ -192,33 +192,82 @@ function initCitySelect(){
 	});
 }
 
-function makeCitySelect(data){
-	var strHtml = "";
+function makeSidoSelect(data){
+	// 방법1)
+	var strHtml = "<option value=''>선택하세요</option>";
 	for (i = 0; i < data.length; i++) {
-		strHtml += "<option val='" 
+		strHtml += "<option value=" 
 				+ data[i].value 
-				+ "'>" 
+				+ ">" 
 				+ data[i].sido
 				+ "</option>";
 	}
 	console.log(strHtml);
 	$("#Sido").html(strHtml);
+	// 방법2)
+	//setGugun();
+	// 방법3)
+	//트리거로 Change호출
 }
 
+function makeGugunSelect(data){
+	if($("#Sido").val()!=''){
+		$("#Gugun").prop("disabled", false);
+	}
+	var strHtml = "<option value=''>선택하세요</option>";
+	for (i = 0; i < data.length; i++) {
+		strHtml += "<option value=" 
+				+ data[i].value 
+				+ ">" 
+				+ data[i].gugun
+				+ "</option>";
+	}
+	console.log(strHtml);
+	$("#Gugun").html(strHtml);
+
+}
+
+function makeDongSelect(data){
+	if($("#Gugun").val()!=''){
+		$("#Dong").prop("disabled", false);
+	}
+	var strHtml = "<option value=''>선택하세요</option>";
+	for (i = 0; i < data.length; i++) {
+		strHtml += "<option value=" 
+				+ data[i].value 
+				+ ">" 
+				+ data[i].dong
+				+ "</option>";
+	}
+	console.log(strHtml);
+	$("#Dong").html(strHtml);
+}
+function makeZipSelect(data){
+	var strHtml = "<option value=''>선택하세요</option>";
+	for (i = 0; i < data.length; i++) {
+		strHtml += "<option value=" 
+				+ data[i].value 
+				+ ">" 
+				+ data[i].dong
+				+ "</option>";
+	}
+	console.log(strHtml);
+//	$("#Dong").html(strHtml);
+}
 function setGugun(){
 	var param;
-	param = {"sido" : $("#sido").val()
-			,"flag" : "GU"
+	param = {"sido" : $("#Sido").val()
+			,"flag" : "GUGUN"
 			};
-	
 	$.ajax({
 		url : "/JqueryPro/ZipServlet"
 		,type : "post"
 		,data : param
-	,dataType : "json",
-	success : function(data) {
+	,dataType : "json"
+	,success : function(data) {
 		console.log(data);
-		alert("성공");
+		makeGugunSelect(data);
+//		alert("성공");
 	}
 	,error : function(xhr) {
 		console.error(xhr);
@@ -229,8 +278,8 @@ function setGugun(){
 
 function setDong(){
 	var param;
-	param = {"sido" : $("#sido").val()
-			,"gugun" : $("#gugun").val()
+	param = {"sido" : $("#Sido").val()
+			,"gugun" : $("#Gugun").val()
 			,"flag" : "DONG"
 			};
 	$.ajax({
@@ -240,7 +289,8 @@ function setDong(){
 	,dataType : "json",
 	success : function(data) {
 		console.log(data);
-		alert("성공");
+		makeDongSelect(data);
+//		alert("성공");
 	}
 	,error : function(xhr) {
 		console.error(xhr);
@@ -248,13 +298,15 @@ function setDong(){
 	}
 	});
 }
+
 function setZip(){
 	var param;
-	param = {"sido" : $("#sido").val()
-			,"gugun" : $("#gugun").val()
-			,"dong" : $("#dong").val()
+	param = {"sido" : $("#Sido").val()
+			,"gugun" : $("#Gugun").val()
+			,"dong" : $("#Dong").val()
 			,"flag" : "ZIP"
 			};
+	
 	$.ajax({
 		url : "/JqueryPro/ZipServlet"
 		,type : "post"
@@ -262,7 +314,8 @@ function setZip(){
 	,dataType : "json",
 	success : function(data) {
 		console.log(data);
-		alert("성공");
+		makeZipSelect(data);
+//		alert("성공");
 	}
 	,error : function(xhr) {
 		console.error(xhr);
