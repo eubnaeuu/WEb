@@ -12,7 +12,7 @@ for(int i=0; i < list.size() ; i++){
 	%>
 	{
 	"value" : "<%=list.get(i).getGroupCode()%>"
-	"name" : "<%=list.get(i).getGroupCodeName()%>"
+	,"name" : "<%=list.get(i).getGroupCodeName()%>"
 	}
 	<%
 	}

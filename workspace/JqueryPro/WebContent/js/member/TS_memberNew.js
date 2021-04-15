@@ -7,22 +7,22 @@ var loginId = "";
 
 $(document).ready(function() {
 	
-	
-	
 	initSelect();
+	
 	// 취미,직업, 기념일코드 세팅
-	initLikeSelect();
-	initJobSelect();
-	initMemorialSelect();
+//	initLikeSelect();
+//	initJobSelect();
+//	initMemorialSelect();
 
 	// 이메일 수신동의 default 세팅(N)
 	$("#recvEmail_N").prop("checked",true);
 	
 	// 우편번호찾기 화면-시 세팅
-	initCitySelect();
+//	initCitySelect();
 });
 	// 취미코드 조회해서 세팅
 function initSelect(){
+	var strId= [];
 	var param;
 	param ={"flag" : "init"};
 	$.ajax({
@@ -31,7 +31,6 @@ function initSelect(){
 		,data : param
 	,dataType : "json"
 	,success : function(data) {
-		console.log(data);
 		makeSelect(data);
 //		alert("성공");
 	}
@@ -44,19 +43,30 @@ function initSelect(){
 }
 
 function makeSelect(data){
+	var strId;
+	var idx;
 	for(i=0; i<data.length; i++){
-	//data[i].get("value") : 그룹 코드 번호
-	//data[i].get("name") : 그룹 코드 이름    e.g.취미코드
+//	data[i].get("value") : 그룹 코드 번호
+//	data[i].get("name") : 그룹 코드 이름    e.g.취미코드
+//	"취미코드".indexOf("코드") : 2
+//	"취미코드".substr(0,2)
+		if(data[i].get("name").indexOf("코드")!= -1){
+			idx = data[i].get("name").indexOf("코드");
+			strId = data[i].get("name").substr(0,idx);
+		} else {
+			idx = data[i].get("name").indexOf("유형");
+			strId = data[i].get("name").substr(0,idx);
+		}
 		$.ajax({
 			url : "/JqueryPro/CodeServlet"
 			,type : "post"
 			,data : {
 				"groupCode" : data[i].get("value")
-			} 
+			}
 		,dataType : "json",
-		success : function(data) {
+		success : function(data, strId) {
 //			console.log(data);
-			makeSelect(data);
+			makemakeSelect(data, strId);
 //			alert("성공");
 		}
 		,error : function(xhr) {
@@ -66,6 +76,20 @@ function makeSelect(data){
 		});
 	};
 }
+function makemakeSelect(data, strId){
+	var strHtml = "";
+	
+	for (i = 0; i < data.length; i++) {
+		strHtml += "<option value='" 
+				+ data[i].value 
+				+ "'>" + data[i].name
+				+ "</option>";
+	}
+	 		console.log(strHtml);
+	if($("select").attr("title").equlas(strId)){
+		html(strHtml);
+	}
+//}
 
 function makeJobSelect(data) {
 	var strHtml = "";
