@@ -7,30 +7,33 @@ var loginId = "";
 
 $(document).ready(function() {
 	
+	// 취미,직업, 기념일코드 세팅
 	initLikeSelect();
 	initJobSelect();
 	initMemorialSelect();
-	// 이메일 수신동의 default(N)
+
+	
+	// 이메일 수신동의 default 세팅(N)
 	$("#recvEmail_N").prop("checked",true);
 	
+	// 우편번호찾기 화면-시 세팅
+	initCitySelect();
 });
-
 	// 취미코드 조회해서 세팅
 	function initLikeSelect(){
 		$.ajax({
-			url : "/JqueryPro/CodeServlet",
-			type : "post",
-			data : {
+			url : "/JqueryPro/CodeServlet"
+			,type : "post"
+			,data : {
 				"groupCode" : "A01"
 			} // 취미코드
-		,
-		dataType : "json",
+		,dataType : "json",
 		success : function(data) {
-			console.log(data);
+//			console.log(data);
 			makeLikeSelect(data);
-			alert("성공");
-		},
-		error : function(xhr) {
+//			alert("성공");
+		}
+		,error : function(xhr) {
 			console.error(xhr);
 			alert("오류");
 		}
@@ -39,19 +42,19 @@ $(document).ready(function() {
 	// 직업코드 조회해서 세팅
 function initJobSelect(){
 	$.ajax({
-		url : "/JqueryPro/CodeServlet",
-		type : "post",
-		data : {
+		url : "/JqueryPro/CodeServlet"
+		,type : "post"
+		,data : {
 			"groupCode" : "A02"
 		} // 직업코드
-		,
-		dataType : "json",
-		success : function(data) {
-			console.log(data);
+		
+		,dataType : "json"
+		,success : function(data) {
+//			console.log(data);
 			makeJobSelect(data);
-			alert("성공");
-		},
-		error : function(xhr) {
+//			alert("성공");
+		}
+		,error : function(xhr) {
 			console.error(xhr);
 			alert("오류");
 
@@ -61,19 +64,18 @@ function initJobSelect(){
 	// 기념일코드 조회해서 세팅
 function initMemorialSelect(){
 	$.ajax({
-		url : "/JqueryPro/CodeServlet",
-		type : "post",
-		data : {
+		url : "/JqueryPro/CodeServlet"
+		,type : "post"
+		,data : {
 			"groupCode" : "A03"
 		} // 취미코드
-		,
-		dataType : "json",
+		,dataType : "json",
 		success : function(data) {
-			console.log(data);
+//			console.log(data);
 			makeMemorialTypeSelect(data);
-			alert("성공");
-		},
-		error : function(xhr) {
+//			alert("성공");
+		}
+		,error : function(xhr) {
 			console.error(xhr);
 			alert("오류");
 		}
@@ -108,7 +110,7 @@ function makeMemorialTypeSelect(data) {
 				+ data[i].name
 				+ "</option>";
 	}
-	console.log(strHtml);
+//	console.log(strHtml);
 	$("#memMemorialType").html(strHtml);
 }
 
@@ -131,19 +133,19 @@ function checkId() {
 	alert(memId);
 	// 빈값 확인
 	if (isEmpty(memId)) {
-		console.log(memId);
+//		console.log(memId);
 		alert("ID 값이 입력되지 않았습니댜");
 		$("#memId").focus();
 		return;
 	}
-	// // 		유효성 검사 - 영어소문자와 숫자로 구성, 3글자 이상 10글지 이하
-	// 		var regExp = /^[a-Z0-9{3,10}]$/;
-	// 		console.log(regExp);
-	// 		if (!regExp.test(memId)) {
-	// 			alert("ID값이 유효하지 않습니다");
-	// 			$("#memId").focus();
-	// 			return;
-	// 		}
+	 // 		유효성 검사 - 영어소문자와 숫자로 구성, 3글자 이상 10글지 이하
+	 		var regExp = /^[a-z0-9]{3,10}$/;
+//	 		console.log(regExp);
+	 		if (!regExp.test(memId)) {
+	 			alert("ID값이 유효하지 않습니다");
+	 			$("#memId").focus();
+	 			return;
+	 		}
 	// DB에서 중복검사 수행
 	
 	$.ajax({
@@ -155,16 +157,50 @@ function checkId() {
 		},
 		dataType : "json",
 		success : function(data) {
-			console.log(data);
-			console.log(data.resultCnt);
+//			console.log(data);
+//			console.log(data.resultCnt);
 			// 				console.log(typeof data.resultCnt); // String
 			if (data.resultCnt == 0) {
+				alert("사용가능!!");
 			} else {
-				alert("중복되었습니다");
+				alert("중복!!");
 			}
 		},
 		error : function(xhr) {
 			console.error(xhr);
 		}
 	});
+}
+
+function initCitySelect(){
+	$.ajax({
+		url : "/JqueryPro/ZipServlet"
+		,type : "post"
+//		,data : {
+//			"groupCode" : "A01"
+//		} 
+	,dataType : "json",
+	success : function(data) {
+		console.log(data);
+		makeCitySelect(data);
+		alert("성공");
+	}
+	,error : function(xhr) {
+		console.error(xhr);
+		alert("오류");
+	}
+	});
+}
+
+function makeCitySelect(data){
+	var strHtml = "";
+	for (i = 0; i < data.length; i++) {
+		strHtml += "<option val='" 
+				+ data[i].value 
+				+ "'>" 
+				+ data[i].name
+				+ "</option>";
+	}
+	console.log(strHtml);
+	$("#add_si").html(strHtml);
 }
