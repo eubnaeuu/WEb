@@ -25,7 +25,6 @@ $(document).ready(function() {
 function initSelect(){
 	var param;
 	param ={"flag" : "init"};
-	
 	$.ajax({
 		url : "/JqueryPro/CodeServlet"
 		,type : "post"
@@ -47,23 +46,17 @@ function initSelect(){
 function makeSelect(data){
 	for(i=0; i<data.length; i++){
 	//data[i].get("value") : 그룹 코드 번호
-	//data[i].get("value") : 그룹 코드 이름
-	}
-}
-
-
-
-	function initLikeSelect(){
+	//data[i].get("name") : 그룹 코드 이름    e.g.취미코드
 		$.ajax({
 			url : "/JqueryPro/CodeServlet"
 			,type : "post"
 			,data : {
-				"groupCode" : "A01"
-			} // 취미코드
+				"groupCode" : data[i].get("value")
+			} 
 		,dataType : "json",
 		success : function(data) {
 //			console.log(data);
-			makeLikeSelect(data);
+			makeSelect(data);
 //			alert("성공");
 		}
 		,error : function(xhr) {
@@ -71,59 +64,11 @@ function makeSelect(data){
 			alert("오류");
 		}
 		});
-	}
-	// 직업코드 조회해서 세팅
-function initJobSelect(){
-	$.ajax({
-		url : "/JqueryPro/CodeServlet"
-		,type : "post"
-		,data : {
-			"groupCode" : "A02"
-		} // 직업코드
-		
-		,dataType : "json"
-		,success : function(data) {
-//			console.log(data);
-			makeJobSelect(data);
-//			alert("성공");
-		}
-		,error : function(xhr) {
-			console.error(xhr);
-			alert("오류");
-
-		}
-	});
-}
-	// 기념일코드 조회해서 세팅
-function initMemorialSelect(){
-	$.ajax({
-		url : "/JqueryPro/CodeServlet"
-		,type : "post"
-		,data : {
-			"groupCode" : "A03"
-		} // 취미코드
-		,dataType : "json",
-		success : function(data) {
-//			console.log(data);
-			makeMemorialTypeSelect(data);
-//			alert("성공");
-		}
-		,error : function(xhr) {
-			console.error(xhr);
-			alert("오류");
-		}
-	});
-	// 광고메일 수신 여부 기본값 세팅 - 미수신
+	};
 }
 
 function makeJobSelect(data) {
 	var strHtml = "";
-	//방법1
-	// 		$("#memJob").html();
-	//방법2
-	// 		$("#memJob").empty();
-	// 		$("#memJob").append();
-
 	for (i = 0; i < data.length; i++) {
 		strHtml += "<option value='" 
 				+ data[i].value 
