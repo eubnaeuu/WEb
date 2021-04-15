@@ -7,6 +7,46 @@
 			SELECT SIDO
 			FROM TB_ZIP
 			GROUP BY SIDO
-			ORDER BY SIDO;
+			ORDER BY SIDO
 		</select>
+		
+		<select id="retrieveGuGunList" parameterClass="kr.or.ddit.common.vo.ZipVO"  resultClass="kr.or.ddit.common.vo.ZipVO">
+			SELECT 
+				SIDO
+				,GUGUN 
+			FROM TB_ZIP
+			WHERE SIDO = #sido#
+			ORDER BY GUGUN
+		</select>
+		
+		<select id="retrieveDongList" parameterClass="kr.or.ddit.common.vo.ZipVO" resultClass="kr.or.ddit.common.vo.ZipVO">
+			SELECT
+				GUGUN
+				,DONG
+			FROM TB_ZIP
+			WHERE SIDO = #sido#
+			AND GUGUN = #gugun#
+			ORDER BY DONG;
+		</select>
+		
+		<select id="retrieveZipList" parameterClass="kr.or.ddit.common.vo.ZipVO"  resultClass="kr.or.ddit.common.vo.ZipVO">
+			SELECT
+				ZIPCODE  zipcode
+				,SIDO     sido
+				,GUGUN    gugun
+				,DONG     dong
+				,RI       ri
+				,BLDG     bldg
+				,BUNJI    bunji
+				,SEQ      seq
+			FROM TB_ZIP
+			WHERE SIDO = #sido#
+			AND GUGUN = #gugun#
+			AND DONG = #dong#
+			ORDER BY SEQ;
+		</select>
+		
+		
+		
+		
 	</sqlMap>

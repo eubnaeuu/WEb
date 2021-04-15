@@ -198,9 +198,75 @@ function makeCitySelect(data){
 		strHtml += "<option val='" 
 				+ data[i].value 
 				+ "'>" 
-				+ data[i].name
+				+ data[i].sido
 				+ "</option>";
 	}
 	console.log(strHtml);
-	$("#add_si").html(strHtml);
+	$("#Sido").html(strHtml);
+}
+
+function setGugun(){
+	var param;
+	param = {"sido" : $("#sido").val()
+			,"flag" : "GU"
+			};
+	
+	$.ajax({
+		url : "/JqueryPro/ZipServlet"
+		,type : "post"
+		,data : param
+	,dataType : "json",
+	success : function(data) {
+		console.log(data);
+		alert("성공");
+	}
+	,error : function(xhr) {
+		console.error(xhr);
+		alert("오류");
+	}
+	});
+}
+
+function setDong(){
+	var param;
+	param = {"sido" : $("#sido").val()
+			,"gugun" : $("#gugun").val()
+			,"flag" : "DONG"
+			};
+	$.ajax({
+		url : "/JqueryPro/ZipServlet"
+		,type : "post"
+		,data : param
+	,dataType : "json",
+	success : function(data) {
+		console.log(data);
+		alert("성공");
+	}
+	,error : function(xhr) {
+		console.error(xhr);
+		alert("오류");
+	}
+	});
+}
+function setZip(){
+	var param;
+	param = {"sido" : $("#sido").val()
+			,"gugun" : $("#gugun").val()
+			,"dong" : $("#dong").val()
+			,"flag" : "ZIP"
+			};
+	$.ajax({
+		url : "/JqueryPro/ZipServlet"
+		,type : "post"
+		,data : param
+	,dataType : "json",
+	success : function(data) {
+		console.log(data);
+		alert("성공");
+	}
+	,error : function(xhr) {
+		console.error(xhr);
+		alert("오류");
+	}
+	});
 }
