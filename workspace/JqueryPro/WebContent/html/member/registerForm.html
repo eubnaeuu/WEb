@@ -4,13 +4,16 @@
 <title>회원가입 화면</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="/JqueryPro/js/common/myutils.js"></script>
+<script type="text/javascript" src="/JqueryPro/js/member/memberNew.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="/JqueryPro/js/common/myutils.js"></script>
+
 </head>
 <body>
 	<div class="container">
@@ -118,7 +121,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-			<label class="control-label col-sm-2" for="memMail">email 동의여부:</label>
+			<label class="control-label col-sm-2" for="recvEmailYn">email 동의여부:</label>
 <!-- 				<div class="col-sm-offset-2 col-sm-10"> -->
 					<div class="radio">
 						<label for="recvEmail_Y"><input type="radio" class="radio" name="recvEmailYn" id="recvEmail_Y" value="Y" checked>동의</label>
@@ -200,142 +203,4 @@
   </div>
   <!-- Model End -->
 </body>
-<script type="text/javascript">
-
-
-
-	$(document).ready(function(){
-		// 직업코드 조회해서 세팅하기
-		$.ajax({
-			url : "/JqueryPro/CodeServlet"
-			,type : "post"
-			,data : {"groupCode" : "A02"} // 직업코드
-			,dataType : "json"
-			,success : function(data){
-				console.log(data);
-				makeJobSelect(data);
-				alert("성공");
-			}
-			,error : function(xhr){
-				console.error(xhr);
-				alert("오류");
-				
-			}
-		});	
-		$.ajax({
-			url : "/JqueryPro/CodeServlet"
-			,type : "post"
-			,data : {"groupCode" : "A01"} // 취미코드
-			,dataType : "json"
-			,success : function(data){
-				console.log(data);
-				makeLikeSelect(data);
-				alert("성공");
-			}
-			,error : function(xhr){
-				console.error(xhr);
-				alert("오류");
-			}
-		});		
-		
-		$.ajax({
-			url : "/JqueryPro/CodeServlet"
-			,type : "post"
-			,data : {"groupCode" : "A03"} // 취미코드
-			,dataType : "json"
-			,success : function(data){
-				console.log(data);
-				makeMemorialTypeSelect(data);
-				alert("성공");
-			}
-			,error : function(xhr){
-				console.error(xhr);
-				alert("오류");
-			}
-		});		
-	
-	function makeJobSelect(data){
-		var strHtml = "";
-		//방법1
-// 		$("#memJob").html();
-		//방법2
-// 		$("#memJob").empty();
-// 		$("#memJob").append();
-		
-		for(i=0; i<data.length; i++){
-			strHtml += "<option val='"
-						+ data[i].value
-						+"'>"
-						+ data[i].name
-						+"</option>";
-		}
-// 		console.log(strHtml);
-		$("#memJob").html(strHtml);
-	}
-	
-	function makeMemorialTypeSelect(data){
-		var strHtml = "";
-		for(i=0; i<data.length; i++){
-			strHtml += "<option val='"
-						+ data[i].value
-						+"'>"
-						+ data[i].name
-						+"</option>";
-		}
-		console.log(strHtml);
-		$("#memMemorialType").html(strHtml);
-	}
-	
-	function makeLikeSelect(data){
-		var strHtml = "";
-		
-		for(i=0; i<data.length; i++){
-			strHtml += "<label for='memLike"+data[i].description+"'><input type='checkbox' id='memLike"+data[i].description+"' name='memLike' value='"+data[i].value+"'>"+data[i].name+"</label>";
-		}
-// 		console.log(strHtml);
-		$("#memLikediv").html(strHtml);
-	}
-	
-	});
-	
-	// DB에서 중복검사 수행
-	function checkId() {
-		var memId = $("#memId").val();
-		alert(memId);
-		// 빈값 확인
-		if (isEmpty(memId)) {
-			console.log(memId);
-			alert("ID 값이 입력되지 않았습니댜");
-			$("#memId").focus();
-			return;
-		}
-// // 		유효성 검사 - 영어소문자와 숫자로 구성, 3글자 이상 10글지 이하
-// 		var regExp = /^[a-Z0-9{3,10}]$/;
-// 		console.log(regExp);
-// 		if (!regExp.test(memId)) {
-// 			alert("ID값이 유효하지 않습니다");
-// 			$("#memId").focus();
-// 			return;
-// 		}
-		// DB에서 중복검사 수행
-		$.ajax({
-			url : "/JqueryPro/MemberServlet"
-			,type : "post"
-			,data : {'memId' : memId, 'flag' : 'CHKID'}
-			,dataType : "json"
-			,success : function(data) {
-				console.log(data);
-				console.log(data.resultCnt);
-// 				console.log(typeof data.resultCnt); // String
-				if (data.resultCnt == 0) {
-				} else {
-					alert("중복되었습니다");
-				}
-			}
-			,error : function(xhr) {
-				console.error(xhr);
-			}
-		});
-	}
-</script>
 </html>

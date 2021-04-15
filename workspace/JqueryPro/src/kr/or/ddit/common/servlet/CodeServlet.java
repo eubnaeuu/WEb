@@ -39,6 +39,7 @@ public class CodeServlet extends HttpServlet {
 		req.setAttribute("list", list);
 		RequestDispatcher  disp = req.getRequestDispatcher("/html/common/codeListResult.jsp");
 		disp.forward(req, resp);
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
