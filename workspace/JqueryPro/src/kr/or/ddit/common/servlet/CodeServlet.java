@@ -34,18 +34,12 @@ public class CodeServlet extends HttpServlet {
 
 			CodeService codeService = new CodeService();
 			// codeService.retrieveCodeList(codeVo);
-			String flag = req.getParameter("flag");
-			if ("init".equals(flag)) {
-				List<CodeVO> initlist = codeService.retrieveGroupCodeList();
-				req.setAttribute("initlist", initlist);
-				RequestDispatcher initdisp = req.getRequestDispatcher("/html/common/groupcodeListResult.jsp");
-				initdisp.forward(req, resp);
-			} else {
+			
 				List<CodeVO> list = codeService.retrieveCodeList(codeVo);
 				req.setAttribute("list", list);
 				RequestDispatcher disp = req.getRequestDispatcher("/html/common/codeListResult.jsp");
 				disp.forward(req, resp);
-			}
+				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

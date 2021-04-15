@@ -17,8 +17,5 @@ private CodeDao dao;
 		
 		return dao.retrieveCodeList(codeVo);
 	}
-	public List<CodeVO> retrieveGroupCodeList() throws SQLException {
-		return dao.retrieveGroupCodeList();
-	}
 
 }

@@ -50,23 +50,17 @@ function makeSelect(data){
 //	data[i].get("name") : 그룹 코드 이름    e.g.취미코드
 //	"취미코드".indexOf("코드") : 2
 //	"취미코드".substr(0,2)
-		if(data[i].get("name").indexOf("코드")!= -1){
-			idx = data[i].get("name").indexOf("코드");
-			strId = data[i].get("name").substr(0,idx);
-		} else {
-			idx = data[i].get("name").indexOf("유형");
-			strId = data[i].get("name").substr(0,idx);
-		}
+		
 		$.ajax({
 			url : "/JqueryPro/CodeServlet"
 			,type : "post"
 			,data : {
-				"groupCode" : data[i].get("value")
+				"groupCode" : data[i].get("groupCode")
 			}
 		,dataType : "json",
-		success : function(data, strId) {
+		success : function(data) {
 //			console.log(data);
-			makemakeSelect(data, strId);
+			makemakeSelect(data);
 //			alert("성공");
 		}
 		,error : function(xhr) {
@@ -76,27 +70,42 @@ function makeSelect(data){
 		});
 	};
 }
-function makemakeSelect(data, strId){
+function makemakeSelect(data){
 	var strHtml = "";
 	
 	for (i = 0; i < data.length; i++) {
-		strHtml += "<option value='" 
-				+ data[i].value 
-				+ "'>" + data[i].name
+		
+		if(data[i].get("groupCodeName").indexOf("코드")!= -1){
+			idx = data[i].get("groupCodeName").indexOf("코드");
+			strId = data[i].get("groupCodeName").substr(0,idx);
+		} else {
+			idx = data[i].get("groupCodeName").indexOf("유형");
+			strId = data[i].get("groupCodeName").substr(0,idx);
+		}	
+		
+		strHtml += "<option value=" 
+				+ cnt 
+				+ ">" + data[i].codeName
 				+ "</option>";
+		if(i!=data.length-1){
+			if(data[i].get("groupCode")!=data[i-1].get("groupCode")){
+				// ☆   
+			}
+		}
+		
 	}
 	 		console.log(strHtml);
 	if($("select").attr("title").equlas(strId)){
-		html(strHtml);
+		$("select").attr("title").html(strHtml);
 	}
-//}
+}
 
 function makeJobSelect(data) {
 	var strHtml = "";
 	for (i = 0; i < data.length; i++) {
-		strHtml += "<option value='" 
-				+ data[i].value 
-				+ "'>" + data[i].name
+		strHtml += "<option value=" 
+				+ data[i].code 
+				+ ">" + data[i].codeName
 				+ "</option>";
 	}
 	// 		console.log(strHtml);
@@ -106,10 +115,10 @@ function makeJobSelect(data) {
 function makeMemorialTypeSelect(data) {
 	var strHtml = "";
 	for (i = 0; i < data.length; i++) {
-		strHtml += "<option value='" 
-				+ data[i].value 
-				+ "'>" 
-				+ data[i].name
+		strHtml += "<option value=" 
+				+ data[i].code 
+				+ ">" 
+				+ data[i].codeName
 				+ "</option>";
 	}
 //	console.log(strHtml);
