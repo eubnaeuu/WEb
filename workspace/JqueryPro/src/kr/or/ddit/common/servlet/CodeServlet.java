@@ -22,27 +22,30 @@ public class CodeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		super.doPost(req, resp);
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 그룹코드로 코드테이블 조회
 		try {
-		String groupCode = req.getParameter("groupCode");
-		
-		CodeVO codeVo = new CodeVO();
-		codeVo.setGroupCode(groupCode);
-		
-		CodeService codeService = new CodeService();
-//		codeService.retrieveCodeList(codeVo);
-		
-		List<CodeVO> initlist = codeService.retrieveGroupCodeList;
-		List<CodeVO> list = codeService.retrieveCodeList(codeVo);
-		
-		req.setAttribute("list", list);
-		req.setAttribute("initlist", initlist);
-		
-		RequestDispatcher  disp = req.getRequestDispatcher("/html/common/codeListResult.jsp");
-		disp.forward(req, resp);
+			String groupCode = req.getParameter("groupCode");
+
+			CodeVO codeVo = new CodeVO();
+			codeVo.setGroupCode(groupCode);
+
+			CodeService codeService = new CodeService();
+			// codeService.retrieveCodeList(codeVo);
+			String flag = req.getParameter("flag");
+			if ("init".equals(flag)) {
+				List<CodeVO> initlist = codeService.retrieveGroupCodeList();
+				req.setAttribute("initlist", initlist);
+				RequestDispatcher initdisp = req.getRequestDispatcher("/html/common/groupcodeListResult.jsp");
+				initdisp.forward(req, resp);
+			} else {
+				List<CodeVO> list = codeService.retrieveCodeList(codeVo);
+				req.setAttribute("list", list);
+				RequestDispatcher disp = req.getRequestDispatcher("/html/common/codeListResult.jsp");
+				disp.forward(req, resp);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

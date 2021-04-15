@@ -21,7 +21,7 @@ public class CodeDao extends BaseDao {
 	public List<CodeVO> retrieveCodeList(CodeVO codeVo) throws SQLException {
 		return smc.queryForList("code.retrieveCodeList",codeVo);
 	}
-	public List<CodeVO> retrieveGroupCodeList throws SQLException {
+	public List<CodeVO> retrieveGroupCodeList() throws SQLException {
 		return smc.queryForList("code.retrieveGroupCodeList");
 	}
 

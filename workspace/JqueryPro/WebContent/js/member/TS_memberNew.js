@@ -7,6 +7,9 @@ var loginId = "";
 
 $(document).ready(function() {
 	
+	
+	
+	initSelect();
 	// 취미,직업, 기념일코드 세팅
 	initLikeSelect();
 	initJobSelect();
@@ -19,18 +22,18 @@ $(document).ready(function() {
 	initCitySelect();
 });
 	// 취미코드 조회해서 세팅
-function initSlect(){
+function initSelect(){
+	var param;
+	param ={"flag" : "init"};
 	
 	$.ajax({
 		url : "/JqueryPro/CodeServlet"
 		,type : "post"
-		,data : {
-			"groupCode" : "A01"
-		}
-	,dataType : "json",
-	success : function(data) {
-//		console.log(data);
-		makeLikeSelect(data);
+		,data : param
+	,dataType : "json"
+	,success : function(data) {
+		console.log(data);
+		makeSelect(data);
 //		alert("성공");
 	}
 	,error : function(xhr) {
@@ -39,6 +42,13 @@ function initSlect(){
 	}
 	});
 	
+}
+
+function makeSelect(data){
+	for(i=0; i<data.length; i++){
+	//data[i].get("value") : 그룹 코드 번호
+	//data[i].get("value") : 그룹 코드 이름
+	}
 }
 
 
