@@ -20,4 +20,9 @@
 			AND CODE = #code#
 			</isNotEmpty>
 	</select>
+	
+	<select id="retrieveGroupCodeList" resultClass="kr.or.ddit.common.vo.CodeVO">
+		SELECT DISTINCT GROUP_CODE
+		FROM TB_CODE;
+	</select>
 </sqlMap>
