@@ -2,6 +2,13 @@
  * 
  */
 
+/**
+ * 210416
+ * 부모창 데이터 세팅
+ * 부트스트랩 modal
+ * input type="hidden"
+ */
+
 var loginId = "";
 
 $(document).ready(function() {
@@ -17,12 +24,17 @@ $(document).ready(function() {
 	$("#recvEmail_N").prop("checked", true);
 
 	// 우편번호찾기 화면-시 세팅
-	// initCitySelect();
+	 initCitySelect();
 
 	
 	// 아래 두줄의 차이 
 	// $("#tbZipResult tbody").dblclick(function(){
 	//);
+
+});
+
+
+function dblclick(){
 	$("#tbZipResult tbody").on("dblclick","tbody tr", function(){
 		// this ==> tr
 		console.log(this);
@@ -34,11 +46,12 @@ $(document).ready(function() {
 		$("#memZip").val(zipcode);
 		$("#memAdd1").val(addr);
 		
+		// on : 동적 요소 포함 ( e.g. 그 당시 테이블이 없어도 이 후에 생기게 되면 바인딩 O)(계속 추적하는 느낌?)  
+		// dblclick : 동적 요소 미포함   (e.g. 그 당시 테이블이 없다면 바인딩 X) 
 	});
-	
-	// on : 동적 요소 포함 ( e.g. 그 당시 테이블이 없어도 이 후에 생기게 되면 바인딩 O)(계속 추적하는 느낌?)  
-	// dblclick : 동적 요소 미포함   (e.g. 그 당시 테이블이 없다면 바인딩 X) 
-});
+ }
+
+
 // 취미코드 조회해서 세팅
 function initSelect() {
 	var strId = [];
@@ -113,9 +126,7 @@ function makemakeSelect(data) {
 		} else {
 			idx = data[i].groupCodeName.indexOf("유형");
 			strId = data[i].groupCodeName.substr(0, idx);
-			if(strId.equals("취미")){
-				var Eng = Like;
-			} else 
+			// Like 어떻게 할건지?
 			strHtml += "<label for='memLike" + data[i].description
 			+ "'><input type='checkbox' id='memLike" + data[i].description
 			+ "' name='memLike' value='" + data[i].value + "'>"
@@ -128,10 +139,8 @@ function makemakeSelect(data) {
 			}
 
 		}
-		
-
-		
 	}
+	
 	console.log(strHtml);
 	// if($("select").attr("title").equlas(strId)){
 	// $("select").attr("title").html(strHtml);
@@ -206,15 +215,15 @@ function initCitySelect() {
 
 function makeSidoSelect(data) {
 	// 방법1)
-	var strHtml = "<option value=''>선택하세요</option>";
+	var strHtml = "<option val=''>선택하세요</option>";
 	for (i = 0; i < data.length; i++) {
-		strHtml += "<option value=" + data[i].value + ">" + data[i].sido
+		strHtml += "<option val=" + data[i].value + ">" + data[i].sido
 				+ "</option>";
 	}
 	console.log(strHtml);
 	$("#Sido").html(strHtml);
 	// 방법2)
-	// setGugun();
+	 setGugun();
 	// 방법3)
 	// 트리거로 Change호출
 }
@@ -223,9 +232,9 @@ function makeGugunSelect(data) {
 	if ($("#Sido").val() != '') {
 		$("#Gugun").prop("disabled", false);
 	}
-	var strHtml = "<option value=''>선택하세요</option>";
+	var strHtml = "<option val=''>선택하세요</option>";
 	for (i = 0; i < data.length; i++) {
-		strHtml += "<option value=" + data[i].value + ">" + data[i].gugun
+		strHtml += "<option val=" + data[i].value + ">" + data[i].gugun
 				+ "</option>";
 	}
 	console.log(strHtml);
@@ -237,9 +246,9 @@ function makeDongSelect(data) {
 	if ($("#Gugun").val() != '') {
 		$("#Dong").prop("disabled", false);
 	}
-	var strHtml = "<option value=''>선택하세요</option>";
+	var strHtml = "<option val=''>선택하세요</option>";
 	for (i = 0; i < data.length; i++) {
-		strHtml += "<option value=" + data[i].value + ">" + data[i].dong
+		strHtml += "<option val=" + data[i].value + ">" + data[i].dong
 				+ "</option>";
 	}
 	console.log(strHtml);
@@ -247,17 +256,31 @@ function makeDongSelect(data) {
 
 }
 function makeZipTable(data) {
+//	alert("makeZipTable 실행중");
+	// ☆ 
 	$("#divZipResult").show();
-	$("#tbZipResult tbody").empty();
+	
+//	$("#tbZipResult tbody").empty();
+	
 	var strHtml = "";
 	for (i = 0; i < data.length; i++) {
 		// <tr onclick = 'fntest( " 300-301", "대전" , "중구", "문화1동", "1번지" );'>
-		// strHtml += "<tr onclick='fntest( \"" + data[i].sido + "\",
-		// \""+data[i].gugun+"\"+, \""+data[i].dong+"\");'>" // "300-801
-		strHtml += "<tr onclick = 'fntest( " + data[i] + " );'>" // "300-801
-				+ "<td>" + data[i].zipcode + "</td>" + "<td>" + data[i].sido
-				+ " " + data[i].gugun + " " + data[i].dong + " "
-				+ changeEmptyVal(data[i].bunji) + "</td>" + "</tr>";
+		
+//		 strHtml += "<tr onclick='fntest( \"" + data[i].sido + "\",
+//		 \""+data[i].gugun+"\"+, \""+data[i].dong+"\");'>" // "300-801
+		
+//		strHtml += "<tr onclick = 'fntest( " + data[i] + " );'>" // "300-801
+//				+ "<td>" + data[i].zipcode + "</td>" + "<td>" + data[i].sido
+//				+ " " + data[i].gugun + " " + data[i].dong + " "
+//				+ data[i].bunji + "</td>" + "</tr>";
+		
+		strHtml += "<tr>"
+			+ "<td>" + data[i].zipcode + "</td>"
+			+ "<td>" + data[i].sido + " "
+			+ data[i].gugun + " "
+			+ data[i].dong + " " 
+			+ data[i].bunji + "</td>"
+			+ "</tr>";
 	}
 	$("#tbZipResult tbody").html(strHtml);
 	console.log(strHtml);
@@ -332,7 +355,7 @@ function setZip() {
 		dataType : "json",
 		success : function(data) {
 			console.log(data);
-			makeZipSelect(data);
+			makeZipTable(data);
 			// alert("성공");
 		},
 		error : function(xhr) {
@@ -341,3 +364,51 @@ function setZip() {
 		}
 	});
 }
+
+function openZip(){
+	// 시 셀렉트박스 조회하고 초기화
+	initCitySelect();
+	// 테이블 초기화
+	
+	// 주소창(모달창) 여닫기
+	$("#zipModal").modal("hide");
+	$("#zipModal").modal();
+}
+
+
+// 회원정보 저장하기
+function save(){
+	// 회원정보 유효성 체크
+	var result = validate();
+	if(!result){
+		return;
+	}
+	
+	// 사용자에게 컨펌.
+	if(!confirm("저장하시겠습니까?")){
+		return;
+	}
+	
+	//DB에 저장하는 ajax 호출
+	$.ajax({
+		url : "/JqueryPro/MemberServlet"
+		,type : "post"
+		,data : $("#fm").serialize()
+		,dataType : "json"
+		,success : function(data){
+			console.log(data);
+		}
+		,error : function(xhr){
+			console.log(xhr);
+		}
+	});
+}
+
+function validata(){
+	// .... 메시지는 여기서 줌
+	return false;
+	
+	// 체크가 끝나면..
+	return true;
+}
+

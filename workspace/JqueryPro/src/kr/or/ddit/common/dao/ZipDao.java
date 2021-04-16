@@ -22,6 +22,7 @@ public class ZipDao extends BaseDao {
 		return smc.queryForList("zip.retrieveSidoList");
 	}
 	public List<ZipVO> retrieveGugunList(ZipVO zipVo) throws SQLException {
+		System.out.println("★ : "+zipVo.getSido());
 		return smc.queryForList("zip.retrieveGugunList",zipVo);
 	}
 	public List<ZipVO> retrieveDongList(ZipVO zipVo) throws SQLException {

@@ -13,6 +13,12 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+<style>
+ table, td, th {
+ border: 1px solid;
+ }
+
+</style>
 <body>
 	<div class="container">
 		<h2>회원가입</h2>
@@ -60,14 +66,14 @@
 						placeholder="전화번호를 입력해주세요" name="memHp">
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group"">
 				<label class="control-label col-sm-2" for="memAdd1">주소1:</label>
 				<div class="col-sm-2">
-					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1">
+					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1" readonly="readonly">
 				</div>
   				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">주소찾기</button>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1">
+					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1" readonly="readonly">
 				</div>
 				
 				<div class="col-sm-offset-2">
@@ -75,7 +81,6 @@
 						<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1">
 					</div>
 				</div>
-						
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memAdd2">상세주소:</label>
@@ -168,9 +173,10 @@
 
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">제출</button>
+					<button type="button" class="btn btn-default" onclick="save()">제출</button>
 				</div>
 			</div>
+			<input type="hidden" name="flag" value="C" id="formFlag">
 		</form>
 	</div>
 	  <!-- Modal -->
@@ -192,7 +198,7 @@
           	동 : <select id="Dong" name="Dong" onchange="setZip()" disabled="disabled">
           		<option value=0>선택하세요</option>
           		</select>
-          		<div id="divZipresult">
+          		<div id="divZipResult" style="display: none;">
 	          		<table id="tbZipResult">
 	          			<thead>
 		          			<tr>
