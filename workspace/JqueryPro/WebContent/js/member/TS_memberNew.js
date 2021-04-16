@@ -224,9 +224,9 @@ function initCitySelect() {
 
 function makeSidoSelect(data) {
 	// 방법1)
-	var strHtml = "<option val=''>선택하세요</option>";
+	var strHtml = "<option value=''>선택하세요</option>";
 	for (i = 0; i < data.length; i++) {
-		strHtml += "<option val=" + data[i].value + ">" + data[i].sido
+		strHtml += "<option value=" + data[i].value + ">" + data[i].sido
 				+ "</option>";
 	}
 	console.log(strHtml);
@@ -240,6 +240,7 @@ function makeSidoSelect(data) {
 function makeGugunSelect(data) {
 	if ($("#Sido").val() != '') {
 		$("#Gugun").prop("disabled", false);
+		 alert($("#Sido").children().eq($("#Sido").val()));
 	}
 	var strHtml = "<option val=''>선택하세요</option>";
 	for (i = 0; i < data.length; i++) {
@@ -409,9 +410,8 @@ function save(){
 			console.log(data);
 			if(1 == data.resultCnt){
 				// 페이지 이동
-//				changePage();
+				changePage();
 				alert("성공?");
-				initSelect();
 			}
 		}
 		,error : function(xhr){
@@ -424,13 +424,13 @@ function save(){
 function changePage(){
 	
 	// 방법1
-//	window.location.href = "/JqueryPro/html/member/memberList2.html";
+	window.location.href = "/JqueryPro/html/member/registerForm.html";
 	
 	// 방법2
-	var fm = document.getElementById("fm");
-	fm.action = "/JqueryPro/html/member/memberList2.html";
-	fm.method = "post";
-	fm.submit();
+//	var fm = document.getElementById("fm");
+//	fm.action = "/JqueryPro/html/member/registerForm.html";
+//	fm.method = "post";
+//	fm.submit();
 	
 }
 
