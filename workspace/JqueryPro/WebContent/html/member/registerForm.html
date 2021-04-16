@@ -7,6 +7,7 @@
 <script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
 <script type="text/javascript" src="/JqueryPro/js/common/myutils.js"></script>
 <script type="text/javascript" src="/JqueryPro/js/member/TS_memberNew.js"></script>
+<!-- ☆   ?v=1 의미 -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script
@@ -191,6 +192,17 @@
           	동 : <select id="Dong" name="Dong" onchange="setZip()" disabled="disabled">
           		<option value=0>선택하세요</option>
           		</select>
+          		<div id="divZipresult">
+	          		<table id="tbZipResult">
+	          			<thead>
+		          			<tr>
+		          				<th>우편번호</th>
+		          				<th>주소</th>
+		          			</tr>
+	          			</thead>
+	          			<tbody></tbody>
+	          		</table>
+          		</div>
           <button type="button">검색</button>
         </div>
         <div class="modal-footer">
