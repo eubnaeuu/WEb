@@ -24,7 +24,7 @@ $(document).ready(function() {
 	$("#recvEmail_N").prop("checked", true);
 
 	// 우편번호찾기 화면-시 세팅
-//	 initCitySelect();
+	 initCitySelect();
 
 	
 	// 아래 두줄의 차이 
@@ -33,18 +33,16 @@ $(document).ready(function() {
 	 
 	 $("#tbZipResult tbody").on("dblclick", function(){
 		 // this ==> tr
-		 console.log(this);
+		 console.log($(this));
 		 
 //		 alert("더블클릭중");
 		 // ☆ 
 		 
-//		 var tmp0 = $(this);
 //		 var zipcode = $($(this).children("tr:eq(0)").html()).children("td:eq(0)").text();
-		 var zipcode = $(this).children[0];
-//		 var addr = $(this).children;
+		 var addr = $(this).children("td:eq(0)").html();
 		 
-		 console.log(zipcode);
-//		 console.log(addr);
+//		 console.log(zipcode);
+		 console.log(addr);
 		 
 		 // 메인화면(부모창)의 우편번호, 주소 input에 데이터 세팅
 //		 $("#memZip").val(zipcode);
@@ -120,21 +118,18 @@ function makemakeSelect(data) {
 //		console.log(data[i].groupCodeName.indexOf("코드"));
 		
 		if (data[i].groupCodeName.indexOf("코드") != -1) {
-//			console.log("1");
 			idx = data[i].groupCodeName.indexOf("코드");
 			strId = data[i].groupCodeName.substr(0, idx);
-			strHtml += "<option val=" + data[i].cnt + ">" + data[i].codeName
+			strHtml += "<option value=" + data[i].cnt + ">" + data[i].codeName
 			+ "</option>";
 			if (i != (data.length - 1)) {
-//				console.log("2");
+				
 				if (data[i].groupCode != data[i + 1].groupCode) {
-					console.log("3");
 					$("select[title='"+strId+"'").html(strHtml);
-//					$("select[title='직업'").html(strHtml);
-					console.log(strId);
-//					alert($("select[title='"+strId+"'").html());
 					strHtml = "";
 				}
+			} else {
+				$("select[title='"+strId+"'").html(strHtml);
 			}
 		} else {
 			idx = data[i].groupCodeName.indexOf("유형");
@@ -142,13 +137,13 @@ function makemakeSelect(data) {
 			// Like 어떻게 할건지?
 			strHtml += "<label for='memLike" + data[i].description
 			+ "'><input type='checkbox' id='memLike" + data[i].description
-			+ "' name='memLike' value='" + data[i].value + "'>"
-			+ data[i].name + "</label>";
+			+ "' name='memLike' value='" + data[i].cnt + "'>"
+			+ data[i].codeName + "</label>";
 			if (i != (data.length - 1)) {
 				if (data[i].groupCode != data[i + 1].groupCode) {
 					$("div[title='"+strId+"'").html(strHtml);
+					console.log(strHtml);
 					strHtml = "";
-//					console.log(strHtml);
 				}
 			}
 
@@ -402,18 +397,22 @@ function save(){
 //	if(!confirm("저장하시겠습니까?")){
 //		return;
 //	}
-	
+	alert($("#fm").serialize());
+	$("#formFlag").val("C");
 	//DB에 저장하는 ajax 호출
 	$.ajax({
 		url : "/JqueryPro/MemberServlet"
 		,type : "post"
-		,data : $("#formFlag").serialize()
+		,data : $("#fm").serialize()
 		,dataType : "json"
 		,success : function(data){
 			console.log(data);
-			
-			// 페이지 이동
-			changePage();
+			if(1 == data.resultCnt){
+				// 페이지 이동
+//				changePage();
+				alert("성공?");
+				initSelect();
+			}
 		}
 		,error : function(xhr){
 			alert("실패.. 관리자한테 문의 ㄱ")
@@ -425,7 +424,7 @@ function save(){
 function changePage(){
 	
 	// 방법1
-	window.location.href = "/JqueryPro/html/member/memberList2.html";
+//	window.location.href = "/JqueryPro/html/member/memberList2.html";
 	
 	// 방법2
 	var fm = document.getElementById("fm");
