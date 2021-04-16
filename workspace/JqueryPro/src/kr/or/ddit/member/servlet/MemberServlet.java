@@ -1,6 +1,7 @@
 package kr.or.ddit.member.servlet;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.vo.MemberVO;
@@ -69,7 +72,7 @@ private static final long serialVersionUID = 1L;
 					RequestDispatcher disp = req.getRequestDispatcher("/html/common/checkResult.jsp");
 					disp.forward(req, resp);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -82,13 +85,25 @@ private static final long serialVersionUID = 1L;
 		
 	}
 
-	private void createMember(HttpServletRequest req) throws SQLException {
+	private void createMember(HttpServletRequest req) throws Exception {
 		
+		// 기존방식
+//		MemberVO memberVo = new MemberVO();
+//		String memId = req.getParameter("memId");
+//		memberVo.setMemId(memId);
+//		MemberService service = new MemberService();
+//		service.createMember(memberVo);
+		
+		// 새로운 방식 (req.map을 가지고 와서 memberVO에 넣어줘)
 		MemberVO memberVo = new MemberVO();
-		String memId = req.getParameter("memId");
-		String memName = req.getParameter("memName");
+		BeanUtils.populate(memberVo, req.getParameterMap());
+		
+		String memHp = memberVo.getMemHp().replaceAll("-","");
+		memberVo.setMemHp(memHp);
+		
 		MemberService service = new MemberService();
 		service.createMember(memberVo);
+
 		
 		// 그 외 정보들 VO에 세팅...
 		

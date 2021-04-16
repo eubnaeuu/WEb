@@ -38,7 +38,7 @@
 			, #memMemorialType#
 			, #memMemorialDate#
 			, #memComment#
-			, #memDelete#
+			, 'N'
 		)
 	</insert>
 	<update id="updateMember"></update>

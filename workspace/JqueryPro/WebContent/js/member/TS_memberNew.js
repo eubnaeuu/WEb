@@ -24,32 +24,41 @@ $(document).ready(function() {
 	$("#recvEmail_N").prop("checked", true);
 
 	// 우편번호찾기 화면-시 세팅
-	 initCitySelect();
+//	 initCitySelect();
 
 	
 	// 아래 두줄의 차이 
 	// $("#tbZipResult tbody").dblclick(function(){
 	//);
+	 
+	 $("#tbZipResult tbody").on("dblclick", function(){
+		 // this ==> tr
+		 console.log(this);
+		 
+//		 alert("더블클릭중");
+		 // ☆ 
+		 
+//		 var tmp0 = $(this);
+//		 var zipcode = $($(this).children("tr:eq(0)").html()).children("td:eq(0)").text();
+		 var zipcode = $(this).children[0];
+//		 var addr = $(this).children;
+		 
+		 console.log(zipcode);
+//		 console.log(addr);
+		 
+		 // 메인화면(부모창)의 우편번호, 주소 input에 데이터 세팅
+//		 $("#memZip").val(zipcode);
+//		 $("#memAdd1").val(addr);
+		 
+		 // on : 동적 요소 포함 ( e.g. 그 당시 테이블이 없어도 이 후에 생기게 되면 바인딩 O)(계속 추적하는 느낌?)  
+		 // dblclick : 동적 요소 미포함   (e.g. 그 당시 테이블이 없다면 바인딩 X) 
+	 });
 
 });
 
 
-function dblclick(){
-	$("#tbZipResult tbody").on("dblclick","tbody tr", function(){
-		// this ==> tr
-		console.log(this);
-		
-		var zipcode = $(this).children("td:eq(0)").text();
-		var addr = $(this).children("td:eq(1)").text();
-		
-		// 메인화면(부모창)의 우편번호, 주소 input에 데이터 세팅
-		$("#memZip").val(zipcode);
-		$("#memAdd1").val(addr);
-		
-		// on : 동적 요소 포함 ( e.g. 그 당시 테이블이 없어도 이 후에 생기게 되면 바인딩 O)(계속 추적하는 느낌?)  
-		// dblclick : 동적 요소 미포함   (e.g. 그 당시 테이블이 없다면 바인딩 X) 
-	});
- }
+
+
 
 
 // 취미코드 조회해서 세팅
@@ -66,7 +75,7 @@ function initSelect() {
 		success : function(data) {
 			// console.log(data);
 			makeSelect(data);
-			alert("성공");
+//			alert("성공");
 		},
 		error : function(xhr) {
 			console.error(xhr);
@@ -79,12 +88,10 @@ function initSelect() {
 function makeSelect(data) {
 	var strId;
 	var idx;
-	for (i = 0; i < data.length; i++) {
 		// data[i].get("value") : 그룹 코드 번호
 		// data[i].get("name") : 그룹 코드 이름 e.g.취미코드
 		// "취미코드".indexOf("코드") : 2
 		// "취미코드".substr(0,2)
-
 		$.ajax({
 			url : "/JqueryPro/CodeServlet",
 			type : "post"
@@ -104,22 +111,28 @@ function makeSelect(data) {
 				alert("오류");
 			}
 		});
-	}
-	;
 }
 function makemakeSelect(data) {
 	var strHtml = "";
 
 	for (i = 0; i < data.length; i++) {
-
+		
+//		console.log(data[i].groupCodeName.indexOf("코드"));
+		
 		if (data[i].groupCodeName.indexOf("코드") != -1) {
+//			console.log("1");
 			idx = data[i].groupCodeName.indexOf("코드");
 			strId = data[i].groupCodeName.substr(0, idx);
-			strHtml += "<option value=" + data[i].cnt + ">" + data[i].codeName
+			strHtml += "<option val=" + data[i].cnt + ">" + data[i].codeName
 			+ "</option>";
 			if (i != (data.length - 1)) {
+//				console.log("2");
 				if (data[i].groupCode != data[i + 1].groupCode) {
-					$("select[title='"+strId+"'").html();
+					console.log("3");
+					$("select[title='"+strId+"'").html(strHtml);
+//					$("select[title='직업'").html(strHtml);
+					console.log(strId);
+//					alert($("select[title='"+strId+"'").html());
 					strHtml = "";
 				}
 			}
@@ -133,15 +146,16 @@ function makemakeSelect(data) {
 			+ data[i].name + "</label>";
 			if (i != (data.length - 1)) {
 				if (data[i].groupCode != data[i + 1].groupCode) {
-					$("div[title='"+strId+"'").html();
+					$("div[title='"+strId+"'").html(strHtml);
 					strHtml = "";
+//					console.log(strHtml);
 				}
 			}
 
 		}
 	}
+//	console.log(strHtml);
 	
-	console.log(strHtml);
 	// if($("select").attr("title").equlas(strId)){
 	// $("select").attr("title").html(strHtml);
 	// }
@@ -204,7 +218,7 @@ function initCitySelect() {
 		success : function(data) {
 			console.log(data);
 			makeSidoSelect(data);
-			alert("성공");
+//			alert("성공");
 		},
 		error : function(xhr) {
 			console.error(xhr);
@@ -379,29 +393,46 @@ function openZip(){
 // 회원정보 저장하기
 function save(){
 	// 회원정보 유효성 체크
-	var result = validate();
-	if(!result){
-		return;
-	}
-	
-	// 사용자에게 컨펌.
-	if(!confirm("저장하시겠습니까?")){
-		return;
-	}
+//	var result = validate();
+//	if(!result){
+//		return;
+//	}
+//	
+//	// 사용자에게 컨펌.
+//	if(!confirm("저장하시겠습니까?")){
+//		return;
+//	}
 	
 	//DB에 저장하는 ajax 호출
 	$.ajax({
 		url : "/JqueryPro/MemberServlet"
 		,type : "post"
-		,data : $("#fm").serialize()
+		,data : $("#formFlag").serialize()
 		,dataType : "json"
 		,success : function(data){
 			console.log(data);
+			
+			// 페이지 이동
+			changePage();
 		}
 		,error : function(xhr){
+			alert("실패.. 관리자한테 문의 ㄱ")
 			console.log(xhr);
 		}
 	});
+}
+
+function changePage(){
+	
+	// 방법1
+	window.location.href = "/JqueryPro/html/member/memberList2.html";
+	
+	// 방법2
+	var fm = document.getElementById("fm");
+	fm.action = "/JqueryPro/html/member/memberList2.html";
+	fm.method = "post";
+	fm.submit();
+	
 }
 
 function validata(){
