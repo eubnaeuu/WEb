@@ -240,7 +240,7 @@ function makeSidoSelect(data) {
 function makeGugunSelect(data) {
 	if ($("#Sido").val() != '') {
 		$("#Gugun").prop("disabled", false);
-		 alert($("#Sido").children().eq($("#Sido").val()));
+		// $("#Sido").children().eq($("#Sido").val()).html() : 도시이름
 	}
 	var strHtml = "<option val=''>선택하세요</option>";
 	for (i = 0; i < data.length; i++) {
