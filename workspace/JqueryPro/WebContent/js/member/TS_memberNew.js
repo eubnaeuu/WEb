@@ -15,11 +15,6 @@ $(document).ready(function() {
 
 	initSelect();
 
-	// 취미,직업, 기념일코드 세팅
-	// initLikeSelect();
-	// initJobSelect();
-	// initMemorialSelect();
-
 	// 이메일 수신동의 default 세팅(N)
 	$("#recvEmail_N").prop("checked", true);
 
