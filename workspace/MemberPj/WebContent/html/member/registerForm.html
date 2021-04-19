@@ -32,7 +32,7 @@
 				<label class="control-label col-sm-2" for="memId">아이디:</label>
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="memId"
-						placeholder="6~12자의 마무아라마" name="memId" required="required">
+						placeholder="영문 소문자와 숫자 입력 (4~12 글자)" name="memId" required="required" onchange="checkIdspan()">
 				</div>
 				<button type="button" id="chkId" class="btn btn-sm" onclick="checkId()">중복검사</button>
 				<span id="idspan"></span>
@@ -41,21 +41,24 @@
 				<label class="control-label col-sm-2" for="memName">이름:</label>
 				<div class="col-sm-7">
 					<input type="text" class="form-control" id="memName"
-						placeholder="이름을 입력해주세요" name="memName" required="required">
+						placeholder="한글 (2~5글자)" name="memName" required="required" onchange="checkNamespan()">
+						<span id="namespan"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memBir">생년월일:</label>
 				<div class="col-sm-7">
 					<input type="date" class="form-control" id="memBir"
-						placeholder="생년월일을 입력해주세요" name="memBir" required="required">
+						placeholder="생년월일 입력(10살 이상만 가입가능)" name="memBir" required="required"  onchange="checkBirspan()">
+						<span id="birthspan"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memPass">비밀번호:</label>
 				<div class="col-sm-7">
 					<input type="password" class="form-control" id="memPass"
-						placeholder="비밀번호를 입력해주세요" name="memPass" required="required">
+						placeholder="영문 소문자, 영문 대문자, 숫자, 특수문 각 1개 이상(8~12 글자)"  onchange="memPass" required="required" onchange="checkPassspan()">
+						<span id="passspan"></span>
 				</div>
 			</div>
 		
@@ -63,22 +66,25 @@
 				<label class="control-label col-sm-2" for="memHp">휴대폰 번호:</label>
 				<div class="col-sm-7">
 					<input type="text" class="form-control" id="memHp"
-						placeholder="전화번호를 입력해주세요" name="memHp" required="required">
+						placeholder="전화번호를 입력해주세요" name="memHp" required="required" onchange="checkHpspan()">
+						<span id="hpspan"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memMail">이메일:</label>
 				<div class="col-sm-7">
 					<input type="text" class="form-control" id="memMail"
-						placeholder="예) abcdefg@gmail.com" name="memMail" required="required">
+						placeholder=" 이메일을 입력해주세요" name="memMail" required="required" onchange="checkMailspan()">
+						<span id="emailspan"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memZip">우편번호</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="memZip" placeholder="주소를 입력해주세요" name="memZip" onclick="openZip()" required="required">
+					<input type="text" class="form-control" id="memZip" placeholder="주소를 입력해주세요" name="memZip" onchange="checkAdd()" onclick="openZip()" required="required">
 				</div>
   				<button type="button" class="btn btn-sm" data-toggle="modal" data-target="#zipModal">번호검색</button>
+  				<span id="addspan"></span>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memAdd1">주    소</label>
@@ -89,7 +95,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memAdd2">상세주소</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" id="memAdd2" placeholder="주소를 입력해주세요" name="memAdd2" onclick="openZip()" required="required">
+					<input type="text" class="form-control" id="memAdd2" placeholder="주소를 입력해주세요" name="memAdd2" required="required">
 				</div>
 			</div>
 		
@@ -111,10 +117,14 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">주소 검색</h4>
         </div>
-        <div class="modal-body">동입력 :	  
-        	<div class="col-sm-6">
-				<input type="text" class="form-control" id="inputDong"><button type="button" onclick="setZip()">검색</button>				
+        <div class="modal-body">
+        <div class="col-sm-5">
+        <span class="float-left">동입력 :</span>
+<!--         		<div class="col-md-offset-2 row" > -->
+					<input class="float-right " type="text" class="form-control" id="inputDong">
+<!-- 				</div>				 -->
 			</div>
+				<button type="button" onclick="setZip()" class=" btn float-right">검색</button>	        
           		<div id="divZipResult" style="display: none;">
 	          		<table id="tbZipResult" class="table table-hover">
 	          			<thead>
