@@ -19,8 +19,8 @@ private ZipDao dao;
 	public List<ZipVO> retrieveGugunList(ZipVO zipVo) throws SQLException {
 		return dao.retrieveGugunList(zipVo);
 	}
-	public List<ZipVO> retrieveDongList(ZipVO zipVo) throws SQLException {
-		return dao.retrieveDongList(zipVo);
+	public List<ZipVO> retrieveDongList(String str) throws SQLException {
+		return dao.retrieveDongList(str);
 	}
 	public List<ZipVO> retrieveZipList(ZipVO zipVo) throws SQLException {
 		return dao.retrieveZipList(zipVo);

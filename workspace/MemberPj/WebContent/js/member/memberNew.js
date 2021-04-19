@@ -211,6 +211,7 @@ function makeZipTable(data) {
 //				+ " " + data[i].gugun + " " + data[i].dong + " "
 //				+ data[i].bunji + "</td>" + "</tr>";
 		
+		
 		if(data[i].bunji == "null"){
 			data[i].bunji = "";
 		}

@@ -27,27 +27,12 @@ public class ZipServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 		
-		
+		String str = req.getParameter("dong");
 		ZipService zipService = new ZipService();
 		String flag = req.getParameter("flag");
 		List<ZipVO> list;
 		ZipVO zipVo = new ZipVO();
-		
-		if("GUGUN".equals(flag)) {
-			zipVo.setSido(req.getParameter("sido"));
-			list = zipService.retrieveGugunList(zipVo);
-		} else if("DONG".equals(flag)) {
-			zipVo.setSido(req.getParameter("sido"));
-			zipVo.setGugun(req.getParameter("gugun"));
-			list = zipService.retrieveDongList(zipVo);
-		} else if("ZIP".equals(flag)) {
-			zipVo.setSido(req.getParameter("sido"));
-			zipVo.setGugun(req.getParameter("gugun"));
-			zipVo.setDong(req.getParameter("dong"));
-			list = zipService.retrieveZipList(zipVo);
-		} else {
-			list = zipService.retrieveSidoList();
-		}
+			list = zipService.retrieveDongList(str);
 		
 		req.setAttribute("list", list);
 		RequestDispatcher  disp = req.getRequestDispatcher("/html/common/zipListResult.jsp");
