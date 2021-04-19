@@ -2,16 +2,14 @@
  * 
  */
 
-
-// init-select  
 /**
- * 
+ * init-Select
+ * select의 option값들을 입력하여 세팅
  * @param groupCode 해당 그룹코드
- * @param title 넣고자 하는 요소의 title값
- * @returns
+ * @param title 넣고자 하는 select 요소의 title값
+ * @returns <option>~</option>
  */
 function initSelect(groupCode, title) {
-	alert("initSelect 실행중" +"groupCode : "+groupCode +"title : "+ title);
 	
 	var param = {"groupCode" : groupCode};
 	$.ajax({
@@ -41,9 +39,14 @@ function makeSelect(data, title) {
 	
 }
 
-//init-check
+/**
+ * init-Check
+ * checkbox값들을 입력하여 세팅
+ * @param groupCode 해당 그룹코드
+ * @param title 넣고자 하는 요소 div의 title값
+ * @returns <label<input type="checkbox">>codeName</label>
+ */
 function initCheck(groupCode, title) {
-	alert("initCheck 실행중    , groupCode : "+groupCode +"title : "+ title);
 	
 	var param = {"groupCode" : groupCode};
 	$.ajax({

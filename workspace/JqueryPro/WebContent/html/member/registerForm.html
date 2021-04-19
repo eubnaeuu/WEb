@@ -17,8 +17,11 @@
 </head>
 <style>
  table, td, th {
- border: 1px solid;
- text-align: center;
+ 	border: 1px solid;
+ 	text-align: center;
+ }
+ table thead, button {
+ 	background-color: #C8D8E5;
  }
 </style>
 <body>
@@ -31,7 +34,7 @@
 					<input type="text" class="form-control" id="memId"
 						placeholder="6~12자의 마무아라마" name="memId">
 				</div>
-				<button type="button" id="chkId" class="btn btn-info btn-sm" onclick="checkId()">중복검사</button>
+				<button type="button" id="chkId" class="btn btn-sm" onclick="checkId()">중복검사</button>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memPass">비밀번호:</label>
@@ -66,7 +69,7 @@
 				<div class="col-sm-2">
 					<input type="text" class="form-control" id="memZip" placeholder="주소를 입력해주세요" name="memZip" onclick="openZip()">
 				</div>
-  				<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#zipModal">주소찾기</button>
+  				<button type="button" class="btn btn-sm" data-toggle="modal" data-target="#zipModal">주소찾기</button>
 				<div class="col-sm-5">
 					<input type="text" class="form-control" id="memAdd1"placeholder="주소를 입력해주세요" name="memAdd1" onclick="openZip()">
 				</div>
@@ -105,26 +108,16 @@
 			</div>
 			<div class="form-group">
 			<label class="control-label col-sm-2" for="recvEmailYn">email 동의여부:</label>
-<!-- 				<div class="col-sm-offset-2 col-sm-10"> -->
 					<div class="radio">
 						<label for="recvEmail_Y"><input type="radio" class="radio" name="recvEmailYn" id="recvEmail_Y" value="Y" checked>동의</label>
 						<label for="recvEmail_N"><input type="radio" class="radio" name="recvEmailYn" id="recvEmail_N" value="N">거부</label>
 					</div>
-<!-- 				</div> -->
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memJob">직업:</label>
 				<div class="col-sm-7">
 					<select class="form-control" id="memJob" name="memJob" title="memJob">
 <!-- 						<option val="01">프로그래머</option> -->
-<!-- 						<option val="02">퍼블리셔</option> -->
-<!-- 						<option val="03">프로게이머</option> -->
-<!-- 						<option val="04">선생님</option> -->
-<!-- 						<option val="05">학생</option> -->
-<!-- 						<option val="06">공무원</option> -->
-<!-- 						<option val="07">군인</option> -->
-<!-- 						<option val="08">전업주부</option> -->
-<!-- 						<option val="09">기타</option> -->
 
 					</select>
 				</div>
@@ -132,14 +125,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memLike">취미:</label>
 				<div class="col-sm-7" id="memLikediv" title="memLike">
-<!-- 					<label for="memLikeSwim"><input type="checkbox" id="memLikeSwim" name="memLike" value="01">수영 </label> -->
-<!-- 					<label for="memLikeJogging"><input type="checkbox" id="memLikeJogging" name="memLike" value="02">조깅 </label> -->
-<!-- 					<label for="memLikeHiking"><input type="checkbox" id="memLikeHiking" name="memLike" value="03">등산 </label> -->
-<!-- 					<label for="memLikeGame"><input type="checkbox" id="memLikeGame" name="memLike" value="04">게임 </label> -->
-<!-- 					<label for="memLikePiano"><input type="checkbox" id="memLikePiano" name="memLike" value="05">피아노</label> -->
-<!-- 					<label for="memLikeCook"><input type="checkbox" id="memLikeCook" name="memLike" value="06">요리 </label> -->
-<!-- 					<label for="memLikeSoccer"><input type="checkbox" id="memLikeSoccer" name="memLike" value="07">축구 </label> -->
-					<label for="memLikeEtc"><input type="checkbox" id="memLikeEtc" name="memLike" value="08">기타 </label>
+<!-- 					<label for="memLikeEtc"><input type="checkbox" id="memLikeEtc" name="memLike" value="08">기타 </label> -->
 				</div>                                                                             
 			</div>
 			<div class="form-group">
