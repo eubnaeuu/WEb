@@ -16,7 +16,7 @@
 				,BUNJI    bunji
 				,SEQ      seq
 			FROM TB_ZIP
-			WHERE DONG like #str#
+			WHERE DONG like '%' || #str# || '%'
 			ORDER BY SEQ
 		</select>
 	</sqlMap>

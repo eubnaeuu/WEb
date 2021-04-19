@@ -13,17 +13,8 @@ private ZipDao dao;
 			dao = new ZipDao();
 		}
 	}
-	public List<ZipVO> retrieveSidoList() throws SQLException {
-		return dao.retrieveSidoList();
-	}
-	public List<ZipVO> retrieveGugunList(ZipVO zipVo) throws SQLException {
-		return dao.retrieveGugunList(zipVo);
-	}
-	public List<ZipVO> retrieveDongList(ZipVO zipVo) throws SQLException {
-		return dao.retrieveDongList(zipVo);
-	}
-	public List<ZipVO> retrieveZipList(ZipVO zipVo) throws SQLException {
-		return dao.retrieveZipList(zipVo);
+	public List<ZipVO> retrieveZipList(String str) throws SQLException {
+		return dao.retrieveZipList(str);
 	}
 
 }
