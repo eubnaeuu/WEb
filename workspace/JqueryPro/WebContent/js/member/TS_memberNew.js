@@ -10,7 +10,9 @@ var loginId = "";
 $(document).ready(function() {
 
 	// select option 정리
-	initSelect();
+	initCheck("A01","memLike");
+	initSelect("A02","memJob");
+	initSelect("A03","memMemorialType");
 
 	// 우편번호찾기 화면-시 세팅
 	 initCitySelect();
@@ -52,37 +54,14 @@ $(document).ready(function() {
 });
 
 
-$(document).ready(function() {
-	
-	initCitySelect();
-	
-	 $("#tbZipResult").on("dblclick", "tbody tr", function(){
-		 
-		 var zipcode = $(this).children("td:eq(0)").text();
-		 var addr = $(this).children("td:eq(1)").text();
-		 
-		 console.log("addr");
-		 console.log(addr);
-		 console.log("zipcode");
-		 console.log(zipcode);
-		 
-		 $("#memZip").val(zipcode);
-		 $("#memAdd1").val(addr);
-		 
-		 $("#zipModal").modal("hide");
-	 });
-	
-});
-
-
 function initCitySelect() {
 	$.ajax({
 		url : "/JqueryPro/ZipServlet"
 		,type : "post"
 		,dataType : "json"
 		,success : function(data) {
-			console.log("initCitySelect--");
-			console.log(data);
+//			console.log("initCitySelect--");
+//			console.log(data);
 			makeSidoSelect(data);
 //			alert("성공");
 		}
@@ -100,10 +79,9 @@ function makeSidoSelect(data) {
 		strHtml += "<option value=" + data[i].sido + ">" + data[i].sido
 				+ "</option>";
 	}
-	console.log(strHtml);
+//	console.log(strHtml);
 	$("#Sido").html(strHtml);
 	// 방법2)
-	 setGugun();
 	// 방법3)
 	// 트리거로 Change호출
 }
@@ -133,6 +111,24 @@ function setGugun() {
 }
 
 
+
+
+
+function makeGugunSelect(data) {
+	if ($("#Sido").val() != '') {
+		$("#Gugun").prop("disabled", false);
+		// $("#Sido").children().eq($("#Sido").val()).html() : 도시이름
+	}
+	var strHtml = "<option val=''>선택하세요</option>";
+	for (i = 0; i < data.length; i++) {
+		strHtml += "<option val=" + data[i].value + ">" + data[i].gugun
+				+ "</option>";
+	}
+	console.log(strHtml);
+	$("#Gugun").html(strHtml);
+//	setDong();
+}
+
 function setDong() {
 	var param;
 	param = {
@@ -155,6 +151,19 @@ function setDong() {
 			alert("오류");
 		}
 	});
+}
+
+function makeDongSelect(data) {
+	if ($("#Gugun").val() != '') {
+		$("#Dong").prop("disabled", false);
+	}
+	var strHtml = "<option val=''>선택하세요</option>";
+	for (i = 0; i < data.length; i++) {
+		strHtml += "<option val=" + data[i].value + ">" + data[i].dong
+				+ "</option>";
+	}
+	console.log(strHtml);
+	$("#Dong").html(strHtml);
 }
 
 function setZip() {
@@ -183,35 +192,6 @@ function setZip() {
 	});
 }
 
-function makeGugunSelect(data) {
-	if ($("#Sido").val() != '') {
-		$("#Gugun").prop("disabled", false);
-		// $("#Sido").children().eq($("#Sido").val()).html() : 도시이름
-	}
-	var strHtml = "<option val=''>선택하세요</option>";
-	for (i = 0; i < data.length; i++) {
-		strHtml += "<option val=" + data[i].value + ">" + data[i].gugun
-				+ "</option>";
-	}
-	console.log(strHtml);
-	$("#Gugun").html(strHtml);
-	setDong();
-
-}
-
-function makeDongSelect(data) {
-	if ($("#Gugun").val() != '') {
-		$("#Dong").prop("disabled", false);
-	}
-	var strHtml = "<option val=''>선택하세요</option>";
-	for (i = 0; i < data.length; i++) {
-		strHtml += "<option val=" + data[i].value + ">" + data[i].dong
-				+ "</option>";
-	}
-	console.log(strHtml);
-	$("#Dong").html(strHtml);
-
-}
 function makeZipTable(data) {
 //	alert("makeZipTable 실행중");
 	// ☆ 
@@ -259,13 +239,9 @@ function openZip(){
 	$("#zipModal").modal();
 }
 
-
 /*
- * ==================================================================
+ * ====================================================================
  */
-
-
-
 
 function initSelect() {
 	var strId = [];
@@ -396,9 +372,9 @@ function checkId() {
 			// console.log(data.resultCnt);
 			// console.log(typeof data.resultCnt); // String
 			if (data.resultCnt == 0) {
-				alert("사용가능!!");
+				alert("사용가능한 ID입니다");
 			} else {
-				alert("중복!!");
+				alert("중복된 ID입니다. 다시 입력해주세요");
 			}
 		},
 		error : function(xhr) {
@@ -409,16 +385,19 @@ function checkId() {
 
 // 회원정보 저장하기
 function save(){
+	
 	// 회원정보 유효성 체크
 //	var result = validate();
 //	if(!result){
 //		return;
 //	}
 //	
+	
 //	// 사용자에게 컨펌.
-//	if(!confirm("저장하시겠습니까?")){
-//		return;
-//	}
+	if(!confirm("저장하시겠습니까?")){
+		return;
+	}
+	
 	alert($("#fm").serialize());
 	$("#formFlag").val("C");
 	//DB에 저장하는 ajax 호출
@@ -436,7 +415,7 @@ function save(){
 			}
 		}
 		,error : function(xhr){
-			alert("실패.. 관리자한테 문의 ㄱ")
+			alert("실패! 관리자한테 문의하세요~")
 			console.log(xhr);
 		}
 	});

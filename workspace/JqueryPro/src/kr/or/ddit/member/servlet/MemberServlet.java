@@ -25,6 +25,7 @@ private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		super.doPost(req, resp);
 	}
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		super.doPost(req, resp); // 지워야함 : extends한 HttpServlet 의 doPost를 호출하는 것이기 때문에 현재 클래스의 doPost를 사용할 수 없음
@@ -63,6 +64,7 @@ private static final long serialVersionUID = 1L;
 				// ☆
 				System.out.println("req get 파라미터  : "+req.getParameter("memId"));
 				MemberVO memberVo = checkMemberId(req);
+				
 				int resultCnt = 0;
 //				System.out.println("memberVO에서 추출 : "+memberVo.getMemId()); // tes0 들어옴
 				if (memberVo != null) {
