@@ -99,8 +99,13 @@ private static final long serialVersionUID = 1L;
 		MemberVO memberVo = new MemberVO();
 		BeanUtils.populate(memberVo, req.getParameterMap());
 		
-//		String memHp = memberVo.getMemHp().replaceAll("-","");
-//		memberVo.setMemHp(memHp);
+		String memHp = memberVo.getMemHp().replaceAll("-","");
+		memberVo.setMemHp(memHp);
+		System.out.println("memHp :"+ memHp);
+		
+		String memZip = memberVo.getMemZip().replaceAll("-","");
+		memberVo.setMemZip(memZip);
+		System.out.println("memZip :"+ memZip);
 		
 		MemberService service = new MemberService();
 		service.createMember(memberVo);
