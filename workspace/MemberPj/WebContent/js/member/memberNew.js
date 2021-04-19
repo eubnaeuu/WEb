@@ -9,27 +9,9 @@ var loginId = "";
 
 $(document).ready(function() {
 
-	// select option 정리
-	initCheck("A01","memLike");
-	initSelect("A02","memJob");
-	initSelect("A03","memMemorialType");
-
-	// 우편번호찾기 화면-시 세팅
-	 initCitySelect();
-	
-	// 이메일 수신동의 : default 세팅(N)
-	$("#recvEmail_N").prop("checked", true);
-
-	// 아래 두줄의 차이 
-	// $("#tbZipResult tbody").dblclick(function(){
-	//);
-	 
 	 $("#tbZipResult").on("dblclick", "tbody tr", function(){
 		 // this ==> tr
 		 console.log($(this));
-		 
-//		 alert("더블클릭중");
-		 // ☆ 
 		 
 		 var zipcode = $(this).children("td:eq(0)").text();
 		 var addr = $(this).children("td:eq(1)").text();
@@ -50,129 +32,15 @@ $(document).ready(function() {
 		 // 주소창 (모달창) 닫기
 		 $("#zipModal").modal("hide");
 	 });
-
 });
-
-
-function initCitySelect() {
-	$.ajax({
-		url : "/MemberPj/ZipServlet"
-		,type : "post"
-		,dataType : "json"
-		,success : function(data) {
-//			console.log("initCitySelect--");
-//			console.log(data);
-			makeSidoSelect(data);
-//			alert("성공");
-		}
-		,error : function(xhr) {
-			console.error(xhr);
-			alert("오류");
-		}
-	});
-}
-
-function makeSidoSelect(data) {
-	// 방법1)
-	var strHtml = "<option value=''>선택하세요</option>";
-	for (i = 0; i < data.length; i++) {
-		strHtml += "<option value=" + data[i].sido + ">" + data[i].sido
-				+ "</option>";
-	}
-//	console.log(strHtml);
-	$("#Sido").html(strHtml);
-	// 방법2)
-	// 방법3)
-	// 트리거로 Change호출
-}
-
-
-function setGugun() {
-	var param;
-	param = {
-		"sido" : $("#Sido").val(),
-		"flag" : "GUGUN"
-	};
-	$.ajax({
-		url : "/MemberPj/ZipServlet"
-		,type : "post"
-		,data : param
-		,dataType : "json"
-		,success : function(data) {
-			console.log(data);
-			makeGugunSelect(data);
-			// alert("성공");
-		}
-		,error : function(xhr) {
-			console.error(xhr);
-			alert("오류");
-		}
-	});
-}
-
-
-
-
-
-function makeGugunSelect(data) {
-	if ($("#Sido").val() != '') {
-		$("#Gugun").prop("disabled", false);
-		// $("#Sido").children().eq($("#Sido").val()).html() : 도시이름
-	}
-	var strHtml = "<option val=''>선택하세요</option>";
-	for (i = 0; i < data.length; i++) {
-		strHtml += "<option val=" + data[i].value + ">" + data[i].gugun
-				+ "</option>";
-	}
-	console.log(strHtml);
-	$("#Gugun").html(strHtml);
-//	setDong();
-}
-
-function setDong() {
-	var param;
-	param = {
-		"sido" : $("#Sido").val(),
-		"gugun" : $("#Gugun").val(),
-		"flag" : "DONG"
-	};
-	$.ajax({
-		url : "/MemberPj/ZipServlet",
-		type : "post",
-		data : param,
-		dataType : "json",
-		success : function(data) {
-			console.log(data);
-			makeDongSelect(data);
-			// alert("성공");
-		},
-		error : function(xhr) {
-			console.error(xhr);
-			alert("오류");
-		}
-	});
-}
-
-function makeDongSelect(data) {
-	if ($("#Gugun").val() != '') {
-		$("#Dong").prop("disabled", false);
-	}
-	var strHtml = "<option val=''>선택하세요</option>";
-	for (i = 0; i < data.length; i++) {
-		strHtml += "<option val=" + data[i].value + ">" + data[i].dong
-				+ "</option>";
-	}
-	console.log(strHtml);
-	$("#Dong").html(strHtml);
-}
 
 function setZip() {
 	var param;
+	alert("제발");
+	alert($("#inputDong").val());
 	param = {
-		"sido" : $("#Sido").val()
-		,"gugun" : $("#Gugun").val()
-		,"dong" : $("#Dong").val()
-		,"flag" : "ZIP"
+//		"Dong" : $("#inputDong").val()
+			"Dong" : "읍내동"
 	};
 
 	$.ajax({
@@ -181,6 +49,7 @@ function setZip() {
 		data : param,
 		dataType : "json",
 		success : function(data) {
+			alert("성공");
 			console.log(data);
 			makeZipTable(data);
 			// alert("성공");
@@ -193,29 +62,14 @@ function setZip() {
 }
 
 function makeZipTable(data) {
-//	alert("makeZipTable 실행중");
-	// ☆ 
 	$("#divZipResult").show();
-	
-//	$("#tbZipResult tbody").empty();
-	
+	alert("makeZipTable 실행중...");
 	var strHtml = "";
 	for (i = 0; i < data.length; i++) {
-		// <tr onclick = 'fntest( " 300-301", "대전" , "중구", "문화1동", "1번지" );'>
-		
-//		 strHtml += "<tr onclick='fntest( \"" + data[i].sido + "\",
-//		 \""+data[i].gugun+"\"+, \""+data[i].dong+"\");'>" // "300-801
-		
-//		strHtml += "<tr onclick = 'fntest( " + data[i] + " );'>" // "300-801
-//				+ "<td>" + data[i].zipcode + "</td>" + "<td>" + data[i].sido
-//				+ " " + data[i].gugun + " " + data[i].dong + " "
-//				+ data[i].bunji + "</td>" + "</tr>";
-		
 		
 		if(data[i].bunji == "null"){
 			data[i].bunji = "";
 		}
-		
 		strHtml += "<tr>"
 			+ "<td>" + data[i].zipcode + "</td>"
 			+ "<td>" + data[i].sido + " "
@@ -330,7 +184,6 @@ function makemakeSelect(data) {
 					strHtml = "";
 				}
 			}
-
 		}
 	}
 //	console.log(strHtml);
