@@ -12,18 +12,14 @@
 		</select>
 		
 		<select id="retrieveGugunList" parameterClass="kr.or.ddit.common.vo.ZipVO"  resultClass="kr.or.ddit.common.vo.ZipVO">
-			SELECT DISTINCT
-				SIDO
-				,GUGUN 
+			SELECT DISTINCT GUGUN 
 			FROM TB_ZIP
 			WHERE SIDO = #sido#
 			ORDER BY GUGUN
 		</select>
 		
 		<select id="retrieveDongList" parameterClass="kr.or.ddit.common.vo.ZipVO" resultClass="kr.or.ddit.common.vo.ZipVO">
-			SELECT DISTINCT
-				GUGUN
-				,DONG
+			SELECT DISTINCT DONG
 			FROM TB_ZIP
 			WHERE SIDO = #sido#
 			AND GUGUN = #gugun#

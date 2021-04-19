@@ -18,14 +18,13 @@ for(int i=0; i < list.size() ; i++){
 // 	String zipcode = vo.getZipcode();
 // 	long seq = vo.getSeq();
 
-cnt++;
+// cnt++;
 	if(i > 0){
 		%>,<%
 	}
 	%>
 	{
-	"value" : "<%=cnt%>"
-	,"sido" : "<%=list.get(i).getSido()%>"
+	"sido" : "<%=list.get(i).getSido()%>"
 	,"gugun" : "<%=list.get(i).getGugun()%>"
 	,"dong" : "<%=list.get(i).getDong()%>"
 	,"bunji" : "<%=list.get(i).getBunji()%>"
@@ -33,6 +32,7 @@ cnt++;
 	,"bldg" : "<%=list.get(i).getBldg()%>"
 	,"zipcode" : "<%=list.get(i).getZipcode()%>"
 	,"seq" : "<%=list.get(i).getSeq()%>"
+<%-- 	,"value" : "<%=cnt%>" --%>
 	}
 	<%
 	}

@@ -1,8 +1,4 @@
 /**
- * 
- */
-
-/**
  * 210416
  * 부모창 데이터 세팅
  * 부트스트랩 modal
@@ -13,38 +9,44 @@ var loginId = "";
 
 $(document).ready(function() {
 
+	// select option 정리
 	initSelect();
-
-	// 이메일 수신동의 default 세팅(N)
-	$("#recvEmail_N").prop("checked", true);
 
 	// 우편번호찾기 화면-시 세팅
 	 initCitySelect();
-
 	
+	// 이메일 수신동의 : default 세팅(N)
+	$("#recvEmail_N").prop("checked", true);
+
 	// 아래 두줄의 차이 
 	// $("#tbZipResult tbody").dblclick(function(){
 	//);
 	 
-	 $("#tbZipResult tbody").on("dblclick", function(){
+	 $("#tbZipResult").on("dblclick", "tbody tr", function(){
 		 // this ==> tr
 		 console.log($(this));
 		 
 //		 alert("더블클릭중");
 		 // ☆ 
 		 
-//		 var zipcode = $($(this).children("tr:eq(0)").html()).children("td:eq(0)").text();
-		 var addr = $(this).children("td:eq(0)").html();
+		 var zipcode = $(this).children("td:eq(0)").text();
+		 var addr = $(this).children("td:eq(1)").text();
 		 
-//		 console.log(zipcode);
+		 console.log("addr");
 		 console.log(addr);
+		 console.log("zipcode");
+		 console.log(zipcode);
 		 
 		 // 메인화면(부모창)의 우편번호, 주소 input에 데이터 세팅
-//		 $("#memZip").val(zipcode);
-//		 $("#memAdd1").val(addr);
+		 $("#memZip").val(zipcode);
+		 $("#memAdd1").val(addr);
 		 
 		 // on : 동적 요소 포함 ( e.g. 그 당시 테이블이 없어도 이 후에 생기게 되면 바인딩 O)(계속 추적하는 느낌?)  
-		 // dblclick : 동적 요소 미포함   (e.g. 그 당시 테이블이 없다면 바인딩 X) 
+		 // dblclick : 동적 요소 미포함   (e.g. 그 당시 테이블이 없다면 바인딩 X)
+		 
+		 
+		 // 주소창 (모달창) 닫기
+		 $("#zipModal").modal("hide");
 	 });
 
 });
@@ -54,7 +56,6 @@ $(document).ready(function() {
 
 
 
-// 취미코드 조회해서 세팅
 function initSelect() {
 	var strId = [];
 	// var param;
@@ -195,22 +196,23 @@ function checkId() {
 		}
 	});
 }
+/*
+ * =========================zip 관련===============================
+ */
+
 
 function initCitySelect() {
 	$.ajax({
-		url : "/JqueryPro/ZipServlet",
-		type : "post"
-		// ,data : {
-		// "groupCode" : "A01"
-		// }
-		,
-		dataType : "json",
-		success : function(data) {
+		url : "/JqueryPro/ZipServlet"
+		,type : "post"
+		,dataType : "json"
+		,success : function(data) {
+			console.log("initCitySelect--");
 			console.log(data);
 			makeSidoSelect(data);
 //			alert("성공");
-		},
-		error : function(xhr) {
+		}
+		,error : function(xhr) {
 			console.error(xhr);
 			alert("오류");
 		}
@@ -221,7 +223,7 @@ function makeSidoSelect(data) {
 	// 방법1)
 	var strHtml = "<option value=''>선택하세요</option>";
 	for (i = 0; i < data.length; i++) {
-		strHtml += "<option value=" + data[i].value + ">" + data[i].sido
+		strHtml += "<option value=" + data[i].sido + ">" + data[i].sido
 				+ "</option>";
 	}
 	console.log(strHtml);
@@ -232,71 +234,7 @@ function makeSidoSelect(data) {
 	// 트리거로 Change호출
 }
 
-function makeGugunSelect(data) {
-	if ($("#Sido").val() != '') {
-		$("#Gugun").prop("disabled", false);
-		// $("#Sido").children().eq($("#Sido").val()).html() : 도시이름
-	}
-	var strHtml = "<option val=''>선택하세요</option>";
-	for (i = 0; i < data.length; i++) {
-		strHtml += "<option val=" + data[i].value + ">" + data[i].gugun
-				+ "</option>";
-	}
-	console.log(strHtml);
-	$("#Gugun").html(strHtml);
 
-}
-
-function makeDongSelect(data) {
-	if ($("#Gugun").val() != '') {
-		$("#Dong").prop("disabled", false);
-	}
-	var strHtml = "<option val=''>선택하세요</option>";
-	for (i = 0; i < data.length; i++) {
-		strHtml += "<option val=" + data[i].value + ">" + data[i].dong
-				+ "</option>";
-	}
-	console.log(strHtml);
-	$("#Dong").html(strHtml);
-
-}
-function makeZipTable(data) {
-//	alert("makeZipTable 실행중");
-	// ☆ 
-	$("#divZipResult").show();
-	
-//	$("#tbZipResult tbody").empty();
-	
-	var strHtml = "";
-	for (i = 0; i < data.length; i++) {
-		// <tr onclick = 'fntest( " 300-301", "대전" , "중구", "문화1동", "1번지" );'>
-		
-//		 strHtml += "<tr onclick='fntest( \"" + data[i].sido + "\",
-//		 \""+data[i].gugun+"\"+, \""+data[i].dong+"\");'>" // "300-801
-		
-//		strHtml += "<tr onclick = 'fntest( " + data[i] + " );'>" // "300-801
-//				+ "<td>" + data[i].zipcode + "</td>" + "<td>" + data[i].sido
-//				+ " " + data[i].gugun + " " + data[i].dong + " "
-//				+ data[i].bunji + "</td>" + "</tr>";
-		
-		strHtml += "<tr>"
-			+ "<td>" + data[i].zipcode + "</td>"
-			+ "<td>" + data[i].sido + " "
-			+ data[i].gugun + " "
-			+ data[i].dong + " " 
-			+ data[i].bunji + "</td>"
-			+ "</tr>";
-	}
-	$("#tbZipResult tbody").html(strHtml);
-	console.log(strHtml);
-	// $("#Dong").html(strHtml);
-}
-
-function test(obj) {
-
-	console.log(obj);
-
-}
 function setGugun() {
 	var param;
 	param = {
@@ -304,21 +242,22 @@ function setGugun() {
 		"flag" : "GUGUN"
 	};
 	$.ajax({
-		url : "/JqueryPro/ZipServlet",
-		type : "post",
-		data : param,
-		dataType : "json",
-		success : function(data) {
+		url : "/JqueryPro/ZipServlet"
+		,type : "post"
+		,data : param
+		,dataType : "json"
+		,success : function(data) {
 			console.log(data);
 			makeGugunSelect(data);
 			// alert("성공");
-		},
-		error : function(xhr) {
+		}
+		,error : function(xhr) {
 			console.error(xhr);
 			alert("오류");
 		}
 	});
 }
+
 
 function setDong() {
 	var param;
@@ -370,13 +309,78 @@ function setZip() {
 	});
 }
 
+function makeGugunSelect(data) {
+	if ($("#Sido").val() != '') {
+		$("#Gugun").prop("disabled", false);
+		// $("#Sido").children().eq($("#Sido").val()).html() : 도시이름
+	}
+	var strHtml = "<option val=''>선택하세요</option>";
+	for (i = 0; i < data.length; i++) {
+		strHtml += "<option val=" + data[i].value + ">" + data[i].gugun
+				+ "</option>";
+	}
+	console.log(strHtml);
+	$("#Gugun").html(strHtml);
+
+}
+
+function makeDongSelect(data) {
+	if ($("#Gugun").val() != '') {
+		$("#Dong").prop("disabled", false);
+	}
+	var strHtml = "<option val=''>선택하세요</option>";
+	for (i = 0; i < data.length; i++) {
+		strHtml += "<option val=" + data[i].value + ">" + data[i].dong
+				+ "</option>";
+	}
+	console.log(strHtml);
+	$("#Dong").html(strHtml);
+
+}
+function makeZipTable(data) {
+//	alert("makeZipTable 실행중");
+	// ☆ 
+	$("#divZipResult").show();
+	
+//	$("#tbZipResult tbody").empty();
+	
+	var strHtml = "";
+	for (i = 0; i < data.length; i++) {
+		// <tr onclick = 'fntest( " 300-301", "대전" , "중구", "문화1동", "1번지" );'>
+		
+//		 strHtml += "<tr onclick='fntest( \"" + data[i].sido + "\",
+//		 \""+data[i].gugun+"\"+, \""+data[i].dong+"\");'>" // "300-801
+		
+//		strHtml += "<tr onclick = 'fntest( " + data[i] + " );'>" // "300-801
+//				+ "<td>" + data[i].zipcode + "</td>" + "<td>" + data[i].sido
+//				+ " " + data[i].gugun + " " + data[i].dong + " "
+//				+ data[i].bunji + "</td>" + "</tr>";
+		
+		if(data[i].bunji == "null"){
+			data[i].bunji = "";
+		}
+		
+		strHtml += "<tr>"
+			+ "<td>" + data[i].zipcode + "</td>"
+			+ "<td>" + data[i].sido + " "
+			+ data[i].gugun + " "
+			+ data[i].dong + " " 
+			+ data[i].bunji + "</td>"
+			+ "</tr>";
+	}
+	
+	$("#tbZipResult tbody").html(strHtml);
+	console.log(strHtml);
+}
+
 function openZip(){
 	// 시 셀렉트박스 조회하고 초기화
 	initCitySelect();
 	// 테이블 초기화
+	$("#tbZipResult tbody").empty();
 	
 	// 주소창(모달창) 여닫기
-	$("#zipModal").modal("hide");
+//	$("#zipModal").modal("hide");
 	$("#zipModal").modal();
 }
 
@@ -405,7 +409,7 @@ function save(){
 			console.log(data);
 			if(1 == data.resultCnt){
 				// 페이지 이동
-				changePage();
+				changePage("/JqueryPro/html/member/registerForm.html");
 				alert("성공?");
 			}
 		}
@@ -416,17 +420,16 @@ function save(){
 	});
 }
 
-function changePage(){
+function changePage(strUrl){
 	
 	// 방법1
-	window.location.href = "/JqueryPro/html/member/registerForm.html";
+//	window.location.href = "/JqueryPro/html/member/registerForm.html";
 	
 	// 방법2
-//	var fm = document.getElementById("fm");
-//	fm.action = "/JqueryPro/html/member/registerForm.html";
-//	fm.method = "post";
-//	fm.submit();
-	
+	var fm = document.getElementById("fm");
+	fm.action = strUrl;// 서블릿을 호출하기도 함
+	fm.method = "post";
+	fm.submit();
 }
 
 function validata(){
@@ -435,5 +438,9 @@ function validata(){
 	
 	// 체크가 끝나면..
 	return true;
+}
+
+function openZipPopup(){
+//	window.open()
 }
 

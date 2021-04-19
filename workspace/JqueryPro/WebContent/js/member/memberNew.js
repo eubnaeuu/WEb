@@ -22,6 +22,7 @@ $(document).ready(function(){
 //	});
 //	$("#tbZipResult tbody tr").on("dblclick", function(){
 //	});
+	
 	$("#tbZipResult").on("dblclick", "tbody tr", function(){
 //		this ==> tr
 //		console.log($(this));
