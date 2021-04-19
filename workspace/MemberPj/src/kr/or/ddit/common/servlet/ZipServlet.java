@@ -27,9 +27,7 @@ public class ZipServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 		//☆ param Dong으로 설정해야함
-//		String str = req.getParameter("Dong");
-		String str = "읍내동";
-		System.out.println("Servlet str : "+str);
+		String str = req.getParameter("Dong");
 		ZipService zipService = new ZipService();
 		String flag = req.getParameter("flag");
 		List<ZipVO> list;

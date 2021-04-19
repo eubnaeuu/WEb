@@ -36,11 +36,8 @@ $(document).ready(function() {
 
 function setZip() {
 	var param;
-	alert("제발");
-	alert($("#inputDong").val());
 	param = {
-//		"Dong" : $("#inputDong").val()
-			"Dong" : "읍내동"
+		"Dong" : $("#inputDong").val()
 	};
 
 	$.ajax({
@@ -49,7 +46,6 @@ function setZip() {
 		data : param,
 		dataType : "json",
 		success : function(data) {
-			alert("성공");
 			console.log(data);
 			makeZipTable(data);
 			// alert("성공");
@@ -63,7 +59,6 @@ function setZip() {
 
 function makeZipTable(data) {
 	$("#divZipResult").show();
-	alert("makeZipTable 실행중...");
 	var strHtml = "";
 	for (i = 0; i < data.length; i++) {
 		
@@ -85,10 +80,9 @@ function makeZipTable(data) {
 
 function openZip(){
 	// 시 셀렉트박스 조회하고 초기화
-	initCitySelect();
+	$("#inputDong").empty();
 	// 테이블 초기화
 	$("#tbZipResult tbody").empty();
-	
 	// 주소창(모달창) 여닫기
 //	$("#zipModal").modal("hide");
 	$("#zipModal").modal();
