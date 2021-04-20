@@ -35,7 +35,7 @@
 						placeholder="영문 소문자와 숫자 입력 (4~12 글자)" name="memId" required="required" onchange="checkIdspan()">
 				</div>
 				<button type="button" id="chkId" class="btn btn-sm" onclick="checkId()">중복검사</button>
-				<span id="idspan"></span>
+				<span id="idspan"></span> <span id="idspan2"></span>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memName">이름:</label>
@@ -56,7 +56,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memPass">비밀번호:</label>
 				<div class="col-sm-7">
-					<input type="text" class="form-control" name="memPass" id="memPass" placeholder="영문 소문자, 영문 대문자, 숫자, 특수문 각 1개 이상(8~12 글자)" required="required" onchange="checkPassspan()">
+					<input type="password" class="form-control" name="memPass" id="memPass" placeholder="영문 소문자, 영문 대문자, 숫자, 특수문 각 1개 이상(8~12 글자)" required="required" onchange="checkPassspan()">
 						<span id="passspan"></span>
 				</div>
 			</div>

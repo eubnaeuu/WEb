@@ -97,9 +97,14 @@ function openZip(){
  */
 
 function checkIdspan() {
+	
 
-	var flag2 = "f";
+	flag2 = "f";
 	var memId = $("#memId").val();
+	
+	$("#idspan2").text("/ 중복검사 필요");
+	$("#idspan2").css("color","red");
+	
 	// 빈값 확인
 	if (isEmpty(memId)) {
 		// console.log(memId);
@@ -125,7 +130,8 @@ function checkIdspan() {
 }
 
 function checkNamespan() {
-		var memName = $("#memName").val();
+	var memName = $("#memName").val();
+	
 	// 빈값 확인
 	if (isEmpty(memName)) {
 		// console.log(memId);
@@ -294,12 +300,8 @@ function validate() {
 			// console.log(data.resultCnt);
 			// console.log(typeof data.resultCnt); // String
 			if (data.resultCnt == 0) {
-				$("#idspan").text("사용가능");
-				$("#idspan").css("color","lime");
 			} else {
 				alert("중복된 ID");
-				$("#idspan").text("중복된 ID");
-				$("#idspan").css("color","red");
 				return false;
 			}
 		},
@@ -422,11 +424,11 @@ var memId = $("#memId").val();
 			// console.log(data.resultCnt);
 			// console.log(typeof data.resultCnt); // String
 			if (data.resultCnt == 0) {
-				$("#idspan").text("사용가능");
-				$("#idspan").css("color","lime");
+				$("#idspan2").text("사용가능");
+				$("#idspan2").css("color","lime");
 			} else {
-				$("#idspan").text("중복된 ID");
-				$("#idspan").css("color","red");
+				$("#idspan2").text("중복된 ID");
+				$("#idspan2").css("color","red");
 			}
 		},
 		error : function(xhr) {
