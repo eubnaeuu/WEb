@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>우리의집 | 메인</title>
+
+    <meta name="author" content="3team">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="wehouse">
+    <meta property="og:title" content="Introduce your home, together">
+    <meta property="og:description" content="Deadock MiddleProject">
+    <meta property="og:image" content="img/logo__github.png">
+    <meta property="og:url" content="https://wehouse.com">
+
+    <!-- 대표 로고 -->
+    <link rel="icon" href="../image/PNG/favicon.png">
+    <link rel="apple-touch-icon" href="../image/PNG/favicon.png">
+    
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/home.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- body 태그에 직접적으로 css는 부여하지 않는다. 컨테이너를 따로 지정하자. -->
+    <!-- 언더바 두개를 사용하는 이유 -->
+<div class="body__container"> <!-- body의 일부분인 컨테이너임을 의미 -->
+
+    <!-- HEADER -->
+    <header class="section">
+        <!-- 콘텐츠가 들어가는 inner영역 -->
+        <div class="inner clearfix">
+
+            <div class="menu-group float--left">
+                
+                <div class="logo">
+                    <a href="#">우리의집</a>
+                </div>
+
+            </div>
+
+            <div class="sign-group float--right">
+			<a href="/member/mypage.do">마이페이지</a>
+                <form id="search-form" method="POST" action=""><!-- 고유한 개체에 id 명시 -->
+                    <span class="search-icon"></span>
+                    <input type="text" id="search" class="input--text" placeholder="우리의집 통합검색">
+                    <input type="submit" value="Submit"><!-- 화면엔 있지만 숨길것임. -->
+                </form>
+
+                <ul class="sub-menu">
+                    <li><a href="./signin.html">로그인</a></li>
+                    <li><a href="/member/signup.do">회원가입</a></li>
+                </ul>
+
+                <div class="btn-group">
+                    <a href="" class="btn">글쓰기
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 서브 메뉴 집들이(사진), 질문과 답변, 이벤트 -->
+    <header class="section sub-section">
+            <div class="inner clearfix">
+
+                <div class="section-memu float--left">
+                    <ul class="section-group active">
+                        <li><a href="#">집들이</a></li>
+                        <li style="border-bottom: 3px solid #35C5F0;"><a href="#" style="color:#35C5F0;">질문과 답변</a></li>
+                        <li><a href="#">이벤트</a></li>
+                    </ul>
+                </div>
+
+                <div class="sign-group float--right">
+                    <a href="" class="textbold">나의 활동기록 NEW!
+                    </a>
+                </div>
+                
+            </div>
+    </header>
+
+    <!-- 메인 배너 -->
+    <section class="section section--banner">
+
+        <div class="summary">
+            <h2 class="summary__title">오늘의 스토리</h2>
+        </div>
+
+        <div class="inner">
+            <ul class="banner__inner">
+                <li class="banner-main">
+                    <div class="main">
+                        <img class="over" src="../image/PNG/main_test.png" alt="">
+                        <div class="mask" onmouseenter="zoomIn()" onmouseleave="zoomOut()">
+                        <div class="banner__description">
+                            <div class="title_banner">
+                                <p>첫 단독주택을 얻었다.</p>
+                                <div class="profile">
+                                    <ul class="userinfo">
+                                        <li><span><img src="../image/JPEG/bedroom.jpg" alt=""></span></li>
+                                        <li>feeJuilo</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="btn_banner">
+                                <a href="" class="btn">보러가기</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="banner-sub">
+                    <div class="sub">
+                        <img class="over" src="../image/PNG/sub_test.png" alt="">
+                        <div class="mask" onmouseenter="zoomIn()" onmouseleave="zoomOut()">
+                            
+                        <div class="banner__description">
+                            <div class="title_banner">
+                                나의 서울 생활.
+                                <div class="profile">
+                                    <ul class="userinfo">
+                                        <li><span><img src="../image/JPEG/bedroom.jpg" alt=""></span></li>
+                                        <li>feeJuilo</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="btn_banner">
+                                <a href="" class="btn">보러가기</a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </li>   
+            </ul>
+        </div>
+
+    </section>
+
+    <!-- 카테고리 -->
+    <section class="section section--category">
+        <div class="inner">
+
+            <div class="dropdown">
+                <button type="button" class="category--sort btn">정렬
+                    <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">최근 인기순</a>
+                    <a href="#">역대 인기순</a>
+                    <a href="#">최신순</a>
+                    <a href="#">팔로잉</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button type="button" class="category--type btn">형태
+                    <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">최근 인기순</a>
+                    <a href="#">역대 인기순</a>
+                    <a href="#">최신순</a>
+                    <a href="#">팔로잉</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button type="button" class="category--space btn">공간
+                    <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">최근 인기순</a>
+                    <a href="#">역대 인기순</a>
+                    <a href="#">최신순</a>
+                    <a href="#">팔로잉</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button type="button" class="category--acreage btn">평수
+                    <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">최근 인기순</a>
+                    <a href="#">역대 인기순</a>
+                    <a href="#">최신순</a>
+                    <a href="#">팔로잉</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button type="button" class="category--style btn">스타일
+                    <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">최근 인기순</a>
+                    <a href="#">역대 인기순</a>
+                    <a href="#">최신순</a>
+                    <a href="#">팔로잉</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button type="button" class="category--color btn">컬러
+                    <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">최근 인기순</a>
+                    <a href="#">역대 인기순</a>
+                    <a href="#">최신순</a>
+                    <a href="#">팔로잉</a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="section section--board">
+        <div class="board">
+            <div class="inner">
+
+                <div class="grid_test">
+
+                    <div class="profile">
+                        <ul class="user">
+                            <li class="user_image">
+                                <a href="">
+                                <img src="../image/JPEG/bedroom.jpg" alt="">
+                                </a>
+                            </li>
+                            <li class="user_info">
+                                <div class="follow">
+                                    <a href="#"><span class="user-id">sehooninseoul</span></a>
+                                    <span class="dot">·</span>
+                                    <a href="#"><span class="user-follow">팔로우</span></a>
+                                </div>
+                                <div class="user-introduce">
+                                    청소가 취미 정리가 특기😆
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="thumnail">
+                        <img src="../image/JPEG/bedroom.jpg" alt="">
+                        <div class="mask" onmouseenter="zoomIn()" onmouseleave="zoomOut()">
+                        
+                            <div class="thumnail-view">
+                                <ul class="view_chart">
+                                    <li>조회수</li>
+                                    <li>4,521</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="likeandcomment">
+                        <div class="like"><i class="far fa-heart"></i> <span class="like_num">48</span></div>
+                        <div class="comment"><i class="far fa-comment-alt"></i> <span class="comment_num">4</span></div>
+                    </div>
+
+                    <div class="user-description">
+                        계절이 바뀌고 베란다에도 러그를 깔아 주었어요 통창이라 낮에는 따듯하지만 밤엔 추워해가 떠있는 낮에 하루종일 고양이들이
+                    </div>
+
+                    <div class="user-card">
+                        <div class="user_image">
+                                <img src="../image/PNG/favicon.png" alt=""></div>
+                        <div class="user_comment">
+                            <p class="user-comment">
+                            <span class="user_id">세후니</span>
+                            고양이가 정말 사랑스럽네요~^^ 식물도 이쁘고 인테리어 최고예요!
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="grid_test">
+
+                    <div class="profile">
+                        <ul class="user">
+                            <li class="user_image">
+                                <a href="">
+                                <img src="../image/JPEG/bedroom.jpg" alt="">
+                                </a>
+                            </li>
+                            <li class="user_info">
+                                <div class="follow">
+                                    <a href="#"><span class="user-id">sehooninseoul</span></a>
+                                    <span class="dot">·</span>
+                                    <a href="#"><span class="user-follow">팔로우</span></a>
+                                </div>
+                                <div class="user-introduce">
+                                    청소가 취미 정리가 특기😆
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="thumnail">
+                        <img src="../image/JPEG/bedroom.jpg" alt="">
+                        <div class="mask" onmouseenter="zoomIn()" onmouseleave="zoomOut()">
+                        
+                            <div class="thumnail-view">
+                                <ul class="view_chart">
+                                    <li>조회수</li>
+                                    <li>4,521</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="likeandcomment">
+                        <div class="like"><i class="far fa-heart"></i> <span class="like_num">48</span></div>
+                        <div class="comment"><i class="far fa-comment-alt"></i> <span class="comment_num">4</span></div>
+                    </div>
+
+                    <div class="user-description">
+                        계절이 바뀌고 베란다에도 러그를 깔아 주었어요 통창이라 낮에는 따듯하지만 밤엔 추워해가 떠있는 낮에 하루종일 고양이들이
+                    </div>
+
+                </div>
+                <div class="grid_test">
+
+                    <div class="profile">
+                        <ul class="user">
+                            <li class="user_image">
+                                <a href="">
+                                <img src="../image/JPEG/bedroom.jpg" alt="">
+                                </a>
+                            </li>
+                            <li class="user_info">
+                                <div class="follow">
+                                    <a href="#"><span class="user-id">sehooninseoul</span></a>
+                                    <span class="dot">·</span>
+                                    <a href="#"><span class="user-follow">팔로우</span></a>
+                                </div>
+                                <div class="user-introduce">
+                                    청소가 취미 정리가 특기😆
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="thumnail">
+                        <img src="../image/JPEG/bedroom.jpg" alt="">
+                        <div class="mask" onmouseenter="zoomIn()" onmouseleave="zoomOut()">
+                        
+                            <div class="thumnail-view">
+                                <ul class="view_chart">
+                                    <li>조회수</li>
+                                    <li>4,521</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="likeandcomment">
+                        <div class="like"><i class="far fa-heart"></i> <span class="like_num">48</span></div>
+                        <div class="comment"><i class="far fa-comment-alt"></i> <span class="comment_num">4</span></div>
+                    </div>
+
+                    <div class="user-description">
+                        으아
+                    </div>
+
+                </div>
+                <div class="grid_test">
+
+                    <div class="profile">
+                        <ul class="user">
+                            <li class="user_image">
+                                <a href="">
+                                <img src="../image/JPEG/bedroom.jpg" alt="">
+                                </a>
+                            </li>
+                            <li class="user_info">
+                                <div class="follow">
+                                    <a href="#"><span class="user-id">sehooninseoul</span></a>
+                                    <span class="dot">·</span>
+                                    <a href="#"><span class="user-follow">팔로우</span></a>
+                                </div>
+                                <div class="user-introduce">
+                                    청소가 취미 정리가 특기😆
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="thumnail">
+                        <img src="../image/JPEG/bedroom.jpg" alt="">
+                        <div class="mask" onmouseenter="zoomIn()" onmouseleave="zoomOut()">
+                        
+                            <div class="thumnail-view">
+                                <ul class="view_chart">
+                                    <li>조회수</li>
+                                    <li>4,521</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="likeandcomment">
+                        <div class="like"><i class="far fa-heart"></i> <span class="like_num">48</span></div>
+                        <div class="comment"><i class="far fa-comment-alt"></i> <span class="comment_num">4</span></div>
+                    </div>
+
+                    <div class="user-description">
+                        으아
+                    </div>
+
+                </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="section">
+            <div class="inner clearfix">
+
+                <ul class="site-links float--right">
+                    <li>@Copyright © 2020 ~ 2020 by Daedockplace, Inc All rights reserved</li>
+                </ul>
+
+                <ul class="site-links float--left">
+                    <li><a href="#">브랜드 스토리</a></li>
+                    <li><a href="#">이용약관</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">공지사항</a></li>
+                </ul>
+            </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

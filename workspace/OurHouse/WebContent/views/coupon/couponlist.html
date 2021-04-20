@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이거 언제 다만드냐</title>
+
+    <meta name="author" content="3team">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="wehouse">
+    <meta property="og:title" content="Introduce your home, together">
+    <meta property="og:description" content="Deadock MiddleProject">
+    <meta property="og:image" content="img/logo__github.png">
+    <meta property="og:url" content="https://wehouse.com">
+
+    <!-- 대표 로고 -->
+    <link rel="icon" href="../../image/PNG/favicon.png">
+    <link rel="apple-touch-icon" href="../../image/PNG/favicon.png">
+    
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/couponlist.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- body 태그에 직접적으로 css는 부여하지 않는다. 컨테이너를 따로 지정하자. -->
+    <!-- 언더바 두개를 사용하는 이유 -->
+<div class="body__container"> <!-- body의 일부분인 컨테이너임을 의미 -->
+
+    <!-- HEADER -->
+    <header class="section section--header">
+        <!-- 콘텐츠가 들어가는 inner영역 -->
+        <div class="inner clearfix">
+
+            <div class="menu-group float--left">
+                
+                <div class="logo">
+                    <a href="#">우리의집</a>
+                </div>
+
+            </div>
+
+            <div class="sign-group float--right">
+
+                <form id="search-form" method="POST" action=""><!-- 고유한 개체에 id 명시 -->
+                    <span class="search-icon"></span>
+                    <input type="text" id="search" class="input--text" placeholder="우리의집 통합검색">
+                    <input type="submit" value="Submit"><!-- 화면엔 있지만 숨길것임. -->
+                </form>
+
+                <ul class="sub-menu">
+                    <li><a href="./signin.html">로그인</a></li>
+                    <li><a href="./signup.html">회원가입</a></li>
+                </ul>
+
+                <div class="btn-group">
+                    <a href="" class="btn">글쓰기
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 서브 메뉴 집들이(사진), 질문과 답변, 이벤트 -->
+    <header class="section sub-section">
+            <div class="inner clearfix">
+
+                <div class="section-memu float--left">
+                    <ul class="section-group active">
+                        <li><a href="#">사진</a></li>
+                        <li><a href="#">질문과답변</a></li>
+                        <li><a href="#">쿠폰</a></li>
+                        <li><a href="#">공지사항</a></li>
+                    </ul>
+                </div>
+
+                <div class="sign-group float--right">
+                    <a href="" class="textbold">나의 활동기록 NEW!
+                    </a>
+                </div>
+                
+            </div>
+    </header>
+
+    <section class="section section--coupon">
+        <div class="inner">
+
+            <div class="summary__title">쿠폰</div>
+
+            <!-- 쿠폰 리스트 컨테이너 -->
+            <ul class="list-container">
+
+                <!-- 쿠폰 한개 -->
+                <li class="coupon-item"> 
+                    
+                    <div class="detail--use">
+                        <i class="far fa-question-circle">
+                            <!-- 쿠폰 상세이용 정보 -->
+                            <div class="hidden-info">- 원목가구 행사상품에 적용가능
+                                - 쿠폰끼리는 중복적용이 불가합니다. 포인트 및 간편결제 청구할인과는 중복사용 가능합니다.
+                            </div>
+                        </i>
+                    </div>
+
+                    <!-- 쿠폰 내용 -->
+                    <div class="item-info">
+
+                        <!-- 쿠폰 사용상세정보 -->
+
+                        <!-- 남은 재고 -->
+                        <div class="stock--coupon">
+                            남은재고 : 
+                            <span>1156</span>
+                        </div>
+
+                        <!-- 상품 제목 -->
+                        <div class="title--coupon">
+                            지마켓 3,000원 쿠폰
+                        </div>
+                        
+                        <!-- 사용처 -->
+                        <div class="where-coupon">
+                            사용처
+                            <span>GMARKET.CO.KR</span>
+                        </div>
+
+                        <div class="buy-coupon">
+                            <!-- 쿠폰을 가지고 있지 않은 경우 btn-taked를 없애주세용 -->
+                            <!-- 쿠폰을 이미 가지고 있는 경우 btn-take를 없애주세용-->
+                            <button class="btn btn-take">받기</button>
+
+                            <!-- <button class="btn btn-taked">
+                                <i class="fas fa-check"></i>
+                                받았음
+                            </button> -->
+
+                        </div>
+
+                    </div>
+                    
+                </li>
+
+                <!-- 쿠폰 한개 -->
+                <li class="coupon-item"> 
+                    
+                    <div class="detail--use">
+                        <i class="far fa-question-circle">
+                            <!-- 쿠폰 상세이용 정보 -->
+                            <div class="hidden-info">- 원목가구 행사상품에 적용가능
+                                - 쿠폰끼리는 중복적용이 불가합니다. 포인트 및 간편결제 청구할인과는 중복사용 가능합니다.
+                            </div>
+                        </i>
+                    </div>
+
+                    <!-- 쿠폰 내용 -->
+                    <div class="item-info">
+
+                        <!-- 쿠폰 사용상세정보 -->
+
+                        <!-- 남은 재고 -->
+                        <div class="stock--coupon">
+                            남은재고 : 
+                            <span>124</span>
+                        </div>
+
+                        <!-- 상품 제목 -->
+                        <div class="title--coupon">
+                            쿠팡 3,000원 쿠폰
+                        </div>
+                        
+                        <!-- 사용처 -->
+                        <div class="where-coupon">
+                            사용처
+                            <span>COUPANG.CO.KR</span>
+                        </div>
+
+                        <div class="buy-coupon">
+                            <!-- 쿠폰을 가지고 있지 않은 경우 btn-taked를 없애주세용 -->
+                            <!-- 쿠폰을 이미 가지고 있는 경우 btn-take를 없애주세용-->
+                            
+                            <!-- <button class="btn btn-take">받기</button> -->
+
+                            <button class="btn btn-taked">
+                                <i class="fas fa-check"></i>
+                                받았음
+                            </button>
+                        </div>
+
+                    </div>
+                    
+                </li>
+
+                <li class="coupon-item"> 
+
+                </li>
+                <li class="coupon-item"> 
+
+                </li>
+
+            </ul>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="section">
+            <div class="inner clearfix">
+
+                <ul class="site-links float--right">
+                    <li>@Copyright © 2020 ~ 2020 by Daedockplace, Inc All rights reserved</li>
+                </ul>
+
+                <ul class="site-links float--left">
+                    <li><a href="#">브랜드 스토리</a></li>
+                    <li><a href="#">이용약관</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">공지사항</a></li>
+                </ul>
+            </div>
+    </footer>
+
+    <!-- 헤더 고정시키는 js -->
+    <script src="../../js/headerfixed.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

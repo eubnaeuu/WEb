@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이거 언제 다만드냐</title>
+
+    <meta name="author" content="3team">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- 대표 로고 -->
+    <link rel="icon" href="../image/PNG/favicon.png">
+    <link rel="apple-touch-icon" href="../image/PNG/favicon.png">
+    
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/signup.css">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- body 태그에 직접적으로 css는 부여하지 않는다. 컨테이너를 따로 지정하자. -->
+    <!-- 언더바 두개를 사용하는 이유 -->
+<div class="body__container"> <!-- body의 일부분인 컨테이너임을 의미 -->
+
+    <!-- HEADER -->
+    <header class="section">
+        <!-- 콘텐츠가 들어가는 inner영역 -->
+        <div class="inner clearfix">
+
+            <div class="menu-group float--left">
+                
+                <div class="logo">
+                    <img src="../image/PNG/favicon.png" alt="">
+                    <a href="./home.html">우리의집</a>
+                </div>
+
+            </div>
+
+        </div>
+    </header>
+
+    <section class="section section-signup">
+
+        <h2 class="summary__title">회원가입</h2>
+
+        <div class="sign--api">
+            <p class="summary__description">SNS 계정으로 간편 회원가입</p>
+            <div class="api--service">
+                <div class="icon facebook-signup"><i class="xi-3x xi-facebook"></i></div>
+                <div class="icon kakaotalk-signup"><i class="xi-3x xi-kakaotalk text-white"></i></div>
+                <div class="icon naver-signup"><i class="xi-3x xi-naver"></i></div>
+            </div>
+        </div>
+
+        <div class="inner sign-group">
+
+            <form>
+
+            <div class="sign">
+                <h2 class="sign_subtitle">
+                    이메일
+                </h2>
+                <div class="sign-form">
+                    <input class="input--text email1" type="text" placeholder="이메일"> 
+                    <span class="interval">@</span>
+                    <input class="input--text email2" type="text" placeholder="주소 입력">
+                </div>
+                <h2 class="danger">
+                    필수 입력 항목입니다.
+                </h2>
+            </div>
+
+            <div class="sign">
+                <h2 class="sign_subtitle">
+                    아이디
+                </h2>
+                <div class="sign-form">
+                    <input class="input--text password" type="text" placeholder="아이디 입력">
+                </div>
+                <h2 class="danger">
+                    필수 입력 항목입니다.
+                </h2>
+            </div>
+
+            <div class="sign">
+                <h2 class="sign_subtitle">
+                    비밀번호
+                </h2>
+                <h2 class="sign_subdescription">
+                    8자 이상 입력해주세요.
+                </h2>
+                <div class="sign-form">
+                    <input class="input--text password" type="text" placeholder="비밀번호 입력">
+                </div>
+                <h2 class="danger">
+                    필수 입력 항목입니다.
+                </h2>
+            </div>
+
+            <div class="sign">
+                <h2 class="sign_subtitle">
+                    비밀번호 확인
+                </h2>
+                <div class="sign-form">
+                    <input class="input--text password" type="text" placeholder="비밀번호 재입력">
+                </div>
+                <h2 class="pass-danger">
+                    비밀번호가 일치하지 않습니다.
+                </h2>
+            </div>
+
+            <div class="sign">
+                <h2 class="sign_subtitle">
+                    별명
+                </h2>
+                <h2 class="sign_subdescription">
+                    다른 유저와 겹치지 않는 별명을 입력해주세요. (2~15자)
+                </h2>
+                <div class="sign-form">
+                    <input class="input--text password" type="text" placeholder="별명 (2~15자)">
+                </div>
+                <h2 class="pass-danger">
+                    필수 입력 항목입니다.
+                </h2>
+            </div>
+
+            <div class="sign">
+                <h2 class="sign_subtitle">
+                    약관동의
+                </h2>
+
+                <div class="agreement">
+                    <div class="check_container">
+                        <div class="allcheck">
+                            <input id="all" type="checkbox" value="">
+                            <label for="all"><span></span>전체동의</label>
+                        </div>  
+
+                        <div class="agecheck">
+                            <input id="age" type="checkbox" value="">
+                            <label for="age"><span></span>만14세 이상입니다.</label><span class="necessary">(필수)</span>
+                            <span class="necessary"></span>
+                        </div>  
+                        <div class="usecheck">
+                            <input id="use" type="checkbox" value="">
+                            <label for="use"><span></span><a href="#">이용약관</a></label><span class="necessary">(필수)</span>
+                        </div>  
+                        <div class="privacycheck">
+                            <input id="privacy" type="checkbox" value="">
+                            <label for="privacy"><span></span><a href="#">개인정보처리방침</a></label><span class="necessary">(필수)</span>
+                        </div>  
+                        <div class="snscheck">
+                            <input id="sns" type="checkbox" value="">
+                            <label for="sns"><span></span>이벤트,프로모션 알림 메일 및 SMS 수신</label><span class="select">(선택)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <input type="submit" href="" class="btn" value="회원가입 완료">
+
+            </form>
+
+            <div class="takeid">
+                이미 아이디가 있으신가요?<a hred="#">로그인</a>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+    <script src="../js/signup.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

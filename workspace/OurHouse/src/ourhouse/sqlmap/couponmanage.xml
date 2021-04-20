@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- namespace속성 : 아래에서 작성한 SQL을 호출할 때 같이 사용된다. -->			
+<sqlMap namespace="couponmanage">
+	<!-- 
+		이 영역에 sql문에 맞는 태그를 사용하여 SQL문을 기술한다.
+		
+		사용할 수 있는 기본적인 태그들
+		<select> ~~~ </select>
+		<insert> ~~~ </insert>
+		<update> ~~~ </update>
+		<delete> ~~~ </delete>
+		
+		위 태그에서 사용되는 속성들
+		1) id 속성: 해당 태그를 호출할 때 <sqlMap> 태그의 namespace와 연결하여 사용하는 이름
+		2) parameterClass 속성: sql문에 사용될 데이터가 들어있는 객체를 지정한다.
+							   (보통은 VO클래스, 자바의 자료형이름 등이 사용된다.)
+							   (typeAlias로 지정한 alias명을 사용할 수 있다.)
+		
+		3) resultClass 속성 : select 문을 실행한 결과를 담을 객체를 지정한다.
+							(보통 VO클래스나 자바의 자료형 이름을 사용한다.)
+	 -->
+<!-- 	  <resultMap class="ourhouse.common.vo.CouponManageVO" id="CouponManageMap"> -->
+<!-- 	 	<result property="cpMgNo" column="CP_MG_NO"/> -->
+<!-- 	 	<result property="shopId" column="SHOP_ID"/> -->
+<!-- 	 	<result property="price" column="PRICE"/> -->
+<!-- 	 	<result property="stock" column="STOCK"/> -->
+<!-- 	 	<result property="cpDelete" column="CP_DELETE"/> -->
+<!-- 	 	<result property="shopName" column="SHOP_NAME"/> -->
+<!-- 	 	<result property="shopUrl" column="SHOP_URL"/> -->
+<!-- 	 </resultMap> -->
+	 
+	
+	
+	<select id="getCouponManageList" resultClass="ourhouse.common.vo.CouponManageVO">
+	  select  
+	     A.CP_MG_NO          cpMgNo
+        ,A.SHOP_ID           shopId
+        ,A.PRICE             price
+        ,A.STOCK             stock
+        ,A.CP_DELETE         cpDelete
+        ,B.SHOP_NAME         shopName
+        ,B.SHOP_URL          shopUrl
+	 from  COUPON_MANAGE A 
+	 LEFT OUTER JOIN SHOP B ON (A.SHOP_ID=B.SHOP_ID)
+	</select>
+	
+	<select id="getCouponVO"  parameterClass="int"  resultClass="ourhouse.common.vo.CouponManageVO">
+	  select  
+	     A.CP_MG_NO          cpMgNo
+        ,A.SHOP_ID           shopId
+        ,A.PRICE             price
+        ,A.STOCK             stock
+        ,A.CP_DELETE         cpDelete
+        ,B.SHOP_NAME         shopName
+        ,B.SHOP_URL          shopUrl
+	 from  COUPON_MANAGE A 
+	 LEFT OUTER JOIN SHOP B ON (A.SHOP_ID=B.SHOP_ID)
+	 where A.CP_MG_NO = #cpMgNo#
+	   and A.CP_DELETE='N'
+	</select>
+	
+	<update id="updateCoupon" parameterClass="ourhouse.common.vo.CouponManageVO" >
+		 update COUPON_MANAGE 
+		 	set SHOP_ID = #shopId#
+	     		, PRICE = #price#
+			    , STOCK = #stock#
+		 where CP_MG_NO = #cpMgNo#
+
+	</update>
+	
+ 	<delete id="deleteCoupon" parameterClass="ourhouse.common.vo.CouponManageVO" > 
+		update COUPON_MANAGE
+		   SET CP_DELETE = #cpDelete#
+		 WHERE CP_MG_NO = #cpMgNo#
+	</delete>
+	 
+	 
+	<insert id="insertCoupon" parameterClass="ourhouse.common.vo.CouponManageVO" >
+		insert into COUPON_MANAGE 
+					(CP_MG_NO, SHOP_ID, PRICE,STOCK,CP_DELETE) 
+				values(seq_coupon_manage.nextVal , #shopId# ,#price# ,#stock# ,#cpDelete#)
+	</insert> 
+	
+	<update id="updateCouponStock" parameterClass="ourhouse.common.vo.CouponManageVO">
+		 update COUPON_MANAGE 
+ 	     	set STOCK = #stock#
+			where CP_MG_NO = #cpMgNo#
+
+	</update>
+	
+</sqlMap>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- namespace속성 : 아래에서 작성한 SQL을 호출할 때 같이 사용된다. -->			
+<sqlMap namespace="member">
+	<!-- 
+		이 영역에 sql문에 맞는 태그를 사용하여 SQL문을 기술한다.
+		
+		사용할 수 있는 기본적인 태그들
+		<select> ~~~ </select>
+		<insert> ~~~ </insert>
+		<update> ~~~ </update>
+		<delete> ~~~ </delete>
+		
+		위 태그에서 사용되는 속성들
+		1) id 속성: 해당 태그를 호출할 때 <sqlMap> 태그의 namespace와 연결하여 사용하는 이름
+		2) parameterClass 속성: sql문에 사용될 데이터가 들어있는 객체를 지정한다.
+							   (보통은 VO클래스, 자바의 자료형이름 등이 사용된다.)
+							   (typeAlias로 지정한 alias명을 사용할 수 있다.)
+		
+		3) resultClass 속성 : select 문을 실행한 결과를 담을 객체를 지정한다.
+							(보통 VO클래스나 자바의 자료형 이름을 사용한다.)
+	 -->
+	<resultMap class="ourhouse.common.vo.MemberVO" id="memberMap">
+	 	<result property="memId" column="MEM_ID"/>
+	 	<result property="memPass" column="MEM_PASS"/>
+	 	<result property="memEmail" column="MEM_EMAIL"/>
+	 	<result property="memNickname" column="MEM_NICKNAME"/>
+	 	<result property="memIntro" column="MEM_INTRO"/>
+	 	<result property="memPoint" column="MEM_POINT"/>
+	 	<result property="memDelete" column="MEM_DELETE"/>
+	 	<result property="memAdmin" column="MEM_ADMIN"/>
+	 </resultMap>
+	 
+	<insert id="signupMember" parameterClass="ourhouse.common.vo.MemberVO">
+	insert into MEMBER (
+                          MEM_ID         
+                        , MEM_PASS		 
+                        , MEM_EMAIL      
+                        , MEM_NICKNAME   
+                        , MEM_INTRO      
+                        , MEM_POINT      
+                        , MEM_DELETE     
+                        , MEM_ADMIN      
+            ) values ( 
+						  #memId#   						
+						, #memPass#
+						, #memEmail#
+						, #memNickname#
+						, #memIntro#
+                        , NVL(#memPoint#,0) 
+					    , 'N'
+	                    , 'N'
+					 )	
+	</insert>	  
+	
+	<select id="getMember" resultMap="memberMap">
+	 select * from MEMBER 
+	 where MEM_ID = #memId#
+	   and MEM_DELETE='N'   
+	</select>
+	
+	<select id="seletNickName" resultMap="memberMap">
+		SELECT *
+	  	  FROM MEMBER
+	     WHERE MEM_NICKNAME = #memNickname#
+	</select>
+	
+	<select id="getMemList" resultMap="memberMap">
+	 select * from MEMBER 
+	</select>
+	
+	<select id="selectEmail" resultMap="memberMap">
+		SELECT *
+	  	  FROM MEMBER
+	     WHERE MEM_EMAIL = #memEmail#
+	</select>	
+	
+	<select id="selectCouponList" resultClass="ourhouse.common.vo.MyCouponListVO">
+		SELECT B.COUPON_NO couponNo,
+			   D.SHOP_NAME ||' '|| C.PRICE prodName,
+       		   D.SHOP_NAME couponSite,
+       		   B.COUPON_CODE myCouponCode
+  		  FROM MEMBER A
+  		 RIGHT JOIN COUPON_BOX B ON (A.MEM_ID(+) = B.MEM_ID)
+  		  LEFT JOIN COUPON_MANAGE C ON (B.CP_MG_NO = C.CP_MG_NO)
+  		  LEFT JOIN SHOP D ON (C.SHOP_ID = D.SHOP_ID)
+ 		 WHERE A.MEM_ID = #memId#
+ 		 ORDER BY B.COUPON_NO
+	</select>
+	
+	<update id="memDelete" parameterClass="ourhouse.common.vo.MemberVO">
+		UPDATE MEMBER
+  		   SET MEM_DELETE = #memDelete#
+		 WHERE MEM_ID 	  = #memId#
+	</update>
+	
+	<update id="updateMemPass" parameterClass="ourhouse.common.vo.MemberVO">
+		UPDATE MEMBER
+    	   SET MEM_PASS = #memPass#
+  	     WHERE MEM_EMAIL = #memEmail#
+	</update>
+	
+	<select id="selectMemPass" resultMap="memberMap">
+		SELECT *
+		  FROM MEMBER
+		 WHERE MEM_PASS = #memPass#
+		   AND MEM_EMAIL = #memEmail#
+	</select>
+	
+	<update id="memberInfoUpdate" parameterClass="ourhouse.common.vo.MemberVO">
+		UPDATE MEMBER
+   		   SET MEM_NICKNAME = #memNickname#
+             , MEM_INTRO = #memIntro#
+         WHERE MEM_EMAIL = #memEmail#
+	</update>
+	
+	<update id="updateMemPoint" parameterClass="ourhouse.common.vo.MemberVO">
+		UPDATE MEMBER
+   		   SET MEM_POINT = #memPoint#
+         WHERE MEM_ID = #memId#
+	</update>
+	
+	<update id="updateReplyPoint" parameterClass="int">
+		UPDATE MEMBER
+	       SET MEM_POINT = MEM_POINT + 50
+       	 WHERE MEM_ID IN (SELECT A.MEM_ID     memId
+	                        FROM REPLY A
+	                      LEFT OUTER JOIN POST B ON (A.POST_NO = B.POST_NO)
+	                       WHERE B.BOARD_ID = 'QNA'
+	                         AND A.REPLY_NO = #replyNo#)
+	</update>
+	<select id="searchTotalUser" parameterClass="ourhouse.common.vo.SearchMemberVO"
+	   resultClass="ourhouse.common.vo.SearchMemberVO">
+	 SELECT A.MEM_ID                                  memId
+        ,NVL(A.MEM_NICKNAME,'')                       memNickname
+        ,NVL(A.MEM_INTRO,'')                          memIntro
+        ,NVL(B.STRE_IMG_NM, #DEFAULT_PROFILE_NAME#)  profileImg     
+ 	FROM MEMBER A
+	 LEFT OUTER JOIN PROFILE_IMG B ON(A.MEM_ID=B.MEM_ID)
+	 WHERE A.MEM_INTRO LIKE '%' || #memIntro# || '%' 
+	    OR A.MEM_NICKNAME LIKE '%' || #memNickname# || '%' 
+	    OR A.MEM_ID LIKE '%' || #memId# || '%' 
+	</select>
+</sqlMap>      

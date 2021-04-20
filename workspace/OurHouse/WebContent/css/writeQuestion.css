@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+/* 헤더 상단바 고정 */
+
+/* 공통 모듈 */
+.body__container {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* SUMMARY */
+.summary__title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.summary__description {
+    font-size: 12px;
+    font-weight: 500;
+    color: #727272;
+    line-height: 1.5;
+}
+
+/* input */
+
+.input--text{
+    height: 40px;
+    padding: 0 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 16px;
+}
+
+.input--text:hover {
+    background: #f7f7f7;
+}
+
+.input--text::-webkit-input-placeholder {
+    color: #cacaca;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.input--text::-ms-input-placeholder {
+    color: #cacaca;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.input--text::-moz-input-placeholder {
+    color: #cacaca;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* BTN */
+.btn {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 70px;
+    width: 100%;
+    background: #dddddd;
+    border: none;
+    border-radius: 4px;
+    display: inline-flex;
+    /* 수평을 가지지만 위아래 패딩 가로사이즈를 가질 수 없다. 이 속성을 주면 다음 요소에 스페이스바로 인식해 빈공간이 생김 */
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    color: #424242;
+}
+
+.btn:hover{
+    background: #2bb0d8;
+    color:#ffffff;
+}
+
+/* FLOAT CLEARFIX */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.float--left {
+    float: left;
+}
+
+.float--right {
+    float: right;
+}
+
+
+/* 이미지 업로드 */
+
+.file-upload-content {
+    max-width:420px;
+    max-height:420px;
+    position: relative;
+    display: none;
+}
+
+.image-upload-wrap {
+    border: 4px dashed #35C5F0;
+    position: relative;
+    width:420px;
+    height:420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.file-upload-content .imgBox{
+    width:420px;
+    height:420px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.file-upload-input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 420px;
+    height: 420px;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.image-upload-wrap:hover {
+    background-color: #35C5F0;
+    border: none;
+    box-sizing: border-box;
+}
+
+.image-upload-wrap:hover .drag-text h3{
+    color:#ffffff;
+}
+
+.drag-text h3 {
+    font-weight: 100;
+    text-transform: uppercase;
+    color: #757575;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.file-upload-image {
+    width:420px;
+    height:420px;
+    object-fit: contain;
+    overflow: hidden;
+}
+
+.remove-image {
+    outline:none;
+    border:none;
+    position: absolute;
+    top:10px;
+    right:10px;
+    color:#ffffff;
+    font-size: 24px;
+    padding:2px 7px 0px 7px;
+    border-radius: 100%;
+    background: #35C5F0;
+}
+
+.remove-image:hover {
+    color: #35C5F0;
+    background: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+/* 섹션 영역 */
+
+.section {
+    position: relative;
+}
+
+.section .inner {
+    max-width: 1136px;
+    /* 최대 너비 980px */
+    margin: 0 auto;
+    /* 중앙절렬. 980px이라는 영역이 중앙에 정위치 하게됨 상하 0 좌우 auto*/
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* 헤더 영역 */
+header {
+    background: #ffffff;
+    /* white같은 지정값의 경우 브라우저마다 상이할 수 있으므로 헥사코드로 명시하자 */
+}
+
+
+header .inner {
+    width: 1136px;
+    height: 80px;
+    /* header는 안의 요소 inner에 영향을 받으므로 자식요소에 값을 지정해주도록 한다. 부모 height는 기본으로 auto */
+}
+
+header .menu-group {
+    display: flex;
+    /* 자식요소들을 수평 정렬 */
+    align-items: center;
+    height: 100%;
+    /* inner높이 만큼 */
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    width:30px;
+    height:30px;
+}
+
+header .logo a {
+    margin-left: 4px;
+    width:90px;
+    height:30px;
+    display: block;
+    background-image: url("../image/PNG/wehouse_logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    text-indent: -9999px;
+    /* 들여쓰기 속성 html코드의 GitHub를 대체텍스트로 이용하기 위해 왼쪽으로 없애준다. 이를 명시하기위해 -9999px를 사용한다 */
+}
+
+header .menu-group {
+    display: flex;
+    /* 자식요소들을 수평 정렬 */
+    align-items: center;
+    height: 100%;
+    /* inner높이 만큼 */
+}
+
+
+/* 사인폼 영역 */
+
+.section-write .pictureandcomment{
+    height:420px;
+    min-width: 420px;
+    position: relative;
+    display: flex;
+    margin: 30px 0;
+}
+
+.section-write .inner{
+    width:940px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 80px;
+}
+
+.section-write .summary__title{
+    font-size: 30px;
+    color:#000000;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.section-write .img-container{
+    margin-right: 30px;
+}
+
+.section-write .writebox{
+    flex:1;
+    padding:0;
+}
+
+.section-write .usercomment{
+    width:100%;
+}
+
+.usercomment .comment{
+    resize: none;
+    width:calc(98.2% - 15px);
+    margin-top: 30px;
+    height:325px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding:10px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+/* FOOTER */
+
+footer{
+    border-top: 1px solid #ececec;
+    display: flex;
+}
+
+footer .inner {
+    padding: 40px;
+    width: 100%;
+    display:flex;
+    justify-content: flex-end;
+}
+
+footer .btn{
+    width: 300px;
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이거 언제 다만드냐</title>
+
+    <meta name="author" content="3team">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="wehouse">
+    <meta property="og:title" content="Introduce your home, together">
+    <meta property="og:description" content="Deadock MiddleProject">
+    <meta property="og:image" content="img/logo__github.png">
+    <meta property="og:url" content="https://wehouse.com">
+
+    <!-- 대표 로고 -->
+    <link rel="icon" href="../../image/PNG/favicon.png">
+    <link rel="apple-touch-icon" href="../../image/PNG/favicon.png">
+    
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/noticepost.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- body 태그에 직접적으로 css는 부여하지 않는다. 컨테이너를 따로 지정하자. -->
+    <!-- 언더바 두개를 사용하는 이유 -->
+<div class="body__container"> <!-- body의 일부분인 컨테이너임을 의미 -->
+
+    <!-- HEADER -->
+    <header class="section">
+        <!-- 콘텐츠가 들어가는 inner영역 -->
+        <div class="inner clearfix">
+
+            <div class="menu-group float--left">
+                
+                <div class="logo">
+                    <a href="#">우리의집</a>
+                </div>
+
+            </div>
+
+            <div class="sign-group float--right">
+
+                <form id="search-form" method="POST" action=""><!-- 고유한 개체에 id 명시 -->
+                    <span class="search-icon"></span>
+                    <input type="text" id="search" class="input--text" placeholder="우리의집 통합검색">
+                    <input type="submit" value="Submit"><!-- 화면엔 있지만 숨길것임. -->
+                </form>
+
+                <ul class="sub-menu">
+                    <li><a href="./signin.html">로그인</a></li>
+                    <li><a href="./signup.html">회원가입</a></li>
+                </ul>
+
+                <div class="btn-group">
+                    <a href="" class="btn">글쓰기
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 서브 메뉴 집들이(사진), 질문과 답변, 이벤트 -->
+    <header class="section sub-section">
+            <div class="inner clearfix">
+
+                <div class="section-memu float--left">
+                    <ul class="section-group active">
+                        <li><a href="#">사진</a></li>
+                        <li><a href="#">질문과답변</a></li>
+                        <li><a href="#">쿠폰</a></li>
+                        <li><a href="#">공지사항</a></li>
+                    </ul>
+                </div>
+
+                <div class="sign-group float--right">
+                    <a href="" class="textbold">나의 활동기록 NEW!
+                    </a>
+                </div>
+                
+            </div>
+    </header>
+
+    <!-- 최근 올라온 공지사항.
+         가장 최근에 게시된 공지게시글 1개 -->
+    <section class="section section--notice">
+        <div class="inner">
+
+            <div class="notice-container">
+
+                <span>💡</span>
+                <span class="notice-title">[공지사항] 질문 게시글 올바른 사용 안내 - 게시판별 부적합한 게시글 및 댓글 처벌에 대한 안내</span>
+
+                 
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section section--noticeboard">
+
+        <div class="inner">
+
+            <div class="board--title">
+                <div class="title--text">
+                    📢 공지사항
+                </div>
+                <div class="list--prev">
+                    <a href="" class="btn btn--prev">
+                        <i class="fas fa-bars"></i>
+
+                        <div class="vertical--bar"></div>
+
+                        목록으로 돌아가기</a>
+                </div>
+            </div>
+
+            <div class="boardcontent--wrap">
+                
+                <ul class="tr">
+                    <li class="th">1</li>
+                    <li class="th">개인정보보호법에 따른 회원 정보 위탁</li>
+                    <li class="th">작성일 : 2020-11-12</li>
+                    <li class="th">수정일 : 2020-11-12</li>
+                </ul>
+
+                <div class="board--content">
+                    안녕하세요 운영자 서대철입니다.
+
+                    한국인터넷진흥원은 원활한 개인정보 업무처리를 위하여 다음과 같이 개인정보 처리업무를 위탁하고 있습니다.
+
+                    위탁처리 기관
+                    - 수탁업체명 : 한국인터넷진흥원
+                    - 주소 : 전라남도 나주시 진흥길 9 한국인터넷진흥원
+                    - 위탁업무 : 데이터 안전활용 교육 운영
+
+                    위탁처리 수행업체
+                    - 수탁업체명 : (주)컬처메이커스
+                    - 주소 : 서울특별시 중구 퇴계로 36길2, 충무로영상센터 614호
+                    - 위탁업무 : 데이터 안전활용 교육 운영
+                </div>
+            </div>
+
+            <ul class="prevorNext">
+                <li class="prev--container">
+                    <a> <i class="fas fa-angle-up"></i> 
+                        <span class="note">이전글</span> 
+                        <span class="title">11월 불건전한 채팅 이용자 제재 안내</span>
+                    </a>
+                </li>
+                <li class="next--container">
+                    <a> <i class="fas fa-angle-down"></i> 
+                        <span class="note">이전글</span> 
+                        <span class="title">EACC AUTUNN 2020 생중계 쿠폰 안내</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="section">
+            <div class="inner clearfix">
+
+                <ul class="site-links float--right">
+                    <li>@Copyright © 2020 ~ 2020 by Daedockplace, Inc All rights reserved</li>
+                </ul>
+
+                <ul class="site-links float--left">
+                    <li><a href="#">브랜드 스토리</a></li>
+                    <li><a href="#">이용약관</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">공지사항</a></li>
+                </ul>
+            </div>
+    </footer>
+
+    <script src="../../js/qnahome.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

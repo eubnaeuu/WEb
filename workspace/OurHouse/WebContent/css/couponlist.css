@@ -1,0 +1,511 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+/* �뿤�뜑 �긽�떒諛� 怨좎젙 */
+
+
+
+/* 怨듯넻 紐⑤뱢 */
+.body__container {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    background: #f2f2f2;
+}
+
+a {
+    text-decoration: none;
+    color:#000000;
+}
+
+/* SUMMARY */
+.summary__title {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.summary__desciption {
+    font-size: 26px;
+    font-weight: 300;
+    color: #767676;
+    line-height: 1.5;
+}
+
+/* �뿤�뜑 �씤�뭼 諛뺤뒪 */
+.input--text {
+    height: 40px;
+    padding: 0 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 16px;
+}
+
+.textbold {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: #424242;
+    box-sizing: border-box;
+}
+
+.textbold:hover {
+    color: #35C5F0;
+}
+
+/* 濡쒓렇�씤 踰꾪듉 */
+
+/* BTN */
+.btn {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 40px;
+    width: 100px;
+    background: #35C5F0;
+    border: none;
+    border-radius: 4px;
+    display: inline-flex;
+    /* �닔�룊�쓣 媛�吏�吏�留� �쐞�븘�옒 �뙣�뵫 媛�濡쒖궗�씠利덈�� 媛�吏� �닔 �뾾�떎. �씠 �냽�꽦�쓣 二쇰㈃ �떎�쓬 �슂�냼�뿉 �뒪�럹�씠�뒪諛붾줈 �씤�떇�빐 鍮덇났媛꾩씠 �깮源� */
+    padding: 0 12px;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    color: #ffffff;
+}
+
+.btn:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.07);
+}
+
+.btn--filter {
+    min-width: 90px;
+}
+
+.input--text:hover {
+    background: #f7f7f7;
+}
+
+.input--text::-webkit-input-placeholder {
+    color: #cacaca;
+    font-weight: 700;
+}
+
+.input--text::-ms-input-placeholder {
+    color: #cacaca;
+    font-weight: 700;
+}
+
+.input--text::-moz-input-placeholder {
+    color: #cacaca;
+    font-weight: 700;
+}
+
+/* �긽�떒 寃��깋 CSS */
+
+#search {
+    width: 240px;
+    font-size: 14px;
+}
+
+#search+[type="submit"] {
+    display: none;
+}
+
+/* �뱶濡� �떎�슫 踰꾪듉 */
+
+.dropdown {
+    position: relative;
+    display: inline-flex;
+}
+
+.dropdown-content {
+    display: none;
+    top: 40px;
+    position: absolute;
+    background-color: #fcfcfc;
+    min-width: 160px;
+    margin: 0 auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 4;
+}
+
+.dropdown-content li {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.dropdown-content li:hover {
+    color: #35C5F0;
+    background: #f3f3f3;
+}
+
+/* FLOAT CLEARFIX */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.float--left {
+    float: left;
+}
+
+.float--right {
+    float: right;
+}
+
+/* �꽮�뀡 �쁺�뿭 */
+.section {
+    position: relative;
+}
+
+.section .inner {
+    max-width: 1136px;
+    /* 理쒕� �꼫鍮� 980px */
+    margin: 0 auto;
+    /* 以묒븰�젅�젹. 980px�씠�씪�뒗 �쁺�뿭�씠 以묒븰�뿉 �젙�쐞移� �븯寃뚮맖 �긽�븯 0 醫뚯슦 auto*/
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* �뿤�뜑 �쁺�뿭 */
+.sticky {
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    top: 0px;
+    height: 80px;
+}
+
+.sub--sticky {
+    position: fixed;
+    z-index: 8888;
+    width: 100%;
+    top: 80px;
+    display: none;
+}
+
+header {
+    border-bottom: 1px solid#E5E5E5;
+    background: #ffffff;
+    /* white媛숈� 吏��젙媛믪쓽 寃쎌슦 釉뚮씪�슦��留덈떎 �긽�씠�븷 �닔 �엳�쑝誘�濡� �뿥�궗肄붾뱶濡� 紐낆떆�븯�옄 */
+}
+
+header .inner {
+    height: 80px;
+    /* header�뒗 �븞�쓽 �슂�냼 inner�뿉 �쁺�뼢�쓣 諛쏆쑝誘�濡� �옄�떇�슂�냼�뿉 媛믪쓣 吏��젙�빐二쇰룄濡� �븳�떎. 遺�紐� height�뒗 湲곕낯�쑝濡� auto */
+}
+
+header .menu-group {
+    display: flex;
+    /* �옄�떇�슂�냼�뱾�쓣 �닔�룊 �젙�젹 */
+    align-items: center;
+    height: 100%;
+    /* inner�넂�씠 留뚰겮 */
+}
+
+header .sign-group {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+header .logo {
+    margin-right: 10px;
+}
+
+header .logo a {
+    width: 100px;
+    height: 30px;
+    display: block;
+    background-image: url("../image/PNG/userHome.logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    text-indent: -9999px;
+    /* �뱾�뿬�벐湲� �냽�꽦 html肄붾뱶�쓽 GitHub瑜� ��泥댄뀓�뒪�듃濡� �씠�슜�븯湲� �쐞�빐 �쇊履쎌쑝濡� �뾾�븷以��떎. �씠瑜� 紐낆떆�븯湲곗쐞�빐 -9999px瑜� �궗�슜�븳�떎 */
+}
+
+#search-form {
+    order: 1;
+    margin-right: 12px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-image: url("../image/SVG/search.svg");
+    background-repeat: no-repeat;
+    z-index: 9999;
+    left: 12.5px;
+}
+
+#search {
+    width: 240px;
+    font-size: 14px;
+}
+
+#search+[type="submit"] {
+    display: none;
+}
+
+header .sub-menu {
+    order: 2;
+    display: flex;
+    margin-right: 14x;
+}
+
+header .sub-menu li a {
+    padding: 2px 12.5px;
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: #757575;
+    border-left: 1px solid rgb(241, 241, 241);
+    box-sizing: border-box;
+}
+
+header .sub-menu li a:hover {
+    color: #35C5F0;
+}
+
+header .sub-menu li:last-child {
+    margin-right: 10px;
+}
+
+header .btn-group {
+    order: 3;
+    display: flex;
+    position: relative;
+    /* 踰꾪듉 �슂�냼�뱾�씠 inline-flex�씠誘�濡� flex �븘�슂 */
+}
+
+.sub-section {
+    background: #ffffff;
+}
+
+.sub-section .inner {
+    height: 50px;
+}
+
+header .section-menu {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+header .section-group {
+    display: flex;
+}
+
+header .section-group li a {
+    display: block;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 8px 4px;
+    padding: 6px 8px 4px;
+    font-weight: 600;
+    color: #424242;
+    box-sizing: border-box;
+}
+
+header .section-group li a:hover {
+    color: #35C5F0;
+}
+
+/* 荑좏룿 而⑦뀒�씠�꼫 */
+.section--coupon{
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+.section--coupon .summary__title{
+    font-size: 36px;
+    font-weight: 600;
+    display: flex;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #cacaca;
+    box-sizing: border-box;
+}
+
+.section--coupon .list-container{
+    margin-top: 60px;
+    width:100%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 20px 20px;
+}
+
+.list-container .coupon-item{
+    height:auto;
+    flex-direction: column;
+    background:#ffffff;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, .3);
+    border-radius: 8px;
+    position: relative;
+    padding:10px;
+}
+
+.coupon-item .detail--use{
+    position: absolute;
+    right:10px;
+}
+
+.detail--use i{
+    color:#cccccc;
+    cursor: pointer;
+}
+
+i .hidden-info{
+    display: none;
+    position: absolute;
+    width:150px;
+    right:-75px;
+    top:30px;
+    height:auto;
+    padding:10px;
+    white-space: pre-line;
+    background: #f3f3f3;
+    color:#757575;
+    z-index: 3;
+    cursor: initial;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    line-height: 1.3;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.detail--use i:hover .hidden-info{
+    display: block;
+}
+
+.coupon-item .item-info{
+    padding: 25px 5px 5px 5px;
+    color:#000000;
+    font-weight: 600;
+}
+
+.item-info .stock--coupon{
+    color:dodgerblue;
+}
+
+.item-info .title--coupon{
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+.item-info .where-coupon{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.4;
+}
+
+.where-coupon span{
+    color:#757575;
+}
+
+
+.where-coupon a:hover {
+    color:#757575;
+}
+
+.where-coupon a:link{
+   color:#757575;
+}
+
+.where-coupon a:visited{
+   color:#757575;
+}
+.where-coupon a:active{
+    color:#757575;
+}
+
+
+.buy-coupon{
+    margin-top: 20px;
+    display: flex;
+}
+
+.buy-coupon .btn{
+    width:100%;
+    height:60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 600;
+    outline: none;
+}
+
+.buy-coupon .btn-taked i{
+    margin-right: 10px;
+}
+
+.buy-coupon .btn-taked{
+    background: #8d8d8d;
+}
+
+
+
+
+/* FOOTER */
+footer {
+    border-top: 1px solid #eee;
+    margin-top: 20px;
+    background: #ffffff;
+}
+
+footer .inner {
+    padding: 50px 0;
+}
+
+footer .site-links {
+    display: flex;
+}
+
+footer .site-links li {
+    font-size: 12px;
+    margin-right: 10px;
+    color: #767676;
+}
+
+footer .site-links li a {
+    color: #4078c0;
+}
+
+footer .site-links li a:hover {
+    text-decoration: underline;
+}
+
+footer .logo {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 24px;
+    height: 24px;
+}
+
+footer .logo:hover svg {
+    fill: #4078c0;
+}

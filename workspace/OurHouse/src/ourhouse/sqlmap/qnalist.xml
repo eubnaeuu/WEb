@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- namespace속성 : 아래에서 작성한 SQL을 호출할 때 같이 사용된다. -->			
+<sqlMap namespace="qnalist">
+	<!-- 
+		이 영역에 sql문에 맞는 태그를 사용하여 SQL문을 기술한다.
+		
+		사용할 수 있는 기본적인 태그들
+		<select> ~~~ </select>
+		<insert> ~~~ </insert>
+		<update> ~~~ </update>
+		<delete> ~~~ </delete>
+		
+		위 태그에서 사용되는 속성들
+		1) id 속성: 해당 태그를 호출할 때 <sqlMap> 태그의 namespace와 연결하여 사용하는 이름
+		2) parameterClass 속성: sql문에 사용될 데이터가 들어있는 객체를 지정한다.
+							   (보통은 VO클래스, 자바의 자료형이름 등이 사용된다.)
+							   (typeAlias로 지정한 alias명을 사용할 수 있다.)
+		
+		3) resultClass 속성 : select 문을 실행한 결과를 담을 객체를 지정한다.
+							(보통 VO클래스나 자바의 자료형 이름을 사용한다.)
+	 -->
+	 
+	  <select id="selectQnaList" 
+	 		 parameterClass="ourhouse.common.vo.QnaListVO"
+	 		 resultClass="ourhouse.common.vo.QnaListVO">
+		        
+		 SELECT A.POST_DATE                                 postDate      
+		       ,A.POST_NO                                   postNo        
+		       ,A.POST_TITLE                           		postTitle      
+		       ,A.POST_CONTENT                              postContent     
+		       ,A.POST_VIEW                                 postView        
+		       ,NVL(G.REPLY_COUNT,0)                        repCount      
+		       ,A.MEM_ID                                    memId          
+		       ,NVL(B.STRE_FILE_NM,'')                      fileFileNm
+		       ,NVL(H.HOUSE_NAME,' ')		                houseId
+              ,NVL(I.SPACE_NAME,' ')		                spaceId
+              ,NVL(J.ROOM_NAME,' ')			                roomId
+	          ,NVL(K.STYLE_NAME,' ')		                styleId
+	          ,NVL(L.COLOR_NAME,' ')		                colorId      
+		FROM POST A
+		LEFT OUTER JOIN HOUSE H ON(A.HOUSE_ID=H.HOUSE_ID)
+		LEFT OUTER JOIN SPACE I ON(A.SPACE_ID=I.SPACE_ID)
+		LEFT OUTER JOIN ROOM J ON(A.ROOM_ID=J.ROOM_ID)
+		LEFT OUTER JOIN STYLE K ON(A.STYLE_ID=K.STYLE_ID)
+		LEFT OUTER JOIN COLOR L ON(A.COLOR_ID=L.COLOR_ID)
+		LEFT OUTER JOIN  (SELECT A.* FROM ATCH_FILE A, 
+		                    (SELECT POST_NO, MIN(ATCH_FILE_ID) ATCH_FILE_ID 
+		                       FROM ATCH_FILE
+		                       GROUP BY POST_NO
+		                       ORDER BY POST_NO, ATCH_FILE_ID
+		                     ) B 
+		                    WHERE A.ATCH_FILE_ID = B.ATCH_FILE_ID
+		                    ORDER BY A.ATCH_FILE_ID) B ON (B.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN (SELECT POST_NO,
+		                  COUNT(*) REPLY_COUNT
+		                   FROM REPLY
+		               GROUP BY POST_NO) G ON (G.POST_NO=A.POST_NO)
+		WHERE A.BOARD_ID='QNA'
+		ORDER BY 1 DESC        
+		        
+	 </select>
+	 
+	  <select id="selectMyQna" 
+	 		 parameterClass="String"
+	 		 resultClass="ourhouse.common.vo.QnaListVO">
+		        
+		 SELECT A.POST_DATE                                 postDate      
+		       ,A.POST_NO                                   postNo        
+		       ,A.POST_TITLE                           		postTitle      
+		       ,A.POST_CONTENT                              postContent     
+		       ,A.POST_VIEW                                 postView  
+              ,NVL(H.HOUSE_NAME,' ')		                houseId
+              ,NVL(I.SPACE_NAME,' ')		                spaceId
+              ,NVL(J.ROOM_NAME,' ')			                roomId
+	          ,NVL(K.STYLE_NAME,' ')		                styleId
+	          ,NVL(L.COLOR_NAME,' ')		                colorId
+		       ,NVL(G.REPLY_COUNT,0)                        repCount      
+		       ,A.MEM_ID                                    memId          
+		       ,NVL(B.STRE_FILE_NM,'')                      fileFileNm      
+		FROM POST A
+        LEFT OUTER JOIN HOUSE H ON(A.HOUSE_ID=H.HOUSE_ID)
+		LEFT OUTER JOIN SPACE I ON(A.SPACE_ID=I.SPACE_ID)
+		LEFT OUTER JOIN ROOM J ON(A.ROOM_ID=J.ROOM_ID)
+		LEFT OUTER JOIN STYLE K ON(A.STYLE_ID=K.STYLE_ID)
+		LEFT OUTER JOIN COLOR L ON(A.COLOR_ID=L.COLOR_ID)
+		LEFT OUTER JOIN  (SELECT A.* FROM ATCH_FILE A, 
+		                    (SELECT POST_NO, MIN(ATCH_FILE_ID) ATCH_FILE_ID 
+		                       FROM ATCH_FILE
+		                       GROUP BY POST_NO
+		                       ORDER BY POST_NO, ATCH_FILE_ID
+		                     ) B 
+		                    WHERE A.ATCH_FILE_ID = B.ATCH_FILE_ID
+		                    ORDER BY A.ATCH_FILE_ID) B ON (B.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN (SELECT POST_NO,
+		                  COUNT(*) REPLY_COUNT
+		                   FROM REPLY
+		               GROUP BY POST_NO) G ON (G.POST_NO=A.POST_NO)
+		WHERE A.BOARD_ID='QNA'
+			AND A.MEM_ID= #memId#
+		ORDER BY 1 DESC        
+		        
+	 </select>
+	
+	
+	 <select id="categoryQnaList" 
+	 		 parameterClass="ourhouse.common.vo.CategoryVO"
+	 		 resultClass="ourhouse.common.vo.QnaListVO">
+		        
+      SELECT A.POST_DATE                     postDate                     
+		       ,A.POST_NO                    postNo                              
+		       ,A.POST_TITLE                 postTitle                    	   
+		       ,A.POST_CONTENT               postContent                           
+		       ,A.POST_VIEW                  postView                        
+		       ,NVL(G.REPLY_COUNT, 0)        repCount                  
+		       ,A.MEM_ID                     memId                        
+		       ,B.STRE_FILE_NM               fileFileNm    
+               ,NVL(H.HOUSE_NAME,' ')		 houseId
+               ,NVL(I.SPACE_NAME,' ')	     spaceId
+               ,NVL(J.ROOM_NAME,' ')	     roomId
+               ,NVL(K.STYLE_NAME,' ')		 styleId
+               ,NVL(L.COLOR_NAME,' ')	     colorId
+		FROM POST A
+		LEFT OUTER JOIN HOUSE H ON(A.HOUSE_ID=H.HOUSE_ID)
+		LEFT OUTER JOIN SPACE I ON(A.SPACE_ID=I.SPACE_ID)
+		LEFT OUTER JOIN ROOM J ON(A.ROOM_ID=J.ROOM_ID)
+		LEFT OUTER JOIN STYLE K ON(A.STYLE_ID=K.STYLE_ID)
+		LEFT OUTER JOIN COLOR L ON(A.COLOR_ID=L.COLOR_ID)
+		LEFT OUTER JOIN  (SELECT A.* FROM ATCH_FILE A, 
+		                    (SELECT POST_NO, MIN(ATCH_FILE_ID) ATCH_FILE_ID 
+		                       FROM ATCH_FILE
+		                       GROUP BY POST_NO
+		                       ORDER BY POST_NO, ATCH_FILE_ID
+		                     ) B 
+		                    WHERE A.ATCH_FILE_ID = B.ATCH_FILE_ID
+		                    ORDER BY A.ATCH_FILE_ID) B ON (B.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN (SELECT POST_NO,
+		                  COUNT(*) REPLY_COUNT
+		                   FROM REPLY
+		               GROUP BY POST_NO) G ON (G.POST_NO=A.POST_NO)
+		WHERE A.BOARD_ID='QNA'
+		and 1=1
+		<isNotEmpty   property="houseId">
+		 and A.HOUSE_ID = #houseId#
+		</isNotEmpty>
+		<isNotEmpty   property="colorId">
+		 and A.COLOR_ID = #colorId#
+		</isNotEmpty>
+		<isNotEmpty   property="roomId">
+		 and A.ROOM_ID =  #roomId#
+		</isNotEmpty>
+		<isNotEmpty   property="spaceId">
+		 and A.SPACE_ID =  #spaceId#
+		</isNotEmpty>
+		<isNotEmpty   property="styleId">
+		 and A.STYLE_ID =  #styleId#
+		</isNotEmpty>
+		ORDER BY 1 DESC    
+		
+	 </select>	
+	 
+	 
+	 <select id="SearchTotalQnaList"  parameterClass="ourhouse.common.vo.QnaListVO"
+	            resultClass="ourhouse.common.vo.QnaListVO">
+	 
+	 
+		 SELECT A.POST_DATE                                 postDate      
+		       ,A.POST_NO                                   postNo        
+		       ,A.POST_TITLE                           		postTitle      
+		       ,A.POST_CONTENT                              postContent     
+		       ,A.POST_VIEW                                 postView        
+		       ,NVL(G.REPLY_COUNT,0)                        repCount      
+		       ,A.MEM_ID                                    memId          
+		       ,NVL(B.STRE_FILE_NM,'')                      fileFileNm
+		       ,NVL(H.HOUSE_NAME,' ')		                houseId
+              ,NVL(I.SPACE_NAME,' ')		                spaceId
+              ,NVL(J.ROOM_NAME,' ')			                roomId
+	          ,NVL(K.STYLE_NAME,' ')		                styleId
+	          ,NVL(L.COLOR_NAME,' ')		                colorId      
+		FROM POST A
+		LEFT OUTER JOIN HOUSE H ON(A.HOUSE_ID=H.HOUSE_ID)
+		LEFT OUTER JOIN SPACE I ON(A.SPACE_ID=I.SPACE_ID)
+		LEFT OUTER JOIN ROOM J ON(A.ROOM_ID=J.ROOM_ID)
+		LEFT OUTER JOIN STYLE K ON(A.STYLE_ID=K.STYLE_ID)
+		LEFT OUTER JOIN COLOR L ON(A.COLOR_ID=L.COLOR_ID)
+		LEFT OUTER JOIN  (SELECT A.* FROM ATCH_FILE A, 
+		                    (SELECT POST_NO, MIN(ATCH_FILE_ID) ATCH_FILE_ID 
+		                       FROM ATCH_FILE
+		                       GROUP BY POST_NO
+		                       ORDER BY POST_NO, ATCH_FILE_ID
+		                     ) B 
+		                    WHERE A.ATCH_FILE_ID = B.ATCH_FILE_ID
+		                    ORDER BY A.ATCH_FILE_ID) B ON (B.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN (SELECT POST_NO,
+		                  COUNT(*) REPLY_COUNT
+		                   FROM REPLY
+		               GROUP BY POST_NO) G ON (G.POST_NO=A.POST_NO)
+		WHERE A.BOARD_ID='QNA'
+         AND (A.post_title LIKE '%' || #postTitle# || '%' 
+         		OR A.post_content LIKE '%' || #postContent# || '%' 
+         		OR A.MEM_ID       LIKE '%' || #postContent# || '%')
+		ORDER BY 1 DESC      
+		        
+	 
+	 
+	 </select>
+	
+	
+	
+</sqlMap>

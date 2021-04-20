@@ -1,0 +1,592 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+/* 헤더 상단바 고정 */
+
+
+
+/* 공통 모듈 */
+.body__container {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #ececec;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+/* SUMMARY */
+.summary__title {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    position: relative;
+}
+
+.summary__desciption {
+    font-size: 26px;
+    font-weight: 300;
+    color: #767676;
+    line-height: 1.5;
+}
+
+/* 헤더 인풋 박스 */
+.input--text {
+    height: 40px;
+    padding: 0 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 16px;
+}
+
+.textbold {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: #424242;
+    box-sizing: border-box;
+}
+
+.textbold:hover {
+    color: #35C5F0;
+}
+
+/* 드롭 다운 버튼 */
+
+.item-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    width: 240px;
+    height: 60px;
+    background: #ffffff;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, .3);
+    box-sizing: border-box;
+}
+
+.item-box:not(:last-child) {
+    margin-right: 20px;
+}
+
+.item-box:hover {
+    box-shadow: 0px 9px 9px rgba(0, 0, 0, .3);
+}
+
+.item-title {
+    margin-left: 10px;
+}
+
+.item-title p {
+    margin-top: 5px;
+    font-size: 12px;
+    color: rgb(172, 172, 172)
+}
+
+/* FLOAT CLEARFIX */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.float--left {
+    float: left;
+}
+
+.float--right {
+    float: right;
+}
+
+/* 섹션 공통 */
+.section {
+    position: relative;
+}
+
+.section .inner {
+    max-width: 1920px;
+    /* 최대 너비 980px */
+    margin: 0 auto;
+    /* 중앙절렬. 980px이라는 영역이 중앙에 정위치 하게됨 상하 0 좌우 auto*/
+    box-sizing: border-box;
+    position: relative;
+}
+
+
+/* 팝업 스타일 */
+
+.modal-container{
+    display: none;
+}
+
+.modal-bg{
+    position: fixed;
+    width:100%;
+    height:100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal{
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    width:400px;
+    height:200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.popup-title{
+    flex:3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.popupbtn-group{
+    flex:1;
+    display: flex;
+    width:100%;
+}
+
+.popupbtn-group button{
+    all:unset;
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#ffffff;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.popupbtn-group .btn-agree{
+    background: #5d90ff;
+    border-radius: 0 0 0 8px;
+}
+
+.popupbtn-group .btn-agree:hover{
+    color: #5d90ff;
+    background: #ffffff;
+    transition: .3s;
+}
+
+.popupbtn-group .btn-cancel{
+    background: #fa5e8d;
+    border-radius: 0 0 8px 0;
+}   
+
+.popupbtn-group .btn-cancel:hover{
+    color: #fa5e8d;
+    background: #ffffff;
+    transition: .3s;
+}
+
+/* 헤더 영역 */
+header {
+    border-bottom: 1px solid#E5E5E5;
+    background: #ffffff;
+    position: relative;
+    /* white같은 지정값의 경우 브라우저마다 상이할 수 있으므로 헥사코드로 명시하자 */
+}
+
+.header--background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background-color: rgb(65, 120, 240);
+}
+
+header .inner {
+    padding: 60px 40px 0 40px;
+    height: 80px;
+
+    /* header는 안의 요소 inner에 영향을 받으므로 자식요소에 값을 지정해주도록 한다. 부모 height는 기본으로 auto */
+}
+
+header .menu-group {
+    display: flex;
+    /* 자식요소들을 수평 정렬 */
+    align-items: center;
+    height: 100%;
+    /* inner높이 만큼 */
+}
+
+header .item-nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+header .logo {
+    margin-right: 10px;
+}
+
+header .logo a {
+    width:210px;
+    height: 40px;
+    display: block;
+    background-image: url("../image/PNG/wehome_logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    text-indent: -9999px;
+    /* 들여쓰기 속성 html코드의 GitHub를 대체텍스트로 이용하기 위해 왼쪽으로 없애준다. 이를 명시하기위해 -9999px를 사용한다 */
+}
+
+#search-form {
+    order: 1;
+    margin-right: 12px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-image: url("../image/SVG/search.svg");
+    background-repeat: no-repeat;
+    z-index: 9999;
+    left: 12.5px;
+}
+
+#search {
+    width: 240px;
+    font-size: 14px;
+}
+
+#search+[type="submit"] {
+    display: none;
+}
+
+header .sub-menu {
+    order: 2;
+    display: flex;
+    margin-right: 14x;
+}
+
+header .sub-menu li a {
+    padding: 2px 12.5px;
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: #757575;
+    border-left: 1px solid rgb(241, 241, 241);
+    box-sizing: border-box;
+}
+
+header .sub-menu li a:hover {
+    color: #35C5F0;
+}
+
+header .sub-menu li:last-child {
+    margin-right: 10px;
+}
+
+header .btn-group {
+    order: 3;
+    display: flex;
+    position: relative;
+    /* 버튼 요소들이 inline-flex이므로 flex 필요 */
+}
+
+.sub-section {
+    background: #ffffff;
+}
+
+.sub-section .inner {
+    height: 50px;
+}
+
+header .section-menu {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+header .section-group {
+    display: flex;
+}
+
+header .section-group li a {
+    display: block;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 8px 4px;
+    padding: 6px 8px 4px;
+    font-weight: 600;
+    color: #424242;
+    box-sizing: border-box;
+}
+
+header .section-group li a:hover {
+    color: #35C5F0;
+}
+
+/* 대쉬보드 네비 / 섹션 */
+.section-dashboard {
+    margin-top: 60px;
+    max-width: 100%;
+}
+
+.section-dashboard .column {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-dashboard .inner {
+    display: flex;
+    height:810px;
+}
+
+.section-dashboard .nav-container {
+    width: 320px;
+    background: #ffffff;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+    display: flex;
+    flex-direction: column;
+    height:100%;
+    position: relative;
+}
+
+.section-dashboard .nav-list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.nav-list {
+    padding: 40px 0;
+}
+
+.nav-list .nav-item {
+    font-size: 30px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    font-weight: 500;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, .07);
+    color: #424242;
+}
+
+.nav-list .nav-item:not(:last-child) {
+    margin-bottom: 25px;
+}
+
+.nav-list .nav-item:hover *{
+    color: #35C5F0;
+}
+
+.section-dashboard .dashboard-contents {
+    display: flex;
+    width: 100%;
+    height:730px;
+    flex-direction: column;
+    margin: 0 30px;
+}
+
+.dashboard-contents .summary__title {
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.dashboard-contents .report-list {
+    height: 755px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, .2);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px 30px 30px;
+    margin-top:10px;
+    box-sizing: border-box;
+}
+
+/* 신고 내역 */
+
+.report-list .list--wrap {
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+    border-radius: 10px;
+}
+
+.report-list .summary__desciption {
+    font-size: 20px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.list--wrap::-webkit-scrollbar {
+    width: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(65, 120, 240) transparent;
+}
+
+.list--wrap::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.list--wrap::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgb(65, 120, 240);
+}
+
+.list--wrap:-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+}
+
+/* 쿠폰 컨테이너 / 스타일 */
+.list--wrap .coupon-container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 36px 20px;
+    padding:10px;
+    box-sizing: border-box;
+}
+
+.coupon-container .coupon-item{
+    width:100%;
+    height:370px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
+    display: flex;
+    flex-direction: column;
+    padding:30px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.coupon-container .coupon-item:hover{
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .5);
+    transition: .3s;
+}
+
+.coupon-container .coupon-stocknumber{
+    display: flex;
+    font-size: 13px;
+    font-weight: 600;
+    color:#ff4e4e;
+}
+
+.coupon-stocknumber h2{
+    margin-right: 5px;
+}
+
+.coupon-title{
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.coupon-whereuse{
+    color:#757575;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.coupon-item .btn{
+    all:unset;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    padding:10px 0;
+    box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, .02)
+               ,1px 1px 1px 2px rgba(0, 0, 0, .02);
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.couponbtn-group{
+    display: flex;
+    height:100%;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.coupon-item .btn{
+	width:100%;
+}
+
+.coupon-item .coupon-revise{
+    margin-top: 40px;
+    background:#5d90ff;
+}
+
+.coupon-item .coupon-revise:hover{
+    color: #5d90ff;
+    background:#ffffff;
+    transition: .3s;
+}
+
+.coupon-item .coupon-delete{
+    margin-top: 20px;
+    background:#fa5e8d;
+}
+
+.coupon-item .coupon-delete:hover{
+    color: #fa5e8d;
+    background:#ffffff;
+    transition: .3s;
+}
+
+.coupon-item .coupon-add{
+    margin-top: 20px;
+    background:#01d890;
+}
+
+.coupon-item .coupon-add:hover{
+    color: #01d890;
+    background:#ffffff;
+    transition: .3s;
+}
+
+/* 둥실이 */
+@keyframes ani {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(0, 5px);
+    }
+}
+
+.chracter {
+    width: 60px;
+    object-fit: contain;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    animation: ani 1s infinite alternate;
+}
+
+.img2 {
+    top: -50px;
+    right: -10px;
+}

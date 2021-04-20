@@ -1,0 +1,582 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700;900&display=swap');
+/* 헤더 상단바 고정 */
+
+
+
+/* 공통 모듈 */
+.body__container {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #757575;
+}
+
+/* SUMMARY */
+.summary__title {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.summary__desciption {
+    font-size: 26px;
+    font-weight: 300;
+    color: #767676;
+    line-height: 1.5;
+}
+
+/* input */
+
+.input--text {
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 16px;
+}
+
+.input--text:hover {
+    background: #f7f7f7;
+}
+
+.input--text::-webkit-input-placeholder {
+    color: #cacaca;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.input--text::-ms-input-placeholder {
+    color: #cacaca;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.input--text::-moz-input-placeholder {
+    color: #cacaca;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* 헤더 인풋 박스 */
+header .input--text {
+    height: 40px;
+    padding: 0 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 16px;
+}
+
+.textbold {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: #424242;
+    box-sizing: border-box;
+}
+
+.textbold:hover {
+    color: #35C5F0;
+}
+
+/* 로그인 버튼 */
+/* BTN */
+.btn {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 38px;
+    width: 100px;
+    border: none;
+    background: #35C5F0;
+    border-radius: 4px;
+    display: inline-flex;
+    /* 수평을 가지지만 위아래 패딩 가로사이즈를 가질 수 없다. 이 속성을 주면 다음 요소에 스페이스바로 인식해 빈공간이 생김 */
+    padding: 0 12px;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    color: #f3f3f3;
+    font-weight: 700;
+    outline: none;
+}
+
+.btn:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.btn-setting {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 50px;
+    width: 100%;
+    background: #35C5F0;
+    border: none;
+    border-radius: 4px;
+    display: inline-flex;
+    /* 수평을 가지지만 위아래 패딩 가로사이즈를 가질 수 없다. 이 속성을 주면 다음 요소에 스페이스바로 인식해 빈공간이 생김 */
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    color: #ffffff;
+}
+
+.btn-setting:hover {
+    background: #2bb0d8;
+}
+
+.input--text:hover {
+    background: #f7f7f7;
+}
+
+.input--text::-webkit-input-placeholder {
+    color: #cacaca;
+    font-weight: 700;
+}
+
+.input--text::-ms-input-placeholder {
+    color: #cacaca;
+    font-weight: 700;
+}
+
+.input--text::-moz-input-placeholder {
+    color: #cacaca;
+    font-weight: 700;
+}
+
+/* FLOAT CLEARFIX */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.float--left {
+    float: left;
+}
+
+.float--right {
+    float: right;
+}
+
+/* 섹션 영역 */
+.section {
+    position: relative;
+}
+
+.section .inner {
+    max-width: 1136px;
+    /* 최대 너비 980px */
+    margin: 0 auto;
+    /* 중앙절렬. 980px이라는 영역이 중앙에 정위치 하게됨 상하 0 좌우 auto*/
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* 헤더 영역 */
+header {
+    border-bottom: 1px solid#E5E5E5;
+    background: #ffffff;
+    /* white같은 지정값의 경우 브라우저마다 상이할 수 있으므로 헥사코드로 명시하자 */
+}
+
+header .inner {
+    height: 80px;
+    /* header는 안의 요소 inner에 영향을 받으므로 자식요소에 값을 지정해주도록 한다. 부모 height는 기본으로 auto */
+}
+
+header .menu-group {
+    display: flex;
+    /* 자식요소들을 수평 정렬 */
+    align-items: center;
+    height: 100%;
+    /* inner높이 만큼 */
+}
+
+header .sign-group {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+header .logo {
+    margin-right: 10px;
+}
+
+header .logo a {
+    width: 100px;
+    height: 30px;
+    display: block;
+    background-image: url("../../image/PNG/wehouse_logo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-indent: -9999px;
+    /* 들여쓰기 속성 html코드의 GitHub를 대체텍스트로 이용하기 위해 왼쪽으로 없애준다. 이를 명시하기위해 -9999px를 사용한다 */
+}
+
+/* 헤더 글쓰기 드롭다운 */
+.section--haeder .dropdown--writelist {
+    position: relative;
+}
+
+.dropdown--writelist .dropdown-write {
+    position: absolute;
+    top: 50px;
+    right: -100px;
+    z-index: 9999;
+    box-sizing: border-box;
+    width: 300px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
+    display: none;
+}
+
+.dropdown-write li {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.dropdown-write li:hover {
+    background: #f8f8f8;
+}
+
+.dropdown-write li img {
+    margin-right: 15px;
+    width: 40px;
+}
+
+.dropdown-write .write-info {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.write-info .write--description {
+    font-size: 12px;
+    font-weight: 500;
+    color: #aaaaaa;
+}
+
+#search-form {
+    order: 1;
+    margin-right: 12px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-image: url("../image/SVG/search.svg");
+    background-repeat: no-repeat;
+    z-index: 9999;
+    left: 12.5px;
+}
+
+#search {
+    width: 240px;
+    font-size: 14px;
+}
+
+#search+[type="submit"] {
+    display: none;
+}
+
+header .sub-menu {
+    order: 2;
+    display: flex;
+    margin-right: 14x;
+}
+
+header .sub-menu li a {
+    padding: 2px 12.5px;
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: #757575;
+    border-left: 1px solid rgb(241, 241, 241);
+    box-sizing: border-box;
+}
+
+header .sub-menu li a:hover {
+    color: #35C5F0;
+}
+
+header .sub-menu li:last-child {
+    margin-right: 10px;
+}
+
+header .btn-group {
+    order: 3;
+    display: flex;
+    position: relative;
+    /* 버튼 요소들이 inline-flex이므로 flex 필요 */
+}
+
+/* 프로필 헤더 네비게이션 */
+.section-profile_nav .inner {
+    height: 60px;
+}
+
+.section-profile_nav ul {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+.section-profile_nav {
+    height: 100%;
+}
+
+.section-profile_nav li {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.section-profile_nav li {
+    margin-right: 50px;
+}
+
+.section-profile_nav li a {
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    color: #424242;
+    box-sizing: border-box;
+}
+
+.section-profile_nav li a:hover {
+    color: #35C5F0;
+}
+
+.section-profile-subnav .inner {
+    height: 60px;
+}
+
+.section-profile-subnav ul {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+.section-profile-subnav li {
+    height: calc(100% - 3px);
+    display: flex;
+    align-items: center;
+}
+
+.section-profile-subnav li {
+    margin-right: 30px;
+}
+
+.section-profile-subnav li a {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #424242;
+    box-sizing: border-box;
+}
+
+.section-profile-subnav li a:hover {
+    color: #35C5F0;
+}
+
+.section-profile-subnav li:nth-child(1) {
+    border-bottom: 4px solid #35C5F0;
+}
+
+.section-profile-subnav li:nth-child(1) a {
+    color: #35C5F0;
+}
+
+/* 회원정보 수정 폼 */
+
+.section-settingPW .inner {
+    max-width: 800px;
+    padding: 40px;
+    color: #292929;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2);
+    margin: 50px auto;
+}
+
+.section-settingPW .changePW {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.section-settingPW .summary__title {
+    margin-bottom: 40px;
+    font-size: 24px;
+    color: #292929;
+}
+
+.section-settingPW .pwconfirm {
+    margin-top: 40px;
+}
+
+.section-settingPW .summary__desciption {
+    font-size: 16px;
+    color: #292929;
+}
+.section-settingPW .pwterm {
+    margin-bottom: 20px;
+}
+
+.section-settingPW .term-contents{
+    margin: 20px 0;
+    border: 1px solid #cacaca;
+    padding:20px;
+    box-sizing: border-box;
+}
+
+.term-contents .summary__description {
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.term-contents .summary__description:not(:first-child){
+    margin-top: 20px;
+}
+
+.section-settingPW .vertical--line {
+    width: 100%;
+    height:1px;
+    background: #cacaca;
+    margin:70px 0;
+}
+
+.term-contents .term__description{
+    color:#424242;
+    font-weight: 300;
+    list-style: circle;
+    padding-left: 30px;
+    line-height: 1.5;
+}
+
+.changePW .subtitle__changePW {
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: #292929;
+}
+
+.changePW .description__changePW {
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: #292929;
+    font-weight: 300;
+    display: flex;
+    margin: 20px 0 0 0;
+    align-items: center;
+}
+
+.description__changePW .btn {
+    width: auto;
+}
+
+.changePW .change-form {
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: #292929;
+    font-weight: 300;
+    display: flex;
+    margin: 10px 0 0 0;
+    align-items: center;
+    width:100%;
+}
+
+.changePW .password {
+    flex: 1;
+}
+
+.changePW i {
+    margin-right: 5px;
+}
+
+.changePW .checkPW {
+    margin-top: 5px;
+    display: block;
+    margin-bottom: 10px;
+    color: #f77;
+    font-size: 14px;
+    visibility: hidden;
+}
+
+.changePW .checkPW:last-child {
+    margin-bottom: 20px;
+}
+
+/* FOOTER */
+footer {
+    border-top: 1px solid #eee;
+    margin-top: 130px;
+}
+
+footer .inner {
+    padding: 50px 0;
+}
+
+footer .site-links {
+    display: flex;
+}
+
+footer .site-links li {
+    font-size: 12px;
+    margin-right: 10px;
+    color: #767676;
+}
+
+footer .site-links li a {
+    color: #4078c0;
+}
+
+footer .site-links li a:hover {
+    text-decoration: underline;
+}
+
+footer .logo {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 24px;
+    height: 24px;
+}
+
+footer .logo:hover svg {
+    fill: #4078c0;
+}
+
+.nonactive {
+    display: none;
+}

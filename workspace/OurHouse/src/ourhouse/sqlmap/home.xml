@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- namespace속성 : 아래에서 작성한 SQL을 호출할 때 같이 사용된다. -->			
+<sqlMap namespace="home">
+	<!-- 
+		이 영역에 sql문에 맞는 태그를 사용하여 SQL문을 기술한다.
+		
+		사용할 수 있는 기본적인 태그들
+		<select> ~~~ </select>
+		<insert> ~~~ </insert>
+		<update> ~~~ </update>
+		<delete> ~~~ </delete>
+		
+		위 태그에서 사용되는 속성들
+		1) id 속성: 해당 태그를 호출할 때 <sqlMap> 태그의 namespace와 연결하여 사용하는 이름
+		2) parameterClass 속성: sql문에 사용될 데이터가 들어있는 객체를 지정한다.
+							   (보통은 VO클래스, 자바의 자료형이름 등이 사용된다.)
+							   (typeAlias로 지정한 alias명을 사용할 수 있다.)
+		
+		3) resultClass 속성 : select 문을 실행한 결과를 담을 객체를 지정한다.
+							(보통 VO클래스나 자바의 자료형 이름을 사용한다.)
+	 -->
+
+	<!-- 기존에 쓰던 메인화면 사진로드
+	 <select id="selectHomePhotos" 
+	 		 parameterClass="ourhouse.common.vo.HomePhotoVO"
+	 		 resultClass="ourhouse.common.vo.HomePhotoVO">
+	 		 
+			SELECT A.POST_DATE                                                   postDate        
+			       ,A.POST_NO                                                    postNo          
+			       ,A.POST_VIEW                                                  postView        
+			       ,NVL(F.LIKE_COUNT,0)                                          likeCount       
+			       ,NVL(G.REPLY_COUNT,0)                                         repCount        
+			       ,A.MEM_ID                                                     memId           
+			       ,D.MEM_INTRO                                                  memIntro        
+			       ,NVL(E.PR_IMG_PATH, #DEFAULT_PROFILE_PATH#)                   memPrImgPath    
+			       ,NVL(E.STRE_IMG_NM, #DEFAULT_PROFILE_NAME#)                   memPrStrImgNm   
+			       ,NVL(B.FILE_CN, ' ')                                          fileCn          
+			       ,B.FILE_STRE_COURS                                            fileStreCours   
+			       ,B.STRE_FILE_NM                                               fileFileNm      
+			       ,NVL(C.MEM_ID,' ')                           				 repMemId        
+			       ,CASE WHEN C.MEM_ID IS NULL 
+			             THEN ' '
+			             ELSE NVL(H.PR_IMG_PATH, #DEFAULT_PROFILE_PATH#) END AS repPrImgPath
+			       ,CASE WHEN C.MEM_ID IS NULL 
+			             THEN ' '
+			             ELSE NVL(H.STRE_IMG_NM, #DEFAULT_PROFILE_NAME#) END AS repPrImgNm
+			       ,NVL(C.REPLY_CONTENT,' ')                    				 repContent
+			       
+		 	 FROM POST A
+			LEFT OUTER JOIN ATCH_FILE   B ON (A.POST_NO=B.POST_NO)
+			LEFT OUTER JOIN (SELECT B.*
+                   			   FROM ( SELECT MAX(REPLY_NO)    REPLY_NO
+                               				 ,POST_NO          POST_NO
+                            			FROM REPLY
+                        			GROUP BY POST_NO
+                					ORDER BY POST_NO) A, REPLY B
+                   					   WHERE A.POST_NO = B.POST_NO
+                     					 AND A.REPLY_NO = B.REPLY_NO) C ON (C.POST_NO=A.POST_NO)
+			LEFT OUTER JOIN MEMBER 	    D ON (D.MEM_ID=A.MEM_ID)
+			LEFT OUTER JOIN PROFILE_IMG E ON (E.MEM_ID=A.MEM_ID)
+			LEFT OUTER JOIN PROFILE_IMG H ON (H.MEM_ID=C.MEM_ID)
+			LEFT OUTER JOIN (SELECT POST_NO,
+			                        COUNT(*) LIKE_COUNT
+			                   FROM LIKES
+			               GROUP BY POST_NO) F ON (F.POST_NO=A.POST_NO)
+			LEFT OUTER JOIN (SELECT POST_NO,
+			                  COUNT(*) REPLY_COUNT
+			                   FROM REPLY
+			               GROUP BY POST_NO) G ON (G.POST_NO=A.POST_NO)
+			WHERE A.BOARD_ID='POST'
+			  AND B.FILE_SN='1'
+			  AND D.MEM_DELETE='N'
+			ORDER BY 1 DESC
+	 </select>
+	  -->
+	  
+ 	 <select id="selectHomePhotos" 
+ 		 parameterClass="ourhouse.common.vo.HomePhotoVO"
+ 		 resultClass="ourhouse.common.vo.HomePhotoVO">
+	 SELECT A.POST_DATE                                 postDate        
+	       ,A.POST_NO                                   postNo          
+	       ,A.POST_VIEW                                 postView        
+	       ,NVL(F.LIKE_COUNT,0)                         likeCount       
+	       ,NVL(G.REPLY_COUNT,0)                        repCount        
+	       ,A.MEM_ID                                    memId           
+	       ,D.MEM_INTRO                                 memIntro        
+	       ,NVL(E.PR_IMG_PATH, #DEFAULT_PROFILE_PATH#)  memPrImgPath    
+	       ,NVL(E.STRE_IMG_NM, #DEFAULT_PROFILE_NAME#)  memPrStrImgNm   
+	       ,NVL(B.FILE_CN,' ')                          fileCn          
+	       ,B.FILE_STRE_COURS                           fileStreCours   
+	       ,B.STRE_FILE_NM                              fileFileNm      
+	       ,NVL(C.MEM_ID,' ')                           repMemId        
+	    
+	       ,CASE WHEN C.MEM_ID IS NULL 
+	             THEN ' '
+	             ELSE NVL(H.PR_IMG_PATH, #DEFAULT_PROFILE_PATH#) END AS repPrImgPath 
+	             
+	       ,CASE WHEN C.MEM_ID IS NULL 
+	             THEN ' '
+	             ELSE NVL(H.STRE_IMG_NM, #DEFAULT_PROFILE_NAME#) END AS repPrImgNm  
+	
+	       ,NVL(C.REPLY_CONTENT,' ')                    repContent      
+	       
+	       ,CASE WHEN A.MEM_ID=I.TARGET_ID THEN 'Y'
+	             ELSE 'N' END                        AS   followYN      
+	       
+	       ,CASE WHEN A.MEM_ID=J.WRITER THEN 'Y'
+	             ELSE 'N' END                        AS   likeYN              
+
+		FROM POST A
+		
+		LEFT OUTER JOIN ATCH_FILE B ON (A.POST_NO=B.POST_NO)
+		LEFT OUTER JOIN (SELECT B.*
+		                   FROM ( SELECT MAX(REPLY_NO)    REPLY_NO
+		                                ,POST_NO          POST_NO
+		                            FROM REPLY
+		                        GROUP BY POST_NO
+		                ORDER BY POST_NO) A, REPLY B
+		                   WHERE A.POST_NO = B.POST_NO
+		                     AND A.REPLY_NO = B.REPLY_NO) C ON (C.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN MEMBER D ON (D.MEM_ID=A.MEM_ID)
+		LEFT OUTER JOIN PROFILE_IMG E ON (E.MEM_ID=A.MEM_ID)
+		LEFT OUTER JOIN PROFILE_IMG H ON (H.MEM_ID=C.MEM_ID)
+		LEFT OUTER JOIN (SELECT POST_NO,
+		                        COUNT(*) LIKE_COUNT
+		                   FROM LIKES
+		               GROUP BY POST_NO) F ON (F.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN (SELECT POST_NO,
+		                  COUNT(*) REPLY_COUNT
+		                   FROM REPLY
+		               GROUP BY POST_NO) G ON (G.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN (SELECT MEM_ID
+		                        ,TARGET_ID
+		                   FROM FOLLOW
+		                  WHERE MEM_ID = #memId#) I ON (A.MEM_ID=I.TARGET_ID)
+		LEFT OUTER JOIN (select A.MEM_ID    MEM_ID
+		                         ,A.POST_NO POST_NO
+		                         ,B.MEM_ID  WRITER
+		                    FROM LIKES A
+		                    LEFT OUTER JOIN POST B ON (A.POST_NO=B.POST_NO)
+		                    where A.MEM_ID = #memId#) J ON (A.POST_NO=J.POST_NO)
+		WHERE A.BOARD_ID='POST'
+		  AND B.FILE_SN='1'
+		  AND D.MEM_DELETE='N'
+		ORDER BY 1 DESC
+	 </select>
+
+
+	 <select id="selectTopPhotos" 
+	 		 parameterClass="ourhouse.common.vo.HomePhotoVO"
+	 		 resultClass="ourhouse.common.vo.HomePhotoVO">
+	 		 
+		SELECT *
+		FROM    (SELECT A.POST_DATE                                 postDate        
+		               ,A.POST_VIEW                                 postView
+		               ,A.POST_NO        							postNo        
+		               ,A.MEM_ID                                    memId           
+		               ,D.MEM_INTRO                                 memIntro        
+		               ,NVL(E.PR_IMG_PATH, #DEFAULT_PROFILE_PATH#)  memPrImgPath    
+		               ,NVL(E.STRE_IMG_NM, #DEFAULT_PROFILE_NAME#)  memPrStrImgNm   
+		               ,B.FILE_CN                                   fileCn          
+		               ,B.FILE_STRE_COURS                           fileStreCours   
+		               ,B.STRE_FILE_NM                              fileFileNm      
+		        FROM POST A
+		        LEFT OUTER JOIN ATCH_FILE B ON (A.POST_NO=B.POST_NO)
+		        LEFT OUTER JOIN MEMBER D ON (D.MEM_ID=A.MEM_ID)
+		        LEFT OUTER JOIN PROFILE_IMG E ON (E.MEM_ID=A.MEM_ID)
+		        WHERE A.BOARD_ID='POST'
+		          AND B.FILE_SN='1'
+		        ORDER BY 2 DESC ,1 DESC)
+		WHERE ROWNUM &lt;= 2 
+		
+	 </select>
+	 
+	 <select id="selectCategoryHomePhotos" 
+	 		 parameterClass="ourhouse.common.vo.CategoryVO"
+	 		 resultClass="ourhouse.common.vo.HomeCategoryPhotoVO">
+	 		 
+			 SELECT A.POST_DATE                         postDate        
+	       ,A.POST_NO                                   postNo          
+	       ,A.POST_VIEW                                 postView        
+	       ,NVL(F.LIKE_COUNT,0)                         likeCount       
+	       ,NVL(G.REPLY_COUNT,0)                        repCount        
+	       ,A.MEM_ID                                    memId           
+	       ,D.MEM_INTRO                                 memIntro        
+	       ,NVL(E.PR_IMG_PATH, #DEFAULT_PROFILE_PATH#)  memPrImgPath    
+	       ,NVL(E.STRE_IMG_NM, #DEFAULT_PROFILE_NAME#)  memPrStrImgNm   
+	       ,NVL(B.FILE_CN,' ')                          fileCn          
+	       ,B.FILE_STRE_COURS                           fileStreCours   
+	       ,B.STRE_FILE_NM                              fileFileNm      
+	       ,NVL(C.MEM_ID,' ')                           repMemId	
+           ,NVL(K.HOUSE_NAME,' ')						houseId
+           ,NVL(L.SPACE_NAME,' ')	     				sapaceId
+           ,NVL(N.ROOM_NAME,' ')	     				roomId
+           ,NVL(M.STYLE_NAME,' ')		 				styleId
+           ,NVL(O.COLOR_NAME,' ')	     				colorId
+           
+	       ,CASE WHEN C.MEM_ID IS NULL 
+	             THEN ' '
+	             ELSE NVL(H.PR_IMG_PATH, #DEFAULT_PROFILE_PATH#) END AS repPrImgPath 
+	             
+	       ,CASE WHEN C.MEM_ID IS NULL 
+	             THEN ' '
+	             ELSE NVL(H.STRE_IMG_NM, #DEFAULT_PROFILE_NAME#) END AS repPrImgNm  
+	
+	       ,NVL(C.REPLY_CONTENT,' ')                    repContent      
+	       
+	       ,CASE WHEN A.MEM_ID=I.TARGET_ID THEN 'Y'
+	             ELSE 'N' END                        AS   followYN      
+	       
+	       ,CASE WHEN A.MEM_ID=J.WRITER THEN 'Y'
+	             ELSE 'N' END                        AS   likeYN              
+
+		FROM POST A
+		
+		LEFT OUTER JOIN ATCH_FILE B ON (A.POST_NO=B.POST_NO)
+		LEFT OUTER JOIN (SELECT B.*
+		                   FROM ( SELECT MAX(REPLY_NO)    REPLY_NO
+		                                ,POST_NO          POST_NO
+		                            FROM REPLY
+		                        GROUP BY POST_NO
+		                ORDER BY POST_NO) A, REPLY B
+		                   WHERE A.POST_NO = B.POST_NO
+		                     AND A.REPLY_NO = B.REPLY_NO) C ON (C.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN MEMBER D ON (D.MEM_ID=A.MEM_ID)
+		LEFT OUTER JOIN PROFILE_IMG E ON (E.MEM_ID=A.MEM_ID)
+		LEFT OUTER JOIN PROFILE_IMG H ON (H.MEM_ID=C.MEM_ID)
+		LEFT OUTER JOIN (SELECT POST_NO,
+		                        COUNT(*) LIKE_COUNT
+		                   FROM LIKES
+		               GROUP BY POST_NO) F ON (F.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN (SELECT POST_NO,
+		                  COUNT(*) REPLY_COUNT
+		                   FROM REPLY
+		               GROUP BY POST_NO) G ON (G.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN (SELECT MEM_ID
+		                        ,TARGET_ID
+		                   FROM FOLLOW
+		                  WHERE MEM_ID = #memId#) I ON (A.MEM_ID=I.TARGET_ID)
+		LEFT OUTER JOIN (select A.MEM_ID    MEM_ID
+		                         ,A.POST_NO POST_NO
+		                         ,B.MEM_ID  WRITER
+		                    FROM LIKES A
+		                    LEFT OUTER JOIN POST B ON (A.POST_NO=B.POST_NO)
+		                    where A.MEM_ID = #memId#) J ON (A.POST_NO=J.POST_NO)
+        LEFT OUTER JOIN HOUSE K ON(A.HOUSE_ID=K.HOUSE_ID)
+		LEFT OUTER JOIN SPACE L ON(A.SPACE_ID=L.SPACE_ID)
+		LEFT OUTER JOIN ROOM N ON(A.ROOM_ID=N.ROOM_ID)
+		LEFT OUTER JOIN STYLE M ON(A.STYLE_ID=M.STYLE_ID)
+		LEFT OUTER JOIN COLOR O ON(A.COLOR_ID=O.COLOR_ID)                     
+		WHERE A.BOARD_ID='POST'
+		  AND B.FILE_SN='1'
+		  AND D.MEM_DELETE='N'
+		  and 1=1
+		<isNotEmpty   property="houseId">
+		 and A.HOUSE_ID = #houseId#
+		</isNotEmpty>
+		<isNotEmpty   property="spaceId">
+		 and A.SPACE_ID =  #spaceId#
+		</isNotEmpty>
+		<isNotEmpty   property="roomId">
+		 and A.ROOM_ID =  #roomId#
+		</isNotEmpty>
+		<isNotEmpty   property="styleId">
+		 and A.STYLE_ID =  #styleId#
+		</isNotEmpty>
+		<isNotEmpty   property="colorId">
+		 and A.COLOR_ID = #colorId#
+		</isNotEmpty>
+		ORDER BY 1 DESC     
+		
+	 </select>
+	 
+	 <select id="searchPhotos"  parameterClass="ourhouse.common.vo.PostVO"
+ 		 resultClass="ourhouse.common.vo.HomePhotoVO" >
+	  SELECT A.POST_DATE                                postDate        
+	       ,A.POST_NO                                   postNo          
+	       ,A.POST_VIEW                                 postView        
+	       ,NVL(F.LIKE_COUNT,0)                         likeCount       
+	       ,NVL(G.REPLY_COUNT,0)                        repCount  
+	       ,A.HASHTAG									hashtag      
+	       ,A.MEM_ID                                    memId    
+	       ,D.MEM_INTRO                                 memIntro        
+	       ,NVL(E.PR_IMG_PATH, #DEFAULT_PROFILE_PATH#)  memPrImgPath    
+	       ,NVL(E.STRE_IMG_NM, #DEFAULT_PROFILE_NAME#)  memPrStrImgNm   
+	       ,NVL(B.FILE_CN,' ')                          fileCn          
+	       ,B.FILE_STRE_COURS                           fileStreCours   
+	       ,B.STRE_FILE_NM                              fileFileNm      
+	       ,NVL(C.MEM_ID,' ')                           repMemId        
+	    
+	       ,CASE WHEN C.MEM_ID IS NULL 
+	             THEN ' '
+	             ELSE NVL(H.PR_IMG_PATH, #DEFAULT_PROFILE_PATH#) END AS repPrImgPath 
+	             
+	       ,CASE WHEN C.MEM_ID IS NULL 
+	             THEN ' '
+	             ELSE NVL(H.STRE_IMG_NM, #DEFAULT_PROFILE_NAME#) END AS repPrImgNm  
+	
+	       ,NVL(C.REPLY_CONTENT,' ')                    repContent      
+	       
+	       ,CASE WHEN A.MEM_ID=I.TARGET_ID THEN 'Y'
+	             ELSE 'N' END                        AS   followYN      
+	       
+	       ,CASE WHEN A.MEM_ID=J.WRITER THEN 'Y'
+	             ELSE 'N' END                        AS   likeYN              
+
+		FROM POST A
+		
+		LEFT OUTER JOIN ATCH_FILE B ON (A.POST_NO=B.POST_NO)
+		LEFT OUTER JOIN (SELECT B.*
+		                   FROM ( SELECT MAX(REPLY_NO)    REPLY_NO
+		                                ,POST_NO          POST_NO
+		                            FROM REPLY
+		                        GROUP BY POST_NO
+		                ORDER BY POST_NO) A, REPLY B
+		                   WHERE A.POST_NO = B.POST_NO
+		                     AND A.REPLY_NO = B.REPLY_NO) C ON (C.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN MEMBER D ON (D.MEM_ID=A.MEM_ID)
+		LEFT OUTER JOIN PROFILE_IMG E ON (E.MEM_ID=A.MEM_ID)
+		LEFT OUTER JOIN PROFILE_IMG H ON (H.MEM_ID=C.MEM_ID)
+		LEFT OUTER JOIN (SELECT POST_NO,
+		                        COUNT(*) LIKE_COUNT
+		                   FROM LIKES
+		               GROUP BY POST_NO) F ON (F.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN (SELECT POST_NO,
+		                  COUNT(*) REPLY_COUNT
+		                   FROM REPLY
+		               GROUP BY POST_NO) G ON (G.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN (SELECT MEM_ID
+		                        ,TARGET_ID
+		                   FROM FOLLOW
+		                  WHERE MEM_ID =  #memId# ) I ON (A.MEM_ID=I.TARGET_ID)
+		LEFT OUTER JOIN (select A.MEM_ID    MEM_ID
+		                         ,A.POST_NO POST_NO
+		                         ,B.MEM_ID  WRITER
+		                    FROM LIKES A
+		                    LEFT OUTER JOIN POST B ON (A.POST_NO=B.POST_NO)
+		                    where A.MEM_ID = #memId# ) J ON (A.POST_NO=J.POST_NO)
+		WHERE A.BOARD_ID='POST'
+		  AND B.FILE_SN='1'
+		  AND D.MEM_DELETE='N'
+          AND A.HASHTAG like '%' || #hashtag# || '%'
+		ORDER BY 1 DESC
+	 
+	 </select>
+	 
+	 <select id="searchTotalPhotos"  parameterClass="ourhouse.common.vo.HomePhotoVO"  
+	 			resultClass="ourhouse.common.vo.HomePhotoVO" >
+	 		  SELECT A.POST_DATE                        postDate        
+	       ,A.POST_NO                                   postNo          
+	       ,A.POST_VIEW                                 postView        
+	       ,NVL(F.LIKE_COUNT,0)                         likeCount       
+	       ,NVL(G.REPLY_COUNT,0)                        repCount  
+	       ,A.HASHTAG									hashtag      
+	       ,A.MEM_ID                                    memId    
+	       ,D.MEM_INTRO                                 memIntro        
+	       ,NVL(E.PR_IMG_PATH, #DEFAULT_PROFILE_PATH#)  memPrImgPath    
+	       ,NVL(E.STRE_IMG_NM, #DEFAULT_PROFILE_NAME#)  memPrStrImgNm   
+	       ,NVL(B.FILE_CN,' ')                          fileCn          
+	       ,B.FILE_STRE_COURS                           fileStreCours   
+	       ,B.STRE_FILE_NM                              fileFileNm      
+	       ,NVL(C.MEM_ID,' ')                           repMemId        
+	    
+	       ,CASE WHEN C.MEM_ID IS NULL 
+	             THEN ' '
+	             ELSE NVL(H.PR_IMG_PATH, #DEFAULT_PROFILE_PATH#) END AS repPrImgPath 
+	             
+	       ,CASE WHEN C.MEM_ID IS NULL 
+	             THEN ' '
+	             ELSE NVL(H.STRE_IMG_NM, #DEFAULT_PROFILE_NAME#) END AS repPrImgNm  
+	
+	       ,NVL(C.REPLY_CONTENT,' ')                    repContent      
+	       
+	       ,CASE WHEN A.MEM_ID=I.TARGET_ID THEN 'Y'
+	             ELSE 'N' END                        AS   followYN      
+	       
+	       ,CASE WHEN A.MEM_ID=J.WRITER THEN 'Y'
+	             ELSE 'N' END                        AS   likeYN              
+
+		FROM POST A
+		
+		LEFT OUTER JOIN (SELECT A.* FROM ATCH_FILE A, 
+                             (SELECT POST_NO, MIN(ATCH_FILE_ID) ATCH_FILE_ID 
+                               FROM ATCH_FILE
+                               GROUP BY POST_NO
+                               ORDER BY POST_NO, ATCH_FILE_ID
+                             ) B 
+                            WHERE A.ATCH_FILE_ID = B.ATCH_FILE_ID
+                            ORDER BY A.ATCH_FILE_ID) B ON (B.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN (SELECT B.*
+		                   FROM ( SELECT MAX(REPLY_NO)    REPLY_NO
+		                                ,POST_NO          POST_NO
+		                            FROM REPLY
+		                        GROUP BY POST_NO
+		                ORDER BY POST_NO) A, REPLY B
+		                   WHERE A.POST_NO = B.POST_NO
+		                     AND A.REPLY_NO = B.REPLY_NO) C ON (C.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN MEMBER D ON (D.MEM_ID=A.MEM_ID)
+		LEFT OUTER JOIN PROFILE_IMG E ON (E.MEM_ID=A.MEM_ID)
+		LEFT OUTER JOIN PROFILE_IMG H ON (H.MEM_ID=C.MEM_ID)
+		LEFT OUTER JOIN (SELECT POST_NO,
+		                        COUNT(*) LIKE_COUNT
+		                   FROM LIKES
+		               GROUP BY POST_NO) F ON (F.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN (SELECT POST_NO,
+		                  COUNT(*) REPLY_COUNT
+		                   FROM REPLY
+		               GROUP BY POST_NO) G ON (G.POST_NO=A.POST_NO)
+		LEFT OUTER JOIN (SELECT MEM_ID
+		                        ,TARGET_ID
+		                   FROM FOLLOW
+		                  WHERE MEM_ID =  #memId# ) I ON (A.MEM_ID=I.TARGET_ID)
+		LEFT OUTER JOIN (select A.MEM_ID    MEM_ID
+		                         ,A.POST_NO POST_NO
+		                         ,B.MEM_ID  WRITER
+		                    FROM LIKES A
+		                    LEFT OUTER JOIN POST B ON (A.POST_NO=B.POST_NO)
+		                    where A.MEM_ID = #memId# ) J ON (A.POST_NO=J.POST_NO)
+		WHERE A.BOARD_ID='POST'
+		  AND D.MEM_DELETE='N'
+       	  AND (B.FILE_CN like '%' || #fileCn# || '%' 
+       	 		  OR A.MEM_ID LIKE '%' || #fileCn# || '%' 
+       	 		  OR A.HASHTAG  LIKE '%' || #fileCn# || '%' )
+		ORDER BY 1 DESC  
+	 </select>
+	 
+	 
+</sqlMap>

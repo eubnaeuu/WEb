@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이거 언제 다만드냐</title>
+
+    <meta name="author" content="3team">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 대표 로고 -->
+    <link rel="icon" href="../../image/PNG/favicon.png">
+    <link rel="apple-touch-icon" href="../../image/PNG/favicon.png">
+    
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/userpage.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+
+<div class="body__container">
+
+    <!-- HEADER -->
+    <header class="section">
+        <div class="inner clearfix">
+
+            <div class="menu-group float--left">
+                
+                <div class="logo">
+                    <a href="#">우리의집</a>
+                </div>
+
+            </div>
+
+            <div class="sign-group float--right">
+
+                <form id="search-form" method="POST" action="">
+                    <span class="search-icon"></span>
+                    <input type="text" id="search" class="input--text" placeholder="우리의집 통합검색">
+                    <input type="submit" value="Submit">
+                </form>
+
+                <ul class="sub-menu">
+                    <li><a href="./signin.html">로그인</a></li>
+                    <li><a href="./signup.html">회원가입</a></li>
+                </ul>
+
+                <div class="btn-group">
+                    <a href="" class="btn">글쓰기
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 모두보기, 사진, 질문과답변, 좋아요 선택하는 서브 헤더 -->
+    <header class="section section-profile-subnav">
+        <div class="inner">
+            <ul>
+                <li><a href="#">모두보기</a></li>
+                <li><a href="#">사진</a></li>
+                <li><a href="#">질문과답변</a></li>
+            </ul>
+    </header>
+
+    <!-- 마이프로필 -->
+    <section class="section section--profile">
+        <div class="inner clearfix">
+
+            <!-- 회원 정보 카드 -->
+            <div class="procontainer float--left">
+
+                <div class="myprofile_procontainer">
+                    <img src="../../image/poyo.png" alt="">
+
+                    <div class="profile-info">
+
+                        <div class="user-name">
+                            <span>포요포요</span>
+                        </div>
+
+                        <div class="user-follow-state">
+                            <div class="follow-state-info">
+                                <a href="#">
+                                    <span>팔로워</span>
+                                    <span class="state__follow">1</span>
+                                </a>
+                            </div>
+
+                            <div class="vertical-bar"></div>
+
+                            <div class="follower-state-info">
+                                <a href="#">
+                                    <span>팔로잉</span>
+                                    <span class="state__follower">1</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="user-info__btn">
+                            <a href="#" class="profile_btn">
+                                팔로우
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--  -->
+
+            <div class="contents-container float--right">
+
+                <div class="picturecontainer">
+
+                    <div class="picturetitle">
+                        
+                        <div class="title">
+                            사진
+                            <span class="pictures_sum">
+                            1
+                            </span>
+                        </div>
+
+                        <div class="allView">
+                            전체보기
+                        </div>
+
+                    </div>
+
+                    <div class="pictures-container">
+
+                        <div class="box-container">
+                            <div class="picture-box">
+                                <img src="../../image/PNG/main_test.png" alt="">
+                            </div>
+                            
+                            <div class="picture-title">
+                                달콤한 초콜릿
+                            </div>
+                        </div>
+
+                        <div class="picture-box">
+
+                        </div>
+
+                        <div class="picture-box">
+
+                        </div>
+
+                        <div class="picture-box">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="QnAcontainer">
+
+                    <div class="QnAtitle">
+                        
+                        <div class="title">
+                            질문과 답변
+                            <span class="QnA_sum">
+                            1
+                            </span>
+                        </div>
+
+                        <div class="allView">
+                            전체보기
+                        </div>
+
+                    </div>
+
+                    <div class="QnA-container">
+
+                        <div class="writecontainer">
+
+                            <div class="write-box">
+
+                                <div class="write-content">
+                                    <div class="write_title">
+                                        방 인테리어 조언 좀요ㅜㅜ
+                                    </div>
+
+                                    <div class="write_comment">
+                                        방 인테리어 같은거좀 시험해보고 싶은데 어떤식으로 하는게 낫나요? 벽지랑 장판은 그대로 두고 분위기 있게 하고 싶은데 화장대도 새로 사려고요
+                                    </div>
+                                </div>
+
+                                <div class="write_info">
+                                    <div class="writer">
+                                        <span>by</span>
+
+                                        <!-- 작성자명 들어가는곳 -->
+                                        <span>
+                                            포요포요
+                                        </span>
+                                    </div>
+
+                                    <!-- 작성날짜 -->
+                                    <div class="write_date">
+                                        2020.02.27
+                                    </div>
+
+                                    <div class="dashed_vertical"></div>
+
+                                    <div class="write_comment">
+                                        <span>댓글</span>
+                                        
+                                        <!-- 댓글 수 -->
+                                        <span>
+                                            7
+                                        </span>
+                                    </div>
+
+                                    <div class="dashed_vertical"></div>
+
+                                    <div class="write_lookup">
+                                        <span>조회</span>
+
+                                        <!-- 조회수 -->
+                                        <span>
+                                            90
+                                        </span>
+                                    </div>
+
+                                    <div class="write_keyword-box">
+                                        <a class="write_keyword">
+                                            <span>#</span>
+
+                                            <!-- 키워드 명 -->
+                                            <span>
+                                                조명
+                                            </span>
+                                        </a>
+
+                                        <a class="write_keyword">
+                                            <span>#</span>
+
+                                            <!-- 키워드 명 -->
+                                            <span>
+                                                가구배치/이동
+                                            </span>
+                                        </a>
+
+                                        <a class="write_keyword">
+                                            <span>#</span>
+
+                                            <!-- 키워드 명 -->
+                                            <span>
+                                                리모델링
+                                            </span>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- 사진 없으면 .nonactive 클래스 추가 -->
+                            <div class="writeImg-box">
+                                <img src="../../image/PNG/sub_test.png" alt="">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="section">
+            <div class="inner clearfix">
+
+                <ul class="site-links float--right">
+                    <li>@Copyright © 2020 ~ 2020 by Daedockplace, Inc All rights reserved</li>
+                </ul>
+
+                <ul class="site-links float--left">
+                    <li><a href="#">브랜드 스토리</a></li>
+                    <li><a href="#">이용약관</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">공지사항</a></li>
+                </ul>
+            </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- namespace속성 : 아래에서 작성한 SQL을 호출할 때 같이 사용된다. -->			
+<sqlMap namespace="report">
+	<!-- 
+		이 영역에 sql문에 맞는 태그를 사용하여 SQL문을 기술한다.
+		
+		사용할 수 있는 기본적인 태그들
+		<select> ~~~ </select>
+		<insert> ~~~ </insert>
+		<update> ~~~ </update>
+		<delete> ~~~ </delete>
+		
+		위 태그에서 사용되는 속성들
+		1) id 속성: 해당 태그를 호출할 때 <sqlMap> 태그의 namespace와 연결하여 사용하는 이름
+		2) parameterClass 속성: sql문에 사용될 데이터가 들어있는 객체를 지정한다.
+							   (보통은 VO클래스, 자바의 자료형이름 등이 사용된다.)
+							   (typeAlias로 지정한 alias명을 사용할 수 있다.)
+		
+		3) resultClass 속성 : select 문을 실행한 결과를 담을 객체를 지정한다.
+							(보통 VO클래스나 자바의 자료형 이름을 사용한다.)
+	 -->
+	 
+	 <select id="PReportList" resultClass="ourhouse.common.vo.PReportVO">
+		 SELECT A.P_REPORT_NO	pReportNo		
+		 	   ,B.POST_NO		postNo
+		 	   ,C.FILE_CN		fileCn
+		       ,B.MEM_ID			memId
+		       ,D.REASON_CON		reasonCon
+		       ,A.REPORT_DATE	reportDate
+		  FROM P_REPORT A
+		  LEFT OUTER JOIN POST B ON (A.POST_NO = B.POST_NO)
+		  LEFT OUTER JOIN ATCH_FILE C ON (B.POST_NO = C.POST_NO)
+		  LEFT OUTER JOIN REPORT_REASON D ON (D.REASON_ID = A.REASON_ID)
+		 WHERE C.FILE_SN = '1'
+		 ORDER BY A.P_REPORT_NO
+	 
+	 </select>
+	 
+	 <select id="RReportList" resultClass="ourhouse.common.vo.RReportVO">
+		 SELECT A.R_REPORT_NO    rReportNo
+		       ,C.POST_NO		postNo
+		       ,B.REPLY_CONTENT	replyContent
+		       ,B.MEM_ID			memId
+		       ,B.REPLY_NO		replyNo
+		       ,D.REASON_CON		reasonCon
+		       ,A.REPORT_DATE	reportDate
+		   FROM R_REPORT A
+		   LEFT OUTER JOIN REPLY B ON (A.REPLY_NO = B.REPLY_NO)
+		   LEFT OUTER JOIN POST C ON (B.POST_NO = C.POST_NO)
+		   LEFT OUTER JOIN REPORT_REASON D ON (A.REASON_ID = D.REASON_ID)
+		  ORDER BY A.R_REPORT_NO
+	 </select>
+	 
+	 <delete id="deleteReply" parameterClass="int">
+	 	DELETE REPLY
+	 	 WHERE REPLY_NO = #replyNo#
+	 </delete>
+	 
+	 <delete id="deletePost" parameterClass="int">
+	 	DELETE POST
+	 	 WHERE POST_NO = #postNo#
+	 </delete>
+	 
+	 <insert id="insertPReport"
+	 		 parameterClass="ourhouse.common.vo.PReportVO">
+	 		
+	 		INSERT INTO P_REPORT
+	 		VALUES (
+	 				SEQ_P_REPORT.NEXTVAL
+	 				,#postNo#
+	 				,#reasonId#
+	 				,sysdate
+	 		)		 
+	 </insert>
+	 
+	 <insert id="insertRReport"
+	 		 parameterClass="ourhouse.common.vo.RReportVO">
+	 		
+	 		INSERT INTO R_REPORT
+	 		VALUES (
+	 				SEQ_R_REPORT.NEXTVAL
+	 				,#replyNo#
+	 				,#reasonId#
+	 				,sysdate
+	 		)		 
+	 </insert>
+	 
+	 <select id="selectReasonList"
+	 		 resultClass="ourhouse.common.vo.ReasonVO">
+	 	SELECT REASON_ID 	reasonId
+	 		  ,REASON_CON   reasonCOn
+	 		  
+	 	  FROM REPORT_REASON		 
+	 </select>
+	 
+</sqlMap>

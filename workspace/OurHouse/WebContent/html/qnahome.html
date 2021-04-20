@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이거 언제 다만드냐</title>
+
+    <meta name="author" content="3team">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="wehouse">
+    <meta property="og:title" content="Introduce your home, together">
+    <meta property="og:description" content="Deadock MiddleProject">
+    <meta property="og:image" content="img/logo__github.png">
+    <meta property="og:url" content="https://wehouse.com">
+
+    <!-- 대표 로고 -->
+    <link rel="icon" href="../../image/PNG/favicon.png">
+    <link rel="apple-touch-icon" href="../../image/PNG/favicon.png">
+    
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/qnahome.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- body 태그에 직접적으로 css는 부여하지 않는다. 컨테이너를 따로 지정하자. -->
+    <!-- 언더바 두개를 사용하는 이유 -->
+<div class="body__container"> <!-- body의 일부분인 컨테이너임을 의미 -->
+
+    <!-- HEADER -->
+    <header class="section">
+        <!-- 콘텐츠가 들어가는 inner영역 -->
+        <div class="inner clearfix">
+
+            <div class="menu-group float--left">
+                
+                <div class="logo">
+                    <a href="#">우리의집</a>
+                </div>
+
+            </div>
+
+            <div class="sign-group float--right">
+
+                <form id="search-form" method="POST" action=""><!-- 고유한 개체에 id 명시 -->
+                    <span class="search-icon"></span>
+                    <input type="text" id="search" class="input--text" placeholder="우리의집 통합검색">
+                    <input type="submit" value="Submit"><!-- 화면엔 있지만 숨길것임. -->
+                </form>
+
+                <ul class="sub-menu">
+                    <li><a href="./signin.html">로그인</a></li>
+                    <li><a href="./signup.html">회원가입</a></li>
+                </ul>
+
+                <div class="btn-group">
+                    <a href="" class="btn">글쓰기
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 서브 메뉴 집들이(사진), 질문과 답변, 이벤트 -->
+    <header class="section sub-section">
+            <div class="inner clearfix">
+
+                <div class="section-memu float--left">
+                    <ul class="section-group active">
+                        <li><a href="#">사진</a></li>
+                        <li style="border-bottom: 3px solid #35C5F0;"><a href="#" style="color:#35C5F0;">질문과답변</a></li>
+                        <li><a href="#">쿠폰</a></li>
+                        <li><a href="#">공지사항</a></li>
+                    </ul>
+                </div>
+
+                <div class="sign-group float--right">
+                    <a href="" class="textbold">나의 활동기록 NEW!
+                    </a>
+                </div>
+                
+            </div>
+    </header>
+
+    <!-- 최근 올라온 공지사항.
+         가장 최근에 게시된 공지게시글 1개 -->
+    <section class="section section--notice">
+        <div class="inner">
+
+            <div class="notice-container">
+
+                <span>📢</span>
+                <span class="notice-title">[공지사항]질문 게시글 올바른 사용 안내 - 게시판별 부적합한 게시글 및 댓글 처벌에 대한 안내</span>
+                 
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 필터 카테고리 -->
+    <section class="section section--category">
+        <div class="inner">
+
+            <div class="filter--group">
+
+                <!-- 필터 선택 버튼 폼 -->
+                <div class="dropdown">
+                    <button type="button" class="category--sort btn btn--filter">정렬
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </button>
+
+                    <!-- 버튼 mouseover시 보여질 필터 선택 컨테이너 -->
+                    <!-- li에 value는 선택요소의 코드, li안에 있는 텍스트는 사용자에게 보여질 요소 -->
+                    <!-- 선택요소의 코드만 사용하시면 됩니다. -->
+                    <ul class="dropdown-content filter-sort">
+                        <li value="s1">최근 인기순</li>
+                        <li>역대 인기순</li>
+                        <li>최신순</li>
+                        <li>팔로잉</li>
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button type="button" class="category--houseType btn btn--filter">주거형태
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-content filter-houseType">
+                        <li value="H1">원룸&오피스텔</li>
+                        <li>아파트</li>
+                        <li>빌라&연립</li>
+                        <li>단독주택</li>
+                        <li>사무공간</li>
+                        <li>상업공간</li>
+                        <li>기타</li>
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button type="button" class="category--style btn btn--filter">스타일
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-content filter-style">
+                        <li value="S1">모던</li>
+                        <li>북유럽</li>
+                        <li>프로방스&로맨틱</li>
+                        <li>클래식&앤틱</li>
+                        <li>한국&아시아</li>
+                        <li>유니크</li>
+                        <li>프로방스&로맨틱</li>
+                        <li>클래식&앤틱</li>
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button type="button" class="category--color btn btn--filter">컬러
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-content filter-color">
+                        <li value="C1">그레이</li>
+                        <li>화이트</li>
+                        <li>블랙</li>
+                        <li>민트</li>
+                        <li>블루</li>
+                        <li>핑크</li>
+                        <li>그린</li>
+                        <li>레드</li>
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button type="button" class="category--space btn btn--filter">공간
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-content filter-space">
+                        <li value="R1">원룸</li>
+                        <li>거실</li>
+                        <li>침실</li>
+                        <li>주방</li>
+                        <li>욕실</li>
+                        <li>아이방</li>
+                        <li>드레스룸</li>
+                        <li>서재&작업실</li>
+                        <li>베란다</li>
+                        <li>사무공간</li>
+                        <li>상업공간</li>
+                        <li>기구&소품</li>
+                        <li>현관</li>
+                        <li>외관&기타</li>
+                        <li>제품리뷰</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="questionBtn--group">
+
+                <button type="button" class="btn askwrite">답변을 기다리는 질문</button>
+                <button type="button" class="btn questionwrite">질문 작성하기</button>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 필터링에서 선택한 옵션들이 표시되는 컨테이너 -->
+    <section class="section filter-section">
+        <div class="inner">
+
+            <form action="" class="filter--setting">
+
+                <!-- 필터 선택 폼 [정렬] -->
+                <span class="nonactive search--filter select--sort">
+                    
+                    <!-- 사용자에게 보여지는 선택 요소 -->
+                    <span class="search--value"></span>
+                    <i class="fas fa-times-circle"></i>
+                </span>
+
+                <!-- R1 등 선택 요소의 코드가 들어갈 곳 -->
+                <input type="hidden" class="apply-value value--sort" value="" onchange="">
+                <!-- 필터 선택 폼 [정렬] 여기까지가 선택 폼 -->
+
+                <!-- 필터 선택 폼 [주거형태] -->
+                <span class="nonactive search--filter select--houseType">
+                    <span class="search--value"></span>
+                    <i class="fas fa-times-circle"></i>
+                </span>
+                <input type="hidden" class="apply-value value--houseType" value="" onchange="">
+
+                <!-- 필터 선택 폼 [스타일] -->
+                <span class="nonactive search--filter select--style">
+                    <span class="search--value"></span>
+                    <i class="fas fa-times-circle"></i>
+                </span>
+                <input type="hidden" class="apply-value value--style" value="" onchange="">
+
+                <!-- 필터 선택 폼 [컬러] -->
+                <span class="nonactive search--filter select--color">
+                    <span class="search--value"></span>
+                    <i class="fas fa-times-circle"></i>
+                </span>
+                <input type="hidden" class="apply-value value--color" value="" onchange="">
+
+                <!-- 필터 선택 폼 [공간] -->
+                <span class="nonactive search--filter select--space">
+                    <span class="search--value"></span>
+                    <i class="fas fa-times-circle"></i>
+                </span>
+                <input type="hidden" class="apply-value value--space" value="" onchange="">
+
+                <button type="text" class="nonactive search--init">초기화</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="section section--board">
+        <div class="inner">
+
+            <div class="QnA-container">
+
+                <!-- 질문 게시글 폼 -->
+                <div class="writecontainer">
+
+                    <div class="write-box">
+
+                        <div class="write-content">
+                            <div class="write_title">
+                                방 인테리어 조언 좀요ㅜㅜ
+                            </div>
+
+                            <div class="write_comment">
+                                방 인테리어 같은거좀 시험해보고 싶은데 어떤식으로 하는게 낫나요? 벽지랑 장판은 그대로 두고 분위기 있게 하고 싶은데 화장대도 새로 사려고요
+                            </div>
+                        </div>
+
+                        <div class="write_info">
+                            <div class="writer">
+                                <span>by</span>
+
+                                <!-- 작성자명 들어가는곳 -->
+                                <span>
+                                    포요포요
+                                </span>
+                            </div>
+
+                            <!-- 작성날짜 -->
+                            <div class="write_date">
+                                2020.02.27
+                            </div>
+
+                            <div class="dashed_vertical"></div>
+
+                            <div class="write_comment">
+                                <span>댓글</span>
+                                
+                                <!-- 댓글 수 -->
+                                <span>
+                                    7
+                                </span>
+                            </div>
+
+                            <div class="dashed_vertical"></div>
+
+                            <div class="write_lookup">
+                                <span>조회</span>
+
+                                <!-- 조회수 -->
+                                <span>
+                                    90
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 사진 없으면 아래 div 태그는 없어도 됩니다. -->
+                    <div class="writeImg-box">
+                        <img src="../../image/PNG/sub_test.png" alt="">
+                    </div>
+
+                </div>
+                <!-- 여기까지가 게시글 폼 -->
+                
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 페이징 섹션 -->
+
+    <section class="section section-paging">
+
+        <div class="inner">
+
+            <!-- 페이징 폼 -->
+            <ul class="page--list">
+                <li class="page-number prev--page"><i class="fas fa-chevron-left"></i></li>
+                <li class="page-number active">1</li>
+                <li class="page-number">2</li>
+                <li class="page-number">3</li>
+                <li class="page-number">4</li>
+                <li class="page-number">5</li>
+                <li class="page-number">6</li>
+                <li class="page-number">7</li>
+                <li class="page-number">8</li>
+                <li class="page-number">9</li>
+                <li class="page-number">10</li>
+                <li class="page-number next--page"><i class="fas fa-chevron-right"></i></li>
+            </ul>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="section">
+            <div class="inner clearfix">
+
+                <ul class="site-links float--right">
+                    <li>@Copyright © 2020 ~ 2020 by Daedockplace, Inc All rights reserved</li>
+                </ul>
+
+                <ul class="site-links float--left">
+                    <li><a href="#">브랜드 스토리</a></li>
+                    <li><a href="#">이용약관</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">공지사항</a></li>
+                </ul>
+            </div>
+    </footer>
+
+    <script src="../../js/qnahome.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이거 언제 다만드냐</title>
+
+    <meta name="author" content="3team">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="wehouse">
+    <meta property="og:title" content="Introduce your home, together">
+    <meta property="og:description" content="Deadock MiddleProject">
+    <meta property="og:image" content="img/logo__github.png">
+    <meta property="og:url" content="https://wehouse.com">
+
+    <!-- 대표 로고 -->
+    <link rel="icon" href="../../image/PNG/favicon.png">
+    <link rel="apple-touch-icon" href="../../image/PNG/favicon.png">
+    
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/myPost.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- body 태그에 직접적으로 css는 부여하지 않는다. 컨테이너를 따로 지정하자. -->
+    <!-- 언더바 두개를 사용하는 이유 -->
+<div class="body__container"> <!-- body의 일부분인 컨테이너임을 의미 -->
+
+    <!-- HEADER -->
+    <header class="section section--header">
+        <!-- 콘텐츠가 들어가는 inner영역 -->
+        <div class="inner clearfix">
+
+            <div class="menu-group float--left">
+                
+                <div class="logo">
+                    <a href="#">우리의집</a>
+                </div>
+
+            </div>
+
+            <div class="sign-group float--right">
+
+                <form id="search-form" method="POST" action=""><!-- 고유한 개체에 id 명시 -->
+                    <span class="search-icon"></span>
+                    <input type="text" id="search" class="input--text" placeholder="우리의집 통합검색">
+                    <input type="submit" value="Submit"><!-- 화면엔 있지만 숨길것임. -->
+                </form>
+
+                <ul class="sub-menu">
+                    <li><a href="./signin.html">로그인</a></li>
+                    <li><a href="./signup.html">회원가입</a></li>
+                </ul>
+
+                <div class="btn-group">
+                    <a href="" class="btn">글쓰기
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 서브 메뉴 집들이(사진), 질문과 답변, 이벤트 -->
+    <header class="section sub-section">
+            <div class="inner clearfix">
+
+                <div class="section-memu float--left">
+                    <ul class="section-group active">
+                        <li><a href="#">사진</a></li>
+                        <li><a href="#">질문과답변</a></li>
+                        <li><a href="#">쿠폰</a></li>
+                        <li><a href="#">공지사항</a></li>
+                    </ul>
+                </div>
+
+                <div class="sign-group float--right">
+                    <a href="" class="textbold">나의 활동기록 NEW!
+                    </a>
+                </div>
+                
+            </div>
+    </header>
+
+    <section class="section section--photopost">
+        <div class="inner">
+
+            <div class="post-container">
+                <div class="photo-container">
+                    
+                    <div class="photo-filter">
+
+                        <ul class="filter">
+                            <li>10평대</li>
+                            <li>프로방스&로맨틱 스타일</li>
+                            <li>빌라&연립</li>
+                        </ul>
+
+                        <span class="writedate">
+                            11.03
+                        </span>
+
+                    </div>
+
+                    <div class="photo-contents">
+
+                        <img src="../../image/TESTIMAGE/oneroom.jpg" alt="">
+                        <p> 맘편한 내 공간 :) </p>
+
+                        <!-- <img src="../../image/TESTIMAGE/532e8ec03fa04705b1ba946c04aa1664.jpg" alt="">
+                        고딕하게 꾸며본 부모님집 :)
+
+                        <img src="../../image/TESTIMAGE/64bde62143cf49b88e509725b6c703b1.png" alt="">
+                        곧 다가올 크리스마스를 위한 장식들 ! :)
+
+                        <img src="../../image/TESTIMAGE/bddd5515ce78466daaea95e620e70dfa.jpg" alt="">
+                        여기는 주방!
+
+                        <img src="../../image/TESTIMAGE/c8cd92bc8ba84b749cd4d39f72680d63.jpg" alt="">
+                        이 집의 구조가 궁금하죠? -->
+                    </div>
+
+                    <div class="photo-hashtag">
+                        
+                        <ul class="hashtag-item">
+                            <li onclick="">
+                                <span>#</span>
+                                침실
+                            </li>
+
+                            <li>
+                                <span>#</span>
+                                홈스타일링
+                            </li>
+
+                            <li>
+                                <span>#</span>
+                                로맨틱
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="photo-status">
+                        
+                        <ul class="status-item">
+                            
+                            <li>
+                                조회
+                                <span>
+                                    2,452
+                                </span>
+                            </li>
+
+                            <div class="vertical-dot"></div>
+                            
+                            <li>
+                                댓글
+                                <span>
+                                    5
+                                </span>
+                            </li>
+
+                            <div class="vertical-dot"></div>
+                            
+                            <li>
+                                공유
+                                <span>
+                                    2,452
+                                </span>
+                            </li>
+
+                            <div class="vertical-dot"></div>
+                            
+                            <li class="report" onclick="">
+                                신고
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="photo-comment">
+
+                        <div class="comment-status">
+                            <span class="title">
+                                댓글
+                            </span>
+                            <span class="comment-number">
+                                5
+                            </span>
+                        </div>
+
+                        <div class="comment-write">
+
+                            <div class="write-profile">
+                                <img src="../../image/TESTIMAGE/oneroom.jpg" alt="">
+                            </div>
+
+                            <div class="write">
+                                <form class="input--comment">
+                                    <input type="text" id="input_comment" class="comment--text" placeholder="비방 및 욕설시 당신의 손모가지는 날아갑니다 :) ">
+                                    <input type="submit" id="comment_submit" value="등록" disabled>
+                                </form>
+                            </div>
+
+                        </div>
+
+                        <div class="comment-list">
+
+                            <ul class="uesrcomment-container">
+                                <li class="other-comment">
+
+                                    <div class="user-profile">
+                                        <img src="../../image/poyo.png" alt="">
+                                    </div>
+
+                                    <div class="user-comment">
+
+                                        <div class="nameandcomment">
+                                            
+                                            <span class="username">포티옹포티옹</span>
+
+                                            <p class="usercomment">
+                                                분홍분홍 너무 이뻐요분홍분홍 너무 이
+                                            </p>
+
+                                        </div>
+
+                                        <div class="comment-report">
+                                            <ul class="report-list">
+                                                <li>
+                                                    <span>1주 전</span>
+                                                </li>
+
+                                                <div class="vertical-dot"></div>
+
+                                                <li class="like">
+                                                    <span><i class="fas fa-heart"></i>
+                                                        좋아요</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+
+                                </li>
+
+                                <li class="my-comment">
+
+                                    <div class="user-profile">
+                                        <img src="../../image/TESTIMAGE/oneroom.jpg" alt="">
+                                    </div>
+
+                                    <div class="user-comment">
+
+                                        <div class="nameandcomment">
+                                            
+                                            <span class="username">에비드</span>
+
+                                            <p class="usercomment">
+                                                감사합니다.
+                                            </p>
+
+                                        </div>
+
+                                        <div class="comment-report">
+                                            <ul class="report-list">
+                                                <li>
+                                                    <span>1주 전</span>
+                                                </li>
+
+                                                <div class="vertical-dot"></div>
+
+                                                <li class="like">
+                                                    <span><i class="fas fa-heart"></i>
+                                                        좋아요</span>
+                                                </li>
+
+                                                <div class="vertical-dot"></div>
+
+                                                <li class="report">
+                                                    <span>신고</span>
+                                                </li>
+
+                                                <div class="vertical-dot"></div>
+
+                                                <li class="report">
+                                                    <span>수정</span>
+                                                </li>
+
+                                                <div class="vertical-dot"></div>
+
+                                                <li class="report">
+                                                    <span>삭제</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="paging--container">
+
+                        <!-- 페이징 폼 -->
+                        <ul class="page--list">
+                            <li class="page-number prev--page"><i class="fas fa-chevron-left"></i></li>
+                            <li class="page-number active">1</li>
+                            <li class="page-number">2</li>
+                            <li class="page-number">3</li>
+                            <li class="page-number">4</li>
+                            <li class="page-number">5</li>
+                            <li class="page-number">6</li>
+                            <li class="page-number">7</li>
+                            <li class="page-number">8</li>
+                            <li class="page-number">9</li>
+                            <li class="page-number">10</li>
+                            <li class="page-number next--page"><i class="fas fa-chevron-right"></i></li>
+                        </ul>
+
+                    </div>
+
+
+                </div>
+
+                <div class="writerinfo-container">
+                    
+                    <div class="writerinfo">
+
+                        <div class="post-like">
+                            <i class="far fa-heart"></i>
+                            <span>57</span>
+                        </div>
+                        
+                        <div class="writerimage">
+                            <img src="../../image/TESTIMAGE/oneroom.jpg" alt="">
+                        </div>
+
+                        <div class="writername">
+                            
+                            <span>에비드</span>
+
+                            <span class="follow">팔로우</span>
+
+                        </div>
+
+                        <div class="postbtn-group">
+                            <button type="button">게시글 수정</button>
+                            <button type="button">게시글 삭제</button>
+                        </div>
+
+                        <div id="ShareUrl" >
+
+                        </div>
+
+                    </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section section--clipboard">
+        <div class="inner">
+            <input id="myInput" value="" readonly>
+            <span id="clip--meassage">현재 URL이 복사되었습니다.😁</span>
+            <button onclick="clipboard()" id="clipboard">URL</button>
+        </div>    
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="section">
+            <div class="inner clearfix">
+
+                <ul class="site-links float--right">
+                    <li>@Copyright © 2020 ~ 2020 by Daedockplace, Inc All rights reserved</li>
+                </ul>
+
+                <ul class="site-links float--left">
+                    <li><a href="#">브랜드 스토리</a></li>
+                    <li><a href="#">이용약관</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">공지사항</a></li>
+                </ul>
+            </div>
+    </footer>
+
+    <!-- 헤더 고정시키는 js -->
+    <script src="../../js/headerfixed.js"></script>
+
+    <!-- 덧글 입력시에만 submit 가능하게하는 js -->
+    <script src="../../js/comment.js"></script>
+
+    <!-- 사진 zoomIn, zoomOut js -->
+    <script src="../../js/zooInOut.js"></script>
+
+    <!-- 현재 페이지 url 복사해주는 js -->
+    <script src="../../js/urlclip.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

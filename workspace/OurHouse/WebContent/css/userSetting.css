@@ -1,0 +1,643 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700;900&display=swap');
+/* 헤더 상단바 고정 */
+
+
+
+/* 공통 모듈 */
+.body__container {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #757575;
+}
+
+/* SUMMARY */
+.summary__title {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.summary__desciption {
+    font-size: 26px;
+    font-weight: 300;
+    color: #767676;
+    line-height: 1.5;
+}
+
+/* input */
+
+.input--text {
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 16px;
+}
+
+.input--text:hover {
+    background: #f7f7f7;
+}
+
+.input--text::-webkit-input-placeholder {
+    color: #cacaca;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.input--text::-ms-input-placeholder {
+    color: #cacaca;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.input--text::-moz-input-placeholder {
+    color: #cacaca;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* 헤더 인풋 박스 */
+header .input--text {
+    height: 40px;
+    padding: 0 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 16px;
+}
+
+.textbold {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: #424242;
+    box-sizing: border-box;
+}
+
+.textbold:hover {
+    color: #35C5F0;
+}
+
+/* 로그인 버튼 */
+/* BTN */
+.btn {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 38px;
+    width: 100px;
+    border: none;
+    background: #35C5F0;
+    border-radius: 4px;
+    display: inline-flex;
+    /* 수평을 가지지만 위아래 패딩 가로사이즈를 가질 수 없다. 이 속성을 주면 다음 요소에 스페이스바로 인식해 빈공간이 생김 */
+    padding: 0 12px;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    color: #f3f3f3;
+    font-weight: 700;
+    outline: none;
+}
+
+.btn:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.btn-setting {
+    margin-top: 20px;
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 50px;
+    width: 400px;
+    background: #35C5F0;
+    border: none;
+    border-radius: 4px;
+    display: inline-flex;
+    /* 수평을 가지지만 위아래 패딩 가로사이즈를 가질 수 없다. 이 속성을 주면 다음 요소에 스페이스바로 인식해 빈공간이 생김 */
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    color: #ffffff;
+    margin-left: 100px;
+    outline: none;
+}
+
+.btn-setting:hover {
+    background: #2bb0d8;
+}
+
+.input--text:hover {
+    background: #f7f7f7;
+}
+
+.input--text::-webkit-input-placeholder {
+    color: #cacaca;
+    font-weight: 700;
+}
+
+.input--text::-ms-input-placeholder {
+    color: #cacaca;
+    font-weight: 700;
+}
+
+.input--text::-moz-input-placeholder {
+    color: #cacaca;
+    font-weight: 700;
+}
+
+/* FLOAT CLEARFIX */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.float--left {
+    float: left;
+}
+
+.float--right {
+    float: right;
+}
+
+/* 섹션 영역 */
+.section {
+    position: relative;
+}
+
+.section .inner {
+    max-width: 1136px;
+    /* 최대 너비 980px */
+    margin: 0 auto;
+    /* 중앙절렬. 980px이라는 영역이 중앙에 정위치 하게됨 상하 0 좌우 auto*/
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* 헤더 영역 */
+header {
+    border-bottom: 1px solid#E5E5E5;
+    background: #ffffff;
+    /* white같은 지정값의 경우 브라우저마다 상이할 수 있으므로 헥사코드로 명시하자 */
+}
+
+header .inner {
+    height: 80px;
+    /* header는 안의 요소 inner에 영향을 받으므로 자식요소에 값을 지정해주도록 한다. 부모 height는 기본으로 auto */
+}
+
+header .menu-group {
+    display: flex;
+    /* 자식요소들을 수평 정렬 */
+    align-items: center;
+    height: 100%;
+    /* inner높이 만큼 */
+}
+
+header .sign-group {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+header .logo {
+    margin-right: 10px;
+}
+
+header .logo a {
+    width: 100px;
+    height: 30px;
+    display: block;
+    background-image: url("../image/PNG/wehouse_logo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-indent: -9999px;
+    /* 들여쓰기 속성 html코드의 GitHub를 대체텍스트로 이용하기 위해 왼쪽으로 없애준다. 이를 명시하기위해 -9999px를 사용한다 */
+}
+
+/* 헤더 글쓰기 드롭다운 */
+.section--haeder .dropdown--writelist {
+    position: relative;
+}
+
+.dropdown--writelist .dropdown-write {
+    position: absolute;
+    top: 50px;
+    right: -100px;
+    z-index: 9999;
+    box-sizing: border-box;
+    width: 300px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
+    display: none;
+}
+
+.dropdown-write li {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.dropdown-write li:hover {
+    background: #f8f8f8;
+}
+
+.dropdown-write li img {
+    margin-right: 15px;
+    width: 40px;
+}
+
+.dropdown-write .write-info {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.write-info .write--description {
+    font-size: 12px;
+    font-weight: 500;
+    color: #aaaaaa;
+}
+
+#search-form {
+    order: 1;
+    margin-right: 12px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-image: url("../image/SVG/search.svg");
+    background-repeat: no-repeat;
+    z-index: 9999;
+    left: 12.5px;
+}
+
+#search {
+    width: 240px;
+    font-size: 14px;
+}
+
+#search+[type="submit"] {
+    display: none;
+}
+
+header .sub-menu {
+    order: 2;
+    display: flex;
+    margin-right: 14x;
+}
+
+header .sub-menu li a {
+    padding: 2px 12.5px;
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: #757575;
+    border-left: 1px solid rgb(241, 241, 241);
+    box-sizing: border-box;
+}
+
+header .sub-menu li a:hover {
+    color: #35C5F0;
+}
+
+header .sub-menu li:last-child {
+    margin-right: 10px;
+}
+
+header .btn-group {
+    order: 3;
+    display: flex;
+    position: relative;
+    /* 버튼 요소들이 inline-flex이므로 flex 필요 */
+}
+
+/* 프로필 헤더 네비게이션 */
+.section-profile_nav .inner {
+    height: 60px;
+}
+
+.section-profile_nav ul {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+.section-profile_nav {
+    height: 100%;
+}
+
+.section-profile_nav li {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.section-profile_nav li {
+    margin-right: 50px;
+}
+
+.section-profile_nav li a {
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    color: #424242;
+    box-sizing: border-box;
+}
+
+.section-profile_nav li a:hover {
+    color: #35C5F0;
+}
+
+.section-profile-subnav .inner {
+    height: 60px;
+}
+
+.section-profile-subnav ul {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+.section-profile-subnav li {
+    height: calc(100% - 3px);
+    display: flex;
+    align-items: center;
+}
+
+.section-profile-subnav li {
+    margin-right: 30px;
+}
+
+.section-profile-subnav li a {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #424242;
+    box-sizing: border-box;
+}
+
+.section-profile-subnav li a:hover {
+    color: #35C5F0;
+}
+
+.section-profile-subnav li:nth-child(1) {
+    border-bottom: 4px solid #35C5F0;
+}
+
+.section-profile-subnav li:nth-child(1) a {
+    color: #35C5F0;
+}
+
+/* 이미지 업로드 */
+
+.file-upload-content {
+    width:200px;
+    height:200px;
+    display: none;
+    position: relative;
+}
+
+.file-upload-input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.image-upload-wrap {
+    border: 4px dashed #35C5F0;
+    position: relative;
+    width:200px;
+    height:200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.image-upload-wrap:hover {
+    background-color: #35C5F0;
+    border: none;
+    box-sizing: border-box;
+}
+
+.image-upload-wrap:hover .drag-text h3{
+    color:#ffffff;
+}
+
+.drag-text h3 {
+    font-weight: 100;
+    text-transform: uppercase;
+    color: #757575;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.file-upload-image {
+    width:200px;
+    height:200px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.remove-image {
+    outline:none;
+    border: none;
+    margin:0;
+    padding:2px 7px 0px 7px;
+    border-radius: 100%;
+    position: absolute;
+    top:10px;
+    right:10px;
+    color:#ffffff;
+    font-size: 24px;
+    background: #35C5F0;
+}
+
+.remove-image:hover {
+    color: #35C5F0;
+    background: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+
+
+/* 회원정보 수정 폼 */
+
+.set-container .title{
+    font-size: 24px;
+    color: #292929;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.set-container .serviceOut-btn {
+    font-size: 14px;
+    color:#cccccc;
+    text-decoration: underline;
+}
+
+.section-profileSet_form{
+    margin:50px auto;
+}
+
+.form--group .form-title p:nth-child(1){
+    font-size: 15px;
+    font-weight: 300;
+    color:#0c0c0c;
+}
+
+.form--group .form-title p:nth-child(2){
+    margin-top:5px;
+    font-size:13px;
+    font-weight: 300;
+    color: #757575;
+}
+
+.form--group .simpleintroduce{
+    display: flex;
+    align-items: center;
+}
+
+.set-container{
+    padding:50px;
+    position: relative;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2);
+    padding: 50px;
+    color: #292929;
+    display: flex;
+    flex-direction: column;
+}
+
+.set-container .form--group {
+    display: flex;
+    margin:20px 0;
+} 
+
+.form--group .form-title{
+    width:100px;
+}
+
+.set-form{
+    width:400px;
+}
+
+.set-form .RegExpCheck{
+    display: block;
+    font-size: 13px;
+    height:2em;
+    visibility:hidden;
+}
+
+.set-form .email{
+    display: flex;
+    align-items: center;
+}
+
+.set-form .email input{
+    width:100%;
+}
+
+.set-form .nickname{
+    display: flex;
+    align-items: center;
+}
+
+.set-form .userNick{
+    flex:3;
+    margin-right: 10px;
+}
+
+.set-form .btn{
+    flex:1;
+    width:auto;
+}
+
+.set-form .introduce{
+    width:100%;
+}
+
+/* FOOTER */
+footer {
+    border-top: 1px solid #eee;
+    margin-top: 40px;
+}
+
+footer .inner {
+    padding: 50px 0;
+}
+
+footer .site-links {
+    display: flex;
+}
+
+footer .site-links li {
+    font-size: 12px;
+    margin-right: 10px;
+    color: #767676;
+}
+
+footer .site-links li a {
+    color: #4078c0;
+}
+
+footer .site-links li a:hover {
+    text-decoration: underline;
+}
+
+footer .logo {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 24px;
+    height: 24px;
+}
+
+footer .logo:hover svg {
+    fill: #4078c0;
+}
+
+.nonactive {
+    display: none;
+}

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- namespace속성 : 아래에서 작성한 SQL을 호출할 때 같이 사용된다. -->			
+<sqlMap namespace="post">
+	<!-- 
+		이 영역에 sql문에 맞는 태그를 사용하여 SQL문을 기술한다.
+		
+		사용할 수 있는 기본적인 태그들
+		<select> ~~~ </select>
+		<insert> ~~~ </insert>
+		<update> ~~~ </update>
+		<delete> ~~~ </delete>
+		
+		위 태그에서 사용되는 속성들
+		1) id 속성: 해당 태그를 호출할 때 <sqlMap> 태그의 namespace와 연결하여 사용하는 이름
+		2) parameterClass 속성: sql문에 사용될 데이터가 들어있는 객체를 지정한다.
+							   (보통은 VO클래스, 자바의 자료형이름 등이 사용된다.)
+							   (typeAlias로 지정한 alias명을 사용할 수 있다.)
+		
+		3) resultClass 속성 : select 문을 실행한 결과를 담을 객체를 지정한다.
+							(보통 VO클래스나 자바의 자료형 이름을 사용한다.)
+	 -->
+	  <resultMap class="ourhouse.common.vo.PostVO" id="postMap">
+	 	<result property="postNo" column="POST_NO"/>
+	 	<result property="boardId" column="BOARD_ID"/>
+	 	<result property="memId" column="MEM_ID"/>
+	 	<result property="houseId" column="HOUSE_ID"/>
+	 	<result property="spaceId" column="SPACE_ID"/>
+	 	<result property="roomId" column="ROOM_ID"/>
+	 	<result property="styleId" column="STYLE_ID"/>
+	 	<result property="colorId" column="COLOR_ID"/>
+	 	<result property="hashtag" column="HASHTAG"/>
+	 	<result property="postView" column="POST_VIEW"/>
+	 	<result property="postDate" column="POST_DATE"/>
+	 	<result property="postTitle" column="POST_TITLE"/>
+	 	<result property="postContent" column="POST_CONTENT"/>
+	 </resultMap>
+	 
+	 <insert id="insertPhotoPost"
+	 		 parameterClass="ourhouse.common.vo.PostVO">
+		
+		<selectKey keyProperty="postNo" resultClass="int">
+			SELECT SEQ_POST.nextval
+			  FROM DUAL
+		</selectKey>
+		
+		INSERT INTO POST
+			(
+				 POST_NO     
+				,BOARD_ID    
+				,MEM_ID      
+				,HOUSE_ID    
+				,SPACE_ID    
+				,ROOM_ID     
+				,STYLE_ID    
+				,COLOR_ID    
+				,HASHTAG     
+				,POST_VIEW   
+				,POST_DATE   
+				<!-- ,POST_TITLE -->  
+				<!-- ,POST_CONTENT -->
+			)
+			
+			VALUES
+			(
+				#postNo#
+				,'POST'
+				,#memId#
+				,#houseId#
+				,#spaceId#
+				,#roomId#
+				,#styleId#
+				,#colorId#
+				,#hashtag#
+				,0
+				,sysdate
+			)	
+	</insert>
+	 
+	 
+	 <update id="updatePostView">
+	 	UPDATE POST
+		   SET POST_VIEW = POST_VIEW+1
+ 		 WHERE POST_NO=#postNo#
+	 </update>
+	 
+	 
+ 	 <delete id="deletePost"
+	 		 parameterClass="int">
+	 	DELETE POST
+	 	WHERE POST_NO = #postNo#
+	 </delete>
+	 
+	 <select id="selectAllPosts"
+	 		 resultClass="ourhouse.common.vo.PostVO">
+	 	SELECT  POST_NO      postNo     
+	 	       ,BOARD_ID     boardId    
+	 	       ,MEM_ID       memId      
+	 	       ,HOUSE_ID     houseId    
+	 	       ,SPACE_ID     spaceId    
+	 	       ,ROOM_ID      roomId     
+	 	       ,STYLE_ID     styleId    
+	 	       ,COLOR_ID     colorId    
+	 	       ,HASHTAG      hashtag    
+	 	       ,POST_VIEW    postView   
+	 	       ,POST_DATE    postDate   
+	 	       ,POST_TITLE   postTitle  
+	 	       ,POST_CONTENT postContent
+	 	  FROM POST
+	 	 WHERE BOARD_ID = #boardId#
+	 </select>
+	 
+	 <select id="selectPhotoDetail"
+	 		 parameterClass="ourhouse.common.vo.PostVO"
+	 		 resultClass="ourhouse.common.vo.PhotoDetailVO">
+	 SELECT A.POST_NO                                   postNo
+	       ,A.MEM_ID                                    memId
+	       ,B.HOUSE_NAME                                houseName
+	       ,C.SPACE_NAME                                spaceName
+	       ,D.ROOM_NAME                                 roomName
+	       ,E.STYLE_NAME                                styleName
+	       ,F.COLOR_NAME                                colorName
+	       ,A.HASHTAG                                   hashtag
+	       ,A.POST_VIEW                                 postView
+	       ,TO_CHAR(A.POST_DATE)                        postDate
+	       ,NVL(G.LIKE_COUNT,0)                         likeCount       
+	       ,CASE WHEN A.MEM_ID=H.WRITER THEN 'Y'
+	             ELSE 'N' END                        AS likeYN            
+	       ,NVL(I.PR_IMG_PATH, #DEFAULT_PROFILE_PATH#)  memPrImgPath    
+	       ,NVL(I.STRE_IMG_NM, #DEFAULT_PROFILE_NAME#)  memPrStrImgNm   
+	       ,CASE WHEN A.MEM_ID=J.TARGET_ID THEN 'Y'
+	             ELSE 'N' END                        AS followYN      
+	       ,NVL(K.REPLY_COUNT,0)                        repCount        
+	  FROM POST A
+	  
+	  LEFT OUTER JOIN HOUSE B ON (A.HOUSE_ID = B.HOUSE_ID)
+	  LEFT OUTER JOIN SPACE C ON (A.SPACE_ID = C.SPACE_ID)
+	  LEFT OUTER JOIN ROOM  D ON (A.ROOM_ID  = D.ROOM_ID )
+	  LEFT OUTER JOIN STYLE E ON (A.STYLE_ID = E.STYLE_ID)
+	  LEFT OUTER JOIN COLOR F ON (A.COLOR_ID = F.COLOR_ID)
+	  LEFT OUTER JOIN (SELECT POST_NO,
+	                        COUNT(*) LIKE_COUNT
+	                   FROM LIKES
+	               GROUP BY POST_NO) G ON (G.POST_NO=A.POST_NO)
+	  LEFT OUTER JOIN (SELECT A.MEM_ID  MEM_ID  
+	                         ,A.POST_NO POST_NO
+	                         ,B.MEM_ID  WRITER  
+	                    FROM LIKES A
+	                    LEFT OUTER JOIN POST B ON (A.POST_NO=B.POST_NO)
+	                    where A.MEM_ID = #memId#) H ON (A.POST_NO=H.POST_NO)
+	  LEFT OUTER JOIN PROFILE_IMG I ON (A.MEM_ID=I.MEM_ID)
+	  
+	  LEFT OUTER JOIN (SELECT MEM_ID    
+	                        ,TARGET_ID  
+	                   FROM FOLLOW
+	                  WHERE MEM_ID = #memId#) J ON (A.MEM_ID=J.TARGET_ID)
+	                  
+	  LEFT OUTER JOIN (SELECT POST_NO,
+	                  COUNT(*) REPLY_COUNT
+	                   FROM REPLY
+	               GROUP BY POST_NO) K ON (A.POST_NO=K.POST_NO)
+	  WHERE A.POST_NO = #postNo#
+	 </select>
+	 
+	<select id="selectQnaDetail"
+			parameterClass="ourhouse.common.vo.PostVO"
+	 		resultClass="ourhouse.common.vo.PhotoDetailVO">
+	 SELECT A.POST_NO                                   postNo
+	       ,A.MEM_ID                                    memId
+           ,A.POST_TITLE                                postTitle
+           ,A.POST_CONTENT                              postContent
+	       ,NVL(B.HOUSE_NAME,' ')                       houseName
+	       ,NVL(C.SPACE_NAME,' ')                       spaceName
+	       ,NVL(D.ROOM_NAME ,' ')                       roomName
+	       ,NVL(E.STYLE_NAME,' ')                       styleName
+	       ,NVL(F.COLOR_NAME,' ')                       colorName
+	       ,A.POST_VIEW                                 postView
+	       ,TO_CHAR(A.POST_DATE)                        postDate
+	       ,NVL(G.LIKE_COUNT,0)                         likeCount       
+	       ,CASE WHEN A.MEM_ID=H.WRITER THEN 'Y'
+	             ELSE 'N' END                        AS likeYN            
+	       ,NVL(I.PR_IMG_PATH, #DEFAULT_PROFILE_PATH#)  memPrImgPath    
+	       ,NVL(I.STRE_IMG_NM, #DEFAULT_PROFILE_NAME#)  memPrStrImgNm   
+	       ,CASE WHEN A.MEM_ID=J.TARGET_ID THEN 'Y'
+	             ELSE 'N' END                        AS followYN      
+	       ,NVL(K.REPLY_COUNT,0)                        repCount        
+	  FROM POST A
+	  
+	  LEFT OUTER JOIN HOUSE B ON (A.HOUSE_ID = B.HOUSE_ID)
+	  LEFT OUTER JOIN SPACE C ON (A.SPACE_ID = C.SPACE_ID)
+	  LEFT OUTER JOIN ROOM  D ON (A.ROOM_ID  = D.ROOM_ID )
+	  LEFT OUTER JOIN STYLE E ON (A.STYLE_ID = E.STYLE_ID)
+	  LEFT OUTER JOIN COLOR F ON (A.COLOR_ID = F.COLOR_ID)
+	  LEFT OUTER JOIN (SELECT POST_NO,
+	                        COUNT(*) LIKE_COUNT
+	                   FROM LIKES
+	               GROUP BY POST_NO) G ON (G.POST_NO=A.POST_NO)
+	  LEFT OUTER JOIN (SELECT A.MEM_ID  MEM_ID  
+	                         ,A.POST_NO POST_NO
+	                         ,B.MEM_ID  WRITER  
+	                    FROM LIKES A
+	                    LEFT OUTER JOIN POST B ON (A.POST_NO=B.POST_NO)
+	                    where A.MEM_ID = #memId#) H ON (A.POST_NO=H.POST_NO)
+	  LEFT OUTER JOIN PROFILE_IMG I ON (A.MEM_ID=I.MEM_ID)
+	  
+	  LEFT OUTER JOIN (SELECT MEM_ID    
+	                        ,TARGET_ID  
+	                   FROM FOLLOW
+	                  WHERE MEM_ID = #memId#) J ON (A.MEM_ID=J.TARGET_ID)
+	                  
+	  LEFT OUTER JOIN (SELECT POST_NO,
+	                  COUNT(*) REPLY_COUNT
+	                   FROM REPLY
+	               GROUP BY POST_NO) K ON (A.POST_NO=K.POST_NO)
+	  WHERE A.POST_NO = #postNo#
+	 		
+	</select>
+	 
+	 
+  	<select id="getQnAList" resultClass="ourhouse.common.vo.PostVO">
+		SELECT A.POST_NO				postNo
+	      ,A.BOARD_ID					boardId
+	      ,A.MEM_ID						memId
+	      ,NVL(B.HOUSE_NAME,' ')		houseId
+	      ,NVL(C.SPACE_NAME,' ')		spaceId
+	      ,NVL(D.ROOM_NAME,' ')			roomId
+	      ,NVL(E.STYLE_NAME,' ')		styleId
+	      ,NVL(F.COLOR_NAME,' ')		colorId
+	      ,A.HASHTAG					hashtag
+	      ,A.POST_VIEW					postView				
+	      ,A.POST_DATE					postDate
+	      ,A.POST_TITLE					postTitle
+	      ,A.POST_CONTENT				postContent
+		FROM POST A
+		LEFT OUTER JOIN HOUSE B ON(A.HOUSE_ID=B.HOUSE_ID)
+		LEFT OUTER JOIN SPACE C ON(A.SPACE_ID=C.SPACE_ID)
+		LEFT OUTER JOIN ROOM D ON(A.ROOM_ID=D.ROOM_ID)
+		LEFT OUTER JOIN STYLE E ON(A.STYLE_ID=E.STYLE_ID)
+		LEFT OUTER JOIN COLOR F ON(A.COLOR_ID=F.COLOR_ID)
+		WHERE MEM_ID=#memId#
+		  AND BOARD_ID='QNA'
+	</select>
+	
+	 <select id="getPostList" resultMap="postMap">
+		SELECT * FROM POST
+		WHERE MEM_ID=#memId#
+		and BOARD_ID='POST'
+	</select>
+	 
+</sqlMap>

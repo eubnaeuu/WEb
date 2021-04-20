@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이거 언제 다만드냐</title>
+
+    <meta name="author" content="3team">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="wehouse">
+    <meta property="og:title" content="Introduce your home, together">
+    <meta property="og:description" content="Deadock MiddleProject">
+    <meta property="og:image" content="img/logo__github.png">
+    <meta property="og:url" content="https://wehouse.com">
+
+    <!-- 대표 로고 -->
+    <link rel="icon" href="../../image/PNG/favicon.png">
+    <link rel="apple-touch-icon" href="../../image/PNG/favicon.png">
+    
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/searchPhoto.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- body 태그에 직접적으로 css는 부여하지 않는다. 컨테이너를 따로 지정하자. -->
+    <!-- 언더바 두개를 사용하는 이유 -->
+<div class="body__container"> <!-- body의 일부분인 컨테이너임을 의미 -->
+
+    <!-- HEADER -->
+    <header class="section section--header">
+        <!-- 콘텐츠가 들어가는 inner영역 -->
+        <div class="inner clearfix">
+
+            <div class="menu-group float--left">
+                
+                <div class="logo">
+                    <a href="#">우리의집</a>
+                </div>
+
+            </div>
+
+            <div class="sign-group float--right">
+
+                <form id="search-form" method="POST" action=""><!-- 고유한 개체에 id 명시 -->
+                    <span class="search-icon"></span>
+                    <input type="text" id="search" class="input--text" placeholder="우리의집 통합검색">
+                    <input type="submit" value="Submit"><!-- 화면엔 있지만 숨길것임. -->
+                </form>
+
+                <ul class="sub-menu">
+                    <li><a href="./signin.html">로그인</a></li>
+                    <li><a href="./signup.html">회원가입</a></li>
+                </ul>
+
+                <div class="btn-group dropdown--writelist">
+                    <button type="button" class="btn btn-write">글쓰기
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </button>
+                    
+                    <ul class="dropdown-write">
+                        <li class="write-item" onclick="">
+                            <img src="../../image/PNG/picture.png" alt=""> 
+
+                            <div class="write-info">
+                                <span class="write--title">사진 올리기</span>
+                                <span class="write--description">우리집 사진을 공유해보세요.</span>
+                            </div>
+                        </li>
+                        <li class="write-item" onclick="clickgo()">
+                            <img src="../../image/PNG/question.png" alt=""> 
+
+                            <div class="write-info">
+                                <span class="write--title">인테리어 질문하기</span>
+                                <span class="write--description">인테리어 고수들에게 질문해보세요.</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 서브 메뉴 집들이(사진), 질문과 답변, 이벤트 -->
+    <header class="section sub-section">
+            <div class="inner clearfix">
+
+                <div class="section-memu float--left">
+                    <ul class="section-group active">
+                        <li><a href="#">사진</a></li>
+                        <li><a href="#">질문과답변</a></li>
+                        <li><a href="#">쿠폰</a></li>
+                        <li><a href="#">공지사항</a></li>
+                    </ul>
+                </div>
+
+                <div class="sign-group float--right">
+                    <a href="">마이페이지
+                    </a>
+                </div>
+                
+            </div>
+    </header>
+
+    <!-- 통합검색시 검색어 필터표시되는곳 -->
+    <section class="section section--searchfilter">
+        <div class="inner clearfix">
+            <div class="search--number float--left">
+                
+                <!-- <span>'+ (검색 내용) +' </span> <span>에 대한 사진 검색 결과</span>-->
+                <span class="search">'원룸'</span>
+                <span>에 대한 사진 검색 결과</span>
+                <span class="number">32개</span>
+
+            </div>
+
+            <!-- 질문게시판 홈으로 가는 링크 -->
+            <div class="link--qna float--right">
+                <a href=""> 고수들과 전문가들에게 질문하러가기 </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 필터 카테고리 -->
+    <section class="section section--category">
+        <div class="inner">
+
+            <div class="filter--group">
+
+                <!-- 필터 선택 버튼 폼 -->
+                <div class="dropdown">
+                    <button type="button" class="category--sort btn btn--filter">정렬
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </button>
+
+                    <!-- 버튼 mouseover시 보여질 필터 선택 컨테이너 -->
+                    <!-- li에 value는 선택요소의 코드, li안에 있는 텍스트는 사용자에게 보여질 요소 -->
+                    <!-- 선택요소의 코드만 사용하시면 됩니다. -->
+                    <ul class="dropdown-content filter-sort">
+                        <li value="s1">최근 인기순</li>
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button type="button" class="category--houseType btn btn--filter">주거형태
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-content filter-houseType">
+                        <li value="H1">원룸&오피스텔</li>
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button type="button" class="category--style btn btn--filter">스타일
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-content filter-style">
+                        <li value="S1">모던</li>
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button type="button" class="category--color btn btn--filter">컬러
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-content filter-color">
+                        <li value="C1">그레이</li>
+                    </ul>
+                </div>
+
+                <div class="dropdown">
+                    <button type="button" class="category--space btn btn--filter">공간
+                        <i style="margin-left: 10px;"class="fas fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-content filter-space">
+                        <li value="R1">원룸</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 필터링에서 선택한 옵션들이 표시되는 컨테이너 -->
+    <section class="section filter-section">
+        <div class="inner">
+
+            <form action="" class="filter--setting">
+
+                <!-- 필터 선택 폼 [정렬] -->
+                <span class="nonactive search--filter select--sort">
+                    
+                    <!-- 사용자에게 보여지는 선택 요소 -->
+                    <span class="search--value"></span>
+                    <i class="fas fa-times-circle"></i>
+                </span>
+
+                <!-- R1 등 선택 요소의 코드가 들어갈 곳 -->
+                <input type="hidden" class="apply-value value--sort" value="" onchange="">
+                <!-- 필터 선택 폼 [정렬] 여기까지가 선택 폼 -->
+
+                <!-- 필터 선택 폼 [주거형태] -->
+                <span class="nonactive search--filter select--houseType">
+                    <span class="search--value"></span>
+                    <i class="fas fa-times-circle"></i>
+                </span>
+                <input type="hidden" class="apply-value value--houseType" value="" onchange="">
+
+                <!-- 필터 선택 폼 [스타일] -->
+                <span class="nonactive search--filter select--style">
+                    <span class="search--value"></span>
+                    <i class="fas fa-times-circle"></i>
+                </span>
+                <input type="hidden" class="apply-value value--style" value="" onchange="">
+
+                <!-- 필터 선택 폼 [컬러] -->
+                <span class="nonactive search--filter select--color">
+                    <span class="search--value"></span>
+                    <i class="fas fa-times-circle"></i>
+                </span>
+                <input type="hidden" class="apply-value value--color" value="" onchange="">
+
+                <!-- 필터 선택 폼 [공간] -->
+                <span class="nonactive search--filter select--space">
+                    <span class="search--value"></span>
+                    <i class="fas fa-times-circle"></i>
+                </span>
+                <input type="hidden" class="apply-value value--space" value="" onchange="">
+
+                <button type="text" class="nonactive search--init">초기화</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="section section--board">
+        <div class="board">
+            <div class="inner">
+
+                <!-- photh-card div 가 게시글 하나-->
+                <!-- 수정사항 : 댓글이 표시되자 않음 -->
+                <div class="photo-card">
+
+                    <div class="profile">
+                        <ul class="user">
+                            <li class="user_image">
+                                <a href="">
+                                <img src="../../image/JPEG/안방.jpg" alt="">
+                                </a>
+                            </li>
+                            <li class="user_info">
+                                <div class="follow">
+                                    <a href="#"><span class="user-id">sehooninseoul</span></a>
+                                    <span class="dot">·</span>
+                                    <a href="#"><span class="user-follow">팔로우</span></a>
+                                </div>
+                                <div class="user-introduce">
+                                    청소가 취미 정리가 특기😆
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="thumnail">
+                        <img src="../../image/JPEG/안방.jpg" alt="">
+                        <div class="mask" onmouseenter="zoomIn()" onmouseleave="zoomOut()">
+                        
+                            <div class="thumnail-view">
+                                <ul class="view_chart">
+                                    <li>조회수</li>
+                                    <li>4,521</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="likeandcomment">
+                        <div class="like"><i class="far fa-heart"></i> <span class="like_num">48</span></div>
+                        <div class="comment"><i class="far fa-comment-alt"></i> <span class="comment_num">4</span></div>
+                    </div>
+
+                    <div class="user-description">
+                        계절이 바뀌고 베란다에도 러그를 깔아 주었어요 통창이라 낮에는 따듯하지만 밤엔 추워해가 떠있는 낮에 하루종일 고양이들이
+                    </div>
+
+                </div>
+
+                <div class="photo-card">
+
+                    <div class="profile">
+                        <ul class="user">
+                            <li class="user_image">
+                                <a href="">
+                                <img src="../../image/JPEG/안방.jpg" alt="">
+                                </a>
+                            </li>
+                            <li class="user_info">
+                                <div class="follow">
+                                    <a href="#"><span class="user-id">sehooninseoul</span></a>
+                                    <span class="dot">·</span>
+                                    <a href="#"><span class="user-follow">팔로우</span></a>
+                                </div>
+                                <div class="user-introduce">
+                                    청소가 취미 정리가 특기😆
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="thumnail">
+                        <img src="../../image/JPEG/안방.jpg" alt="">
+                        <div class="mask" onmouseenter="zoomIn()" onmouseleave="zoomOut()">
+                        
+                            <div class="thumnail-view">
+                                <ul class="view_chart">
+                                    <li>조회수</li>
+                                    <li>4,521</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="likeandcomment">
+                        <div class="like"><i class="far fa-heart"></i> <span class="like_num">48</span></div>
+                        <div class="comment"><i class="far fa-comment-alt"></i> <span class="comment_num">4</span></div>
+                    </div>
+
+                    <div class="user-description">
+                        계절이 바뀌고 베란다에도 러그를 깔아 주었어요 통창이라 낮에는 따듯하지만 밤엔 추워해가 떠있는 낮에 하루종일 고양이들이
+                    </div>
+
+                </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="section">
+            <div class="inner clearfix">
+
+                <ul class="site-links float--right">
+                    <li>@Copyright © 2020 ~ 2020 by Daedockplace, Inc All rights reserved</li>
+                </ul>
+
+                <ul class="site-links float--left">
+                    <li><a href="#">브랜드 스토리</a></li>
+                    <li><a href="#">이용약관</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">고객센터</a></li>
+                    <li><a href="#">공지사항</a></li>
+                </ul>
+            </div>
+    </footer>
+
+    <!-- 사진 줌인아웃 -->
+    <script src="../../js/zooInOut.js"></script>
+
+    <!-- 헤더 고정 -->
+    <script src="../../js/headerfixed.js"></script>
+
+    <!-- 사진 검색 페이지 필터 -->
+    <script src="../../js/searchPhoto.js"></script>
+
+    <!-- 헤더에 글쓰기 클릭시 나오는 글쓰기 종류 -->
+    <script src="../../js/writebtn.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

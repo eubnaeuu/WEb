@@ -1,0 +1,544 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700;900&display=swap');
+/* �뿤�뜑 �긽�떒諛� 怨좎젙 */
+
+
+
+/* 怨듯넻 紐⑤뱢 */
+.body__container {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #757575;
+}
+
+/* SUMMARY */
+.summary__title {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.summary__desciption {
+    font-size: 26px;
+    font-weight: 300;
+    color: #767676;
+    line-height: 1.5;
+}
+
+/* input */
+
+.input--text {
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 16px;
+}
+
+.input--text:hover {
+    background: #f7f7f7;
+}
+
+.input--text::-webkit-input-placeholder {
+    color: #cacaca;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.input--text::-ms-input-placeholder {
+    color: #cacaca;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.input--text::-moz-input-placeholder {
+    color: #cacaca;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* �뿤�뜑 �씤�뭼 諛뺤뒪 */
+header .input--text {
+    height: 40px;
+    padding: 0 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 16px;
+}
+
+.textbold {
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: #424242;
+    box-sizing: border-box;
+}
+
+.textbold:hover {
+    color: #35C5F0;
+}
+
+/* 濡쒓렇�씤 踰꾪듉 */
+/* BTN */
+.btn {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 38px;
+    width: 100px;
+    border: none;
+    background: #35C5F0;
+    border-radius: 4px;
+    display: inline-flex;
+    /* �닔�룊�쓣 媛�吏�吏�留� �쐞�븘�옒 �뙣�뵫 媛�濡쒖궗�씠利덈�� 媛�吏� �닔 �뾾�떎. �씠 �냽�꽦�쓣 二쇰㈃ �떎�쓬 �슂�냼�뿉 �뒪�럹�씠�뒪諛붾줈 �씤�떇�빐 鍮덇났媛꾩씠 �깮源� */
+    padding: 0 12px;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    color: #f3f3f3;
+    font-weight: 700;
+    outline: none;
+}
+
+.btn:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.btn-setting {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 50px;
+    width: 100%;
+    background: #35C5F0;
+    border: none;
+    border-radius: 4px;
+    display: inline-flex;
+    /* �닔�룊�쓣 媛�吏�吏�留� �쐞�븘�옒 �뙣�뵫 媛�濡쒖궗�씠利덈�� 媛�吏� �닔 �뾾�떎. �씠 �냽�꽦�쓣 二쇰㈃ �떎�쓬 �슂�냼�뿉 �뒪�럹�씠�뒪諛붾줈 �씤�떇�빐 鍮덇났媛꾩씠 �깮源� */
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    color: #ffffff;
+}
+
+.btn-setting:hover {
+    background: #2bb0d8;
+}
+
+.input--text:hover {
+    background: #f7f7f7;
+}
+
+.input--text::-webkit-input-placeholder {
+    color: #cacaca;
+    font-weight: 700;
+}
+
+.input--text::-ms-input-placeholder {
+    color: #cacaca;
+    font-weight: 700;
+}
+
+.input--text::-moz-input-placeholder {
+    color: #cacaca;
+    font-weight: 700;
+}
+
+/* FLOAT CLEARFIX */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.float--left {
+    float: left;
+}
+
+.float--right {
+    float: right;
+}
+
+/* �꽮�뀡 �쁺�뿭 */
+.section {
+    position: relative;
+}
+
+.section .inner {
+    max-width: 1136px;
+    /* 理쒕� �꼫鍮� 980px */
+    margin: 0 auto;
+    /* 以묒븰�젅�젹. 980px�씠�씪�뒗 �쁺�뿭�씠 以묒븰�뿉 �젙�쐞移� �븯寃뚮맖 �긽�븯 0 醫뚯슦 auto*/
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* �뿤�뜑 �쁺�뿭 */
+header {
+    border-bottom: 1px solid#E5E5E5;
+    background: #ffffff;
+    /* white媛숈� 吏��젙媛믪쓽 寃쎌슦 釉뚮씪�슦��留덈떎 �긽�씠�븷 �닔 �엳�쑝誘�濡� �뿥�궗肄붾뱶濡� 紐낆떆�븯�옄 */
+}
+
+header .inner {
+    height: 80px;
+    /* header�뒗 �븞�쓽 �슂�냼 inner�뿉 �쁺�뼢�쓣 諛쏆쑝誘�濡� �옄�떇�슂�냼�뿉 媛믪쓣 吏��젙�빐二쇰룄濡� �븳�떎. 遺�紐� height�뒗 湲곕낯�쑝濡� auto */
+}
+
+header .menu-group {
+    display: flex;
+    /* �옄�떇�슂�냼�뱾�쓣 �닔�룊 �젙�젹 */
+    align-items: center;
+    height: 100%;
+    /* inner�넂�씠 留뚰겮 */
+}
+
+header .sign-group {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+header .logo {
+    margin-right: 10px;
+}
+
+header .logo a {
+    width: 100px;
+    height: 30px;
+    display: block;
+    background-image: url("../../image/PNG/wehouse_logo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-indent: -9999px;
+    /* �뱾�뿬�벐湲� �냽�꽦 html肄붾뱶�쓽 GitHub瑜� ��泥댄뀓�뒪�듃濡� �씠�슜�븯湲� �쐞�빐 �쇊履쎌쑝濡� �뾾�븷以��떎. �씠瑜� 紐낆떆�븯湲곗쐞�빐 -9999px瑜� �궗�슜�븳�떎 */
+}
+
+
+/* 헤더 글쓰기 드롭다운 */
+.section--haeder .dropdown--writelist {
+    position: relative;
+}
+
+.dropdown--writelist .dropdown-write {
+    position: absolute;
+    top: 50px;
+    right: -100px;
+    z-index: 9999;
+    box-sizing: border-box;
+    width: 300px;
+    padding: 10px;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
+    display: none;
+}
+
+.dropdown-write li {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.dropdown-write li:hover {
+    background: #f8f8f8;
+}
+
+.dropdown-write li img {
+    margin-right: 15px;
+    width: 40px;
+}
+
+.dropdown-write .write-info {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.write-info .write--description {
+    font-size: 12px;
+    font-weight: 500;
+    color: #aaaaaa;
+}
+
+#search-form {
+    order: 1;
+    margin-right: 12px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-image: url("../image/SVG/search.svg");
+    background-repeat: no-repeat;
+    z-index: 9999;
+    left: 12.5px;
+}
+
+#search {
+    width: 240px;
+    font-size: 14px;
+}
+
+#search+[type="submit"] {
+    display: none;
+}
+
+header .sub-menu {
+    order: 2;
+    display: flex;
+    margin-right: 14x;
+}
+
+header .sub-menu li a {
+    padding: 2px 12.5px;
+    display: block;
+    font-size: 15px;
+    font-weight: 800;
+    color: #757575;
+    border-left: 1px solid rgb(241, 241, 241);
+    box-sizing: border-box;
+}
+
+header .sub-menu li a:hover {
+    color: #35C5F0;
+}
+
+header .sub-menu li:last-child {
+    margin-right: 10px;
+}
+
+header .btn-group {
+    order: 3;
+    display: flex;
+    position: relative;
+    /* 踰꾪듉 �슂�냼�뱾�씠 inline-flex�씠誘�濡� flex �븘�슂 */
+}
+
+/* �봽濡쒗븘 �뿤�뜑 �꽕鍮꾧쾶�씠�뀡 */
+.section-profile_nav .inner {
+    height: 60px;
+}
+
+.section-profile_nav ul {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+.section-profile_nav {
+    height: 100%;
+}
+
+.section-profile_nav li {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.section-profile_nav li {
+    margin-right: 50px;
+}
+
+.section-profile_nav li a {
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    color: #424242;
+    box-sizing: border-box;
+}
+
+.section-profile_nav li a:hover {
+    color: #35C5F0;
+}
+
+.section-profile-subnav .inner {
+    height: 60px;
+}
+
+.section-profile-subnav ul {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+.section-profile-subnav li {
+    height: calc(100% - 3px);
+    display: flex;
+    align-items: center;
+}
+
+.section-profile-subnav li {
+    margin-right: 30px;
+}
+
+.section-profile-subnav li a {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #424242;
+    box-sizing: border-box;
+}
+
+.section-profile-subnav li a:hover {
+    color: #35C5F0;
+}
+
+.section-profile-subnav li:nth-child(2) {
+    border-bottom: 4px solid #35C5F0;
+}
+
+.section-profile-subnav li:nth-child(2) a {
+    color: #35C5F0;
+}
+
+/* �쉶�썝�젙蹂� �닔�젙 �뤌 */
+
+.section-settingPW .inner {
+    width: 500px;
+    padding: 40px;
+    color: #292929;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2);
+    margin: 50px auto;
+}
+
+.section-settingPW .changePW {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.section-settingPW .summary__title {
+    font-size: 24px;
+    color: #292929;
+}
+
+.section-settingPW .summary__desciption {
+    font-size: 16px;
+    color: #292929;
+}
+
+.changePW .subtitle__changePW {
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: #292929;
+}
+
+.changePW .description__changePW {
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: #292929;
+    font-weight: 300;
+    display: flex;
+    margin: 20px 0 0 0;
+    align-items: center;
+}
+
+.description__changePW .btn{
+    width:auto;
+}
+
+.changePW .change-form {
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: #292929;
+    font-weight: 300;
+    display: flex;
+    margin: 20px 0 0 0;
+    align-items: center;
+}
+
+.changePW .password {
+    flex:1;
+    margin-right: 10px;
+}
+
+.changePW i {
+    margin-right: 5px;
+}
+
+.changePW .checkPW {
+    margin-top: 5px;
+    display: block;
+    margin-bottom: 10px;
+    color: #f77;
+    font-size: 14px;
+    visibility: hidden;
+}
+
+.changePW .checkPW:last-child {
+    margin-bottom: 20px;
+}
+
+/* FOOTER */
+footer {
+    border-top: 1px solid #eee;
+    margin-top: 130px;
+}
+
+footer .inner {
+    padding: 50px 0;
+}
+
+footer .site-links {
+    display: flex;
+}
+
+footer .site-links li {
+    font-size: 12px;
+    margin-right: 10px;
+    color: #767676;
+}
+
+footer .site-links li a {
+    color: #4078c0;
+}
+
+footer .site-links li a:hover {
+    text-decoration: underline;
+}
+
+footer .logo {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 24px;
+    height: 24px;
+}
+
+footer .logo:hover svg {
+    fill: #4078c0;
+}
+
+.nonactive {
+    display: none;
+}

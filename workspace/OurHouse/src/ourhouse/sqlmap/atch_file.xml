@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- namespace속성 : 아래에서 작성한 SQL을 호출할 때 같이 사용된다. -->			
+<sqlMap namespace="atchFile">
+	<!-- 
+		이 영역에 sql문에 맞는 태그를 사용하여 SQL문을 기술한다.
+		
+		사용할 수 있는 기본적인 태그들
+		<select> ~~~ </select>
+		<insert> ~~~ </insert>
+		<update> ~~~ </update>
+		<delete> ~~~ </delete>
+		
+		위 태그에서 사용되는 속성들
+		1) id 속성: 해당 태그를 호출할 때 <sqlMap> 태그의 namespace와 연결하여 사용하는 이름
+		2) parameterClass 속성: sql문에 사용될 데이터가 들어있는 객체를 지정한다.
+							   (보통은 VO클래스, 자바의 자료형이름 등이 사용된다.)
+							   (typeAlias로 지정한 alias명을 사용할 수 있다.)
+		
+		3) resultClass 속성 : select 문을 실행한 결과를 담을 객체를 지정한다.
+							(보통 VO클래스나 자바의 자료형 이름을 사용한다.)
+	 -->
+	
+	<!-- VO변수명과 DB컬럼명을 매핑 --> 
+	<resultMap class="ourhouse.common.vo.AtchFileVO" id="atchFileMap">
+		<result property="atchFileId" column="ATCH_FILE_ID"/>
+		<result property="postNo" column="POST_NO"/>
+		<result property="fileSn" column="FILE_SN"/>
+		<result property="fileCn" column="FILE_CN"/>
+		<result property="fileStreCours" column="FILE_STRE_COURS"/>
+		<result property="orignlFileNm" column="ORIGNAL_FILE_NM"/>
+		<result property="streFileNm" column="STRE_FILE_NM"/>
+		<result property="fileExtsn" column="FILE_EXTSN"/>
+		<result property="fileSize" column="FILE_SIZE"/>
+		<result property="creatDt" column="CREAT_DT"/>
+	</resultMap>
+	
+	<insert id="insertAtchFile"
+			parameterClass="ourhouse.common.vo.AtchFileVO">
+		
+		INSERT INTO ATCH_FILE
+			(
+				ATCH_FILE_ID
+				,POST_NO
+				,FILE_SN
+				,FILE_STRE_COURS
+				,STRE_FILE_NM
+				,ORIGNAL_FILE_NM
+				,FILE_EXTSN
+				,FILE_CN
+				,FILE_SIZE
+				,CREAT_DT
+			)
+			
+			VALUES
+			(
+				SEQ_IMAGE_FILES.NEXTVAL
+				,#postNo#
+				,#fileSn#
+				,#fileStreCours#
+				,#streFileNm#
+				,#orignlFileNm#
+				,#fileExtsn#
+				,#fileCn#
+				,#fileSize#
+				,sysdate
+			)	
+	</insert>
+
+
+	<select id="selectPhotoFiles"
+			resultClass="ourhouse.common.vo.AtchFileVO">
+		SELECT ATCH_FILE_ID        atchFileId	
+			   ,POST_NO            postNo		
+			   ,FILE_SN            fileSn		
+			   ,NVL(FILE_CN,' ')   fileCn		
+			   ,FILE_STRE_COURS    fileStreCours
+			   ,ORIGNAL_FILE_NM    orignlFileNm	
+			   ,STRE_FILE_NM       streFileNm	
+			   ,FILE_EXTSN         fileExtsn	
+			   ,FILE_SIZE          fileSize		
+			   ,CREAT_DT           creatDt		
+ 		 FROM ATCH_FILE
+		WHERE POST_NO = #postNo#
+		ORDER BY FILE_SN
+	</select>
+
+	<select id="selectFourPhotos"
+			parameterClass="int"
+			resultClass="ourhouse.common.vo.MypagePhotoVO">
+		SELECT * 
+		  FROM ( SELECT A.POST_DATE                postDate
+		  			   ,A.POST_NO                  postNo 
+		               ,A.MEM_ID                   memId        
+		               ,B.FILE_STRE_COURS          fileStreCours   
+		               ,B.STRE_FILE_NM             fileFileNm    
+		           FROM POST A
+		         LEFT OUTER JOIN ATCH_FILE B ON (A.POST_NO=B.POST_NO)
+		          WHERE A.BOARD_ID='POST'
+		            AND B.FILE_SN='1'
+		            AND A.MEM_ID= (SELECT MEM_ID
+		                             FROM POST
+		                            WHERE POST_NO=#postNo#)
+		         ORDER BY 1 DESC )
+		  WHERE ROWNUM &lt;= 4
+		
+	</select>
+	
+	<select id="getAtchList" resultMap="atchFileMap">
+		SELECT *
+		  FROM ATCH_FILE
+		 WHERE POST_NO = #postNo#
+	</select>
+	
+	<select id="getQatchList" resultMap="atchFileMap">
+		SELECT *
+		  FROM ATCH_FILE
+		 WHERE POST_NO = #postNo#
+	</select>
+</sqlMap>
