@@ -100,6 +100,7 @@ private static final long serialVersionUID = 1L;
 		// 새로운 방식 (req.map을 가지고 와서 memberVO에 넣어줘)
 		MemberVO memberVo = new MemberVO();
 		BeanUtils.populate(memberVo, req.getParameterMap());
+		System.out.println("memPass : "+memberVo.getMemPass());
 		
 		String memHp = memberVo.getMemHp().replaceAll("-","");
 		memberVo.setMemHp(memHp);

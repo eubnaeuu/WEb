@@ -50,14 +50,13 @@
 				<div class="col-sm-7">
 					<input type="date" class="form-control" id="memBir"
 						placeholder="생년월일 입력(10살 이상만 가입가능)" name="memBir" required="required"  onchange="checkBirspan()">
-						<span id="birthspan"></span>
+						<span id="birspan"></span>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memPass">비밀번호:</label>
 				<div class="col-sm-7">
-					<input type="password" class="form-control" id="memPass"
-						placeholder="영문 소문자, 영문 대문자, 숫자, 특수문 각 1개 이상(8~12 글자)"  onchange="memPass" required="required" onchange="checkPassspan()">
+					<input type="text" class="form-control" name="memPass" id="memPass" placeholder="영문 소문자, 영문 대문자, 숫자, 특수문 각 1개 이상(8~12 글자)" required="required" onchange="checkPassspan()">
 						<span id="passspan"></span>
 				</div>
 			</div>
@@ -66,7 +65,7 @@
 				<label class="control-label col-sm-2" for="memHp">휴대폰 번호:</label>
 				<div class="col-sm-7">
 					<input type="text" class="form-control" id="memHp"
-						placeholder="전화번호를 입력해주세요" name="memHp" required="required" onchange="checkHpspan()">
+						placeholder="예) 000-0000-0000" name="memHp" required="required" onchange="checkHpspan()">
 						<span id="hpspan"></span>
 				</div>
 			</div>

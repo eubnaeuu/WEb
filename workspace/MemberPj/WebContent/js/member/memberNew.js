@@ -14,10 +14,6 @@ $(document).ready(function() {
 //  $("#memPass").on("keyup", checkPassspan());
 //  $("#memHp").on("keyup", checkHpspan());
 //  $("#memMail").on("keyup", checkMailspan());
-    
-
-
-
 
 	 $("#tbZipResult").on("dblclick", "tbody tr", function(){
 		 // this ==> tr
@@ -37,7 +33,6 @@ $(document).ready(function() {
 		 
 		 // on : 동적 요소 포함 ( e.g. 그 당시 테이블이 없어도 이 후에 생기게 되면 바인딩 O)(계속 추적하는 느낌?)  
 		 // dblclick : 동적 요소 미포함   (e.g. 그 당시 테이블이 없다면 바인딩 X)
-		 
 		 
 		 // 주소창 (모달창) 닫기
 		 $("#zipModal").modal("hide");
@@ -119,17 +114,15 @@ function checkIdspan() {
 	var regExp = /^[a-z0-9]{4,12}$/;
 	// console.log(regExp);
 	if (!regExp.test(memId)) {
-		$("#idspan").text("ID값이 유효하지 않습니다");
+		$("#idspan").text("ID값이 유효하지 않습니다(영어소문자와 숫자로 구성(4~12글자))");
 		$("#idspan").css("color","red");
 		$("#memId").focus();
 		return;
 	}
-
 	$("#idspan").text("유효한 ID");
 	$("#idspan").css("color","lime");
 	flag2 ="t";
 }
-
 
 function checkNamespan() {
 		var memName = $("#memName").val();
@@ -146,7 +139,7 @@ function checkNamespan() {
 	var regExp = /^[가-힣]{2,5}$/;
 	// console.log(regExp);
 	if (!regExp.test(memName)) {
-		$("#namespan").text("이름이 유효하지 않습니다");
+		$("#namespan").text("이름이 유효하지 않습니다(한글(2~5글자))");
 		$("#namespan").css("color","red");
 		$("#memName").focus();
 		return;
@@ -181,6 +174,7 @@ function checkBirspan() {
 function checkPassspan() {
 	var memPass = $("#memPass").val();
 	// 빈값 확인
+//	alert(memPass);
 	if (isEmpty(memPass)) {
 		// console.log(memId);
 		$("#passspan").text("비밀번호가 입력되지 않았습니댜");
@@ -189,17 +183,18 @@ function checkPassspan() {
 		return;
 	}
 	// 유효성 검사
-	var regExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}/;
+	var regExp = /^.*(?=^.{8,12}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+
 	// console.log(regExp);
 	if (!regExp.test(memPass)) {
-		$("#passspan").text("비밀번호가 유효하지 않습니다");
+		$("#passspan").text("비밀번호가 유효하지 않습니다(영어소문자,대문자,특수문자,숫자 각1개씩(8~12글자))");
 		$("#passspan").css("color","red");
 		$("#memPass").focus();
 		return;
-
+	}
 	$("#passspan").text("유효한 PASS");
 	$("#passspan").css("color","lime");
-	}
+	
 }
 function checkMailspan() {
 	var memMail = $("#memMail").val();
@@ -239,7 +234,7 @@ function checkHpspan(){
 	var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
 	// console.log(regExp);
 	if (!regExp.test(memHp)) {
-		$("#hpspan").text("핸드폰 번호가 유효하지 않습니다");
+		$("#hpspan").text("핸드폰 번호가 유효하지 않습니다(000-0000-0000)");
 		$("#hpspan").css("color","red");
 		$("#memHp").focus();
 		return;
@@ -351,7 +346,7 @@ function validate() {
 		return false;		
 	}
 	// 유효성 검사
-	var regExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}/;
+	var regExp = /^.*(?=^.{8,12}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 	// console.log(regExp);
 	if (!regExp.test(memPass)) {
 		alert("비밀번호가 유효하지 않습니다");
@@ -410,12 +405,10 @@ function validate() {
 	// DB에서 중복검사 수행
 function checkId(){
 
-
-	if(flag2 == "f"){
+	if(flag2 != "t"){
 		alert("유효한 ID값을 작성 후 중복검사가 가능합니다");
 	} else{
-
-
+var memId = $("#memId").val();
 	$.ajax({
 		url : "/MemberPj/MemberServlet",
 		type : "post",
@@ -447,19 +440,18 @@ function checkId(){
 // 회원정보 저장하기
 function save(){
 	
-	// 회원정보 유효성 체크
+//	 회원정보 유효성 체크
 	var result = validate();
 	if(!result){
 		return;
 	}
-//	
+	
 	
 //	// 사용자에게 컨펌.
 	if(!confirm("저장하시겠습니까?")){
 		return;
 	}
-	
-	alert($("#fm").serialize());
+//	alert($("#fm").serialize());
 	$("#formFlag").val("C");
 	//DB에 저장하는 ajax 호출
 	$.ajax({
