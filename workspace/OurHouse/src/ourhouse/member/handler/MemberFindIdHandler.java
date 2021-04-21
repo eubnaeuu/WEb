@@ -34,7 +34,6 @@ public class MemberFindIdHandler implements CommandHandler{
 			return url;
 		}
 	}
-
 	@Override
 	public boolean isRedirect(HttpServletRequest req) {
 		if(req.getMethod().equals("GET")) {
